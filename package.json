@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "update-skills": "node scripts/fetch-skills.mjs",
     "update-bosses": "node scripts/parse-wiki-bosses.mjs",
+    "update-mw2": "node scripts/fetch-mw2-bosses.mjs",
     "update-data": "npm run update-skills && npm run update-bosses",
     "version:patch": "npm version patch -m \"chore: bump v%s\"",
     "version:minor": "npm version minor -m \"chore: bump v%s\"",

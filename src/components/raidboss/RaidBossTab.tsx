@@ -48,6 +48,8 @@ const isEpic = (b: RaidBoss) => b.respawn && b.respawn.includes('Фиксиро�
 export default function RaidBossTab() {
   const [searchQuery, setSearchQuery] = useState('');
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
+  const [epicSortAsc, setEpicSortAsc] = useState(true);
+  const [raidSortAsc, setRaidSortAsc] = useState(true);
 
   const { epics, raids } = useMemo(() => {
     let list = BOSSES;
@@ -58,12 +60,19 @@ export default function RaidBossTab() {
         (b.location && b.location.toLowerCase().includes(q))
       );
     }
-    const sorted = [...list].sort((a, b) => b.level - a.level || a.name.localeCompare(b.name));
     return {
-      epics: sorted.filter(isEpic),
-      raids: sorted.filter(b => !isEpic(b)),
+      epics: [...list.filter(isEpic)].sort((a, b) =>
+        epicSortAsc
+          ? a.level - b.level || a.name.localeCompare(b.name)
+          : b.level - a.level || a.name.localeCompare(b.name)
+      ),
+      raids: [...list.filter(b => !isEpic(b))].sort((a, b) =>
+        raidSortAsc
+          ? a.level - b.level || a.name.localeCompare(b.name)
+          : b.level - a.level || a.name.localeCompare(b.name)
+      ),
     };
-  }, [searchQuery]);
+  }, [searchQuery, epicSortAsc, raidSortAsc]);
 
   const toggleRow = (id: string) => {
     setExpanded(prev => {
@@ -74,7 +83,7 @@ export default function RaidBossTab() {
     });
   };
 
-  const renderTable = (items: RaidBoss[], title: string, icon: string) => (
+  const renderTable = (items: RaidBoss[], title: string, icon: string, sortAsc: boolean, onToggleSort: () => void) => (
     <Fragment>
       <div className={styles.sectionTitle}>{icon} {title} ({items.length})</div>
       <div className={styles.tableWrap}>
@@ -82,7 +91,11 @@ export default function RaidBossTab() {
           <thead>
             <tr>
               <th className={styles.colName}>Босс</th>
-              <th className={styles.colLvl}>Ур.</th>
+              <th className={styles.colLvl}>
+                <span className={styles.sortable} onClick={onToggleSort}>
+                  Ур. {sortAsc ? '▲' : '▼'}
+                </span>
+              </th>
               <th className={styles.colResp}>Респ</th>
               <th className={styles.colLoc}>Локация</th>
             </tr>
@@ -144,11 +157,11 @@ export default function RaidBossTab() {
 
       {epics.length + raids.length > 0 ? (
         searchQuery.trim() ? (
-          renderTable([...epics, ...raids], 'Результаты поиска', '🔍')
+          renderTable([...epics, ...raids], 'Результаты поиска', '🔍', epicSortAsc, () => setEpicSortAsc(prev => !prev))
         ) : (
           <Fragment>
-            {epics.length > 0 && renderTable(epics, 'Эпик боссы', '🔥')}
-            {raids.length > 0 && renderTable(raids, 'Рейд-боссы', '👹')}
+            {epics.length > 0 && renderTable(epics, 'Эпик боссы', '🔥', epicSortAsc, () => setEpicSortAsc(prev => !prev))}
+            {raids.length > 0 && renderTable(raids, 'Рейд-боссы', '👹', raidSortAsc, () => setRaidSortAsc(prev => !prev))}
           </Fragment>
         )
       ) : (

@@ -78,6 +78,18 @@
 - `fetch-skills.mjs` — fetches skill data from lu4db API
 - `fetch-raidbosses.mjs` — intended for raid boss data (blocked: lu4db is SPA, requires JS rendering)
 - `parse-wiki-bosses.mjs` — parses mw2.wiki article + lu4db HTML to build RAIDBOSSES.json
+- `fetch-mw2-bosses.mjs` — parses mw2.wiki raid boss article, downloads boss images to `/public/images/bosses/`, fetches map coords from spawn page, adds `image`/`coords` fields to `RAIDBOSSES.json`
+
+## Build & Deploy
+- `npm run dev` — Vite dev server
+- `npm run build` — `tsc -b && vite build` (JS: ~2.86MB / 382KB gzip, CSS: ~31KB / 5.9KB gzip)
+- `npm run deploy` — `gh-pages -d dist` (pushes to `gh-pages` branch)
+
+## Data Notes
+- `RAIDBOSSES.json` now has `image` and `coords` fields (added by `fetch-mw2-bosses.mjs`)
+- Boss images are in `/public/images/bosses/` — accessible at `/l2team-navigator/images/bosses/` after deploy
+- `coords` are pixel positions on the 3004×3004 world map (`x` = left, `y` = top)
+- 2 bosses (Korim, Zaken) are missing images/coords — they exist in lu4db data but not in the mw2.wiki article
 
 ## Build & Deploy
 - `npm run dev` — Vite dev server

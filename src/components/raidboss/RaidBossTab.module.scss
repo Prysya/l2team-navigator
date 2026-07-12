@@ -118,6 +118,12 @@
 .colResp { width: 18%; }
 .colLoc { width: 44%; }
 
+.sortable {
+  cursor: pointer;
+  user-select: none;
+  &:hover { color: #fff; }
+}
+
 .clickableCell {
   cursor: pointer;
   user-select: none;
