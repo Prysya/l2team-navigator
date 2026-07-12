@@ -1,0 +1,361 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.controls {
+  background: $color-surface;
+  padding: $spacing-2xl;
+  border-radius: $radius-xl;
+  margin-bottom: $spacing-2xl;
+  display: flex;
+  gap: $spacing-xl;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @include tablet {
+    flex-direction: column;
+    align-items: stretch;
+    gap: $spacing-md;
+  }
+  @include mobile {
+    padding: $spacing-lg;
+  }
+}
+
+.label {
+  font-weight: bold;
+  color: $color-primary;
+  white-space: nowrap;
+  @include tablet {
+    margin-bottom: -5px;
+  }
+  @include mobile {
+    font-size: $font-size-md;
+  }
+}
+
+.typeSwitcher {
+  display: flex;
+  gap: $spacing-xs;
+  background: #0b0f1a;
+  padding: $spacing-xs;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+
+  @include tablet {
+    align-self: flex-start;
+    flex-wrap: wrap;
+  }
+  @include small {
+    button {
+      font-size: $font-size-sm;
+      padding: 4px 8px;
+    }
+  }
+}
+
+.typeBtn {
+  padding: 6px 14px;
+  border: none;
+  border-radius: $radius-md;
+  background: transparent;
+  color: $color-text-muted;
+  font-size: $font-size-base;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+
+  &:hover {
+    color: $color-text;
+  }
+}
+
+.typeBtnActive {
+  background: $gradient-primary;
+  color: #04070d;
+  font-weight: 600;
+  box-shadow: $shadow-primary-sm;
+}
+
+.select {
+  min-width: 200px;
+  padding: 8px 12px;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+  background: #0b0f1a;
+  color: $color-text;
+  font-size: $font-size-lg;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  &:focus:not(:disabled) {
+    outline: none;
+    border-color: $color-primary;
+  }
+
+  @include tablet {
+    width: 100%;
+    min-width: unset;
+  }
+  @include mobile {
+    font-size: $font-size-md;
+    padding: 6px 8px;
+  }
+}
+
+.input {
+  min-width: 200px;
+  padding: 8px 12px;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+  background: #0b0f1a;
+  color: $color-text;
+  font-size: $font-size-lg;
+  flex: 1;
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+  }
+
+  @include tablet {
+    width: 100%;
+    min-width: unset;
+  }
+  @include mobile {
+    font-size: $font-size-md;
+    padding: 6px 8px;
+  }
+}
+
+.count {
+  font-size: $font-size-base;
+  color: $color-text-muted;
+  white-space: nowrap;
+
+  b {
+    color: $color-primary;
+  }
+}
+
+.tableWrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: $font-size-base;
+
+  th,
+  td {
+    padding: 8px 10px;
+    border: 1px solid $color-border;
+    text-align: left;
+  }
+
+  th {
+    background: $color-surface-hover;
+    color: $color-primary;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  td {
+    color: $color-text;
+    vertical-align: top;
+  }
+
+  @include mobile {
+    th, td {
+      padding: 6px;
+      font-size: $font-size-sm;
+    }
+  }
+  @include small {
+    th, td {
+      padding: 4px;
+      font-size: $font-size-xs;
+    }
+  }
+}
+
+.citySeparator {
+  td {
+    background: $color-surface-hover;
+    color: $color-primary;
+    font-weight: bold;
+    font-size: $font-size-lg;
+    padding: 10px 14px;
+  }
+  @include mobile {
+    td {
+      font-size: $font-size-base;
+      padding: 8px;
+    }
+  }
+}
+
+.cityIcon {
+  margin-right: 6px;
+}
+
+.cityMeta {
+  font-weight: normal;
+  color: $color-text-muted;
+  font-size: $font-size-base;
+  margin-left: $spacing-sm;
+}
+
+.locCell {
+  width: 35%;
+  vertical-align: top;
+}
+
+.locName {
+  font-weight: 600;
+  color: $color-text;
+  font-size: $font-size-md;
+  margin-bottom: 6px;
+}
+
+.locMeta {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.locTypes {
+  display: flex;
+  gap: $spacing-xs;
+  flex-wrap: wrap;
+}
+
+.locParty {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+}
+
+.locMetaRow {
+  display: flex;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+}
+
+.locLevel {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+}
+
+.itemsCell {
+  width: 65%;
+  vertical-align: top;
+}
+
+.locItem {
+  padding: $spacing-md;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  margin-bottom: $spacing-sm;
+  background: $color-surface-alt;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+  @include mobile {
+    padding: $spacing-sm;
+  }
+}
+
+.itemHeader {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin-bottom: 6px;
+}
+
+.itemTypeBadge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: $radius-md;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.itemTypeRecipe {
+  background: rgba(255, 166, 87, 0.15);
+  color: $color-accent-orange;
+}
+
+.itemTypeSpellbook {
+  background: rgba(167, 139, 250, 0.15);
+  color: $color-accent-purple;
+}
+
+.itemName {
+  color: $color-link;
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.itemClasses {
+  margin-bottom: 6px;
+  display: flex;
+  gap: $spacing-xs;
+  flex-wrap: wrap;
+}
+
+.itemMonsters {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  margin-bottom: 6px;
+}
+
+.locMonster {
+  padding: 4px 0;
+  font-size: $font-size-base;
+  line-height: 1.5;
+}
+
+.locChances {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  margin-top: 2px;
+}
+
+.itemTotal {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  padding-top: 6px;
+  border-top: 1px solid $color-border;
+
+  b {
+    color: $color-text;
+  }
+}
+
+.emptyState {
+  text-align: center;
+  padding: 60px 20px;
+  color: $color-text-muted;
+  font-style: italic;
+  font-size: $font-size-lg;
+}
+
+.hidden {
+  display: none;
+}

@@ -1,0 +1,19 @@
+@use 'variables' as *;
+
+@mixin tablet {
+  @media screen and (max-width: $bp-tablet) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media screen and (max-width: $bp-mobile) {
+    @content;
+  }
+}
+
+@mixin small {
+  @media screen and (max-width: $bp-small) {
+    @content;
+  }
+}

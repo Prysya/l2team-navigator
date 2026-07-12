@@ -1,0 +1,353 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.controls {
+  background: $color-surface;
+  padding: $spacing-2xl;
+  border-radius: $radius-xl;
+  margin-bottom: $spacing-2xl;
+  display: flex;
+  gap: $spacing-xl;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @include tablet {
+    flex-direction: column;
+    align-items: stretch;
+    gap: $spacing-md;
+  }
+  @include mobile {
+    padding: $spacing-lg;
+  }
+}
+
+.label {
+  font-weight: bold;
+  color: $color-primary;
+  white-space: nowrap;
+  @include tablet {
+    margin-bottom: -5px;
+  }
+  @include mobile {
+    font-size: $font-size-md;
+  }
+}
+
+.select, .input {
+  min-width: 200px;
+  padding: 8px 12px;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+  background: #0b0f1a;
+  color: $color-text;
+  font-size: $font-size-lg;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  @include tablet {
+    width: 100%;
+    min-width: unset;
+  }
+  @include mobile {
+    font-size: $font-size-md;
+    padding: 6px 8px;
+  }
+}
+
+.input {
+  flex: 1;
+  min-width: 200px;
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+
+  @include tablet {
+    width: 100%;
+  }
+}
+
+.filterGroup {
+  display: flex;
+  gap: $spacing-xs;
+  background: #0b0f1a;
+  padding: $spacing-xs;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+
+  @include tablet {
+    align-self: flex-start;
+    flex-wrap: wrap;
+  }
+}
+
+.filterBtn {
+  padding: 6px 14px;
+  background: transparent;
+  color: $color-text-muted;
+  border: none;
+  border-radius: $radius-md;
+  cursor: pointer;
+  font-size: $font-size-md;
+  font-weight: 500;
+  transition: all 0.2s;
+
+  &:hover {
+    color: $color-text;
+  }
+}
+
+.filterBtnActive {
+  background: $gradient-primary;
+  color: #04070d;
+  box-shadow: $shadow-primary-sm;
+}
+
+.langBar {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  background: #0b0f1a;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+  flex-basis: 100%;
+}
+
+.langLabel {
+  font-weight: 600;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+  margin-right: $spacing-xs;
+}
+
+.langOpt {
+  padding: 5px 16px;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background: transparent;
+  color: $color-text-muted;
+  cursor: pointer;
+  font-size: $font-size-md;
+  font-weight: 600;
+  transition: all 0.15s;
+
+  &:hover {
+    border-color: $color-primary;
+    color: $color-text;
+  }
+}
+
+.langOptActive {
+  background: $gradient-primary;
+  color: #04070d;
+  border-color: transparent;
+  box-shadow: $shadow-primary-sm;
+}
+
+.skillsCount {
+  color: $color-text-muted;
+  font-size: $font-size-md;
+  margin-bottom: $spacing-lg;
+  b {
+    color: $color-primary;
+  }
+}
+
+.skillsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.skillCard {
+  background: $color-surface;
+  border-radius: $radius-xl;
+  padding: $spacing-2xl;
+  border-left: 4px solid $color-primary;
+
+  @include mobile {
+    padding: $spacing-lg;
+  }
+}
+
+.skillHeader {
+  display: flex;
+  gap: $spacing-xl;
+  align-items: flex-start;
+  margin-bottom: $spacing-xl;
+}
+
+.skillIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+  flex-shrink: 0;
+  object-fit: cover;
+  background: $color-surface-alt;
+}
+
+.skillInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.skillName {
+  font-size: 16px;
+  font-weight: 600;
+  color: $color-primary;
+  margin-bottom: 6px;
+  word-break: break-word;
+}
+
+.skillMeta {
+  display: flex;
+  gap: $spacing-lg;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.typeActive {
+  font-size: $font-size-sm;
+  color: $color-accent-green;
+  font-weight: 600;
+}
+
+.typePassive {
+  font-size: $font-size-sm;
+  color: $color-accent-orange;
+  font-weight: 600;
+}
+
+.skillSubtype {
+  font-size: $font-size-sm;
+  color: $color-accent-purple;
+  font-weight: 500;
+  background: rgba(167, 139, 250, 0.1);
+  padding: 1px 8px;
+  border-radius: $radius-sm;
+}
+
+.skillLvl {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+}
+
+.skillStats {
+  display: flex;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+}
+
+.skillStat {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  background: $color-surface-alt;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: 4px 10px;
+  white-space: nowrap;
+
+  b {
+    color: $color-primary;
+    font-weight: 600;
+  }
+}
+
+.sbLink {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 12px;
+  background: transparent;
+  border: 1px solid $color-accent-orange;
+  border-radius: $radius-md;
+  color: $color-accent-orange;
+  font-size: $font-size-sm;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: $color-accent-orange;
+    color: #04070d;
+  }
+}
+
+.skillLevels {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.levelTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: $font-size-base;
+
+  th, td {
+    padding: 6px 10px;
+    border: 1px solid $color-border;
+    text-align: left;
+  }
+
+  th {
+    background: $color-surface-hover;
+    color: $color-primary;
+    font-weight: 600;
+    font-size: $font-size-sm;
+    white-space: nowrap;
+  }
+
+  td {
+    color: $color-text;
+    vertical-align: top;
+  }
+
+  @include mobile {
+    th, td {
+      padding: 4px 6px;
+      font-size: $font-size-sm;
+    }
+  }
+}
+
+
+.lvlClass {
+  text-align: center;
+  font-weight: 500;
+  color: $color-accent-orange !important;
+  white-space: nowrap;
+}
+
+.lvlDesc {
+  font-size: $font-size-sm;
+  line-height: 1.4;
+}
+
+.lvlChange {
+  color: $color-text;
+  padding: 1px 0;
+
+  & + & {
+    border-top: 1px dashed $color-border;
+    margin-top: 2px;
+    padding-top: 3px;
+  }
+}
+
+.numHighlight {
+  color: $color-accent-orange;
+  font-weight: 600;
+  font-family: $font-mono;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 60px 20px;
+  color: $color-text-muted;
+  font-style: italic;
+  font-size: $font-size-lg;
+}
