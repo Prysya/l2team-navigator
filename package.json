@@ -10,6 +10,9 @@
     "update-skills": "node scripts/fetch-skills.mjs",
     "update-bosses": "node scripts/parse-wiki-bosses.mjs",
     "update-data": "npm run update-skills && npm run update-bosses",
+    "version:patch": "npm version patch -m \"chore: bump v%s\"",
+    "version:minor": "npm version minor -m \"chore: bump v%s\"",
+    "version:major": "npm version major -m \"chore: bump v%s\"",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
