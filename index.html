@@ -142,6 +142,159 @@
         .social-link.social-youtube:hover { border-color: #ff0000; color: #ff6666; }
         .social-link.social-telegram:hover { border-color: #229ED9; color: #6fc8f0; }
         .social-link.social-forum:hover { border-color: #ff3b3b; color: #ff8080; }
+@media screen and (max-width: 1024px) {
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+    .controls label {
+        margin-bottom: -5px; 
+    }
+    select, input {
+        width: 100%;
+        min-width: unset;
+    }
+    select.wide {
+        min-width: unset;
+    }
+    .type-switcher {
+        align-self: flex-start;
+        flex-wrap: wrap;
+    }
+}
+
+/* Мобильные устройства (ширина до 768px) */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+    .agr-badge {
+        font-size: 12px;
+    }
+
+    .tabs {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 4px;
+        padding: 4px;
+    }
+    .tab-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    .social-links {
+        flex-direction: column;
+        gap: 6px;
+    }
+    .social-link {
+        justify-content: center;
+        width: 100%;
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    .controls {
+        padding: 12px;
+        gap: 8px;
+    }
+    .controls label {
+        font-size: 13px;
+    }
+    select, input {
+        font-size: 13px;
+        padding: 6px 8px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+    .loc-table, .spellbook-table {
+        display: block;
+    }
+
+    th, td {
+        padding: 8px;
+        font-size: 11px;
+    }
+    
+    td {
+        white-space: normal;
+        min-width: 120px; 
+    }
+    th {
+        white-space: normal;
+    }
+        .loc-cell, .book-cell, .lvl-cell {
+        min-width: 150px;
+    }
+    
+    .comment-cell {
+        min-width: 200px;
+    }
+    
+    .material-section, .recipe-card, .spellbook-card {
+        padding: 12px;
+        margin-bottom: 10px;
+    }
+
+    .stat-badge {
+        font-size: 9px;
+        padding: 1px 4px;
+    }
+
+    .book-classes .classes-list {
+        gap: 4px;
+    }
+    .book-classes .class-tag {
+        font-size: 10px;
+        padding: 2px 6px;
+    }
+}
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 1.1rem;
+    }
+    .tab-btn {
+        font-size: 11px;
+        padding: 6px 8px;
+    }
+    .type-switcher button {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+        th, td {
+        padding: 5px;
+        font-size: 10px;
+    }
+        .loc-table td.loc-cell .loc-name {
+        font-size: 14px;
+    }
+    .loc-table td.loc-cell .loc-meta {
+        font-size: 10px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .full-text { display: none; }
+    .short-text { display: inline; }
+}
+@media screen and (min-width: 481px) {
+    .short-text { display: none; }
+    .full-text { display: inline; }
+}
     </style>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
@@ -162,11 +315,11 @@
             Форум
         </a>
     </div>
-    <div class="tabs">
-        <button class="tab-btn active" data-tab="recipes">📜 Рецепты</button>
-        <button class="tab-btn" data-tab="spellbooks">📚 Книги заклинаний</button>
-        <button class="tab-btn" data-tab="locations">🗺️ Локации</button>
-    </div>
+<div class="tabs">
+    <button class="tab-btn active" data-tab="recipes"><span class="full-text">📜 Рецепты</span><span class="short-text">📜</span></button>
+    <button class="tab-btn" data-tab="spellbooks"><span class="full-text">📚 Книги заклинаний</span><span class="short-text">📚</span></button>
+    <button class="tab-btn" data-tab="locations"><span class="full-text">🗺️ Локации</span><span class="short-text">🗺️</span></button>
+</div>
 
     <div id="tab-recipes" class="tab-content active">
         <div class="controls">
