@@ -1,0 +1,235 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.controls {
+  background: $color-surface;
+  padding: $spacing-2xl;
+  border-radius: $radius-xl;
+  margin-bottom: $spacing-2xl;
+  display: flex;
+  gap: $spacing-xl;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @include tablet {
+    flex-direction: column;
+    align-items: stretch;
+    gap: $spacing-md;
+  }
+  @include mobile {
+    padding: $spacing-lg;
+  }
+}
+
+.label {
+  font-weight: bold;
+  color: $color-primary;
+  white-space: nowrap;
+  @include tablet {
+    margin-bottom: -5px;
+  }
+  @include mobile {
+    font-size: $font-size-md;
+  }
+}
+
+.select {
+  min-width: 200px;
+  padding: 8px 12px;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+  background: #0b0f1a;
+  color: $color-text;
+  font-size: $font-size-lg;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+  }
+
+  @include tablet {
+    width: 100%;
+    min-width: unset;
+  }
+  @include mobile {
+    font-size: $font-size-md;
+    padding: 6px 8px;
+  }
+}
+
+.selectWide {
+  min-width: 350px;
+  @include tablet {
+    min-width: unset;
+  }
+}
+
+.input {
+  min-width: 200px;
+  padding: 8px 12px;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+  background: #0b0f1a;
+  color: $color-text;
+  font-size: $font-size-lg;
+  flex: 1;
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+  }
+
+  @include tablet {
+    width: 100%;
+    min-width: unset;
+  }
+  @include mobile {
+    font-size: $font-size-md;
+    padding: 6px 8px;
+  }
+}
+
+.card {
+  background: $color-surface;
+  border-radius: $radius-xl;
+  padding: $spacing-2xl;
+  margin-bottom: $spacing-2xl;
+  border-left: 4px solid $color-primary;
+
+  @include mobile {
+    padding: $spacing-lg;
+    margin-bottom: $spacing-lg;
+  }
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+  margin-bottom: $spacing-xl;
+
+  h3 {
+    margin: 0;
+    font-size: 16px;
+    color: $color-primary;
+  }
+
+  @include mobile {
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+  }
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: $radius-lg;
+  background: rgba(56, 189, 248, 0.12);
+  color: $color-primary;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.wikiLink {
+  color: $color-link;
+  text-decoration: none;
+  font-size: $font-size-base;
+  margin-left: auto;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  @include mobile {
+    margin-left: 0;
+  }
+}
+
+.monsterCount {
+  font-size: $font-size-base;
+  color: $color-text-muted;
+  margin-bottom: $spacing-lg;
+}
+
+.tableWrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: $font-size-base;
+
+  th,
+  td {
+    padding: 8px 10px;
+    border: 1px solid $color-border;
+    text-align: left;
+  }
+
+  th {
+    background: $color-surface-hover;
+    color: $color-primary;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  td {
+    color: $color-text;
+    vertical-align: top;
+  }
+
+  @include mobile {
+    th, td {
+      padding: 6px;
+      font-size: $font-size-sm;
+    }
+  }
+  @include small {
+    th, td {
+      padding: 4px;
+      font-size: $font-size-xs;
+    }
+  }
+}
+
+.materialSection {
+  margin-top: $spacing-2xl;
+  padding-top: $spacing-2xl;
+  border-top: 1px solid $color-border;
+
+  h4 {
+    color: $color-accent-orange;
+    margin: 0 0 $spacing-lg;
+    font-size: $font-size-lg;
+  }
+
+  @include mobile {
+    padding: $spacing-lg;
+    margin-top: $spacing-lg;
+  }
+}
+
+.materialLink {
+  color: $color-accent-orange;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.emptyState {
+  text-align: center;
+  padding: 60px 20px;
+  color: $color-text-muted;
+  font-style: italic;
+  font-size: $font-size-lg;
+}

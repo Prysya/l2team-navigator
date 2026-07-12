@@ -1,0 +1,54 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.tabs {
+  display: flex;
+  flex-direction: row;
+  gap: $spacing-xs;
+  background: $color-surface;
+  padding: $spacing-sm;
+  border-radius: $radius-xl;
+  width: fit-content;
+  margin-bottom: 20px;
+
+  @include mobile {
+    width: 100%;
+    flex-wrap: wrap;
+    padding: $spacing-xs;
+  }
+}
+
+.tabBtn {
+  padding: 10px 20px;
+  background: transparent;
+  color: $color-text-muted;
+  border: none;
+  border-radius: $radius-lg;
+  cursor: pointer;
+  font-size: $font-size-lg;
+  font-weight: 600;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: $color-text;
+    background: $color-surface-hover;
+  }
+
+  @include mobile {
+    font-size: $font-size-base;
+    padding: 8px 12px;
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  @include small {
+    font-size: $font-size-sm;
+    padding: 6px 8px;
+  }
+}
+
+.active {
+  background: $gradient-primary;
+  color: #04070d;
+  box-shadow: $shadow-primary;
+}

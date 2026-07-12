@@ -1,0 +1,220 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.controls {
+  background: $color-surface;
+  padding: $spacing-2xl;
+  border-radius: $radius-xl;
+  margin-bottom: $spacing-2xl;
+  display: flex;
+  gap: $spacing-xl;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @include tablet {
+    flex-direction: column;
+    align-items: stretch;
+    gap: $spacing-md;
+  }
+  @include mobile {
+    padding: $spacing-lg;
+  }
+}
+
+.label {
+  font-weight: bold;
+  color: $color-primary;
+  white-space: nowrap;
+  @include tablet {
+    margin-bottom: -5px;
+  }
+  @include mobile {
+    font-size: $font-size-md;
+  }
+}
+
+.select {
+  min-width: 200px;
+  padding: 8px 12px;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+  background: #0b0f1a;
+  color: $color-text;
+  font-size: $font-size-lg;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  &:focus:not(:disabled) {
+    outline: none;
+    border-color: $color-primary;
+  }
+
+  @include tablet {
+    width: 100%;
+    min-width: unset;
+  }
+  @include mobile {
+    font-size: $font-size-md;
+    padding: 6px 8px;
+  }
+}
+
+.input {
+  min-width: 200px;
+  padding: 8px 12px;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+  background: #0b0f1a;
+  color: $color-text;
+  font-size: $font-size-lg;
+  flex: 1;
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+  }
+
+  @include tablet {
+    width: 100%;
+    min-width: unset;
+  }
+  @include mobile {
+    font-size: $font-size-md;
+    padding: 6px 8px;
+  }
+}
+
+.langBar {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  background: #0b0f1a;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+  flex-basis: 100%;
+}
+
+.langLabel {
+  font-weight: 600;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+  margin-right: $spacing-xs;
+}
+
+.langOpt {
+  padding: 5px 16px;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background: transparent;
+  color: $color-text-muted;
+  cursor: pointer;
+  font-size: $font-size-md;
+  font-weight: 600;
+  transition: all 0.15s;
+
+  &:hover {
+    border-color: $color-primary;
+    color: $color-text;
+  }
+}
+
+.langOptActive {
+  background: $gradient-primary;
+  color: #04070d;
+  border-color: transparent;
+  box-shadow: $shadow-primary-sm;
+}
+
+.count {
+  font-size: $font-size-base;
+  color: $color-text-muted;
+  white-space: nowrap;
+
+  b {
+    color: $color-primary;
+  }
+}
+
+.summary {
+  background: $color-surface-alt;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $spacing-lg $spacing-xl;
+  margin-bottom: $spacing-xl;
+  font-size: $font-size-md;
+  color: $color-text-muted;
+
+  b {
+    color: $color-text;
+  }
+  @include mobile {
+    padding: $spacing-md;
+    font-size: $font-size-base;
+  }
+}
+
+.tableWrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: $font-size-base;
+
+  th,
+  td {
+    padding: 8px 10px;
+    border: 1px solid $color-border;
+    text-align: left;
+  }
+
+  th {
+    background: $color-surface-hover;
+    color: $color-primary;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  td {
+    color: $color-text;
+    vertical-align: top;
+  }
+
+  @include mobile {
+    th, td {
+      padding: 6px;
+      font-size: $font-size-sm;
+    }
+  }
+  @include small {
+    th, td {
+      padding: 4px;
+      font-size: $font-size-xs;
+    }
+  }
+}
+
+.spellbookClass + .spellbookClass {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid $color-border;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 60px 20px;
+  color: $color-text-muted;
+  font-style: italic;
+  font-size: $font-size-lg;
+}
