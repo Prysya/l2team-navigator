@@ -7,7 +7,17 @@ import {
 } from '@tanstack/react-table';
 import CustomSelect from '../../components/shared/CustomSelect';
 import WorldMap from '../../components/shared/WorldMap';
+import QUEST_DATA from '../../data/QUEST_DATA.json';
 import styles from './QuestsTab.module.scss';
+
+type QuestDataEntry = {
+  id: number;
+  type: string;
+  npcId: number | null;
+  npcName: string;
+  coords: { x: number; y: number } | null;
+  steps: string[];
+};
 
 type RewardTag = 'weapon' | 'soulshot' | 'both' | 'adena' | 'exp' | 'other';
 
@@ -180,8 +190,14 @@ const NPC_COORDS: Record<number, { x: number; y: number }> = {
   30644: { x: 1792.04, y: 2318.46 },
   30648: { x: 1199.76, y: 2099.45 },
   30510: { x: 1792.56, y: 2311.02 },
-  30103: { x: 2150.42, y: 2330.26 },
-  30104: { x: 2150.41, y: 2331.02 },
+   30103: { x: 2150.42, y: 2330.26 },
+   30104: { x: 2150.41, y: 2331.02 },
+   // Temple Executor chain NPCs
+   30067: { x: 1771.92, y: 2306.86 },
+   30068: { x: 1772.97, y: 2306.79 },
+   30070: { x: 1769.24, y: 2306.22 },
+   30895: { x: 2299.34, y: 2745.45 },
+   30894: { x: 2299.36, y: 2745.89 },
 };
 
 const QUEST_DETAILS: Record<string, { npc: string; npcId: number; location: string; startLvl: number; endLvl: number }> = {
@@ -322,17 +338,19 @@ const QUEST_IDS: Record<string, number> = {
 
 function enrichQuest(q: Quest): Quest & { npc: string; npcId: number; location: string; startLvl: number; endLvl: number; questId: number; steps: string[]; coords: { x: number; y: number } | null; rewardTag: RewardTag } {
   const details = QUEST_DETAILS[q.name];
-  const npcId = details?.npcId ?? q.npcId ?? 0;
+  const parsed = (QUEST_DATA as Record<string, QuestDataEntry>)[q.name];
+  const npcId = details?.npcId ?? q.npcId ?? parsed?.npcId ?? 0;
+  const parsedCoords = parsed?.coords ?? null;
   return {
     ...q,
-    npc: details?.npc ?? q.npc ?? '',
+    npc: details?.npc ?? q.npc ?? parsed?.npcName ?? '',
     location: details?.location ?? q.location ?? '',
     npcId,
     startLvl: details?.startLvl ?? q.lvl,
     endLvl: details?.endLvl ?? q.lvl,
-    questId: QUEST_IDS[q.name] ?? q.questId ?? 0,
-    steps: (QUEST_STEPS[q.name] ?? q.steps) ?? [],
-    coords: NPC_COORDS[npcId] ?? null,
+    questId: QUEST_IDS[q.name] ?? q.questId ?? parsed?.id ?? 0,
+    steps: (QUEST_STEPS[q.name] ?? parsed?.steps ?? q.steps) ?? [],
+    coords: NPC_COORDS[npcId] ?? parsedCoords,
     rewardTag: detectRewardTag(q.reward),
   };
 }
@@ -430,15 +448,15 @@ const QUESTS_BY_RACE: Record<string, Quest[]> = {
 };
 
 const TEMPLE_EXECUTOR_QUESTS: Quest[] = [
-  { lvl: 35, name: 'Temple Missionary', desc: 'Цепочка Temple Executor, часть 1', reward: '253k Exp, 25k SP, 20k aden, банки, эликсиры', npc: 'High Priest Biotin', location: 'Talking Island, Храм', questId: 341, npcId: 30141, steps: ['1. Поговорите с High Priest Biotin в храме на Talking Island.', '2. Выполните миссию (уровни 35-45).', '3. Вернитесь за наградой: EXP, SP, адена, банки, эликсиры.'] },
-  { lvl: 35, name: 'Temple Executor', desc: 'Цепочка Temple Executor, часть 2', reward: '253k Exp, 25k SP, 23.7k aden, банки', npc: 'High Priest Biotin', location: 'Talking Island, Храм', questId: 342, npcId: 30141, steps: ['1. Продолжите цепочку у Biotin.', '2. Выполните задание.', '3. Получите награду.'] },
-  { lvl: 35, name: 'Temple Champion — 1', desc: 'Цепочка Temple Executor, часть 3', reward: '316k Exp, 31k SP, 31.5k aden, соски D, CP Potion', npc: 'High Priest Biotin', location: 'Talking Island, Храм', questId: 343, npcId: 30141, steps: ['1. Продолжите цепочку у Biotin.', '2. Выполните задание.', '3. Получите соски D + CP Potion + EXP.'] },
-  { lvl: 36, name: 'Temple Champion — 2', desc: 'Цепочка Temple Executor, часть 4', reward: '352k Exp, 35k SP, 36k aden, эликсиры', npc: 'High Priest Biotin', location: 'Talking Island, Храм', questId: 344, npcId: 30141, steps: ['1. Продолжите цепочку у Biotin.', '2. Выполните задание.', '3. Получите эликсиры HP/MP + EXP.'] },
-  { lvl: 37, name: 'Shadow Fox — 1', desc: 'Цепочка Temple Executor, часть 5', reward: '313k Exp, 31k SP, 26k aden, банки', npc: 'High Priest Biotin', location: 'Talking Island, Храм', questId: 345, npcId: 30141, steps: ['1. Продолжите цепочку у Biotin.', '2. Выполните задание.', '3. Получите награду.'] },
-  { lvl: 37, name: 'Shadow Fox — 2', desc: 'Цепочка Temple Executor, часть 6', reward: '313k Exp, 31k SP, 26k aden, банки', npc: 'High Priest Biotin', location: 'Talking Island, Храм', questId: 346, npcId: 30141, steps: ['1. Продолжите цепочку у Biotin.', '2. Выполните задание.', '3. Получите награду.'] },
-  { lvl: 37, name: 'Shadow Fox — 3', desc: 'Цепочка Temple Executor, часть 7', reward: '313k Exp, 31k SP, 26k aden, соски D, CP Potion', npc: 'High Priest Biotin', location: 'Talking Island, Храм', questId: 347, npcId: 30141, steps: ['1. Продолжите цепочку у Biotin.', '2. Выполните задание.', '3. Получите соски D + CP Potion.'] },
-  { lvl: 38, name: 'Fallen Angel — Request of Dawn', desc: 'Цепочка Temple Executor, на выбор', reward: '592k Exp, 59k SP, 58.5k aden, соски D, CP, ресы', npc: 'High Priest Biotin', location: 'Talking Island, Храм', questId: 348, npcId: 30141, steps: ['1. Выберите путь Dawn у Biotin.', '2. Выполните задание (больше EXP, но сложнее).', '3. Получите Proof of Loyalty + соски D + CP.'] },
-  { lvl: 38, name: 'Fallen Angel — Request of Dusk', desc: 'Цепочка Temple Executor, на выбор', reward: '435k Exp, 43k SP, 41k aden, CP, ресы', npc: 'High Priest Biotin', location: 'Talking Island, Храм', questId: 349, npcId: 30141, steps: ['1. Выберите путь Dusk у Biotin.', '2. Выполните задание (меньше EXP, но быстрее).', '3. Получите Proof of Loyalty + CP.'] },
+  { lvl: 35, name: 'Temple Missionary', desc: 'Цепочка палач храма, часть 1', reward: '253k Exp, 25k SP, 20k aden, банки, эликсиры', npc: 'Glyvka Priestess', location: 'Dion, Храм', npcId: 30067 },
+  { lvl: 35, name: 'Temple Executor', desc: 'Цепочка палач храма, часть 2', reward: '253k Exp, 25k SP, 23.7k aden, банки', npc: 'Shegfield Priest', location: 'Dion, Храм', npcId: 30068 },
+  { lvl: 35, name: 'Temple Champion — 1', desc: 'Цепочка палач храма, часть 3', reward: '316k Exp, 31k SP, 31.5k aden, соски D, CP Potion', npc: 'Sylvain High Priest', location: 'Dion, Храм', npcId: 30070 },
+  { lvl: 36, name: 'Temple Champion — 2', desc: 'Цепочка палач храма, часть 4', reward: '352k Exp, 35k SP, 36k aden, эликсиры', npc: 'Sylvain High Priest', location: 'Dion → Giran', npcId: 30070 },
+  { lvl: 37, name: 'Shadow Fox — 1', desc: 'Цепочка палач храма, часть 5', reward: '313k Exp, 31k SP, 26k aden, банки', npc: 'Mia Warehouse Keeper', location: 'Hein, Склад', npcId: 35554 },
+  { lvl: 37, name: 'Shadow Fox — 2', desc: 'Цепочка палач храма, часть 6', reward: '313k Exp, 31k SP, 26k aden, банки', npc: 'Kluck Warehouse Keeper', location: 'Hein, Склад', npcId: 30895 },
+  { lvl: 37, name: 'Shadow Fox — 3', desc: 'Цепочка палач храма, часть 7', reward: '313k Exp, 31k SP, 26k aden, соски D, CP Potion', npc: 'Natools Warehouse Chief', location: 'Hein, Склад', npcId: 30894 },
+  { lvl: 38, name: 'Fallen Angel — Request of Dawn', desc: 'Цепочка палач храма, на выбор (Dawn)', reward: '592k Exp, 59k SP, 58.5k aden, соски D, CP, ресы', npc: 'Natools Warehouse Chief', location: 'Hein, Склад', npcId: 30894 },
+  { lvl: 38, name: 'Fallen Angel — Request of Dusk', desc: 'Цепочка палач храма, на выбор (Dusk)', reward: '435k Exp, 43k SP, 41k aden, CP, ресы', npc: 'Natools Warehouse Chief', location: 'Hein, Склад', npcId: 30894 },
 ];
 
 type QuestCategory = 'racial' | 'profession' | 'temple';
@@ -596,17 +614,16 @@ export default function QuestsTab() {
         columnHelper.accessor('name', {
           header: 'Квест',
           enableSorting: false,
-          cell: ({ getValue }) => <span style={{ fontWeight: 600 }}>{getValue()}</span>,
-        }),
-          ...(category === 'racial' ? [columnHelper.accessor('rewardTag', {
-          header: '',
-          enableSorting: false,
-          cell: ({ getValue }) => {
-            if (getValue() === 'weapon' || getValue() === 'both') return <span className={styles.tagWeapon}>⚔️</span>;
-            if (getValue() === 'soulshot') return <span className={styles.tagSoulshot}>🔥</span>;
-            return null;
+          cell: ({ getValue, row }) => {
+            const tag = (row.original as Quest).rewardTag;
+            return (
+              <span style={{ fontWeight: 600 }}>
+                {category === 'racial' && (tag === 'soulshot' || tag === 'both') && <span className={styles.tagSoulshot}>🔥 </span>}
+                {getValue()}
+              </span>
+            );
           },
-        })] : []),
+        }),
         columnHelper.accessor('desc', {
           header: 'Зачем',
           enableSorting: false,
@@ -686,8 +703,7 @@ export default function QuestsTab() {
         {category === 'racial' && (
           <div className={styles.legend}>
             <span className={styles.legendTitle}>Обязательные к выполнению:</span>
-            <span className={styles.legendItem}><span className={styles.tagWeapon}>⚔️</span> — оружие</span>
-            <span className={styles.legendItem}><span className={styles.tagSoulshot}>🔥</span> — соски</span>
+            <span className={styles.legendItem}><span className={styles.tagSoulshot}>🔥</span></span>
           </div>
         )}
 
@@ -713,7 +729,7 @@ export default function QuestsTab() {
                 <Fragment key={row.id}>
                   <tr
                     onClick={() => toggleRow(q.name)}
-                    className={category === 'racial' && (eq.rewardTag === 'weapon' || eq.rewardTag === 'both' || eq.rewardTag === 'soulshot') ? styles.rowWeapon : ''}
+                    className={category === 'racial' && (eq.rewardTag === 'soulshot' || eq.rewardTag === 'both') ? styles.rowSoulshot : ''}
                     style={{ cursor: 'pointer' }}
                   >
                     {row.getVisibleCells().map(cell => (

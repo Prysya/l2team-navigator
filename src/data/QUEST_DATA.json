@@ -383,14 +383,14 @@
       "y": 2344.9209039548
     },
     "steps": [
-      "1. The starting NPC Auron Master is located in the Gludin Warriors Guild. Talk to Auron to start the quest.",
-      "2. Teleport to Gludio. Find Simplon Armor Merchant in the Weapon Shop and talk to him.",
-      "3. Teleport from Gludio to the Ruins of Agony. Find and kill monsters:",
-      "4. Return to Simplon Armor Merchant and talk to him.",
-      "5. Teleport to Gludin Village. Find Auron Master in the Warriors Guild and talk to him.",
-      "6. Teleport from Gludin to Windmill Hill. Find and kill monsters:",
-      "7. Return to Auron Master and talk to him.",
-      "8. To change your profession, talk to Ramos Grand Master in the Gludin Warriors Guild."
+      "1. Начальный NPC Auron Master находится в Gludin Warriors Guild. Поговорите с Auron, чтобы начать квест.",
+      "2. Телепортируйтесь в Gludio. Найдите Simplon Armor Merchant в Weapon Shop и поговорите с ним.",
+      "3. Телепортируйтесь из Gludio в Ruins of Agony. Найдите и убейте монстров.",
+      "4. Вернитесь к Simplon Armor Merchant и поговорите с ним.",
+      "5. Телепортируйтесь в Gludin Village. Найдите Auron Master в Warriors Guild и поговорите с ним.",
+      "6. Телепортируйтесь из Gludin в Windmill Hill. Найдите и убейте монстров.",
+      "7. Вернитесь к Auron Master и поговорите с ним.",
+      "8. Чтобы сменить профессию, поговорите с Ramos Grand Master в Gludin Warriors Guild."
     ]
   },
   "Path of the Human Knight": {
@@ -403,17 +403,17 @@
       "y": 2351.0508474576
     },
     "steps": [
-      "1. The starting NPC Sir Klaus Vasper is located near the Gludin Warriors Guild. Talk to Sir Klaus Vasper to start the quest.",
-      "2. Head to the western gate of Gludin. Find Bezique Captain and talk to him.",
-      "3. Head to Gludin Temple. Find Levian High Priestess and talk to her.",
-      "4. Teleport from Gludin to Windmill Hill. Find and kill monsters:",
-      "5. Teleport to Gludin Village. Find Bezique Captain at the western gate and talk to him.",
-      "6. Head to Gludin Temple. Find Levian High Priestess and talk to her.",
-      "7. Teleport to Gludio. Find Bathis Captain at the northern gate and talk to him.",
-      "8. Leave Gludio through the eastern gate and follow the road north. Find and kill monsters:",
-      "9. Return to Bathis Captain and talk to him.",
-      "10. Teleport to Gludin Village. Find Sir Klaus Vasper near the Warriors Guild and talk to him.",
-      "11. To change your profession, talk to Ramos Grand Master in the Gludin Warriors Guild."
+      "1. Начальный NPC Sir Klaus Vasper находится рядом с Gludin Warriors Guild. Поговорите с Sir Klaus Vasper, чтобы начать квест.",
+      "2. Идите к западным воротам Gludin. Найдите Bezique Captain и поговорите с ним.",
+      "3. Идите в Gludin Temple. Найдите Levian High Priestess и поговорите с ней.",
+      "4. Телепортируйтесь из Gludin в Windmill Hill. Найдите и убейте монстров.",
+      "5. Телепортируйтесь в Gludin Village. Найдите Bezique Captain у западных ворот и поговорите с ним.",
+      "6. Идите в Gludin Temple. Найдите Levian High Priestess и поговорите с ней.",
+      "7. Телепортируйтесь в Gludio. Найдите Bathis Captain у северных ворот и поговорите с ним.",
+      "8. Выйдите из Gludio через восточные ворота и следуйте по дороге на север. Найдите и убейте монстров.",
+      "9. Вернитесь к Bathis Captain и поговорите с ним.",
+      "10. Телепортируйтесь в Gludin Village. Найдите Sir Klaus Vasper рядом с Warriors Guild и поговорите с ним.",
+      "11. Чтобы сменить профессию, поговорите с Ramos Grand Master в Gludin Warriors Guild."
     ]
   },
   "Path of the Rogue": {
@@ -426,14 +426,14 @@
       "y": 2365.7683615819
     },
     "steps": [
-      "1. The starting NPC Bezique Captain is located at the western gate of Gludin. Talk to Bezique to start the quest.",
-      "2. Head to the northern part of the main square of Gludin. Find Neti and talk to her.",
-      "3. Teleport to Gludio, then to Ruins of Agony. Find and kill monsters:",
-      "4. Return to Neti and talk to her.",
-      "5. Teleport to Gludin Village. Find Bezique Captain at the western gate and talk to him.",
-      "6. Teleport from Gludin to Abandoned Camp. Opposite the entrance to the camp find and kill monsters:",
-      "7. Return to Bezique Captain and talk to him.",
-      "8. To change your profession, talk to Ramos Grand Master in the Gludin Warriors Guild."
+      "1. Начальный NPC Bezique Captain находится у западных ворот Gludin. Поговорите с Bezique, чтобы начать квест.",
+      "2. Идите в северную часть главной площади Gludin. Найдите Neti и поговорите с ней.",
+      "3. Телепортируйтесь в Gludio, затем в Ruins of Agony. Найдите и убейте монстров.",
+      "4. Вернитесь к Neti и поговорите с ней.",
+      "5. Телепортируйтесь в Gludin Village. Найдите Bezique Captain у западных ворот и поговорите с ним.",
+      "6. Телепортируйтесь из Gludin в Abandoned Camp. Напротив входа в лагерь найдите и убейте монстров.",
+      "7. Вернитесь к Bezique Captain и поговорите с ним.",
+      "8. Чтобы сменить профессию, поговорите с Ramos Grand Master в Gludin Warriors Guild."
     ]
   },
   "Path of the Human Wizard": {
@@ -446,21 +446,21 @@
       "y": 2353.3785310734
     },
     "steps": [
-      "1. The starting NPC Parina is located in the Temple of Gludin. Talk to Parina to start the quest.",
-      "2. Teleport to Gludio, then to the Ruins of Despair. In the western part of the Ruins find Flame Salamander and talk to her.",
-      "3. Head northwest to The Ruined Bend. Find and kill monsters:",
-      "4. Return to Flame Salamander and talk to her.",
-      "5. Teleport to Gludio, then to Ant Nest. Instead of going into the cave head to the northwest edge of the Wastelands. Go through the passage at the edge of the location. Find Wind Sylph and talk to her.",
-      "6. Head south along the road to the western entrance to the Wasteland. Find Wasteland Lizardman and talk to him.",
-      "7. Return to Wind Sylph and talk to her.",
-      "8. Teleport to Gludio, then to Ruins Of Agony. Head to Fellmere Lake. Find Water Undine on the northern shore of the lake and talk to her.",
-      "9. Head east to the house by the Lake. Find and kill monsters:",
-      "10. Return to Water Undine and talk to her.",
-      "11. Teleport to Gludio, then to Ruins of Agony. Find Earth Snake Wise and talk to her.",
-      "12. Head along the road to the northwest. Find and kill monsters:",
-      "13. Return to Earth Snake Wise and talk to her.",
-      "14. Teleport to Gludin Village. Find Parina in the Temple and talk to her.",
-      "15. To change your profession, talk to Levian High Priestess in the Temple of Gludin."
+      "1. Начальный NPC Parina находится в Temple of Gludin. Поговорите с Parina, чтобы начать квест.",
+      "2. Телепортируйтесь в Gludio, затем в Ruins of Despair. В западной части руин найдите Flame Salamander и поговорите с ней.",
+      "3. Идите на северо-запад к The Ruined Bend. Найдите и убейте монстров.",
+      "4. Вернитесь к Flame Salamander и поговорите с ней.",
+      "5. Телепортируйтесь в Gludio, затем в Ant Nest. Вместо того чтобы заходить в пещеру, идите к северо-западному краю Wastelands. Пройдите через проход у края локации. Найдите Wind Sylph и поговорите с ней.",
+      "6. Идите на юг по дороге к западному входу в Wasteland. Найдите Wasteland Lizardman и поговорите с ним.",
+      "7. Вернитесь к Wind Sylph и поговорите с ней.",
+      "8. Телепортируйтесь в Gludio, затем в Ruins Of Agony. Идите к Fellmere Lake. Найдите Water Undine на северном берегу озера и поговорите с ней.",
+      "9. Идите на восток к дому у озера. Найдите и убейте монстров.",
+      "10. Вернитесь к Water Undine и поговорите с ней.",
+      "11. Телепортируйтесь в Gludio, затем в Ruins of Agony. Найдите Earth Snake Wise и поговорите с ней.",
+      "12. Идите по дороге на северо-запад. Найдите и убейте монстров.",
+      "13. Вернитесь к Earth Snake Wise и поговорите с ней.",
+      "14. Телепортируйтесь в Gludin Village. Найдите Parina в Temple и поговорите с ней.",
+      "15. Чтобы сменить профессию, поговорите с Levian High Priestess в Temple of Gludin."
     ]
   },
   "Path of the Cleric": {
@@ -473,18 +473,18 @@
       "y": 2353.2768361582
     },
     "steps": [
-      "1. The starting NPC Zigaunt Priest is located in the Temple of Gludin. Talk to Zigaunt to start the quest.",
-      "2. Teleport to Gludio. Find Simplon Armor Merchant in the Weapon Shop and talk to him.",
-      "3. Head to Gludio Temple. Find Vivyan Priestess and talk to her.",
-      "4. Head to the western gate of Gludio. Find Praga Guard and talk to him.",
-      "5. Teleport from Gludio to the Ruins of Agony. Find and kill monsters:",
-      "6. Return to Praga Guard and talk to him.",
-      "7. Teleport to Gludin Village. Find Zigaunt Priest in the Temple and talk to him.",
-      "8. Teleport to Talking Island Village, then to Elven Ruins. Head northeast, find Lionel and talk to him.",
-      "9. Teleport to Talking Island Village. Exit the town through the southern gate and head to the starting location of the mages, also known as the Einhovant School of Magic. In the School of Magic, find Gallint Grand Magister and talk to him.",
-      "10. Return to Lionel and talk to him.",
-      "11. Teleport to Gludin Village. Find Zigaunt Priest in the Temple and talk to him.",
-      "12. To change your profession, talk to Levian High Priestess in the Temple of Gludin."
+      "1. Начальный NPC Zigaunt Priest находится в Temple of Gludin. Поговорите с Zigaunt, чтобы начать квест.",
+      "2. Телепортируйтесь в Gludio. Найдите Simplon Armor Merchant в Weapon Shop и поговорите с ним.",
+      "3. Идите в Gludio Temple. Найдите Vivyan Priestess и поговорите с ней.",
+      "4. Идите к западным воротам Gludio. Найдите Praga Guard и поговорите с ним.",
+      "5. Телепортируйтесь из Gludio в Ruins of Agony. Найдите и убейте монстров.",
+      "6. Вернитесь к Praga Guard и поговорите с ним.",
+      "7. Телепортируйтесь в Gludin Village. Найдите Zigaunt Priest в Temple и поговорите с ним.",
+      "8. Телепортируйтесь в Talking Island Village, затем в Elven Ruins. Идите на северо-восток, найдите Lionel и поговорите с ним.",
+      "9. Телепортируйтесь в Talking Island Village. Выйдите из города через южные ворота и идите к стартовой локации магов — Einhovant School of Magic. В школе найдите Gallint Grand Magister и поговорите с ним.",
+      "10. Вернитесь к Lionel и поговорите с ним.",
+      "11. Телепортируйтесь в Gludin Village. Найдите Zigaunt Priest в Temple и поговорите с ним.",
+      "12. Чтобы сменить профессию, поговорите с Levian High Priestess в Temple of Gludin."
     ]
   },
   "Path of the Elven Knight": {
@@ -497,14 +497,14 @@
       "y": 2194.8983050847
     },
     "steps": [
-      "1. The starting NPC Sorius Master is located in the Gludio Warriors Guild. Talk to Sorius to start the quest.",
-      "2. Teleport from Gludio to the Ruins of Agony. Find and kill monsters:",
-      "3. Return to Sorius Master and talk to him.",
-      "4. Teleport to Gludin Village. Find Kluto Blacksmith in the Blacksmith Shop and talk to him.",
-      "5. Teleport from Gludin to Adandoned Camp. Head towards Camp Fortress. Find and kill monsters:",
-      "6. Return to Kluto Blacksmith and talk to him.",
-      "7. Teleport to Gludio. Find Sorius Master in the Warriors Guild and talk to him.",
-      "8. To change your profession, talk to Rains Grand Master in the Gludio Warriors Guild."
+      "1. Начальный NPC Sorius Master находится в Gludio Warriors Guild. Поговорите с Sorius, чтобы начать квест.",
+      "2. Телепортируйтесь из Gludio в Ruins of Agony. Найдите и убейте монстров.",
+      "3. Вернитесь к Sorius Master и поговорите с ним.",
+      "4. Телепортируйтесь в Gludin Village. Найдите Kluto Blacksmith в Blacksmith Shop и поговорите с ним.",
+      "5. Телепортируйтесь из Gludin в Abandoned Camp. Идите к Camp Fortress. Найдите и убейте монстров.",
+      "6. Вернитесь к Kluto Blacksmith и поговорите с ним.",
+      "7. Телепортируйтесь в Gludio. Найдите Sorius Master в Warriors Guild и поговорите с ним.",
+      "8. Чтобы сменить профессию, поговорите с Rains Grand Master в Gludio Warriors Guild."
     ]
   },
   "Path of the Elven Scout": {
@@ -517,14 +517,14 @@
       "y": 2194.5593220339
     },
     "steps": [
-      "1. The starting NPC Reisa Master is located in the Gludio Warriors Guild. Talk to Reisa to start the quest.",
-      "2. Head to the east gate of Gludio. Find Moretti Guard and talk to him.",
-      "3. Teleport to Gludin Village, then to Abandoned Camp. Follow the road to the south. Find and kill monsters:",
-      "4. Return to Moretti Guard and talk to him.",
-      "5. Teleport to Elven Village, then to Neutral Zone. Head north to the coast. Find Reisa Master and talk to him.",
-      "6. Return to Moretti Guard and talk to him.",
-      "7. Head to the Gludio Warriors Guild. Find Reisa Master and talk to her.",
-      "8. To change your profession, talk to Rains Grand Master in the Gludio Warriors Guild."
+      "1. Начальный NPC Reisa Master находится в Gludio Warriors Guild. Поговорите с Reisa, чтобы начать квест.",
+      "2. Идите к восточным воротам Gludio. Найдите Moretti Guard и поговорите с ним.",
+      "3. Телепортируйтесь в Gludin Village, затем в Abandoned Camp. Следуйте по дороге на юг. Найдите и убейте монстров.",
+      "4. Вернитесь к Moretti Guard и поговорите с ним.",
+      "5. Телепортируйтесь в Elven Village, затем в Neutral Zone. Идите на север к побережью. Найдите Reisa Master и поговорите с ним.",
+      "6. Вернитесь к Moretti Guard и поговорите с ним.",
+      "7. Идите в Gludio Warriors Guild. Найдите Reisa Master и поговорите с ней.",
+      "8. Чтобы сменить профессию, поговорите с Rains Grand Master в Gludio Warriors Guild."
     ]
   },
   "Path of the Elven Wizard": {
@@ -537,20 +537,20 @@
       "y": 1782.6949152542
     },
     "steps": [
-      "1. The starting NPC Rosella is located in the western building of Elven Village. Talk to Rosella to start the quest.",
-      "2. Head to the Elven Village Temple, find Greenis Magister and talk to her.",
-      "3. Teleport from Elven Village to the Neutral Zone. Follow the road to the east. Find and kill the following monsters:",
-      "4. Return to Greenis Magister and talk to her.",
-      "5. Head to the western building of Elven Village. Find Rosella and talk to her.",
-      "6. Teleport from Elven Village to Elven Fortress. Head to the southeastern shore of Iris Lake. Find Thalia and talk to her.",
-      "7. Teleport to Elven Village, then to Elven Forest. Find and kill monsters:",
-      "8. Return to Thalia and talk to her.",
-      "9. Teleport to Elven Village. Find Rosella in the western building and talk to her.",
-      "10. Teleport from Elven Village to Elven Fortress. Find Northwind at the entrance to the fortress and talk to him.",
-      "11. Head inside the Elven Fortress. Find and kill monsters:",
-      "12. Return to Northwind and talk to him.",
-      "13. Teleport to Elven Village. Find Rosella in the western building and talk to her.",
-      "14. To change your profession, talk to Raymond High Priest in the Temple of Gludio."
+      "1. Начальный NPC Rosella находится в западном здании Elven Village. Поговорите с Rosella, чтобы начать квест.",
+      "2. Идите в Elven Village Temple, найдите Greenis Magister и поговорите с ней.",
+      "3. Телепортируйтесь из Elven Village в Neutral Zone. Следуйте по дороге на восток. Найдите и убейте монстров.",
+      "4. Вернитесь к Greenis Magister и поговорите с ней.",
+      "5. Идите в западное здание Elven Village. Найдите Rosella и поговорите с ней.",
+      "6. Телепортируйтесь из Elven Village в Elven Fortress. Идите к юго-восточному берегу Iris Lake. Найдите Thalia и поговорите с ней.",
+      "7. Телепортируйтесь в Elven Village, затем в Elven Forest. Найдите и убейте монстров.",
+      "8. Вернитесь к Thalia и поговорите с ней.",
+      "9. Телепортируйтесь в Elven Village. Найдите Rosella в западном здании и поговорите с ней.",
+      "10. Телепортируйтесь из Elven Village в Elven Fortress. Найдите Northwind у входа в крепость и поговорите с ним.",
+      "11. Зайдите внутрь Elven Fortress. Найдите и убейте монстров.",
+      "12. Вернитесь к Northwind и поговорите с ним.",
+      "13. Телепортируйтесь в Elven Village. Найдите Rosella в западном здании и поговорите с ней.",
+      "14. Чтобы сменить профессию, поговорите с Raymond High Priest в Temple of Gludio."
     ]
   },
   "Path of the Elven Oracle": {
@@ -563,12 +563,12 @@
       "y": 2188.6723163842
     },
     "steps": [
-      "1. The starting NPC Manuel Priest is located in the Temple of Gludio. Talk to Manuel to start the quest.",
-      "2. Teleport to Gludin Village. Exit the city through the western gate. Go around the harbor and up the hill to the southern lighthouse. Find Allana and talk to her.",
-      "3. Head north, go around the harbor, climb up the hill to the northern lighthouse. Find Perrin and talk to him.",
-      "4. Return to Allana and talk to her.",
-      "5. Teleport to Gludio. Find Manuel Priest in the Temple and talk to him.",
-      "6. To change your profession, talk to Raymond High Priest (Raymond) in the Temple of Gludio."
+      "1. Начальный NPC Manuel Priest находится в Temple of Gludio. Поговорите с Manuel, чтобы начать квест.",
+      "2. Телепортируйтесь в Gludin Village. Выйдите из города через западные ворота. Обойдите гавань и поднимитесь на холм к южному маяку. Найдите Allana и поговорите с ней.",
+      "3. Идите на север, обойдите гавань, поднимитесь на холм к северному маяку. Найдите Perrin и поговорите с ним.",
+      "4. Вернитесь к Allana и поговорите с ней.",
+      "5. Телепортируйтесь в Gludio. Найдите Manuel Priest в Temple и поговорите с ним.",
+      "6. Чтобы сменить профессию, поговорите с Raymond High Priest в Temple of Gludio."
     ]
   },
   "Path of the Palus Knight": {
@@ -581,14 +581,14 @@
       "y": 2198.3785310734
     },
     "steps": [
-      "1. The starting NPC Virgil Master is located in the Dark Elf Guild of Gludio. Talk to Virgil to start the quest.",
-      "2. Teleport to Elven Village, then to Neutral Zone. Find and kill monsters:",
-      "3. Return to Virgil Master and talk to him.",
-      "4. Teleport to Gludin Village. Find Kalinta Abyssal Celebrant in the Dark Elf Guild and talk to her.",
-      "5. Teleport from Gludin to Windmill Hill. Find and kill monsters:",
-      "6. Return to Kalinta Abyssal Celebrant and talk to him.",
-      "7. Teleport to Gludio. Find Virgil Master in the Dark Elf Guild and talk to him.",
-      "8. To change your profession, talk to Tobias Grand Master in the Dark Elf Guild of Gludio."
+      "1. Начальный NPC Virgil Master находится в Dark Elf Guild of Gludio. Поговорите с Virgil, чтобы начать квест.",
+      "2. Телепортируйтесь в Elven Village, затем в Neutral Zone. Найдите и убейте монстров.",
+      "3. Вернитесь к Virgil Master и поговорите с ним.",
+      "4. Телепортируйтесь в Gludin Village. Найдите Kalinta Abyssal Celebrant в Dark Elf Guild и поговорите с ней.",
+      "5. Телепортируйтесь из Gludin в Windmill Hill. Найдите и убейте монстров.",
+      "6. Вернитесь к Kalinta Abyssal Celebrant и поговорите с ним.",
+      "7. Телепортируйтесь в Gludio. Найдите Virgil Master в Dark Elf Guild и поговорите с ним.",
+      "8. Чтобы сменить профессию, поговорите с Tobias Grand Master в Dark Elf Guild of Gludio."
     ]
   },
   "Path of the Assassin": {
@@ -601,15 +601,15 @@
       "y": 2199.2033898305
     },
     "steps": [
-      "1. The starting NPC Triskel is located at the entrance to the Dark Elf Guild of Gludio. Talk to Triskel to start the quest.",
-      "2. Teleport to Dark Elf Village, then to Spider Nest and head east to the Altar of Rites. At the Altar, find Arkenia Witch and talk to her.",
-      "3. Teleport to Gludin Village. Find Leikan Guard at the northern gate and talk to him.",
-      "4. Teleport to Elven Village, then to Neutral Zone. Find and kill monsters:",
-      "5. Return to Leikan Guard and talk to him.",
-      "6. Teleport to Dark Elf Village, then to Swampland. Head west towards the School of Dark Arts. Find and kill monsters:",
-      "7. Teleport to Dark Elf Village, then to Spider Nest and head east to the Altar of Rites. At the Altar, find Arkenia Witch and talk to her.",
-      "8. Teleport to Gludio. At the entrance to the Dark Elf Guild find Triskel and talk to him.",
-      "9. To change your profession, talk to Triskel in the Dark Elf Guild of Gludio."
+      "1. Начальный NPC Triskel находится у входа в Dark Elf Guild of Gludio. Поговорите с Triskel, чтобы начать квест.",
+      "2. Телепортируйтесь в Dark Elf Village, затем в Spider Nest и идите на восток к Altar of Rites. У алтаря найдите Arkenia Witch и поговорите с ней.",
+      "3. Телепортируйтесь в Gludin Village. Найдите Leikan Guard у северных ворот и поговорите с ним.",
+      "4. Телепортируйтесь в Elven Village, затем в Neutral Zone. Найдите и убейте монстров.",
+      "5. Вернитесь к Leikan Guard и поговорите с ним.",
+      "6. Телепортируйтесь в Dark Elf Village, затем в Swampland. Идите на запад к School of Dark Arts. Найдите и убейте монстров.",
+      "7. Телепортируйтесь в Dark Elf Village, затем в Spider Nest и идите на восток к Altar of Rites. У алтаря найдите Arkenia Witch и поговорите с ней.",
+      "8. Телепортируйтесь в Gludio. У входа в Dark Elf Guild найдите Triskel и поговорите с ним.",
+      "9. Чтобы сменить профессию, поговорите с Triskel в Dark Elf Guild of Gludio."
     ]
   },
   "Path of the Dark Wizard": {
@@ -622,18 +622,18 @@
       "y": 1952.4011299435
     },
     "steps": [
-      "1. The starting NPC Varika Witch is located at the foot of the Altar of Rites in the south of the Dark Elf lands. Talk to Varika to start the quest.",
-      "2. Find Arkenia Witch near the Altar and talk to her.",
-      "3. Head north to the School of Dark Arts. At the entrance to the School, find Annika and talk to her.",
-      "4. Enter the School of Dark Arts, find and kill monsters:",
-      "5. Return to Annika and talk to her.",
-      "6. Teleport to Dark Elf Village, then to Swampland. Head southeast to the waterfall, find Charkeren and talk to him.",
-      "7. Head to Swampland, find and kill monsters:",
-      "8. Return to Charkeren and talk to him.",
-      "9. Teleport to Gludio, then to the Ruins of Agony. Find and kill monsters:",
-      "10. Teleport to Dark Elf Village, then to Spider Nest. Head to the Altar of Rites. Find Arkenia Witch and talk to her.",
-      "11. Find Varika Witch near the Altar and talk to her.",
-      "12. To change your profession, talk to Tobias Grand Master in the Dark Elf Guild of Gludio."
+      "1. Начальный NPC Varika Witch находится у подножия Altar of Rites на юге Dark Elf lands. Поговорите с Varika, чтобы начать квест.",
+      "2. Найдите Arkenia Witch рядом с алтарём и поговорите с ней.",
+      "3. Идите на север к School of Dark Arts. У входа в школу найдите Annika и поговорите с ней.",
+      "4. Зайдите в School of Dark Arts, найдите и убейте монстров.",
+      "5. Вернитесь к Annika и поговорите с ней.",
+      "6. Телепортируйтесь в Dark Elf Village, затем в Swampland. Идите на юго-восток к водопаду, найдите Charkeren и поговорите с ним.",
+      "7. Идите в Swampland, найдите и убейте монстров.",
+      "8. Вернитесь к Charkeren и поговорите с ним.",
+      "9. Телепортируйтесь в Gludio, затем в Ruins of Agony. Найдите и убейте монстров.",
+      "10. Телепортируйтесь в Dark Elf Village, затем в Spider Nest. Идите к Altar of Rites. Найдите Arkenia Witch и поговорите с ней.",
+      "11. Найдите Varika Witch рядом с алтарём и поговорите с ней.",
+      "12. Чтобы сменить профессию, поговорите с Tobias Grand Master в Dark Elf Guild of Gludio."
     ]
   },
   "Path of the Shillien Oracle": {
@@ -646,15 +646,15 @@
       "y": 2197.2203389831
     },
     "steps": [
-      "1. The starting NPC Sidra Magister is located in the Dark Elf Guild of Gludio. Talk to Sidra to start the quest.",
-      "2. Teleport to Gludin Village. Find Talbot Magister in the Dark Elf Guild and talk to him.",
-      "3. Teleport to Dark Elf Village, then to Spider Nest. Head west towards the mountains. Find and kill monsters:",
-      "4. Return to Talbot Magister and talk to him.",
-      "5. Head to Gludin Temple. Find Adonius Priest and talk to him.",
-      "6. Teleport to Gludio, then to Ruins of Despair. Find and kill monsters:",
-      "7. Return to Adonius Priest and talk to him.",
-      "8. Teleport to Gludio. Find Sidra Magister in the Dark Elf Guild and talk to her.",
-      "9. To change your profession, talk to Tobias Grand Master in the Dark Elf Guild of Gludio."
+      "1. Начальный NPC Sidra Magister находится в Dark Elf Guild of Gludio. Поговорите с Sidra, чтобы начать квест.",
+      "2. Телепортируйтесь в Gludin Village. Найдите Talbot Magister в Dark Elf Guild и поговорите с ним.",
+      "3. Телепортируйтесь в Dark Elf Village, затем в Spider Nest. Идите на запад к горам. Найдите и убейте монстров.",
+      "4. Вернитесь к Talbot Magister и поговорите с ним.",
+      "5. Идите в Gludin Temple. Найдите Adonius Priest и поговорите с ним.",
+      "6. Телепортируйтесь в Gludio, затем в Ruins of Despair. Найдите и убейте монстров.",
+      "7. Вернитесь к Adonius Priest и поговорите с ним.",
+      "8. Телепортируйтесь в Gludio. Найдите Sidra Magister в Dark Elf Guild и поговорите с ней.",
+      "9. Чтобы сменить профессию, поговорите с Tobias Grand Master в Dark Elf Guild of Gludio."
     ]
   },
   "Path of the Orc Raider": {
@@ -667,13 +667,13 @@
       "y": 855.12994350282
     },
     "steps": [
-      "1. The starting NPC Karukia Prefect is located on the first floor of the Hall of Kings in the Orc Village. Talk to Karukia to start the quest.",
-      "2. Teleport from Orc Village to Immortal Plateau — North. Find and kill monsters:",
-      "3. Return to Karukia Prefect and talk to her.",
-      "4. Teleport to Gludin Village. Find Kasman Prefect in the Orc Guild and talk to him.",
-      "5. Teleport to Dark Elf Village, then to Spider Nest. Head west towards the mountains. Find and kill monsters:",
-      "6. Return to Kasman Prefect and talk to him.",
-      "7. To change your profession, talk to Osborn High Prefect in the Orc Guild of Gludin."
+      "1. Начальный NPC Karukia Prefect находится на первом этаже Hall of Kings в Orc Village. Поговорите с Karukia, чтобы начать квест.",
+      "2. Телепортируйтесь из Orc Village в Immortal Plateau — North. Найдите и убейте монстров.",
+      "3. Вернитесь к Karukia Prefect и поговорите с ней.",
+      "4. Телепортируйтесь в Gludin Village. Найдите Kasman Prefect в Orc Guild и поговорите с ним.",
+      "5. Телепортируйтесь в Dark Elf Village, затем в Spider Nest. Идите на запад к горам. Найдите и убейте монстров.",
+      "6. Вернитесь к Kasman Prefect и поговорите с ним.",
+      "7. Чтобы сменить профессию, поговорите с Osborn High Prefect в Orc Guild of Gludin."
     ]
   },
   "Path of the Orc Monk": {
@@ -686,24 +686,24 @@
       "y": 869.94915254237
     },
     "steps": [
-      "1. The starting NPC Gantaki Zu Urutu is located next to the Orc Village Weapon Shop. Talk to Gantaki Zu Urutu to start the quest.",
-      "2. Teleport from Orc Village to Frozen Waterfalls. At the lake, find Rosheek Khavatari and talk to him.",
-      "3. In the Frozen Waterfalls, find and kill monsters:",
-      "4. Return to Rosheek Khavatari and talk to him.",
-      "5. In the Frozen Waterfalls, find and kill monsters:",
-      "6. Return to Rosheek Khavatari and talk to him.",
-      "7. Teleport to Orc Village, then to Cave of Trials. Head inside the cave. In the second room find and kill monsters:",
-      "8. Return to Rosheek Khavatari and talk to him.",
-      "9. Teleport to Orc Village. Find Gantaki Zu Urutu near the Weapon Shop and talk to him.",
-      "10. Teleport to Gludin Village. Find Kasman Prefect in the Orc Guild and talk to him.",
-      "11. Teleport from Gludin to Fellmere Harvesting Grounds. Follow the road south, find Toruku Khavatari and talk to him.",
-      "12. Teleport to Gludio. Exit the city through the western gate and head southwest. Find and kill monsters:",
-      "13. Teleport to Gludin Village, then to Langk Lizardmen Dwellings. Find and kill monsters:",
-      "14. Teleport to Gludin Village, then to Windmill Hill. Find and kill monsters:",
-      "15. Teleport to Gludin Village, then to Fellmere Harvesting Grounds. Follow the road south. Find and kill monsters:",
-      "16. Head south along the road. Find Toruku Khavatari and talk to him.",
-      "17. Teleport to Gludin Village. Find Kasman Prefect in the Orc Guild and talk to him.",
-      "18. To change your profession, talk to Osborn High Prefect in the Orc Guild of Gludin."
+      "1. Начальный NPC Gantaki Zu Urutu находится рядом с Orc Village Weapon Shop. Поговорите с Gantaki Zu Urutu, чтобы начать квест.",
+      "2. Телепортируйтесь из Orc Village в Frozen Waterfalls. У озера найдите Rosheek Khavatari и поговорите с ним.",
+      "3. В Frozen Waterfalls найдите и убейте монстров.",
+      "4. Вернитесь к Rosheek Khavatari и поговорите с ним.",
+      "5. В Frozen Waterfalls найдите и убейте монстров.",
+      "6. Вернитесь к Rosheek Khavatari и поговорите с ним.",
+      "7. Телепортируйтесь в Orc Village, затем в Cave of Trials. Зайдите в пещеру. Во второй комнате найдите и убейте монстров.",
+      "8. Вернитесь к Rosheek Khavatari и поговорите с ним.",
+      "9. Телепортируйтесь в Orc Village. Найдите Gantaki Zu Urutu рядом с Weapon Shop и поговорите с ним.",
+      "10. Телепортируйтесь в Gludin Village. Найдите Kasman Prefect в Orc Guild и поговорите с ним.",
+      "11. Телепортируйтесь из Gludin в Fellmere Harvesting Grounds. Следуйте по дороге на юг, найдите Toruku Khavatari и поговорите с ним.",
+      "12. Телепортируйтесь в Gludio. Выйдите из города через западные ворота и идите на юго-запад. Найдите и убейте монстров.",
+      "13. Телепортируйтесь в Gludin Village, затем в Langk Lizardmen Dwellings. Найдите и убейте монстров.",
+      "14. Телепортируйтесь в Gludin Village, затем в Windmill Hill. Найдите и убейте монстров.",
+      "15. Телепортируйтесь в Gludin Village, затем в Fellmere Harvesting Grounds. Следуйте по дороге на юг. Найдите и убейте монстров.",
+      "16. Идите на юг по дороге. Найдите Toruku Khavatari и поговорите с ним.",
+      "17. Телепортируйтесь в Gludin Village. Найдите Kasman Prefect в Orc Guild и поговорите с ним.",
+      "18. Чтобы сменить профессию, поговорите с Osborn High Prefect в Orc Guild of Gludin."
     ]
   },
   "Path of the Orc Shaman": {
@@ -716,20 +716,20 @@
       "y": 853.77401129944
     },
     "steps": [
-      "1. The starting NPC Tataru Zu Hestui is located to the right of the entrance to the Hall of Kings of the Orc Village. Talk to Tataru Zu Hestui to start the quest.",
-      "2. Teleport from Orc Village to Frozen Waterfall. Go down the slope, find and kill monsters:",
-      "3. Teleport to Orc Village, then to Cave of Trial. Head to the second room. Find and kill monsters:",
-      "4. Teleport to Orc Village. Find Tataru Zu Hestui to the right of the entrance to the Hall of Kings and talk to him.",
-      "5. Exit the Orc Village through the southern gate and head south. Near the ruins find Hestui Totem Spirit and talk to him.",
-      "6. Return to Tataru Zu Hestui and talk to him",
-      "7. Teleport to Gludin Village. Find Umos Seer in the Orc Guild and talk to him.",
-      "8. Teleport from Gludin to Fellmere Harvesting Grounds. Head west, find and kill monsters:",
-      "9. Return to Umos Seer and talk to him.",
-      "10. Leave the city through the northern gate. Go past the Gludio Arena. Find Duda-Mara Totem Spirit at the well and talk to him.",
-      "11. Teleport to Gludin Village, then to Windmill Hill. Find and kill monsters:",
-      "12. Return to Duda-Mara Totem Spirit and talk to him.",
-      "13. Teleport to Gludin Village. Find Umos Seer in the Orc Guild and talk to him.",
-      "14. To change your profession, talk to Osborn High Prefect in the Orc Guild of Gludin."
+      "1. Начальный NPC Tataru Zu Hestui находится справа от входа в Hall of Kings в Orc Village. Поговорите с Tataru Zu Hestui, чтобы начать квест.",
+      "2. Телепортируйтесь из Orc Village в Frozen Waterfall. Спуститесь по склону, найдите и убейте монстров.",
+      "3. Телепортируйтесь в Orc Village, затем в Cave of Trial. Идите во вторую комнату. Найдите и убейте монстров.",
+      "4. Телепортируйтесь в Orc Village. Найдите Tataru Zu Hestui справа от входа в Hall of Kings и поговорите с ним.",
+      "5. Выйдите из Orc Village через южные ворота и идите на юг. Рядом с руинами найдите Hestui Totem Spirit и поговорите с ним.",
+      "6. Вернитесь к Tataru Zu Hestui и поговорите с ним.",
+      "7. Телепортируйтесь в Gludin Village. Найдите Umos Seer в Orc Guild и поговорите с ним.",
+      "8. Телепортируйтесь из Gludin в Fellmere Harvesting Grounds. Идите на запад, найдите и убейте монстров.",
+      "9. Вернитесь к Umos Seer и поговорите с ним.",
+      "10. Выйдите из города через северные ворота. Пройдите мимо Gludio Arena. Найдите Duda-Mara Totem Spirit у колодца и поговорите с ним.",
+      "11. Телепортируйтесь в Gludin Village, затем в Windmill Hill. Найдите и убейте монстров.",
+      "12. Вернитесь к Duda-Mara Totem Spirit и поговорите с ним.",
+      "13. Телепортируйтесь в Gludin Village. Найдите Umos Seer в Orc Guild и поговорите с ним.",
+      "14. Чтобы сменить профессию, поговорите с Osborn High Prefect в Orc Guild of Gludin."
     ]
   },
   "Path of the Scavenger": {
@@ -742,18 +742,18 @@
       "y": 466.60451977401
     },
     "steps": [
-      "1. The starting NPC Pippi Collector is located in the north of the Dwarven Village. Talk to Pippi to start the quest.",
-      "2. Head to the Dwarven Village Grocery Store. Find Mion Grocer and talk to her.",
-      "3. Head to one of the NPCs in Dwarven Village depending on the item you received earlier.",
-      "5. Teleport from Dwarven Village to Western Mining Zone. Follow the road northeast to the mouth of the river. On the island near the northern shore, find Toma Master and talk to him.",
-      "6. Head to the Western Mining Zone. Find and kill monsters:",
-      "7. Return to Toma Master and talk to him.",
-      "8. In the Western Mining Zone, find and kill monsters:",
-      "9. Return to Toma Master and talk to him.",
-      "10. Teleport to Gludin Village. Find Raut Warehouse Keeper in the Warehouse and talk to him.",
-      "11. Teleport to Giran, then to Dragon Valley. Head south, find Torai and talk to him.",
-      "12. Return to Raut Warehouse Keeper and talk to him.",
-      "13. To change your profession, talk to Moke Warehouse Chief in the Gludin Warehouse."
+      "1. Начальный NPC Pippi Collector находится на севере Dwarven Village. Поговорите с Pippi, чтобы начать квест.",
+      "2. Идите в Dwarven Village Grocery Store. Найдите Mion Grocer и поговорите с ней.",
+      "3. Идите к одному из NPC в Dwarven Village, в зависимости от предмета, полученного ранее.",
+      "5. Телепортируйтесь из Dwarven Village в Western Mining Zone. Следуйте по дороге на северо-восток к устью реки. На острове у северного берега найдите Toma Master и поговорите с ним.",
+      "6. Идите в Western Mining Zone. Найдите и убейте монстров.",
+      "7. Вернитесь к Toma Master и поговорите с ним.",
+      "8. В Western Mining Zone найдите и убейте монстров.",
+      "9. Вернитесь к Toma Master и поговорите с ним.",
+      "10. Телепортируйтесь в Gludin Village. Найдите Raut Warehouse Keeper в Warehouse и поговорите с ним.",
+      "11. Телепортируйтесь в Giran, затем в Dragon Valley. Идите на юг, найдите Torai и поговорите с ним.",
+      "12. Вернитесь к Raut Warehouse Keeper и поговорите с ним.",
+      "13. Чтобы сменить профессию, поговорите с Moke Warehouse Chief в Gludin Warehouse."
     ]
   },
   "Path of the Artisan": {
@@ -766,15 +766,15 @@
       "y": 469.8418079096
     },
     "steps": [
-      "1. The starting NPC Silvera Blacksmith is located in the Dwarven Village Blacksmith Shop. Talk to Silvera to start the quest.",
-      "2. Teleport from Dwarven Village to Abandoned Coal Mines. Go deep into the location. Find and kill monsters:",
-      "3. Return to Silvera Blacksmith and talk to her.",
-      "4. Teleport to Gludin Village. Find Kluto Blacksmith in the Blacksmith Shop and talk to him.",
-      "5. Teleport to Gludio. Find Pinter Blacksmith in the Blacksmith Shop and talk to him.",
-      "6. Teleport to Gludin Village, then to Windmill Hill. Find and kill monsters:",
-      "7. Return to Pinter Blacksmith and talk to him.",
-      "8. Teleport to Gludin Village. Find Pinter Blacksmith in the Blacksmith Shop and talk to him.",
-      "9. To change your profession, talk to Tapoy Head Blacksmith in Gludin's Blacksmith Shop."
+      "1. Начальный NPC Silvera Blacksmith находится в Dwarven Village Blacksmith Shop. Поговорите с Silvera, чтобы начать квест.",
+      "2. Телепортируйтесь из Dwarven Village в Abandoned Coal Mines. Пройдите вглубь локации. Найдите и убейте монстров.",
+      "3. Вернитесь к Silvera Blacksmith и поговорите с ней.",
+      "4. Телепортируйтесь в Gludin Village. Найдите Kluto Blacksmith в Blacksmith Shop и поговорите с ним.",
+      "5. Телепортируйтесь в Gludio. Найдите Pinter Blacksmith в Blacksmith Shop и поговорите с ним.",
+      "6. Телепортируйтесь в Gludin Village, затем в Windmill Hill. Найдите и убейте монстров.",
+      "7. Вернитесь к Pinter Blacksmith и поговорите с ним.",
+      "8. Телепортируйтесь в Gludin Village. Найдите Pinter Blacksmith в Blacksmith Shop и поговорите с ним.",
+      "9. Чтобы сменить профессию, поговорите с Tapoy Head Blacksmith в Gludin Blacksmith Shop."
     ]
   },
   "Trial of Geomancer": {
@@ -787,5 +787,137 @@
       "y": 2349.186440678
     },
     "steps": []
+  },
+  "Temple Missionary": {
+    "id": 54,
+    "type": "post",
+    "npcId": null,
+    "npcName": "",
+    "coords": null,
+    "steps": [
+      "1. Начните у NPC Glyvka Priestess в Dion's temple. Возьмите у неё квест Temple Missionary.",
+      "2. На выходе из храма будет Rouke Spellbook Seller. Поговорите с ним и согласитесь найти предметы.",
+      "3. Телепортируйтесь в Cruma Tower, выйдите наружу и найдите монстров.",
+      "4. Вернитесь в Dion к Rouke Spellbook Seller. Поговорите с ним, отдайте квестовые предметы и получите 3 Giants' Experimental Tool NG.",
+      "5. Телепортируйтесь в Cruma Tower, выйдите наружу и найдите монстров.",
+      "6. Убейте Cruma Marshlands Traitor Quest Monster Lv. 35, пока не получите 3 Giants' Technology Report NG.",
+      "7. Вернитесь в Dion к Rouke Spellbook Seller. Поговорите с ним, отдайте квестовые предметы и получите Rouke's Report NG.",
+      "8. Идите к Glyvka Priestess, отдайте отчёт и получите награду за квест."
+    ]
+  },
+  "Temple Executor": {
+    "id": 55,
+    "type": "post",
+    "npcId": null,
+    "npcName": "",
+    "coords": null,
+    "steps": [
+      "1. Начните у NPC Shegfield Priest в Dion's temple. Возьмите у него квест Temple Executor.",
+      "2. Идите в Floran Village, рядом с восточными воротами найдите Alex Captain. Поговорите с ним и согласитесь помочь жителям.",
+      "3. Ищите рядом с деревней монстров.",
+      "4. Вернитесь в Floran и поговорите с Pano Grocer, получите Pano's Credentials NG.",
+      "5. Рядом найдите Sonin Warehouse Keeper, поговорите с ним и получите Sonin's Credentials NG.",
+      "6. Вернитесь к Alex Captain, поговорите с ним и получите Alex's Credentials NG.",
+      "7. Вернитесь в Dion's temple и поговорите с Shegfield Priest. Отдайте ему верительные грамоты и получите награду за квест."
+    ]
+  },
+  "Temple Champion — 1": {
+    "id": 56,
+    "type": "post",
+    "npcId": null,
+    "npcName": "",
+    "coords": null,
+    "steps": [
+      "1. Начните у NPC Sylvain High Priest в Dion's temple. Поговорите с ним и возьмите квест Temple Champion - 1.",
+      "2. Sylvain High Priest требует сдать экзамен. Выберите один из вариантов:",
+      "3. Выйдите из восточных ворот Dion и бегите к Execution Grounds. Найдите монстров.",
+      "4. Вернитесь в Dion к Sylvain High Priest. Отдайте квестовые предметы. Прочитайте или пропустите историю и получите награду за квест."
+    ]
+  },
+  "Temple Champion — 2": {
+    "id": 57,
+    "type": "post",
+    "npcId": null,
+    "npcName": "",
+    "coords": null,
+    "steps": [
+      "1. Начните у NPC Sylvain High Priest в Dion's temple. Поговорите с ним и возьмите квест.",
+      "2. Телепортируйтесь в Giran и найдите в храме Pupina Priestess. В разговоре выберите вариант.",
+      "3. Затем идите в Dark Elf Guild и поговорите с Angus Grand Master, согласитесь убить монстров.",
+      "4. Телепортируйтесь в Dragon Valley, в Death Pass найдите монстров.",
+      "5. Затем идите в Dark Elf Guild в Giran и поговорите с Angus Grand Master. Отдайте ему квестовые предметы и получите Angus' Recommendation NG.",
+      "6. Вернитесь в храм к Pupina Priestess. Поговорите с ней и получите Pupina's Recommendation NG.",
+      "7. Телепортируйтесь в Dion, затем в Plains of Dion. Рядом с гейткипером увидите Sla Preacher. Прочитайте или пропустите историю и вернитесь в Dion.",
+      "8. В Dion вернитесь к Sylvain High Priest. Поговорите с ним и получите награду за квест."
+    ]
+  },
+  "Shadow Fox — 1": {
+    "id": 58,
+    "type": "post",
+    "npcId": null,
+    "npcName": "",
+    "coords": null,
+    "steps": [
+      "1. Начните у NPC Mia Warehouse Keeper в Hein's warehouse. Поговорите с ней и возьмите квест.",
+      "2. Телепортируйтесь в Field of Silence, найдите монстров.",
+      "3. Вернитесь к Mia Warehouse Keeper, поговорите с ней и получите награду за квест."
+    ]
+  },
+  "Shadow Fox — 2": {
+    "id": 59,
+    "type": "post",
+    "npcId": null,
+    "npcName": "",
+    "coords": null,
+    "steps": [
+      "1. Начните у NPC Kluck Warehouse Keeper в Hein's warehouse. Поговорите с ним и возьмите квест.",
+      "2. Идите в Dark Elf Guild и найдите Xenovia Magister, поговорите с ней и согласитесь найти материалы для исследования.",
+      "3. Телепортируйтесь в Field of Whispers и найдите там монстров.",
+      "4. Идите в Dark Elf Guild в Hein и найдите Xenovia Magister. Поговорите с ней и проведите исследование — превращение кристалла в нужный ингредиент.",
+      "5. Вернитесь к Kluck Warehouse Keeper, поговорите с ним и получите награду за квест."
+    ]
+  },
+  "Shadow Fox — 3": {
+    "id": 60,
+    "type": "post",
+    "npcId": null,
+    "npcName": "",
+    "coords": null,
+    "steps": [
+      "1. Начните у NPC Natools Warehouse Chief в Hein's warehouse. Поговорите с ним и возьмите квест.",
+      "2. Телепортируйтесь на Alligator Island и идите на Alligator Beach, найдите монстров.",
+      "3. Вернитесь к Natools Warehouse Chief, поговорите с ним и получите награду за квест."
+    ]
+  },
+  "Fallen Angel — Request of Dawn": {
+    "id": 61,
+    "type": "post",
+    "npcId": null,
+    "npcName": "",
+    "coords": null,
+    "steps": [
+      "1. Начните у NPC Natools Warehouse Chief в Hein's warehouse. В разговоре выберите \"Help the Dawn\" и получите Cryptogram of the Angel Search NG.",
+      "2. Телепортируйтесь в Gludio и идите в храм, поговорите с Raymond High Priest.",
+      "3. Телепортируйтесь в The Ant Nest, бегите в центр Wasteland и найдите Casian Elder. Поговорите с ним и затем идите на охоту.",
+      "4. Прыгните в каньон за Casian и найдите слева вход в The Ant Nest. Идите вперёд и ищите монстров.",
+      "5. Идите к метке в центре Wasteland, найдите Weathered Rock Alone. Поговорите с камнем, и появится Fallen Angel Quest Monster Lv. 38.",
+      "6. Убейте Fallen Angel Quest Monster Lv. 38 и получите Fallen Angel Blood NG.",
+      "7. Телепортируйтесь в Gludio, идите в храм и поговорите с Raymond High Priest — получите награду за квест."
+    ]
+  },
+  "Fallen Angel — Request of Dusk": {
+    "id": 62,
+    "type": "post",
+    "npcId": null,
+    "npcName": "",
+    "coords": null,
+    "steps": [
+      "1. Начните у NPC Natools Warehouse Chief в Hein's warehouse. В разговоре выберите \"Help the Dusk\" и получите Sealed Prophecy - Path of the God NG.",
+      "2. Телепортируйтесь в Gludio и идите в Dark Elf Guild, поговорите с Tobias Grand Master и получите Prophecy - Path of the God NG и Empty Sound Crystal NG.",
+      "3. Телепортируйтесь в The Ant Nest, бегите в центр Wasteland и найдите Casian Elder. Поговорите с ним, получите Angel Medicine NG и идите искать ангела.",
+      "4. Идите к метке в центре Wasteland, найдите Weathered Rock Alone. Поговорите с камнем, и появится Fallen Angel Quest Monster Lv. 38.",
+      "5. Поговорите с Fallen Angel Quest Monster Lv. 38, прочитайте или пропустите историю Angel и Einhasad, и получите Angel's Message NG.",
+      "6. Телепортируйтесь в Gludio и идите в Dark Elf Guild, поговорите с Tobias Grand Master — получите награду за квест."
+    ]
   }
 }

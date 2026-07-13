@@ -54,6 +54,11 @@ const QUESTS = {
     'Path of the Orc Raider': 630, 'Path of the Orc Monk': 631,
     'Path of the Orc Shaman': 632, 'Path of the Scavenger': 633,
     'Path of the Artisan': 634, 'Trial of Geomancer': 153,
+    // Temple Executor chain
+    'Temple Missionary': 54, 'Temple Executor': 55,
+    'Temple Champion — 1': 56, 'Temple Champion — 2': 57,
+    'Shadow Fox — 1': 58, 'Shadow Fox — 2': 59, 'Shadow Fox — 3': 60,
+    'Fallen Angel — Request of Dawn': 61, 'Fallen Angel — Request of Dusk': 62,
   },
 };
 
