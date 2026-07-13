@@ -1,0 +1,397 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.controls {
+  background: $color-surface;
+  padding: $spacing-2xl;
+  border-radius: $radius-xl;
+  margin-bottom: $spacing-2xl;
+  display: flex;
+  gap: $spacing-xl;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @include tablet {
+    flex-direction: column;
+    align-items: stretch;
+    gap: $spacing-md;
+  }
+  @include mobile {
+    padding: $spacing-lg;
+  }
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+
+  @include tablet {
+    width: 100%;
+  }
+}
+
+.label {
+  font-weight: 600;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+  margin-right: $spacing-xs;
+}
+
+.raceBar {
+  display: flex;
+  gap: $spacing-xs;
+  background: #0b0f1a;
+  padding: $spacing-xs;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+}
+
+.raceBtn {
+  padding: 5px 14px;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background: transparent;
+  color: $color-text-muted;
+  cursor: pointer;
+  font-size: $font-size-md;
+  font-weight: 600;
+  transition: all 0.15s;
+
+  &:hover {
+    border-color: $color-primary;
+    color: $color-text;
+  }
+}
+
+.raceBtnActive {
+  background: $gradient-primary;
+  color: #04070d;
+  border-color: transparent;
+  box-shadow: $shadow-primary-sm;
+}
+
+.tableWrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: $font-size-base;
+
+  th, td {
+    padding: 8px 12px;
+    border: 1px solid $color-border;
+    text-align: left;
+  }
+
+  th {
+    background: $color-surface-hover;
+    color: $color-primary;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  td {
+    color: $color-text;
+    vertical-align: middle;
+  }
+
+  @include mobile {
+    th, td {
+      padding: 6px 8px;
+      font-size: $font-size-sm;
+    }
+  }
+}
+
+.noteCell {
+  font-size: $font-size-xs;
+  color: $color-accent-orange;
+  font-style: italic;
+  line-height: 1.3;
+  display: block;
+  max-width: 200px;
+}
+
+.lvlBadge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: $radius-lg;
+  background: #2b3a55;
+  color: #fff;
+  font-weight: 600;
+  font-size: $font-size-sm;
+  text-align: center;
+  min-width: 30px;
+}
+
+.detailRow td {
+  padding: 0 !important;
+  border-top: none;
+}
+
+.detailCell {
+  padding: 0 !important;
+}
+
+.detailCard {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+}
+
+.detailHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-md;
+  gap: $spacing-md;
+}
+
+.detailQuestName {
+  font-size: $font-size-lg;
+  font-weight: 700;
+  color: $color-primary;
+}
+
+.wikiLink {
+  color: $color-link;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.detailGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-sm $spacing-xl;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.detailItem {
+  font-size: $font-size-base;
+  color: $color-text;
+  line-height: 1.5;
+}
+
+.detailLabel {
+  color: $color-text-muted;
+  font-weight: 600;
+  margin-right: $spacing-xs;
+}
+
+.stepsSection {
+  margin-top: $spacing-lg;
+  padding-top: $spacing-lg;
+  border-top: 1px solid $color-border;
+}
+
+.stepsTitle {
+  font-size: $font-size-base;
+  font-weight: 700;
+  color: $color-primary;
+  margin-bottom: $spacing-md;
+}
+
+.stepItem {
+  font-size: $font-size-sm;
+  color: $color-text;
+  line-height: 1.6;
+  padding: 6px 10px;
+  margin-bottom: 4px;
+  background: $color-surface-alt;
+  border-radius: $radius-md;
+  border-left: 3px solid $color-primary;
+}
+
+.wikiLinkInline {
+  color: $color-link;
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.mapBtn {
+  margin-top: $spacing-md;
+  padding: 6px 14px;
+  background: transparent;
+  border: 1px solid $color-primary;
+  border-radius: $radius-lg;
+  color: $color-primary;
+  cursor: pointer;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  transition: background 0.15s;
+
+  &:hover {
+    background: rgba(56, 189, 248, 0.1);
+  }
+}
+
+.mapOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.mapModal {
+  background: $color-surface;
+  border: 2px solid $color-border;
+  border-radius: $radius-xl;
+  overflow: hidden;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mapHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid $color-border;
+  font-weight: 700;
+  color: $color-text;
+  font-size: $font-size-base;
+}
+
+.mapClose {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  color: $color-text-muted;
+  cursor: pointer;
+  font-size: 16px;
+
+  &:hover {
+    color: $color-text;
+  }
+}
+
+.mapContainer {
+  overflow: auto;
+  position: relative;
+  flex: 1;
+  width: 800px;
+  height: 600px;
+}
+
+.mapImage {
+  display: block;
+  width: 3004px;
+  height: auto;
+  max-width: none;
+}
+
+.mapMarker {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: $color-danger;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.6);
+}
+
+.mapMarkerLabel {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translateX(-50%);
+  margin-bottom: 4px;
+  background: $color-bg;
+  color: $color-primary;
+  padding: 2px 8px;
+  border-radius: $radius-md;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  white-space: nowrap;
+  border: 1px solid $color-border;
+  pointer-events: none;
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: 8px 14px;
+  margin-bottom: $spacing-lg;
+  border: 1px solid $color-accent-orange;
+  border-radius: $radius-lg;
+  background: rgba(255, 166, 87, 0.08);
+  flex-wrap: wrap;
+}
+
+.legendTitle {
+  font-size: $font-size-sm;
+  font-weight: 700;
+  color: $color-accent-orange;
+  margin-right: $spacing-xs;
+}
+
+.legendItem {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.rowWeapon,
+.rowSoulshot {
+  td:first-child {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 2px;
+      bottom: 2px;
+      width: 3px;
+      border-radius: 0 2px 2px 0;
+    }
+  }
+}
+
+.rowWeapon td:first-child::before,
+.rowSoulshot td:first-child::before {
+  background: linear-gradient(to bottom, #f59e0b, #ef4444);
+}
+
+.tagWeapon,
+.tagSoulshot,
+.tagBoth {
+  color: #f59e0b;
+  font-size: 14px;
+}

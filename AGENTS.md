@@ -53,6 +53,7 @@ Use conventional commits: `type: description` (lowercase, no caps).
 | `#skills` | SkillsTab | `src/components/skills/SkillsTab.tsx` |
 | `#raidboss` | RaidBossTab | `src/components/raidboss/RaidBossTab.tsx` |
 | `#calculator` | CalculatorTab | `src/components/calculator/CalculatorTab.tsx` |
+| `#quests` | QuestsTab | `src/components/quests/QuestsTab.tsx` |
 
 - Valid tabs constant in `src/utils/constants.ts` (`TAB_NAMES`, `VALID_TABS`)
 - TabBar component renders all tabs; active tab determined by `window.location.hash`
@@ -166,6 +167,8 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - Path-based routing via `react-router-dom` (`BrowserRouter` with `basename`)
 - Navigation uses `useNavigate`, `useLocation`, `useSearchParams`
 - `fullHash` state + `key={fullHash}` on tab wrappers forces re-mount on any hash change
+- QuestsTab has 3 categories: racial quests, professions (1st/2nd class), Temple Executor chain
+- Profession quest steps are parsed from mw2.wiki articles via node.js
 
 ## Known Constraints
 - fetch-raidbosses.mjs cannot extract from lu4db directly (SPA requires JS rendering)
