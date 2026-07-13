@@ -44,22 +44,30 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - All SCSS variables defined in `src/styles/_variables.scss`
 - Global styles in `src/styles/_global.scss`
 
-## Tabs (hash-based navigation in App.tsx)
-| Hash | Component | File |
-|------|-----------|------|
-| `#recipes` | RecipeTab | `src/components/recipes/RecipeTab.tsx` |
-| `#spellbooks` | SpellbookTab | `src/components/spellbooks/SpellbookTab.tsx` |
-| `#locations` | LocationsTab | `src/components/locations/LocationsTab.tsx` |
-| `#skills` | SkillsTab | `src/components/skills/SkillsTab.tsx` |
-| `#raidboss` | RaidBossTab | `src/components/raidboss/RaidBossTab.tsx` |
-| `#calculator` | CalculatorTab | `src/components/calculator/CalculatorTab.tsx` |
-| `#quests` | QuestsTab | `src/components/quests/QuestsTab.tsx` |
+## Routes (react-router-dom in App.tsx)
+
+### Main Page
+| Route | Component | File |
+|-------|-----------|------|
+| `/` | MainPage | `src/components/main/MainPage.tsx` |
+
+Главная страница-разводка: сетка карточек с иконками разделов. TabBar скрыт.
+Пасхалка: ввод `iddqd` открывает модалку «Саша Ролекс Пес».
+
+### Tab Pages
+| Route | Component | File |
+|-------|-----------|------|
+| `/recipes` | RecipeTab | `src/components/recipes/RecipeTab.tsx` |
+| `/spellbooks` | SpellbookTab | `src/components/spellbooks/SpellbookTab.tsx` |
+| `/locations` | LocationsTab | `src/components/locations/LocationsTab.tsx` |
+| `/skills` | SkillsTab | `src/components/skills/SkillsTab.tsx` |
+| `/raidboss` | RaidBossTab | `src/components/raidboss/RaidBossTab.tsx` |
+| `/calculator` | CalculatorTab | `src/components/calculator/CalculatorTab.tsx` |
+| `/quests` | QuestsTab | `src/components/quests/QuestsTab.tsx` |
 
 - Valid tabs constant in `src/utils/constants.ts` (`TAB_NAMES`, `VALID_TABS`)
-- TabBar component renders all tabs; active tab determined by `window.location.hash`
+- TabBar component renders tab navigation; shown only when `activeTab` is set (hidden on `/`)
 - Switching tabs clears `?sbRace=` and `?sbQ=` search params (unless switching to spellbooks)
-- `getTabFromHash()` strips query params via `.split('?')[0]` — handles `#tab?key=val` URLs
-- `fullHash` state in App.tsx forces component re-mount on any hash change (via `key={fullHash}`)
 
 ## Shared Components
 
