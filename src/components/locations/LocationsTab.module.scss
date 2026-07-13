@@ -107,9 +107,9 @@
 }
 
 .count {
+  flex-basis: 100%;
   font-size: $font-size-base;
   color: $color-text-muted;
-  white-space: nowrap;
 
   b {
     color: $color-primary;
@@ -125,7 +125,6 @@
   width: 100%;
   border-collapse: collapse;
   font-size: $font-size-base;
-  overflow: visible;
 
   th,
   td {

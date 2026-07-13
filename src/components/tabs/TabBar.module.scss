@@ -39,14 +39,18 @@
 }
 
 .tabBtn {
-  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
   background: transparent;
   color: $color-text-muted;
   border: none;
   border-radius: $radius-lg;
   cursor: pointer;
-  font-size: $font-size-lg;
-  font-weight: 600;
+  font-size: $font-size-xs;
+  font-weight: 400;
   flex: 1;
   text-align: center;
   transition: color 0.2s ease;
@@ -56,13 +60,7 @@
   }
 
   @include mobile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
     padding: 6px 2px;
-    font-size: $font-size-xs;
-    font-weight: 400;
   }
 }
 
@@ -71,22 +69,19 @@
 }
 
 .icon {
-  display: inline;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  line-height: 1;
 
-  @include mobile {
-    font-size: 1.5rem;
+  @include tablet {
+    font-size: 1.2rem;
   }
 }
 
 .label {
-  display: inline;
-  margin-left: 6px;
+  font-size: 0.65rem;
+  line-height: 1;
 
-  @include mobile {
-    display: inline;
-    margin-left: 0;
-    font-size: 0.65rem;
-    line-height: 1;
+  @include tablet {
+    font-size: 0.7rem;
   }
 }

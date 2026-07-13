@@ -83,7 +83,7 @@
   width: 100%;
   border-collapse: collapse;
   font-size: $font-size-base;
-  table-layout: fixed;
+  table-layout: auto;
 
   th, td {
     padding: 8px 10px;

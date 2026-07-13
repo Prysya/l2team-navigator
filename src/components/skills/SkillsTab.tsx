@@ -147,9 +147,7 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
   }, [currentSkills, filterType, searchQuery]);
 
   useEffect(() => {
-    const hash = window.location.hash;
-    const qsIndex = hash.indexOf('?');
-    const params = new URLSearchParams(qsIndex >= 0 ? hash.slice(qsIndex) : '');
+    const params = new URLSearchParams(window.location.search);
     const race = params.get('race');
     const cls = params.get('class');
     const skill = params.get('skill');
@@ -212,6 +210,10 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
             />
           </FloatingLabel>
         </div>
+
+        <div className={styles.skillsCount}>
+          Навыков: <b>{filteredSkills.length}</b>
+        </div>
       </div>
 
       {!selectedClass ? (
@@ -222,9 +224,6 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
         </div>
       ) : filteredSkills.length > 0 ? (
         <div className={styles.skillsGrid}>
-          <div className={styles.skillsCount}>
-            Навыков: <b>{filteredSkills.length}</b>
-          </div>
           {filteredSkills.map(skill => (
             <div key={skill.id} className={styles.skillCard}>
               <div className={styles.skillHeader}>
@@ -239,7 +238,7 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
                 <div className={styles.skillInfo}>
                   <div className={styles.skillName}>
                     {skill.name}
-                    <CopyLink getUrl={() => window.location.origin + import.meta.env.BASE_URL + '#skills?race=' + encodeURIComponent(selectedRace) + '&class=' + encodeURIComponent(selectedClass) + '&skill=' + encodeURIComponent(skill.name)} />
+                    <CopyLink getUrl={() => window.location.origin + import.meta.env.BASE_URL + 'skills?race=' + encodeURIComponent(selectedRace) + '&class=' + encodeURIComponent(selectedClass) + '&skill=' + encodeURIComponent(skill.name)} />
                   </div>
                   <div className={styles.skillMeta}>
                     <span className={skill.type === 'passive' ? styles.typePassive : styles.typeActive}>
@@ -270,14 +269,7 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
                     <button
                       className={styles.sbLink}
                       onClick={() => {
-                        const hash = window.location.hash;
-                        const qsIndex = hash.indexOf('?');
-                        const params = new URLSearchParams(qsIndex >= 0 ? hash.slice(qsIndex) : '');
-                        if (selectedRace) params.set('sbRace', selectedRace);
-                        params.set('sbQ', skill.name);
-                        const qs = params.toString();
-                        window.history.replaceState(null, '', qs ? `${window.location.pathname}?${qs}` : window.location.pathname);
-                        onNavigateToTab?.('spellbooks');
+                        onNavigateToTab?.('spellbooks?sbRace=' + encodeURIComponent(selectedRace || '') + '&sbQ=' + encodeURIComponent(skill.name));
                       }}
                     >
                       📚 Где выбить книгу
