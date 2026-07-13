@@ -596,17 +596,16 @@ export default function QuestsTab() {
         columnHelper.accessor('name', {
           header: 'Квест',
           enableSorting: false,
-          cell: ({ getValue }) => <span style={{ fontWeight: 600 }}>{getValue()}</span>,
-        }),
-          ...(category === 'racial' ? [columnHelper.accessor('rewardTag', {
-          header: '',
-          enableSorting: false,
-          cell: ({ getValue }) => {
-            if (getValue() === 'weapon' || getValue() === 'both') return <span className={styles.tagWeapon}>⚔️</span>;
-            if (getValue() === 'soulshot') return <span className={styles.tagSoulshot}>🔥</span>;
-            return null;
+          cell: ({ getValue, row }) => {
+            const tag = (row.original as Quest).rewardTag;
+            return (
+              <span style={{ fontWeight: 600 }}>
+                {(tag === 'soulshot' || tag === 'both') && <span className={styles.tagSoulshot}>🔥 </span>}
+                {getValue()}
+              </span>
+            );
           },
-        })] : []),
+        }),
         columnHelper.accessor('desc', {
           header: 'Зачем',
           enableSorting: false,
@@ -686,8 +685,7 @@ export default function QuestsTab() {
         {category === 'racial' && (
           <div className={styles.legend}>
             <span className={styles.legendTitle}>Обязательные к выполнению:</span>
-            <span className={styles.legendItem}><span className={styles.tagWeapon}>⚔️</span> — оружие</span>
-            <span className={styles.legendItem}><span className={styles.tagSoulshot}>🔥</span> — соски</span>
+            <span className={styles.legendItem}><span className={styles.tagSoulshot}>🔥</span></span>
           </div>
         )}
 
@@ -713,7 +711,7 @@ export default function QuestsTab() {
                 <Fragment key={row.id}>
                   <tr
                     onClick={() => toggleRow(q.name)}
-                    className={category === 'racial' && (eq.rewardTag === 'weapon' || eq.rewardTag === 'both' || eq.rewardTag === 'soulshot') ? styles.rowWeapon : ''}
+                    className={category === 'racial' && (eq.rewardTag === 'soulshot' || eq.rewardTag === 'both') ? styles.rowSoulshot : ''}
                     style={{ cursor: 'pointer' }}
                   >
                     {row.getVisibleCells().map(cell => (
