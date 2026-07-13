@@ -7,7 +7,17 @@ import {
 } from '@tanstack/react-table';
 import CustomSelect from '../../components/shared/CustomSelect';
 import WorldMap from '../../components/shared/WorldMap';
+import QUEST_DATA from '../../data/QUEST_DATA.json';
 import styles from './QuestsTab.module.scss';
+
+type QuestDataEntry = {
+  id: number;
+  type: string;
+  npcId: number;
+  npcName: string;
+  coords: { x: number; y: number } | null;
+  steps: string[];
+};
 
 type RewardTag = 'weapon' | 'soulshot' | 'both' | 'adena' | 'exp' | 'other';
 
@@ -322,17 +332,19 @@ const QUEST_IDS: Record<string, number> = {
 
 function enrichQuest(q: Quest): Quest & { npc: string; npcId: number; location: string; startLvl: number; endLvl: number; questId: number; steps: string[]; coords: { x: number; y: number } | null; rewardTag: RewardTag } {
   const details = QUEST_DETAILS[q.name];
-  const npcId = details?.npcId ?? q.npcId ?? 0;
+  const parsed = (QUEST_DATA as Record<string, QuestDataEntry>)[q.name];
+  const npcId = details?.npcId ?? q.npcId ?? parsed?.npcId ?? 0;
+  const parsedCoords = parsed?.coords ?? null;
   return {
     ...q,
-    npc: details?.npc ?? q.npc ?? '',
+    npc: details?.npc ?? q.npc ?? parsed?.npcName ?? '',
     location: details?.location ?? q.location ?? '',
     npcId,
     startLvl: details?.startLvl ?? q.lvl,
     endLvl: details?.endLvl ?? q.lvl,
-    questId: QUEST_IDS[q.name] ?? q.questId ?? 0,
-    steps: (QUEST_STEPS[q.name] ?? q.steps) ?? [],
-    coords: NPC_COORDS[npcId] ?? null,
+    questId: QUEST_IDS[q.name] ?? q.questId ?? parsed?.id ?? 0,
+    steps: (QUEST_STEPS[q.name] ?? parsed?.steps ?? q.steps) ?? [],
+    coords: NPC_COORDS[npcId] ?? parsedCoords,
     rewardTag: detectRewardTag(q.reward),
   };
 }
