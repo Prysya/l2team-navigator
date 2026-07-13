@@ -228,11 +228,11 @@
 .dropTable {
   width: 100%;
   border-collapse: collapse;
-  font-size: $font-size-sm;
+  font-size: $font-size-md;
   table-layout: fixed;
 
   th, td {
-    padding: 7px 8px;
+    padding: 10px 12px;
     border: 1px solid $color-border;
     text-align: left;
   }
@@ -240,61 +240,57 @@
   th {
     background: $color-surface-hover;
     color: $color-primary;
-    font-weight: 600;
-    font-size: $font-size-xs;
+    font-weight: 700;
+    font-size: $font-size-md;
     text-transform: uppercase;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
   }
 
-  td { color: $color-text; }
+  td {
+    color: $color-text;
+    font-size: $font-size-md;
+  }
 
   tbody tr:not(.dropGroupHeader) td {
     background: #0b101a;
   }
 
   tbody tr:not(.dropGroupHeader) td:first-child {
-    border-left: 2px solid $color-border;
+    font-weight: 500;
   }
 
   tbody tr:hover td {
     background: transparent;
   }
 
-  .dColItem  { width: 41%; }
-  .dColGrade { width: 12%; text-align: center; }
-  .dColAmount { width: 12%; text-align: center; }
-  .dColChance { width: 15%; text-align: center; }
-  .dColGroup  { width: 20%; text-align: center; }
+  .dColItem  { width: 50%; vertical-align: middle; }
+  .dColGrade { width: 15%; text-align: center; vertical-align: middle; }
+  .dColAmount { width: 15%; text-align: center; vertical-align: middle; }
+  .dColChance { width: 20%; text-align: center; vertical-align: middle; }
 }
 
 .itemGrade {
   display: inline-block;
-  padding: 1px 6px;
-  border-radius: $radius-sm;
+  padding: 2px 8px;
+  border-radius: $radius-md;
   background: #1e293b;
   color: #60a5fa;
-  font-size: $font-size-xs;
-  font-weight: 600;
+  font-size: $font-size-sm;
+  font-weight: 700;
 }
 
 .itemLink {
-  color: $color-text;
+  color: $color-link;
   text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-
-  &::before {
-    content: '';
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: transparent;
-    flex-shrink: 0;
-  }
+  font-weight: 600;
+  font-size: $font-size-lg;
+  padding: 4px;
+  display: inline-block;
+  transition: color 0.15s;
 
   &:hover {
     color: $color-primary;
+    text-decoration: underline;
   }
 }
 
@@ -314,13 +310,12 @@
 }
 
 .dropGroupHeader td {
-  padding: 4px 8px !important;
-  background: #111827;
-  border-bottom: 2px solid $color-border;
+  padding: 6px 12px !important;
+  background: #0d1422;
 }
 
 .dropTable tbody tr.dropGroupHeader:hover td {
-  background: #111827;
+  background: #0d1422;
 }
 
 .groupLabel {
@@ -329,12 +324,13 @@
   margin-right: $spacing-sm;
   text-transform: uppercase;
   letter-spacing: 0.3px;
+  font-weight: 500;
 }
 
 .groupChance {
   color: $color-accent-orange;
   font-weight: 700;
-  font-size: $font-size-sm;
+  font-size: $font-size-base;
 }
 
 .noData {

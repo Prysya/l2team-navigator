@@ -1,5 +1,6 @@
 import cx from 'classnames';
-import { useMemo } from 'react';
+import { useMemo, useState, useCallback, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import type { LocationEntry, LocationItem, LocationMonster } from '../../types';
 import LOCATIONS_ALL_DATA from '../../data/LOCATIONS_ALL.json';
 import FloatingLabel from '../../components/shared/FloatingLabel';
@@ -74,13 +75,22 @@ function renderItem(item: LocationItem): string {
   </div>`;
 }
 
+function getTypeTooltip(t: string): string {
+  const map: Record<string, string> = {
+    S: 'Одиночный (solo)',
+    SG: 'Минигруппа (small group)',
+    G: 'Полная группа (group)',
+  };
+  return map[t] ?? t;
+}
+
 function renderLocation(loc: LocationEntry, typeFilter: TypeFilter, selectedRace: string, selectedClass: string): string {
   const partyInfo = getPartyText(loc.location_types, loc.has_boss);
 
   const typesHtml =
     loc.location_types.length > 0
       ? loc.location_types
-          .map((t) => `<span class="type-badge">${escapeHtml(t)}</span>`)
+          .map((t) => `<span class="type-badge" data-tooltip="${escapeHtml(getTypeTooltip(t))}">${escapeHtml(t)}</span>`)
           .join('')
       : '';
 
@@ -132,6 +142,25 @@ export default function LocationsTab() {
   const searchQuery = useLocationsStore((s) => s.searchQuery);
   const setSearchQuery = useLocationsStore((s) => s.setSearchQuery);
   const handleTypeChange = useLocationsStore((s) => s.handleTypeChange);
+
+  const tableRef = useRef<HTMLDivElement>(null);
+  const [tooltip, setTooltip] = useState<{ text: string; top: number; left: number } | null>(null);
+
+  const handleMouseOver = useCallback((e: React.MouseEvent) => {
+    const target = (e.target as HTMLElement).closest('[data-tooltip]') as HTMLElement | null;
+    if (!target) { setTooltip(null); return; }
+    const rect = target.getBoundingClientRect();
+    setTooltip({
+      text: target.getAttribute('data-tooltip') ?? '',
+      top: rect.top - 8,
+      left: rect.left + rect.width / 2,
+    });
+  }, []);
+
+  const handleMouseOut = useCallback((e: React.MouseEvent) => {
+    const related = (e.relatedTarget as HTMLElement)?.closest('[data-tooltip]');
+    if (!related) setTooltip(null);
+  }, []);
 
   const cities = useMemo(() => {
     const set = new Set<string>();
@@ -298,7 +327,7 @@ export default function LocationsTab() {
       </div>
 
       {filteredData.length > 0 ? (
-        <div className={styles.tableWrap}>
+        <div className={styles.tableWrap} ref={tableRef} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
           <table className={styles.table}>
             <thead>
               <tr>
@@ -308,6 +337,27 @@ export default function LocationsTab() {
             </thead>
             <tbody dangerouslySetInnerHTML={{ __html: tableHtml }} />
           </table>
+          {tooltip && createPortal(
+            <div style={{
+              position: 'fixed',
+              top: tooltip.top,
+              left: tooltip.left,
+              transform: 'translate(-50%, -100%)',
+              background: '#1a2338',
+              color: '#dbe4f0',
+              fontSize: 11,
+              whiteSpace: 'nowrap',
+              padding: '5px 10px',
+              borderRadius: 6,
+              border: '1px solid #24304a',
+              pointerEvents: 'none',
+              zIndex: 99999,
+              boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
+            }}>
+              {tooltip.text}
+            </div>,
+            document.body
+          )}
         </div>
       ) : (
         <div className={styles.emptyState}>Локации не найдены</div>

@@ -16,6 +16,7 @@
 - Always create a branch from `main` for new work
 - PR target: `main`
 - Version bumps go in the PR body, not as separate commits (auto-tag workflow handles tagging on merge)
+- **Update CHANGELOG.md** with each version — describe changes in Russian under Added/Changed/Fixed/Removed
 
 ### Commit Messages
 Use conventional commits: `type: description` (lowercase, no caps).

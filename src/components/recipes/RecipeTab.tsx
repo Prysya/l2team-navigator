@@ -1,14 +1,131 @@
 import { useMemo } from 'react';
-import type { Resource } from '../../types';
+import {
+  useReactTable,
+  getCoreRowModel,
+  getSortedRowModel,
+  flexRender,
+  createColumnHelper,
+  type SortingState,
+} from '@tanstack/react-table';
+import { useState } from 'react';
+import type { Resource, Monster } from '../../types';
 import { useRecipeStore } from '../../stores/recipeStore';
 import RESOURCES_DATA from '../../data/RESOURCES.json';
 import { GROUP_NAMES } from '../../utils/constants';
-import { renderMonsterRow, sortMonsters, escapeHtml } from '../../utils/helpers';
+import { renderMonsterRow, sortMonsters } from '../../utils/helpers';
 import FloatingLabel from '../../components/shared/FloatingLabel';
 import CustomSelect from '../../components/shared/CustomSelect';
 import styles from './RecipeTab.module.scss';
 
 const RESOURCES = RESOURCES_DATA as Resource[];
+
+interface MonsterRow {
+  id: string;
+  monsterHtml: string;
+  locationHtml: string;
+  dropHtml: string;
+  spoilHtml: string;
+  commentHtml: string;
+}
+
+const columnHelper = createColumnHelper<MonsterRow>();
+
+function useMonsterColumns() {
+  return useMemo(() => [
+    columnHelper.accessor('monsterHtml', {
+      header: 'Монстр',
+      cell: ({ getValue }) => <span dangerouslySetInnerHTML={{ __html: getValue() }} />,
+    }),
+    columnHelper.accessor('locationHtml', {
+      header: 'Локации',
+      cell: ({ getValue }) => <span dangerouslySetInnerHTML={{ __html: getValue() }} />,
+    }),
+    columnHelper.accessor('dropHtml', {
+      header: 'Шанс дропа',
+      cell: ({ getValue }) => <span dangerouslySetInnerHTML={{ __html: getValue() }} />,
+    }),
+    columnHelper.accessor('spoilHtml', {
+      header: 'Шанс спойла',
+      cell: ({ getValue }) => <span dangerouslySetInnerHTML={{ __html: getValue() }} />,
+    }),
+    columnHelper.accessor('commentHtml', {
+      header: 'Комментарий',
+      cell: ({ getValue }) => <span dangerouslySetInnerHTML={{ __html: getValue() }} />,
+    }),
+  ], []);
+}
+
+function MonsterTanStackTable({ monsters, className }: { monsters: Monster[]; className?: string }) {
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const columns = useMonsterColumns();
+
+  const data = useMemo(() => {
+    const sorted = sortMonsters(monsters);
+    return sorted.map((m, idx) => {
+      const cells = renderMonsterRow(m);
+      return {
+        id: String(idx),
+        monsterHtml: cells.monsterCell,
+        locationHtml: cells.locationsCell,
+        dropHtml: cells.dropCell,
+        spoilHtml: cells.spoilCell,
+        commentHtml: cells.commentCell,
+      };
+    });
+  }, [monsters]);
+
+  const table = useReactTable({
+    data,
+    columns,
+    state: { sorting },
+    onSortingChange: setSorting,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+  });
+
+  if (data.length === 0) return null;
+
+  return (
+    <div className={className}>
+      <table className={styles.table}>
+        <thead>
+          {table.getHeaderGroups().map(headerGroup => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map(header => (
+                <th
+                  key={header.id}
+                  onClick={header.column.getToggleSortingHandler()}
+                  style={{ cursor: header.column.getCanSort() ? 'pointer' : 'default' }}
+                >
+                  {flexRender(header.column.columnDef.header, header.getContext())}
+                  {header.column.getCanSort() && (
+                    <span style={{ userSelect: 'none', color: 'var(--color-primary)', marginLeft: '2px' }}>
+                      {{
+                        asc: ' ▲',
+                        desc: ' ▼',
+                      }[header.column.getIsSorted() as string] ?? ' ⇅'}
+                    </span>
+                  )}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {table.getRowModel().rows.map(row => (
+            <tr key={row.id}>
+              {row.getVisibleCells().map(cell => (
+                <td key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
 
 function recipeSelectLabel(recipe: Resource): string {
   return recipe.recipe_name;
@@ -51,40 +168,6 @@ export default function RecipeTab() {
     return RESOURCES.find((r) => r.number === selectedNumber) ?? null;
   }, [selectedNumber]);
 
-  const monsterRowsHtml = useMemo(() => {
-    if (!currentRecipe) return '';
-    const sorted = sortMonsters(currentRecipe.monster);
-    return sorted
-      .map((m) => {
-        const cells = renderMonsterRow(m);
-        return `<tr>
-          <td>${cells.monsterCell}</td>
-          <td>${cells.locationsCell}</td>
-          <td>${cells.dropCell}</td>
-          <td>${cells.spoilCell}</td>
-          <td>${cells.commentCell}</td>
-        </tr>`;
-      })
-      .join('');
-  }, [currentRecipe]);
-
-  const materialMonsterRowsHtml = useMemo(() => {
-    if (!currentRecipe?.material) return '';
-    const sorted = sortMonsters(currentRecipe.material.monster);
-    return sorted
-      .map((m) => {
-        const cells = renderMonsterRow(m);
-        return `<tr>
-          <td>${cells.monsterCell}</td>
-          <td>${cells.locationsCell}</td>
-          <td>${cells.dropCell}</td>
-          <td>${cells.spoilCell}</td>
-          <td>${cells.commentCell}</td>
-        </tr>`;
-      })
-      .join('');
-  }, [currentRecipe]);
-
   return (
     <div>
       <div className={styles.controls}>
@@ -120,20 +203,23 @@ export default function RecipeTab() {
       {currentRecipe ? (
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3>{currentRecipe.recipe_name}</h3>
+            {currentRecipe.recipe_url ? (
+              <h3>
+                <a
+                  href={currentRecipe.recipe_url}
+                  target="_blank"
+                  rel="noopener"
+                  className={styles.recipeLink}
+                >
+                  {currentRecipe.recipe_name}
+                </a>
+              </h3>
+            ) : (
+              <h3>{currentRecipe.recipe_name}</h3>
+            )}
             <span className={styles.badge}>
               {GROUP_NAMES[currentRecipe.group] || `Группа ${currentRecipe.group}`}
             </span>
-            {currentRecipe.recipe_url && (
-              <a
-                href={currentRecipe.recipe_url}
-                target="_blank"
-                rel="noopener"
-                className={styles.wikiLink}
-              >
-                Wiki
-              </a>
-            )}
           </div>
 
           <div className={styles.monsterCount}>
@@ -143,20 +229,7 @@ export default function RecipeTab() {
               : ''}
           </div>
 
-          <div className={styles.tableWrap}>
-            <table className={styles.table}>
-              <thead>
-                <tr>
-                  <th>Монстр</th>
-                  <th>Локации</th>
-                  <th>Шанс дропа</th>
-                  <th>Шанс спойла</th>
-                  <th>Комментарий</th>
-                </tr>
-              </thead>
-              <tbody dangerouslySetInnerHTML={{ __html: monsterRowsHtml }} />
-            </table>
-          </div>
+          <MonsterTanStackTable monsters={currentRecipe.monster} className={styles.tableWrap} />
 
           {currentRecipe.group === 2 && currentRecipe.material && (
             <div className={styles.materialSection}>
@@ -169,26 +242,13 @@ export default function RecipeTab() {
                     rel="noopener"
                     className={styles.materialLink}
                   >
-                    {escapeHtml(currentRecipe.material.name)}
+                    {currentRecipe.material.name}
                   </a>
                 ) : (
-                  escapeHtml(currentRecipe.material.name)
+                  currentRecipe.material.name
                 )}
               </h4>
-              <div className={styles.tableWrap}>
-                <table className={styles.table}>
-                  <thead>
-                    <tr>
-                      <th>Монстр</th>
-                      <th>Локации</th>
-                      <th>Шанс дропа</th>
-                      <th>Шанс спойла</th>
-                      <th>Комментарий</th>
-                    </tr>
-                  </thead>
-                  <tbody dangerouslySetInnerHTML={{ __html: materialMonsterRowsHtml }} />
-                </table>
-              </div>
+              <MonsterTanStackTable monsters={currentRecipe.material.monster} className={styles.tableWrap} />
             </div>
           )}
         </div>

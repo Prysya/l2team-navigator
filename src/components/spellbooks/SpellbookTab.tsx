@@ -1,4 +1,12 @@
-import { useMemo, useEffect } from 'react';
+import { useMemo, useEffect, useState } from 'react';
+import {
+  useReactTable,
+  getCoreRowModel,
+  getSortedRowModel,
+  flexRender,
+  createColumnHelper,
+  type SortingState,
+} from '@tanstack/react-table';
 import type { Spellbook } from '../../types';
 import SPELLBOOKS_DATA from '../../data/SPELLBOOKS.json';
 import { RACES } from '../../data/races';
@@ -19,6 +27,22 @@ function getRaceLabel(race: string): string {
   return RACE_LABELS[race] ?? race;
 }
 
+interface FlatRow {
+  id: string;
+  spellbookName: string;
+  spellbookUrl: string;
+  skillName: string;
+  level: string;
+  monsterHtml: string;
+  locationHtml: string;
+  dropHtml: string;
+  spoilHtml: string;
+  commentHtml: string;
+  classTags: React.ReactNode;
+}
+
+const columnHelper = createColumnHelper<FlatRow>();
+
 export default function SpellbookTab() {
   const selectedRace = useSpellbookStore(s => s.selectedRace);
   const selectedClass = useSpellbookStore(s => s.selectedClass);
@@ -26,6 +50,8 @@ export default function SpellbookTab() {
   const setSelectedRace = useSpellbookStore(s => s.setSelectedRace);
   const setSelectedClass = useSpellbookStore(s => s.setSelectedClass);
   const setSearchQuery = useSpellbookStore(s => s.setSearchQuery);
+  const [sorting, setSorting] = useState<SortingState>([]);
+
   useEffect(() => {
     const hash = window.location.hash;
     const qsIndex = hash.indexOf('?');
@@ -67,63 +93,101 @@ export default function SpellbookTab() {
     return list;
   }, [selectedRace, selectedClass, searchQuery]);
 
+  const flatData = useMemo(() => {
+    return filtered.flatMap((sb) => {
+      const sorted = sortMonsters(sb.monster);
+
+      const classTags = sb.classes.map((c) => (
+        <span className="class-tag" key={`${c.race}-${c.class_name}`}>
+          {getRaceLabel(c.race)} — {c.class_name}
+        </span>
+      ));
+
+      const bookContent = (
+        <div className="spellbook-name">
+          <div className={styles.bookTitle}>
+            <a href={sb.spellbook_url} target="_blank" rel="noopener">
+              {sb.spellbook_name}
+            </a>
+            <CopyLink
+              getUrl={() =>
+                window.location.origin +
+                import.meta.env.BASE_URL +
+                '#spellbooks?sbRace=' +
+                encodeURIComponent(selectedRace) +
+                '&sbQ=' +
+                encodeURIComponent(sb.skill_name)
+              }
+            />
+          </div>
+          <div className="spellbook-classes">{classTags}</div>
+        </div>
+      );
+
+      return sorted.map((m, idx) => {
+        const cells = renderMonsterRow(m);
+        return {
+          id: `${sb.skill_name}-${idx}`,
+          spellbookName: sb.spellbook_name,
+          spellbookUrl: sb.spellbook_url,
+          skillName: sb.skill_name,
+          level: String(sb.lvl),
+          monsterHtml: cells.monsterCell,
+          locationHtml: cells.locationsCell,
+          dropHtml: cells.dropCell,
+          spoilHtml: cells.spoilCell,
+          commentHtml: cells.commentCell,
+          classTags: bookContent,
+        };
+      });
+    });
+  }, [filtered, selectedRace]);
+
   const totalMonsters = useMemo(
     () => filtered.reduce((sum, sb) => sum + sb.monster.length, 0),
     [filtered]
   );
 
-  const tableRows = useMemo(
-    () =>
-      filtered.flatMap((sb) => {
-        const sorted = sortMonsters(sb.monster);
-        const rowspan = sorted.length || 1;
+  const columns = useMemo(() => [
+    columnHelper.accessor('classTags', {
+      header: 'Книга',
+      enableSorting: false,
+      cell: ({ getValue }) => getValue(),
+    }),
+    columnHelper.accessor('level', {
+      header: 'Lvl',
+      cell: ({ getValue }) => getValue(),
+    }),
+    columnHelper.accessor('monsterHtml', {
+      header: 'Монстр',
+      cell: ({ getValue }) => <span dangerouslySetInnerHTML={{ __html: getValue() }} />,
+    }),
+    columnHelper.accessor('locationHtml', {
+      header: 'Локации',
+      cell: ({ getValue }) => <span dangerouslySetInnerHTML={{ __html: getValue() }} />,
+    }),
+    columnHelper.accessor('dropHtml', {
+      header: 'Шанс дропа',
+      cell: ({ getValue }) => <span dangerouslySetInnerHTML={{ __html: getValue() }} />,
+    }),
+    columnHelper.accessor('spoilHtml', {
+      header: 'Шанс спойла',
+      cell: ({ getValue }) => <span dangerouslySetInnerHTML={{ __html: getValue() }} />,
+    }),
+    columnHelper.accessor('commentHtml', {
+      header: 'Комментарий',
+      cell: ({ getValue }) => <span dangerouslySetInnerHTML={{ __html: getValue() }} />,
+    }),
+  ], []);
 
-        const classTags = sb.classes.map((c) => (
-          <span className="class-tag" key={`${c.race}-${c.class_name}`}>
-            {getRaceLabel(c.race)} — {c.class_name}
-          </span>
-        ));
-
-        return sorted.map((m, idx) => {
-          const cells = renderMonsterRow(m);
-          return (
-            <tr key={`${sb.skill_name}-${idx}`}>
-              {idx === 0 && (
-                <>
-                  <td rowSpan={rowspan}>
-                    <div className="spellbook-name">
-                      <div className={styles.bookTitle}>
-                        <a href={sb.spellbook_url} target="_blank" rel="noopener">
-                          {sb.spellbook_name}
-                        </a>
-                        <CopyLink
-                          getUrl={() =>
-                            window.location.origin +
-                            import.meta.env.BASE_URL +
-                            '#spellbooks?sbRace=' +
-                            encodeURIComponent(selectedRace) +
-                            '&sbQ=' +
-                            encodeURIComponent(sb.skill_name)
-                          }
-                        />
-                      </div>
-                      <div className="spellbook-classes">{classTags}</div>
-                    </div>
-                  </td>
-                  <td rowSpan={rowspan}>{sb.lvl}</td>
-                </>
-              )}
-              <td dangerouslySetInnerHTML={{ __html: cells.monsterCell }} />
-              <td dangerouslySetInnerHTML={{ __html: cells.locationsCell }} />
-              <td dangerouslySetInnerHTML={{ __html: cells.dropCell }} />
-              <td dangerouslySetInnerHTML={{ __html: cells.spoilCell }} />
-              <td dangerouslySetInnerHTML={{ __html: cells.commentCell }} />
-            </tr>
-          );
-        });
-      }),
-    [filtered, selectedRace]
-  );
+  const table = useReactTable({
+    data: flatData,
+    columns,
+    state: { sorting },
+    onSortingChange: setSorting,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+  });
 
   return (
     <div>
@@ -171,21 +235,43 @@ export default function SpellbookTab() {
         Книг: <b>{filtered.length}</b> | Мобов: <b>{totalMonsters}</b>
       </div>
 
-      {filtered.length > 0 ? (
+      {flatData.length > 0 ? (
         <div className={styles.tableWrap}>
           <table className={styles.table}>
             <thead>
-              <tr>
-                <th>Книга</th>
-                <th>Lvl</th>
-                <th>Монстр</th>
-                <th>Локации</th>
-                <th>Шанс дропа</th>
-                <th>Шанс спойла</th>
-                <th>Комментарий</th>
-              </tr>
+              {table.getHeaderGroups().map(headerGroup => (
+                <tr key={headerGroup.id}>
+                  {headerGroup.headers.map(header => (
+                    <th
+                      key={header.id}
+                      onClick={header.column.getToggleSortingHandler()}
+                      style={{ cursor: header.column.getCanSort() ? 'pointer' : 'default' }}
+                    >
+                      {flexRender(header.column.columnDef.header, header.getContext())}
+                      {header.column.getCanSort() && (
+                        <span className={styles.sortIndicator}>
+                          {{
+                            asc: ' ▲',
+                            desc: ' ▼',
+                          }[header.column.getIsSorted() as string] ?? ' ⇅'}
+                        </span>
+                      )}
+                    </th>
+                  ))}
+                </tr>
+              ))}
             </thead>
-            <tbody>{tableRows}</tbody>
+            <tbody>
+              {table.getRowModel().rows.map(row => (
+                <tr key={row.id}>
+                  {row.getVisibleCells().map(cell => (
+                    <td key={cell.id}>
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
       ) : (
