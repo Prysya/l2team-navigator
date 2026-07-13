@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import { useMemo, Fragment, useCallback, useRef, useEffect, useState } from 'react';
+import { useMemo, Fragment, useCallback, useEffect, useState } from 'react';
 import {
   useReactTable,
   getCoreRowModel,
@@ -12,6 +12,7 @@ import RAIDBOSSES from '../../data/RAIDBOSSES.json';
 import styles from './RaidBossTab.module.scss';
 import { useRaidBossStore, type RaidBoss } from '../../stores/raidBossStore';
 import CopyLink from '../../components/shared/CopyLink';
+import WorldMap from '../../components/shared/WorldMap';
 import FloatingLabel from '../../components/shared/FloatingLabel';
 
 const BOSSES = RAIDBOSSES as RaidBoss[];
@@ -223,8 +224,8 @@ export default function RaidBossTab() {
         <div className={styles.emptyState}>Боссы не найдены</div>
       )}
 
-      {mapBoss && (
-        <BossMap boss={mapBoss} onClose={() => setMapBoss(null)} />
+      {mapBoss && mapBoss.coords && (
+        <WorldMap name={mapBoss.name} x={mapBoss.coords.x} y={mapBoss.coords.y} onClose={() => setMapBoss(null)} />
       )}
 
       {previewBoss && (
@@ -351,88 +352,4 @@ function BossDetail({ boss, onShowMap, onShowImage }: { boss: RaidBoss; onShowMa
   );
 }
 
-function BossMap({ boss, onClose }: { boss: RaidBoss; onClose: () => void }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(1.1);
-  const [pos, setPos] = useState({ x: 0, y: 0 });
-  const dragging = useRef(false);
-  const dragStart = useRef({ x: 0, y: 0 });
-  const dragPos = useRef({ x: 0, y: 0 });
 
-  const coords = boss.coords!;
-
-  useEffect(() => {
-    const vw = window.innerWidth * 0.9;
-    const vh = window.innerHeight * 0.9;
-    const s = 1.1;
-    const cx = vw / 2 - coords.x * s;
-    const cy = vh / 2 - coords.y * s;
-    setPos({ x: cx, y: cy });
-  }, [coords.x, coords.y]);
-
-  const onWheel = useCallback((e: React.WheelEvent) => {
-    e.preventDefault();
-    const delta = e.deltaY > 0 ? 0.9 : 1.1;
-    setScale(prev => Math.min(3, Math.max(0.15, prev * delta)));
-  }, []);
-
-  const onMouseDown = useCallback((e: React.MouseEvent) => {
-    dragging.current = true;
-    dragStart.current = { x: e.clientX, y: e.clientY };
-    dragPos.current = { ...pos };
-  }, [pos]);
-
-  const onMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!dragging.current) return;
-    setPos({
-      x: dragPos.current.x + (e.clientX - dragStart.current.x),
-      y: dragPos.current.y + (e.clientY - dragStart.current.y),
-    });
-  }, []);
-
-  const onMouseUp = useCallback(() => {
-    dragging.current = false;
-  }, []);
-
-  return (
-    <div className={styles.mapOverlay} onMouseUp={onMouseUp} onMouseLeave={onMouseUp}>
-      <div className={styles.mapModal}>
-        <div className={styles.mapHeader}>
-          <span>🗺️ {boss.name}</span>
-          <button className={styles.mapClose} onClick={onClose}>✕</button>
-        </div>
-        <div
-          className={styles.mapContainer}
-          ref={containerRef}
-          onWheel={onWheel}
-          onMouseDown={onMouseDown}
-          onMouseMove={onMouseMove}
-        >
-          <div
-            className={styles.mapInner}
-            style={{
-              transform: `translate(${pos.x}px, ${pos.y}px) scale(${scale})`,
-              transformOrigin: '0 0',
-              backgroundImage: `url(${import.meta.env.BASE_URL}maps/world-map.jpg)`,
-            }}
-          >
-            <div
-              className={styles.mapMarker}
-              style={{
-                left: coords.x,
-                top: coords.y,
-              }}
-            >
-              <span className={styles.mapMarkerLabel}>{boss.name}</span>
-            </div>
-          </div>
-        </div>
-        <div className={styles.mapFooter}>
-          <button className={styles.mapZoomBtn} onClick={() => setScale(s => Math.min(3, s * 1.3))}>+</button>
-          <span className={styles.mapZoomLevel}>{Math.round(scale * 100)}%</span>
-          <button className={styles.mapZoomBtn} onClick={() => setScale(s => Math.max(0.15, s / 1.3))}>−</button>
-        </div>
-      </div>
-    </div>
-  );
-}

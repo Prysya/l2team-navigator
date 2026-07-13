@@ -7,12 +7,13 @@ import LocationsTab from './components/locations/LocationsTab';
 import SkillsTab from './components/skills/SkillsTab';
 import RaidBossTab from './components/raidboss/RaidBossTab';
 import CalculatorTab from './components/calculator/CalculatorTab';
+import QuestsTab from './components/quests/QuestsTab';
 import { TAB_NAMES } from './utils/constants';
 
 const BASE = import.meta.env.BASE_URL;
 const BASE_CLEAN = BASE.replace(/\/$/, '');
 
-const VALID_TABS: ReadonlySet<string> = new Set(['recipes', 'spellbooks', 'locations', 'skills', 'raidboss', 'calculator']);
+const VALID_TABS: ReadonlySet<string> = new Set(['recipes', 'spellbooks', 'locations', 'skills', 'raidboss', 'calculator', 'quests']);
 
 function AppLayout() {
   const navigate = useNavigate();
@@ -132,6 +133,7 @@ function AppLayout() {
         <Route path="/skills" element={<SkillsTab onNavigateToTab={handleTabChange} />} />
         <Route path="/raidboss" element={<RaidBossTab />} />
         <Route path="/calculator" element={<CalculatorTab />} />
+        <Route path="/quests" element={<QuestsTab />} />
       </Routes>
 
       <footer className="app-footer">
