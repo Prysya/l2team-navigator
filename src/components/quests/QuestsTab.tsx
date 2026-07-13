@@ -13,7 +13,7 @@ import styles from './QuestsTab.module.scss';
 type QuestDataEntry = {
   id: number;
   type: string;
-  npcId: number;
+  npcId: number | null;
   npcName: string;
   coords: { x: number; y: number } | null;
   steps: string[];
@@ -442,15 +442,15 @@ const QUESTS_BY_RACE: Record<string, Quest[]> = {
 };
 
 const TEMPLE_EXECUTOR_QUESTS: Quest[] = [
-  { lvl: 35, name: 'Temple Missionary', desc: 'Цепочка Temple Executor, часть 1', reward: '253k Exp, 25k SP, 20k aden, банки, эликсиры', npc: 'High Priest Biotin', location: 'Talking Island, Храм', questId: 341, npcId: 30141, steps: ['1. Поговорите с High Priest Biotin в храме на Talking Island.', '2. Выполните миссию (уровни 35-45).', '3. Вернитесь за наградой: EXP, SP, адена, банки, эликсиры.'] },
-  { lvl: 35, name: 'Temple Executor', desc: 'Цепочка Temple Executor, часть 2', reward: '253k Exp, 25k SP, 23.7k aden, банки', npc: 'High Priest Biotin', location: 'Talking Island, Храм', questId: 342, npcId: 30141, steps: ['1. Продолжите цепочку у Biotin.', '2. Выполните задание.', '3. Получите награду.'] },
-  { lvl: 35, name: 'Temple Champion — 1', desc: 'Цепочка Temple Executor, часть 3', reward: '316k Exp, 31k SP, 31.5k aden, соски D, CP Potion', npc: 'High Priest Biotin', location: 'Talking Island, Храм', questId: 343, npcId: 30141, steps: ['1. Продолжите цепочку у Biotin.', '2. Выполните задание.', '3. Получите соски D + CP Potion + EXP.'] },
-  { lvl: 36, name: 'Temple Champion — 2', desc: 'Цепочка Temple Executor, часть 4', reward: '352k Exp, 35k SP, 36k aden, эликсиры', npc: 'High Priest Biotin', location: 'Talking Island, Храм', questId: 344, npcId: 30141, steps: ['1. Продолжите цепочку у Biotin.', '2. Выполните задание.', '3. Получите эликсиры HP/MP + EXP.'] },
-  { lvl: 37, name: 'Shadow Fox — 1', desc: 'Цепочка Temple Executor, часть 5', reward: '313k Exp, 31k SP, 26k aden, банки', npc: 'High Priest Biotin', location: 'Talking Island, Храм', questId: 345, npcId: 30141, steps: ['1. Продолжите цепочку у Biotin.', '2. Выполните задание.', '3. Получите награду.'] },
-  { lvl: 37, name: 'Shadow Fox — 2', desc: 'Цепочка Temple Executor, часть 6', reward: '313k Exp, 31k SP, 26k aden, банки', npc: 'High Priest Biotin', location: 'Talking Island, Храм', questId: 346, npcId: 30141, steps: ['1. Продолжите цепочку у Biotin.', '2. Выполните задание.', '3. Получите награду.'] },
-  { lvl: 37, name: 'Shadow Fox — 3', desc: 'Цепочка Temple Executor, часть 7', reward: '313k Exp, 31k SP, 26k aden, соски D, CP Potion', npc: 'High Priest Biotin', location: 'Talking Island, Храм', questId: 347, npcId: 30141, steps: ['1. Продолжите цепочку у Biotin.', '2. Выполните задание.', '3. Получите соски D + CP Potion.'] },
-  { lvl: 38, name: 'Fallen Angel — Request of Dawn', desc: 'Цепочка Temple Executor, на выбор', reward: '592k Exp, 59k SP, 58.5k aden, соски D, CP, ресы', npc: 'High Priest Biotin', location: 'Talking Island, Храм', questId: 348, npcId: 30141, steps: ['1. Выберите путь Dawn у Biotin.', '2. Выполните задание (больше EXP, но сложнее).', '3. Получите Proof of Loyalty + соски D + CP.'] },
-  { lvl: 38, name: 'Fallen Angel — Request of Dusk', desc: 'Цепочка Temple Executor, на выбор', reward: '435k Exp, 43k SP, 41k aden, CP, ресы', npc: 'High Priest Biotin', location: 'Talking Island, Храм', questId: 349, npcId: 30141, steps: ['1. Выберите путь Dusk у Biotin.', '2. Выполните задание (меньше EXP, но быстрее).', '3. Получите Proof of Loyalty + CP.'] },
+  { lvl: 35, name: 'Temple Missionary', desc: 'Цепочка палач храма, часть 1', reward: '253k Exp, 25k SP, 20k aden, банки, эликсиры', npc: 'Glyvka Priestess', location: 'Dion, Храм', npcId: 0 },
+  { lvl: 35, name: 'Temple Executor', desc: 'Цепочка палач храма, часть 2', reward: '253k Exp, 25k SP, 23.7k aden, банки', npc: 'Shegfield Priest', location: 'Dion, Храм', npcId: 0 },
+  { lvl: 35, name: 'Temple Champion — 1', desc: 'Цепочка палач храма, часть 3', reward: '316k Exp, 31k SP, 31.5k aden, соски D, CP Potion', npc: 'Sylvain High Priest', location: 'Dion, Храм', npcId: 0 },
+  { lvl: 36, name: 'Temple Champion — 2', desc: 'Цепочка палач храма, часть 4', reward: '352k Exp, 35k SP, 36k aden, эликсиры', npc: 'Sylvain High Priest', location: 'Dion → Giran', npcId: 0 },
+  { lvl: 37, name: 'Shadow Fox — 1', desc: 'Цепочка палач храма, часть 5', reward: '313k Exp, 31k SP, 26k aden, банки', npc: 'Mia Warehouse Keeper', location: 'Hein, Склад', npcId: 0 },
+  { lvl: 37, name: 'Shadow Fox — 2', desc: 'Цепочка палач храма, часть 6', reward: '313k Exp, 31k SP, 26k aden, банки', npc: 'Kluck Warehouse Keeper', location: 'Hein, Склад', npcId: 0 },
+  { lvl: 37, name: 'Shadow Fox — 3', desc: 'Цепочка палач храма, часть 7', reward: '313k Exp, 31k SP, 26k aden, соски D, CP Potion', npc: 'Natools Warehouse Chief', location: 'Hein, Склад', npcId: 0 },
+  { lvl: 38, name: 'Fallen Angel — Request of Dawn', desc: 'Цепочка палач храма, на выбор (Dawn)', reward: '592k Exp, 59k SP, 58.5k aden, соски D, CP, ресы', npc: 'Natools Warehouse Chief', location: 'Hein, Склад', npcId: 0 },
+  { lvl: 38, name: 'Fallen Angel — Request of Dusk', desc: 'Цепочка палач храма, на выбор (Dusk)', reward: '435k Exp, 43k SP, 41k aden, CP, ресы', npc: 'Natools Warehouse Chief', location: 'Hein, Склад', npcId: 0 },
 ];
 
 type QuestCategory = 'racial' | 'profession' | 'temple';

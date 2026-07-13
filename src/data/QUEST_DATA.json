@@ -787,5 +787,137 @@
       "y": 2349.186440678
     },
     "steps": []
+  },
+  "Temple Missionary": {
+    "id": 54,
+    "type": "post",
+    "npcId": null,
+    "npcName": "",
+    "coords": null,
+    "steps": [
+      "1. Start NPC Glyvka Priestess who is situated in the Dion's temple. Take from her quest Temple Missionary.",
+      "2. On the temple's exit there will be Rouke Spellbook Seller . Talk to him and agree to find some items.",
+      "3. Teleport to the Cruma Tower, go outside and find the monsters",
+      "4. Return back to Dion to Rouke Spellbook Seller . Talk to him. give quest items and get 3 Giants&#039; Experimental Tool NG",
+      "5. Teleport to the Cruma Tower, go outside and find the monsters",
+      "6. Kill Cruma Marshlands Traitor Quest Monster Lv. 35 , untill we get 3 Giants&#039; Technology Report NG",
+      "7. Go back to Dion and find Rouke Spellbook Seller . Talk to him, give quest items and get Rouke&#039;s Report NG",
+      "8. Go to Glyvka Priestess give the report and take the reward for the quest."
+    ]
+  },
+  "Temple Executor": {
+    "id": 55,
+    "type": "post",
+    "npcId": null,
+    "npcName": "",
+    "coords": null,
+    "steps": [
+      "1. Start NPC Shegfield Priest situated in the Dion's temple. Take quest from him Temple Executor.",
+      "2. Go to Floral Village, near the eastern gates find Alex Captain . Talk to him and agree to help with villagers.",
+      "3. Search near the village monsters",
+      "4. Go back to Floran and talk to merchant Pano Grocer and get Pano&#039;s Credentials NG",
+      "5. Nearby fing Sonin Warehouse Keeper , talk to him and get Sonin&#039;s Credentials NG",
+      "6. Go back to Alex Captain , talk to him and get Alex&#039;s Credentials NG",
+      "7. Go back to the Dion's temple and talk to Shegfield Priest . Give him Credantials and get the reward for the quest."
+    ]
+  },
+  "Temple Champion — 1": {
+    "id": 56,
+    "type": "post",
+    "npcId": null,
+    "npcName": "",
+    "coords": null,
+    "steps": [
+      "1. Start NPC Sylvain High Priest situated in the Dion's temple, talk to him and get the quest Temple Champion - 1.",
+      "2. Sylvain High Priest demands to pass the exam. Choose these varients:",
+      "3. Go out from the eastern gates of Dion and run to the Execution Grounds. Find monsters",
+      "4. Go back in Dion to Sylvain High Priest , Give quest items. Read or skip the story and get reward for the quest."
+    ]
+  },
+  "Temple Champion — 2": {
+    "id": 57,
+    "type": "post",
+    "npcId": null,
+    "npcName": "",
+    "coords": null,
+    "steps": [
+      "1. Start NPC High Priest Sylvain High Priest situated in the Dion's temple, talk to him and get the quest.",
+      "2. Teleport to the Giran and find there in temple Pupina Priestess . During the talk choose varient",
+      "3. Then go to the Dark Elf Guild and speak to Angus Grand Master , agree to koll monsters.",
+      "4. Teleport to the Dragon Valley, in the Death Pass find monsters",
+      "5. Then go to the Dark Elf Guild in Giran and speak to Angus Grand Master . Give him quest items and get Angus&#039; Recommendation NG",
+      "6. Go back to the temple to Pupina Priestess . Talk to her and get Pupina&#039;s Recommendation NG",
+      "7. Teleport to Dion, then to the Plains of Dion. Near the gatekeeper you'll see Sla Preacher . Read or skip the story and go back to Dion.",
+      "8. In Dion go back to Sylvain High Priest . Talk to him and get reward for the quest."
+    ]
+  },
+  "Shadow Fox — 1": {
+    "id": 58,
+    "type": "post",
+    "npcId": null,
+    "npcName": "",
+    "coords": null,
+    "steps": [
+      "1. Start NPC Mia Warehouse Keeper is situated in the Hein's warehouse. Talk to him and get the quest.",
+      "2. Teleport to the Field of Silence, find monsters",
+      "3. Go back to Mia Warehouse Keeper , talk to her and get our reward for the quest."
+    ]
+  },
+  "Shadow Fox — 2": {
+    "id": 59,
+    "type": "post",
+    "npcId": null,
+    "npcName": "",
+    "coords": null,
+    "steps": [
+      "1. Start NPC Kluck Warehouse Keeper is situated in the Hein's warehouse. Talk to him and get the quest.",
+      "2. Go to the Dark Elf Guild and find Xenovia Magister , talk to her and agree to find materials for the reasearch.",
+      "3. Teleport to the Field of Whispers, and find there monsters",
+      "4. Go to the Dark Elf Guild in Hein and find Xenovia Magister . Talk with her and make the research — turning the crystal into needed one ingridient.",
+      "5. Go back to Kluck Warehouse Keeper , talk to him and get our reward for the quest."
+    ]
+  },
+  "Shadow Fox — 3": {
+    "id": 60,
+    "type": "post",
+    "npcId": null,
+    "npcName": "",
+    "coords": null,
+    "steps": [
+      "1. Start NPC Natools Warehouse Chief is situated in the Hein's warehouse. Talk to him and get the quest.",
+      "2. Teleport to the Alligator Island and go to the Alligator Beach, find monsters",
+      "3. Go back to the Natools Warehouse Chief , talk to him and get our reward for the quest."
+    ]
+  },
+  "Fallen Angel — Request of Dawn": {
+    "id": 61,
+    "type": "post",
+    "npcId": null,
+    "npcName": "",
+    "coords": null,
+    "steps": [
+      "1. Start NPC Natools Warehouse Chief is situated in the Hein's warehouse. During the talk choose \"Help the Dawn\" and obtain Cryptogram of the Angel Search NG",
+      "2. Teleport to the Gludio and go to the temple, talk to Raymond High Priest",
+      "3. Teleport to the The Ant Nest, run to the centre of the Wasteland and find Casian Elder Talk to him and after go for hunting.",
+      "4. Jump to the canion behind the Casian and find on the left side entrance to The Ant Nest. Go forward and search for the monsters",
+      "5. Go to the mark in the centre of Wasteland, find Weathered Rock Alone . Talk to the rock and will appear Fallen Angel Quest Monster Lv. 38",
+      "6. Kill Fallen Angel Quest Monster Lv. 38 , and get Fallen Angel Blood NG",
+      "7. Teleport to the Gludio, go to the temple and talk to Raymond High Priest and obtain reward for the quest."
+    ]
+  },
+  "Fallen Angel — Request of Dusk": {
+    "id": 62,
+    "type": "post",
+    "npcId": null,
+    "npcName": "",
+    "coords": null,
+    "steps": [
+      "1. Start NPC Natools Natools Warehouse Chief is situated in the Hein's warehouse. During the talk choose \"Help the Dusk\" and obtain Sealed Prophecy - Path of the God NG",
+      "2. Teleport to Gludio and go to the Dark Elf Guild, talk to Tobias Grand Master , and get Prophecy - Path of the God NG and Empty Sound Crystal NG",
+      "3. Teleport to the The Ant Nest, run to the centre of the Wasteland and find Casian Elder . Talk to him and get Angel Medicine NG and go to search the Angel.",
+      "4. Go to the mark in the centre of Wasteland, find Weathered Rock Alone . Talk to the rock and will appear Fallen Angel Quest Monster Lv. 38",
+      "5. Talk to Fallen Angel Quest Monster Lv. 38 , read or skip the Alngel's and Einhasad story, and get Angel&#039;s Message NG",
+      "6. Teleport to Gludio and go to the Dark Elf Guild, talk to Tobias Grand Master and obtain reward for the quest."
+    ]
   }
 }
