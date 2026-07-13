@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useNavigate, useLocation, useSearchParams } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 import TabBar from './components/tabs/TabBar';
 import RecipeTab from './components/recipes/RecipeTab';
 import SpellbookTab from './components/spellbooks/SpellbookTab';
@@ -8,6 +8,7 @@ import SkillsTab from './components/skills/SkillsTab';
 import RaidBossTab from './components/raidboss/RaidBossTab';
 import CalculatorTab from './components/calculator/CalculatorTab';
 import QuestsTab from './components/quests/QuestsTab';
+import MainPage from './components/main/MainPage';
 import { TAB_NAMES } from './utils/constants';
 
 const BASE = import.meta.env.BASE_URL;
@@ -23,6 +24,7 @@ function AppLayout() {
 
   const activeTab = useMemo(() => {
     const tab = location.pathname.split('/')[1] || '';
+    if (!tab) return '';
     return VALID_TABS.has(tab) ? tab : 'recipes';
   }, [location.pathname]);
 
@@ -87,9 +89,11 @@ function AppLayout() {
         </div>
       </header>
 
-      <div className="tab-bar-desktop">
-        <TabBar tabs={TAB_NAMES} activeTab={activeTab} onTabChange={handleTabChange} />
-      </div>
+      {activeTab && (
+        <div className="tab-bar-desktop">
+          <TabBar tabs={TAB_NAMES} activeTab={activeTab} onTabChange={handleTabChange} />
+        </div>
+      )}
 
       {menuOpen && (
         <div className="burger-overlay" onClick={() => setMenuOpen(false)}>
@@ -126,7 +130,7 @@ function AppLayout() {
       )}
 
       <Routes>
-        <Route path="/" element={<Navigate to="recipes" replace />} />
+        <Route path="/" element={<MainPage />} />
         <Route path="/recipes" element={<RecipeTab />} />
         <Route path="/spellbooks" element={<SpellbookTab />} />
         <Route path="/locations" element={<LocationsTab />} />
