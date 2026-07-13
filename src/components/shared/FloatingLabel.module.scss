@@ -1,0 +1,38 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.wrapper {
+  position: relative;
+  display: flex;
+  min-width: 200px;
+  flex-shrink: 0;
+
+  @include tablet {
+    width: 100%;
+    min-width: unset;
+  }
+}
+
+.label {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: $color-text-muted;
+  font-size: $font-size-lg;
+  pointer-events: none;
+  transition: all 0.15s ease;
+  background: #0b0f1a;
+  padding: 0 4px;
+  z-index: 1;
+  white-space: nowrap;
+  line-height: 1;
+
+  .wrapper:focus-within &,
+  .wrapper.hasValue & {
+    top: 0;
+    transform: translateY(-50%);
+    font-size: $font-size-xs;
+    color: $color-primary;
+  }
+}

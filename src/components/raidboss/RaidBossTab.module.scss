@@ -31,7 +31,8 @@
 
 .input {
   min-width: 200px;
-  padding: 8px 12px;
+  min-height: 38px;
+  padding: 14px 12px 6px;
   border-radius: $radius-lg;
   border: 1px solid $color-border;
   background: #0b0f1a;
@@ -118,6 +119,12 @@
 .colResp { width: 18%; }
 .colLoc { width: 44%; }
 
+.sortable {
+  cursor: pointer;
+  user-select: none;
+  &:hover { color: #fff; }
+}
+
 .clickableCell {
   cursor: pointer;
   user-select: none;
@@ -181,6 +188,10 @@
   @include mobile {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  @include small {
+    grid-template-columns: 1fr;
+  }
 }
 
 .statItem {
@@ -205,6 +216,10 @@
   font-weight: 700;
   color: #e2e8f0;
   margin-top: 2px;
+
+  @include small {
+    font-size: $font-size-base;
+  }
 }
 
 /* ── Drop table ───────────────────────────── */
@@ -219,7 +234,7 @@
   table-layout: fixed;
 
   th, td {
-    padding: 5px 8px;
+    padding: 7px 8px;
     border: 1px solid $color-border;
     text-align: left;
   }
@@ -235,16 +250,24 @@
 
   td { color: $color-text; }
 
+  tbody tr:not(.dropGroupHeader) td {
+    background: #0b101a;
+  }
+
+  tbody tr:not(.dropGroupHeader) td:first-child {
+    border-left: 2px solid $color-border;
+  }
+
   tbody tr:hover td {
     background: transparent;
   }
-}
 
-.dColItem  { width: 45%; }
-.dColGrade { width: 12%; }
-.dColAmount { width: 12%; text-align: center; }
-.dColChance { width: 15%; text-align: right; }
-.dColGroup  { width: 16%; text-align: center; }
+  .dColItem  { width: 41%; }
+  .dColGrade { width: 12%; text-align: center; }
+  .dColAmount { width: 12%; text-align: center; }
+  .dColChance { width: 15%; text-align: center; }
+  .dColGroup  { width: 20%; text-align: center; }
+}
 
 .itemGrade {
   display: inline-block;
@@ -259,10 +282,21 @@
 .itemLink {
   color: $color-text;
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  &::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: transparent;
+    flex-shrink: 0;
+  }
 
   &:hover {
     color: $color-primary;
-    text-decoration: underline;
   }
 }
 
@@ -318,4 +352,253 @@
   color: $color-text-muted;
   font-style: italic;
   font-size: $font-size-lg;
+}
+
+/* ── Boss Image ──────────────────────────── */
+.detailHeader {
+  display: flex;
+  gap: $spacing-lg;
+  margin-bottom: $spacing-lg;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.bossImageWrap {
+  flex-shrink: 0;
+  width: 260px;
+  cursor: pointer;
+
+  @include mobile {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
+.bossImage {
+  width: 100%;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+}
+
+.detailStats {
+  flex: 1;
+  min-width: 0;
+}
+
+.mapBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  margin-top: $spacing-sm;
+  padding: 6px 14px;
+  border: 1px solid $color-primary;
+  border-radius: $radius-lg;
+  background: transparent;
+  color: $color-primary;
+  font-size: $font-size-md;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &:hover {
+    background: rgba($color-primary, 0.1);
+  }
+}
+
+/* ── Map Modal ───────────────────────────── */
+.mapOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mapModal {
+  width: 90vw;
+  height: 90vh;
+  max-width: 1200px;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-xl;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.mapHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-lg $spacing-xl;
+  border-bottom: 1px solid $color-border;
+  font-weight: 600;
+  color: $color-primary;
+}
+
+.mapClose {
+  width: 28px;
+  height: 28px;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  background: transparent;
+  color: $color-text-muted;
+  font-size: $font-size-lg;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    color: #fff;
+    border-color: $color-text;
+  }
+}
+
+.mapContainer {
+  flex: 1;
+  overflow: hidden;
+  cursor: grab;
+  background: #0a0e1a;
+  position: relative;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.mapInner {
+  width: 3004px;
+  height: 3004px;
+  background-size: 3004px 3004px;
+  background-repeat: no-repeat;
+  position: relative;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.mapMarker {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  margin-top: -10px;
+  border-radius: 50%;
+  background: $color-danger;
+  border: 2px solid #fff;
+  box-shadow: 0 0 12px rgba($color-danger, 0.6);
+  z-index: 10;
+}
+
+.mapMarkerLabel {
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: $radius-sm;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.mapFooter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-md;
+  padding: $spacing-sm $spacing-xl;
+  border-top: 1px solid $color-border;
+}
+
+.mapZoomBtn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  background: transparent;
+  color: $color-text;
+  font-size: $font-size-xl;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: $color-surface-hover;
+    color: $color-primary;
+  }
+}
+
+.mapZoomLevel {
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+  min-width: 36px;
+  text-align: center;
+}
+
+.imgPreviewOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imgPreviewModal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.imgPreviewClose {
+  position: absolute;
+  top: -36px;
+  right: -36px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid $color-border;
+  background: #0b0f1a;
+  color: $color-text;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10001;
+  line-height: 1;
+
+  &:hover {
+    background: $color-surface-hover;
+    color: $color-primary;
+    border-color: $color-primary;
+  }
+}
+
+.imgPreviewImage {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: $radius-lg;
+  border: 2px solid $color-border;
+  object-fit: contain;
+}
+
+.imgPreviewName {
+  color: $color-text;
+  font-size: $font-size-lg;
+  font-weight: 600;
+  text-align: center;
 }

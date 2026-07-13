@@ -8,13 +8,33 @@
   background: $color-surface;
   padding: $spacing-sm;
   border-radius: $radius-xl;
-  width: fit-content;
+  width: 100%;
   margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
 
   @include mobile {
     width: 100%;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     padding: $spacing-xs;
+    gap: 2px;
+  }
+}
+
+.slider {
+  position: absolute;
+  bottom: 0;
+  left: var(--left, 0);
+  width: var(--width, 0);
+  height: 3px;
+  border-radius: 2px;
+  background: $gradient-primary;
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+
+  @include mobile {
+    display: none;
   }
 }
 
@@ -27,28 +47,46 @@
   cursor: pointer;
   font-size: $font-size-lg;
   font-weight: 600;
-  transition: all 0.2s ease;
+  flex: 1;
+  text-align: center;
+  transition: color 0.2s ease;
 
   &:hover {
     color: $color-text;
-    background: $color-surface-hover;
   }
 
   @include mobile {
-    font-size: $font-size-base;
-    padding: 8px 12px;
-    flex-grow: 1;
-    text-align: center;
-  }
-
-  @include small {
-    font-size: $font-size-sm;
-    padding: 6px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 6px 2px;
+    font-size: $font-size-xs;
+    font-weight: 400;
   }
 }
 
 .active {
-  background: $gradient-primary;
-  color: #04070d;
-  box-shadow: $shadow-primary;
+  color: $color-primary;
+}
+
+.icon {
+  display: inline;
+  font-size: 1.2rem;
+
+  @include mobile {
+    font-size: 1.5rem;
+  }
+}
+
+.label {
+  display: inline;
+  margin-left: 6px;
+
+  @include mobile {
+    display: inline;
+    margin-left: 0;
+    font-size: 0.65rem;
+    line-height: 1;
+  }
 }

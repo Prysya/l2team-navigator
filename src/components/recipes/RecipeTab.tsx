@@ -1,8 +1,11 @@
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import type { Resource } from '../../types';
+import { useRecipeStore } from '../../stores/recipeStore';
 import RESOURCES_DATA from '../../data/RESOURCES.json';
 import { GROUP_NAMES } from '../../utils/constants';
 import { renderMonsterRow, sortMonsters, escapeHtml } from '../../utils/helpers';
+import FloatingLabel from '../../components/shared/FloatingLabel';
+import CustomSelect from '../../components/shared/CustomSelect';
 import styles from './RecipeTab.module.scss';
 
 const RESOURCES = RESOURCES_DATA as Resource[];
@@ -12,18 +15,36 @@ function recipeSelectLabel(recipe: Resource): string {
 }
 
 export default function RecipeTab() {
-  const [selectedNumber, setSelectedNumber] = useState<number | null>(null);
-  const [searchQuery, setSearchQuery] = useState('');
+  const selectedGroup = useRecipeStore(s => s.selectedGroup);
+  const selectedNumber = useRecipeStore(s => s.selectedNumber);
+  const searchQuery = useRecipeStore(s => s.searchQuery);
+  const setSelectedGroup = useRecipeStore(s => s.setSelectedGroup);
+  const setSelectedNumber = useRecipeStore(s => s.setSelectedNumber);
+  const setSearchQuery = useRecipeStore(s => s.setSearchQuery);
+
+  const availableGroups = useMemo(() => {
+    const set = new Set<number>();
+    for (const r of RESOURCES) {
+      set.add(r.group);
+    }
+    return Array.from(set).sort();
+  }, []);
 
   const filteredResources = useMemo(() => {
-    if (!searchQuery.trim()) return RESOURCES;
-    const q = searchQuery.toLowerCase().trim();
-    return RESOURCES.filter(
-      (r) =>
-        r.recipe_name.toLowerCase().includes(q) ||
-        (r.smart_name && r.smart_name.toLowerCase().includes(q))
-    );
-  }, [searchQuery]);
+    let list = RESOURCES;
+    if (selectedGroup !== null) {
+      list = list.filter(r => r.group === selectedGroup);
+    }
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase().trim();
+      list = list.filter(
+        (r) =>
+          r.recipe_name.toLowerCase().includes(q) ||
+          (r.smart_name && r.smart_name.toLowerCase().includes(q))
+      );
+    }
+    return list;
+  }, [selectedGroup, searchQuery]);
 
   const currentRecipe = useMemo(() => {
     if (selectedNumber === null) return null;
@@ -64,50 +85,36 @@ export default function RecipeTab() {
       .join('');
   }, [currentRecipe]);
 
-  const filteredGrouped = useMemo(() => {
-    const groups: Record<number, Resource[]> = {};
-    for (const r of filteredResources) {
-      if (!groups[r.group]) groups[r.group] = [];
-      groups[r.group].push(r);
-    }
-    return groups;
-  }, [filteredResources]);
-
-  const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const val = e.target.value;
-    setSelectedNumber(val ? Number(val) : null);
-  };
-
   return (
     <div>
       <div className={styles.controls}>
-        <label className={styles.label}>Рецепт:</label>
-        <select
-          className={`${styles.select} ${styles.selectWide}`}
-          value={selectedNumber ?? ''}
-          onChange={handleSelect}
-        >
-          <option value="">-- Выберите рецепт --</option>
-          {Object.entries(filteredGrouped).map(([groupKey, recipes]) => {
-            const groupNum = Number(groupKey);
-            return (
-              <optgroup key={groupKey} label={GROUP_NAMES[groupNum] || `Group ${groupKey}`}>
-                {recipes.map((r) => (
-                  <option key={r.number} value={r.number}>
-                    {recipeSelectLabel(r)}
-                  </option>
-                ))}
-              </optgroup>
-            );
-          })}
-        </select>
-        <input
-          className={styles.input}
-          type="text"
-          placeholder="🔍 Поиск по названию рецепта..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
+        <div className={styles.field}>
+          <CustomSelect
+            label="Группа"
+            value={selectedGroup !== null ? String(selectedGroup) : ''}
+            onChange={(v) => setSelectedGroup(v ? Number(v) : null)}
+            options={availableGroups.map(g => ({ value: String(g), label: GROUP_NAMES[g] || `Группа ${g}` }))}
+          />
+        </div>
+        <div className={styles.field}>
+          <CustomSelect
+            label="Рецепт"
+            value={String(selectedNumber ?? '')}
+            onChange={(v) => setSelectedNumber(v ? Number(v) : null)}
+            options={filteredResources.map(r => ({ value: String(r.number), label: recipeSelectLabel(r) }))}
+          />
+        </div>
+        <div className={styles.searchWrap}>
+          <FloatingLabel className={styles.searchField} label="Поиск по названию рецепта" value={searchQuery}>
+            <input
+              className={styles.input}
+              type="text"
+              name="recipe-search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </FloatingLabel>
+        </div>
       </div>
 
       {currentRecipe ? (

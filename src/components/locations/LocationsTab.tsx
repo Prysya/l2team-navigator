@@ -1,9 +1,13 @@
-import { useState, useMemo } from 'react';
+import cx from 'classnames';
+import { useMemo } from 'react';
 import type { LocationEntry, LocationItem, LocationMonster } from '../../types';
 import LOCATIONS_ALL_DATA from '../../data/LOCATIONS_ALL.json';
+import FloatingLabel from '../../components/shared/FloatingLabel';
+import CustomSelect from '../../components/shared/CustomSelect';
 import { RACES } from '../../data/races';
 import { escapeHtml, formatChance, getPartyText } from '../../utils/helpers';
 import styles from './LocationsTab.module.scss';
+import { useLocationsStore } from '../../stores/locationsStore';
 
 const LOCATIONS_ALL = LOCATIONS_ALL_DATA as LocationEntry[];
 
@@ -116,12 +120,18 @@ function renderLocation(loc: LocationEntry, typeFilter: TypeFilter, selectedRace
 }
 
 export default function LocationsTab() {
-  const [typeFilter, setTypeFilter] = useState<TypeFilter>('all');
-  const [selectedRace, setSelectedRace] = useState('');
-  const [selectedClass, setSelectedClass] = useState('');
-  const [selectedCity, setSelectedCity] = useState('');
-  const [selectedLocation, setSelectedLocation] = useState('');
-  const [searchQuery, setSearchQuery] = useState('');
+  const typeFilter = useLocationsStore((s) => s.typeFilter);
+  const selectedRace = useLocationsStore((s) => s.selectedRace);
+  const setSelectedRace = useLocationsStore((s) => s.setSelectedRace);
+  const selectedClass = useLocationsStore((s) => s.selectedClass);
+  const setSelectedClass = useLocationsStore((s) => s.setSelectedClass);
+  const selectedCity = useLocationsStore((s) => s.selectedCity);
+  const setSelectedCity = useLocationsStore((s) => s.setSelectedCity);
+  const selectedLocation = useLocationsStore((s) => s.selectedLocation);
+  const setSelectedLocation = useLocationsStore((s) => s.setSelectedLocation);
+  const searchQuery = useLocationsStore((s) => s.searchQuery);
+  const setSearchQuery = useLocationsStore((s) => s.setSearchQuery);
+  const handleTypeChange = useLocationsStore((s) => s.handleTypeChange);
 
   const cities = useMemo(() => {
     const set = new Set<string>();
@@ -222,24 +232,16 @@ export default function LocationsTab() {
     [grouped, typeFilter, selectedRace, selectedClass]
   );
 
-  const handleTypeChange = (key: TypeFilter) => {
-    setTypeFilter(key);
-    setSelectedRace('');
-    setSelectedClass('');
-  };
-
   const isRecipeType = typeFilter === 'recipe';
 
   return (
     <div>
       <div className={styles.controls}>
-        <label className={styles.label}>🗺️ Таблица локаций</label>
-
         <div className={styles.typeSwitcher}>
           {TYPE_BUTTONS.map((btn) => (
             <button
               key={btn.key}
-              className={`${styles.typeBtn} ${typeFilter === btn.key ? styles.typeBtnActive : ''}`}
+              className={cx(styles.typeBtn, typeFilter === btn.key && styles.typeBtnActive)}
               onClick={() => handleTypeChange(btn.key)}
             >
               {btn.label}
@@ -249,79 +251,46 @@ export default function LocationsTab() {
 
         {!isRecipeType && (
           <>
-            <label className={styles.label}>🧙 Раса:</label>
-            <select
-              className={styles.select}
+            <CustomSelect
+              label="Раса"
               value={selectedRace}
-              onChange={(e) => {
-                setSelectedRace(e.target.value);
-                setSelectedClass('');
-              }}
-            >
-              <option value="">Все</option>
-              {RACES.map((r) => (
-                <option key={r} value={r}>
-                  {r}
-                </option>
-              ))}
-            </select>
+              onChange={(v) => { setSelectedRace(v); setSelectedClass(''); }}
+              options={RACES.map(r => ({ value: r, label: r }))}
+            />
 
-            <label className={styles.label}>⚔️ Класс:</label>
-            <select
-              className={styles.select}
+            <CustomSelect
+              label="Класс"
               value={selectedClass}
-              onChange={(e) => setSelectedClass(e.target.value)}
+              onChange={(v) => setSelectedClass(v)}
+              options={classesForRace.map(c => ({ value: c, label: c }))}
               disabled={!selectedRace}
-            >
-              <option value="">Все</option>
-              {classesForRace.map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
-              ))}
-            </select>
+            />
           </>
         )}
 
-        <label className={styles.label}>🏰 Город:</label>
-        <select
-          className={styles.select}
+        <CustomSelect
+          label="Город"
           value={selectedCity}
-          onChange={(e) => {
-            setSelectedCity(e.target.value);
-            setSelectedLocation('');
-          }}
-        >
-          <option value="">Все города</option>
-          {cities.map((c) => (
-            <option key={c} value={c}>
-              {c}
-            </option>
-          ))}
-        </select>
-
-        <label className={styles.label}>📍 Локация:</label>
-        <select
-          className={styles.select}
-          value={selectedLocation}
-          onChange={(e) => setSelectedLocation(e.target.value)}
-          disabled={!selectedCity}
-        >
-          <option value="">Все локации</option>
-          {locationsForCity.map((loc) => (
-            <option key={loc.location_name} value={loc.location_name}>
-              {loc.location_name}
-            </option>
-          ))}
-        </select>
-
-        <input
-          className={styles.input}
-          type="text"
-          placeholder="🔍 Поиск..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={(v) => { setSelectedCity(v); setSelectedLocation(''); }}
+          options={cities.map(c => ({ value: c, label: c }))}
         />
+
+        <CustomSelect
+          label="Локация"
+          value={selectedLocation}
+          onChange={(v) => setSelectedLocation(v)}
+          options={locationsForCity.map(loc => ({ value: loc.location_name, label: loc.location_name }))}
+          disabled={!selectedCity}
+        />
+
+        <FloatingLabel label="Поиск" value={searchQuery}>
+          <input
+            className={styles.input}
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </FloatingLabel>
 
         <div className={styles.count}>
           Найдено: <b>{totalItemCount}</b>
