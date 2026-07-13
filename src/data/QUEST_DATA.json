@@ -1,0 +1,791 @@
+{
+  "Letters of Love": {
+    "id": 1,
+    "type": "quest",
+    "npcId": 30048,
+    "npcName": "Darin",
+    "coords": {
+      "x": 1202.9604519774,
+      "y": 2873.7118644068
+    },
+    "steps": []
+  },
+  "What Women Want": {
+    "id": 2,
+    "type": "quest",
+    "npcId": 30223,
+    "npcName": "Arujien",
+    "coords": {
+      "x": 1922.813559322,
+      "y": 1779.4858757062
+    },
+    "steps": []
+  },
+  "Mass of Darkness": {
+    "id": 166,
+    "type": "quest",
+    "npcId": 30130,
+    "npcName": "Undrias",
+    "coords": {
+      "x": 1826.0790960452,
+      "y": 1563.197740113
+    },
+    "steps": []
+  },
+  "Long Live the Pa'agrio Lord!": {
+    "id": 4,
+    "type": "quest",
+    "npcId": 30578,
+    "npcName": "Nakusin",
+    "coords": {
+      "x": 1412.4293785311,
+      "y": 859.11299435028
+    },
+    "steps": []
+  },
+  "Miner's Favor": {
+    "id": 5,
+    "type": "quest",
+    "npcId": 30554,
+    "npcName": "Bolter",
+    "coords": {
+      "x": 2316.4745762712,
+      "y": 514.06779661017
+    },
+    "steps": []
+  },
+  "Deliver Goods": {
+    "id": 153,
+    "type": "quest",
+    "npcId": 30041,
+    "npcName": "Arnold",
+    "coords": {
+      "x": 1214.9209039548,
+      "y": 2884.5367231638
+    },
+    "steps": []
+  },
+  "Sacrifice to the Sea": {
+    "id": 154,
+    "type": "quest",
+    "npcId": 30312,
+    "npcName": "Rockswell",
+    "coords": {
+      "x": 1234.0169491525,
+      "y": 2859.6553672316
+    },
+    "steps": []
+  },
+  "Find Sir Windawood": {
+    "id": 155,
+    "type": "quest",
+    "npcId": 30042,
+    "npcName": "Abellos",
+    "coords": {
+      "x": 1213,
+      "y": 2886.1355932203
+    },
+    "steps": []
+  },
+  "Deliver Supplies": {
+    "id": 168,
+    "type": "quest",
+    "npcId": 30349,
+    "npcName": "Jenna",
+    "coords": {
+      "x": 1776.6214689266,
+      "y": 1575.4576271186
+    },
+    "steps": []
+  },
+  "Fruit of the Mother Tree": {
+    "id": 161,
+    "type": "quest",
+    "npcId": 30362,
+    "npcName": "Andellia",
+    "coords": {
+      "x": 1942.5706214689,
+      "y": 1787.2824858757
+    },
+    "steps": []
+  },
+  "Nerupa's Request": {
+    "id": 160,
+    "type": "quest",
+    "npcId": 30370,
+    "npcName": "Nerupa",
+    "coords": {
+      "x": 1940.1581920904,
+      "y": 1734.7683615819
+    },
+    "steps": []
+  },
+  "The Guard is Busy": {
+    "id": 257,
+    "type": "quest",
+    "npcId": 30039,
+    "npcName": "Gilbert",
+    "coords": {
+      "x": 1215.3898305085,
+      "y": 2866.8192090395
+    },
+    "steps": []
+  },
+  "Hunt the Orcs": {
+    "id": 260,
+    "type": "quest",
+    "npcId": 30221,
+    "npcName": "Rayen",
+    "coords": {
+      "x": 1921.8757062147,
+      "y": 1790.9152542373
+    },
+    "steps": []
+  },
+  "Invaders of the Holy Land": {
+    "id": 273,
+    "type": "quest",
+    "npcId": 30566,
+    "npcName": "Varkees",
+    "coords": {
+      "x": 1415.581920904,
+      "y": 857.87005649718
+    },
+    "steps": []
+  },
+  "Bonds of Slavery": {
+    "id": 265,
+    "type": "quest",
+    "npcId": 30357,
+    "npcName": "Kristin",
+    "coords": {
+      "x": 1723.186440678,
+      "y": 1603.9661016949
+    },
+    "steps": []
+  },
+  "The Hidden Veins": {
+    "id": 293,
+    "type": "quest",
+    "npcId": 30535,
+    "npcName": "Filaur",
+    "coords": {
+      "x": 2335.9491525424,
+      "y": 494.05084745763
+    },
+    "steps": []
+  },
+  "Collect Spores": {
+    "id": 313,
+    "type": "quest",
+    "npcId": 30150,
+    "npcName": "Herbiel",
+    "coords": {
+      "x": 1921.615819209,
+      "y": 1784.6949152542
+    },
+    "steps": []
+  },
+  "Sword of Solidarity": {
+    "id": 101,
+    "type": "quest",
+    "npcId": 30008,
+    "npcName": "Roien",
+    "coords": {
+      "x": 1276.7005649718,
+      "y": 2961.3446327684
+    },
+    "steps": []
+  },
+  "Spirit of Mirrors": {
+    "id": 104,
+    "type": "quest",
+    "npcId": 30017,
+    "npcName": "Gallint",
+    "coords": {
+      "x": 1165.8305084746,
+      "y": 2903.2203389831
+    },
+    "steps": []
+  },
+  "Skirmish with the Orcs": {
+    "id": 105,
+    "type": "quest",
+    "npcId": 30218,
+    "npcName": "Kendell",
+    "coords": {
+      "x": 1948.8983050847,
+      "y": 1793.3502824859
+    },
+    "steps": []
+  },
+  "Forgotten Truth": {
+    "id": 106,
+    "type": "quest",
+    "npcId": 30358,
+    "npcName": "Thifiell",
+    "coords": {
+      "x": 1740.8757062147,
+      "y": 1582.1694915254
+    },
+    "steps": []
+  },
+  "Spirit of Craftsman": {
+    "id": 103,
+    "type": "quest",
+    "npcId": 30307,
+    "npcName": "Karrod",
+    "coords": {
+      "x": 1739.7740112994,
+      "y": 1601.2881355932
+    },
+    "steps": []
+  },
+  "Merciless Punishment": {
+    "id": 107,
+    "type": "quest",
+    "npcId": 30568,
+    "npcName": "Hatos",
+    "coords": {
+      "x": 1415.5480225989,
+      "y": 862.54237288136
+    },
+    "steps": []
+  },
+  "Jumble, Tumble, Diamond Fuss": {
+    "id": 108,
+    "type": "quest",
+    "npcId": 30523,
+    "npcName": "Gouph",
+    "coords": {
+      "x": 2333.7683615819,
+      "y": 465.34463276836
+    },
+    "steps": []
+  },
+  "Sea of Spores Fever": {
+    "id": 102,
+    "type": "quest",
+    "npcId": 30284,
+    "npcName": "Alberius",
+    "coords": {
+      "x": 1938.3446327684,
+      "y": 1794.209039548
+    },
+    "steps": []
+  },
+  "Offspring of Nightmares": {
+    "id": 169,
+    "type": "quest",
+    "npcId": 30145,
+    "npcName": "Vlasty",
+    "coords": {
+      "x": 1743.604519774,
+      "y": 1583.5310734463
+    },
+    "steps": []
+  },
+  "Millennium Love": {
+    "id": 156,
+    "type": "quest",
+    "npcId": 30368,
+    "npcName": "Lilith",
+    "coords": {
+      "x": 1198.8305084746,
+      "y": 2884.5084745763
+    },
+    "steps": []
+  },
+  "Cure for Fever Disease": {
+    "id": 151,
+    "type": "quest",
+    "npcId": 30050,
+    "npcName": "Elias",
+    "coords": {
+      "x": 1205.1016949153,
+      "y": 2873.9322033898
+    },
+    "steps": []
+  },
+  "Dwarven Kinship": {
+    "id": 167,
+    "type": "quest",
+    "npcId": 30350,
+    "npcName": "Carlon",
+    "coords": {
+      "x": 1757.7570621469,
+      "y": 1600.8757062147
+    },
+    "steps": []
+  },
+  "Totem of the Hestui": {
+    "id": 276,
+    "type": "quest",
+    "npcId": 30571,
+    "npcName": "Tanapi",
+    "coords": {
+      "x": 1420.8870056497,
+      "y": 865.72316384181
+    },
+    "steps": []
+  },
+  "Dragon Fangs": {
+    "id": 38,
+    "type": "quest",
+    "npcId": 30386,
+    "npcName": "Luis",
+    "coords": {
+      "x": 1239.384180791,
+      "y": 2386.0395480226
+    },
+    "steps": []
+  },
+  "Red-Eyed Invaders": {
+    "id": 169,
+    "type": "quest",
+    "npcId": 30145,
+    "npcName": "Vlasty",
+    "coords": {
+      "x": 1743.604519774,
+      "y": 1583.5310734463
+    },
+    "steps": []
+  },
+  "Blood Fiend": {
+    "id": 170,
+    "type": "quest",
+    "npcId": 30305,
+    "npcName": "Vellior",
+    "coords": {
+      "x": 1738.2768361582,
+      "y": 1582.7514124294
+    },
+    "steps": []
+  },
+  "Seed of evil": {
+    "id": 171,
+    "type": "quest",
+    "npcId": 30381,
+    "npcName": "Alvah",
+    "coords": {
+      "x": 1208.1355932203,
+      "y": 2345.2881355932
+    },
+    "steps": []
+  },
+  "Path of the Warrior": {
+    "id": 618,
+    "type": "post",
+    "npcId": 30010,
+    "npcName": "Auron",
+    "coords": {
+      "x": 1217.5084745763,
+      "y": 2344.9209039548
+    },
+    "steps": [
+      "1. The starting NPC Auron Master is located in the Gludin Warriors Guild. Talk to Auron to start the quest.",
+      "2. Teleport to Gludio. Find Simplon Armor Merchant in the Weapon Shop and talk to him.",
+      "3. Teleport from Gludio to the Ruins of Agony. Find and kill monsters:",
+      "4. Return to Simplon Armor Merchant and talk to him.",
+      "5. Teleport to Gludin Village. Find Auron Master in the Warriors Guild and talk to him.",
+      "6. Teleport from Gludin to Windmill Hill. Find and kill monsters:",
+      "7. Return to Auron Master and talk to him.",
+      "8. To change your profession, talk to Ramos Grand Master in the Gludin Warriors Guild."
+    ]
+  },
+  "Path of the Human Knight": {
+    "id": 445,
+    "type": "post",
+    "npcId": 30417,
+    "npcName": "Sir Klaus Vasper",
+    "coords": {
+      "x": 1214.2542372881,
+      "y": 2351.0508474576
+    },
+    "steps": [
+      "1. The starting NPC Sir Klaus Vasper is located near the Gludin Warriors Guild. Talk to Sir Klaus Vasper to start the quest.",
+      "2. Head to the western gate of Gludin. Find Bezique Captain and talk to him.",
+      "3. Head to Gludin Temple. Find Levian High Priestess and talk to her.",
+      "4. Teleport from Gludin to Windmill Hill. Find and kill monsters:",
+      "5. Teleport to Gludin Village. Find Bezique Captain at the western gate and talk to him.",
+      "6. Head to Gludin Temple. Find Levian High Priestess and talk to her.",
+      "7. Teleport to Gludio. Find Bathis Captain at the northern gate and talk to him.",
+      "8. Leave Gludio through the eastern gate and follow the road north. Find and kill monsters:",
+      "9. Return to Bathis Captain and talk to him.",
+      "10. Teleport to Gludin Village. Find Sir Klaus Vasper near the Warriors Guild and talk to him.",
+      "11. To change your profession, talk to Ramos Grand Master in the Gludin Warriors Guild."
+    ]
+  },
+  "Path of the Rogue": {
+    "id": 619,
+    "type": "post",
+    "npcId": 30379,
+    "npcName": "Bezique",
+    "coords": {
+      "x": 1199.6666666667,
+      "y": 2365.7683615819
+    },
+    "steps": [
+      "1. The starting NPC Bezique Captain is located at the western gate of Gludin. Talk to Bezique to start the quest.",
+      "2. Head to the northern part of the main square of Gludin. Find Neti and talk to her.",
+      "3. Teleport to Gludio, then to Ruins of Agony. Find and kill monsters:",
+      "4. Return to Neti and talk to her.",
+      "5. Teleport to Gludin Village. Find Bezique Captain at the western gate and talk to him.",
+      "6. Teleport from Gludin to Abandoned Camp. Opposite the entrance to the camp find and kill monsters:",
+      "7. Return to Bezique Captain and talk to him.",
+      "8. To change your profession, talk to Ramos Grand Master in the Gludin Warriors Guild."
+    ]
+  },
+  "Path of the Human Wizard": {
+    "id": 620,
+    "type": "post",
+    "npcId": 30391,
+    "npcName": "Parina",
+    "coords": {
+      "x": 1225.593220339,
+      "y": 2353.3785310734
+    },
+    "steps": [
+      "1. The starting NPC Parina is located in the Temple of Gludin. Talk to Parina to start the quest.",
+      "2. Teleport to Gludio, then to the Ruins of Despair. In the western part of the Ruins find Flame Salamander and talk to her.",
+      "3. Head northwest to The Ruined Bend. Find and kill monsters:",
+      "4. Return to Flame Salamander and talk to her.",
+      "5. Teleport to Gludio, then to Ant Nest. Instead of going into the cave head to the northwest edge of the Wastelands. Go through the passage at the edge of the location. Find Wind Sylph and talk to her.",
+      "6. Head south along the road to the western entrance to the Wasteland. Find Wasteland Lizardman and talk to him.",
+      "7. Return to Wind Sylph and talk to her.",
+      "8. Teleport to Gludio, then to Ruins Of Agony. Head to Fellmere Lake. Find Water Undine on the northern shore of the lake and talk to her.",
+      "9. Head east to the house by the Lake. Find and kill monsters:",
+      "10. Return to Water Undine and talk to her.",
+      "11. Teleport to Gludio, then to Ruins of Agony. Find Earth Snake Wise and talk to her.",
+      "12. Head along the road to the northwest. Find and kill monsters:",
+      "13. Return to Earth Snake Wise and talk to her.",
+      "14. Teleport to Gludin Village. Find Parina in the Temple and talk to her.",
+      "15. To change your profession, talk to Levian High Priestess in the Temple of Gludin."
+    ]
+  },
+  "Path of the Cleric": {
+    "id": 621,
+    "type": "post",
+    "npcId": 30022,
+    "npcName": "Zigaunt",
+    "coords": {
+      "x": 1232.2259887006,
+      "y": 2353.2768361582
+    },
+    "steps": [
+      "1. The starting NPC Zigaunt Priest is located in the Temple of Gludin. Talk to Zigaunt to start the quest.",
+      "2. Teleport to Gludio. Find Simplon Armor Merchant in the Weapon Shop and talk to him.",
+      "3. Head to Gludio Temple. Find Vivyan Priestess and talk to her.",
+      "4. Head to the western gate of Gludio. Find Praga Guard and talk to him.",
+      "5. Teleport from Gludio to the Ruins of Agony. Find and kill monsters:",
+      "6. Return to Praga Guard and talk to him.",
+      "7. Teleport to Gludin Village. Find Zigaunt Priest in the Temple and talk to him.",
+      "8. Teleport to Talking Island Village, then to Elven Ruins. Head northeast, find Lionel and talk to him.",
+      "9. Teleport to Talking Island Village. Exit the town through the southern gate and head to the starting location of the mages, also known as the Einhovant School of Magic. In the School of Magic, find Gallint Grand Magister and talk to him.",
+      "10. Return to Lionel and talk to him.",
+      "11. Teleport to Gludin Village. Find Zigaunt Priest in the Temple and talk to him.",
+      "12. To change your profession, talk to Levian High Priestess in the Temple of Gludin."
+    ]
+  },
+  "Path of the Elven Knight": {
+    "id": 622,
+    "type": "post",
+    "npcId": 30327,
+    "npcName": "Sorius",
+    "coords": {
+      "x": 1604.0677966102,
+      "y": 2194.8983050847
+    },
+    "steps": [
+      "1. The starting NPC Sorius Master is located in the Gludio Warriors Guild. Talk to Sorius to start the quest.",
+      "2. Teleport from Gludio to the Ruins of Agony. Find and kill monsters:",
+      "3. Return to Sorius Master and talk to him.",
+      "4. Teleport to Gludin Village. Find Kluto Blacksmith in the Blacksmith Shop and talk to him.",
+      "5. Teleport from Gludin to Adandoned Camp. Head towards Camp Fortress. Find and kill monsters:",
+      "6. Return to Kluto Blacksmith and talk to him.",
+      "7. Teleport to Gludio. Find Sorius Master in the Warriors Guild and talk to him.",
+      "8. To change your profession, talk to Rains Grand Master in the Gludio Warriors Guild."
+    ]
+  },
+  "Path of the Elven Scout": {
+    "id": 623,
+    "type": "post",
+    "npcId": 30328,
+    "npcName": "Reisa",
+    "coords": {
+      "x": 1602.6384180791,
+      "y": 2194.5593220339
+    },
+    "steps": [
+      "1. The starting NPC Reisa Master is located in the Gludio Warriors Guild. Talk to Reisa to start the quest.",
+      "2. Head to the east gate of Gludio. Find Moretti Guard and talk to him.",
+      "3. Teleport to Gludin Village, then to Abandoned Camp. Follow the road to the south. Find and kill monsters:",
+      "4. Return to Moretti Guard and talk to him.",
+      "5. Teleport to Elven Village, then to Neutral Zone. Head north to the coast. Find Reisa Master and talk to him.",
+      "6. Return to Moretti Guard and talk to him.",
+      "7. Head to the Gludio Warriors Guild. Find Reisa Master and talk to her.",
+      "8. To change your profession, talk to Rains Grand Master in the Gludio Warriors Guild."
+    ]
+  },
+  "Path of the Elven Wizard": {
+    "id": 624,
+    "type": "post",
+    "npcId": 30414,
+    "npcName": "Rosella",
+    "coords": {
+      "x": 1926.7401129944,
+      "y": 1782.6949152542
+    },
+    "steps": [
+      "1. The starting NPC Rosella is located in the western building of Elven Village. Talk to Rosella to start the quest.",
+      "2. Head to the Elven Village Temple, find Greenis Magister and talk to her.",
+      "3. Teleport from Elven Village to the Neutral Zone. Follow the road to the east. Find and kill the following monsters:",
+      "4. Return to Greenis Magister and talk to her.",
+      "5. Head to the western building of Elven Village. Find Rosella and talk to her.",
+      "6. Teleport from Elven Village to Elven Fortress. Head to the southeastern shore of Iris Lake. Find Thalia and talk to her.",
+      "7. Teleport to Elven Village, then to Elven Forest. Find and kill monsters:",
+      "8. Return to Thalia and talk to her.",
+      "9. Teleport to Elven Village. Find Rosella in the western building and talk to her.",
+      "10. Teleport from Elven Village to Elven Fortress. Find Northwind at the entrance to the fortress and talk to him.",
+      "11. Head inside the Elven Fortress. Find and kill monsters:",
+      "12. Return to Northwind and talk to him.",
+      "13. Teleport to Elven Village. Find Rosella in the western building and talk to her.",
+      "14. To change your profession, talk to Raymond High Priest in the Temple of Gludio."
+    ]
+  },
+  "Path of the Elven Oracle": {
+    "id": 625,
+    "type": "post",
+    "npcId": 30293,
+    "npcName": "Manuel",
+    "coords": {
+      "x": 1603.802259887,
+      "y": 2188.6723163842
+    },
+    "steps": [
+      "1. The starting NPC Manuel Priest is located in the Temple of Gludio. Talk to Manuel to start the quest.",
+      "2. Teleport to Gludin Village. Exit the city through the western gate. Go around the harbor and up the hill to the southern lighthouse. Find Allana and talk to her.",
+      "3. Head north, go around the harbor, climb up the hill to the northern lighthouse. Find Perrin and talk to him.",
+      "4. Return to Allana and talk to her.",
+      "5. Teleport to Gludio. Find Manuel Priest in the Temple and talk to him.",
+      "6. To change your profession, talk to Raymond High Priest (Raymond) in the Temple of Gludio."
+    ]
+  },
+  "Path of the Palus Knight": {
+    "id": 626,
+    "type": "post",
+    "npcId": 30329,
+    "npcName": "Virgil",
+    "coords": {
+      "x": 1607.7344632768,
+      "y": 2198.3785310734
+    },
+    "steps": [
+      "1. The starting NPC Virgil Master is located in the Dark Elf Guild of Gludio. Talk to Virgil to start the quest.",
+      "2. Teleport to Elven Village, then to Neutral Zone. Find and kill monsters:",
+      "3. Return to Virgil Master and talk to him.",
+      "4. Teleport to Gludin Village. Find Kalinta Abyssal Celebrant in the Dark Elf Guild and talk to her.",
+      "5. Teleport from Gludin to Windmill Hill. Find and kill monsters:",
+      "6. Return to Kalinta Abyssal Celebrant and talk to him.",
+      "7. Teleport to Gludio. Find Virgil Master in the Dark Elf Guild and talk to him.",
+      "8. To change your profession, talk to Tobias Grand Master in the Dark Elf Guild of Gludio."
+    ]
+  },
+  "Path of the Assassin": {
+    "id": 627,
+    "type": "post",
+    "npcId": 30416,
+    "npcName": "Triskel",
+    "coords": {
+      "x": 1609.3446327684,
+      "y": 2199.2033898305
+    },
+    "steps": [
+      "1. The starting NPC Triskel is located at the entrance to the Dark Elf Guild of Gludio. Talk to Triskel to start the quest.",
+      "2. Teleport to Dark Elf Village, then to Spider Nest and head east to the Altar of Rites. At the Altar, find Arkenia Witch and talk to her.",
+      "3. Teleport to Gludin Village. Find Leikan Guard at the northern gate and talk to him.",
+      "4. Teleport to Elven Village, then to Neutral Zone. Find and kill monsters:",
+      "5. Return to Leikan Guard and talk to him.",
+      "6. Teleport to Dark Elf Village, then to Swampland. Head west towards the School of Dark Arts. Find and kill monsters:",
+      "7. Teleport to Dark Elf Village, then to Spider Nest and head east to the Altar of Rites. At the Altar, find Arkenia Witch and talk to her.",
+      "8. Teleport to Gludio. At the entrance to the Dark Elf Guild find Triskel and talk to him.",
+      "9. To change your profession, talk to Triskel in the Dark Elf Guild of Gludio."
+    ]
+  },
+  "Path of the Dark Wizard": {
+    "id": 628,
+    "type": "post",
+    "npcId": 30421,
+    "npcName": "Varika",
+    "coords": {
+      "x": 1430.1412429379,
+      "y": 1952.4011299435
+    },
+    "steps": [
+      "1. The starting NPC Varika Witch is located at the foot of the Altar of Rites in the south of the Dark Elf lands. Talk to Varika to start the quest.",
+      "2. Find Arkenia Witch near the Altar and talk to her.",
+      "3. Head north to the School of Dark Arts. At the entrance to the School, find Annika and talk to her.",
+      "4. Enter the School of Dark Arts, find and kill monsters:",
+      "5. Return to Annika and talk to her.",
+      "6. Teleport to Dark Elf Village, then to Swampland. Head southeast to the waterfall, find Charkeren and talk to him.",
+      "7. Head to Swampland, find and kill monsters:",
+      "8. Return to Charkeren and talk to him.",
+      "9. Teleport to Gludio, then to the Ruins of Agony. Find and kill monsters:",
+      "10. Teleport to Dark Elf Village, then to Spider Nest. Head to the Altar of Rites. Find Arkenia Witch and talk to her.",
+      "11. Find Varika Witch near the Altar and talk to her.",
+      "12. To change your profession, talk to Tobias Grand Master in the Dark Elf Guild of Gludio."
+    ]
+  },
+  "Path of the Shillien Oracle": {
+    "id": 629,
+    "type": "post",
+    "npcId": 30330,
+    "npcName": "Sidra",
+    "coords": {
+      "x": 1609.3615819209,
+      "y": 2197.2203389831
+    },
+    "steps": [
+      "1. The starting NPC Sidra Magister is located in the Dark Elf Guild of Gludio. Talk to Sidra to start the quest.",
+      "2. Teleport to Gludin Village. Find Talbot Magister in the Dark Elf Guild and talk to him.",
+      "3. Teleport to Dark Elf Village, then to Spider Nest. Head west towards the mountains. Find and kill monsters:",
+      "4. Return to Talbot Magister and talk to him.",
+      "5. Head to Gludin Temple. Find Adonius Priest and talk to him.",
+      "6. Teleport to Gludio, then to Ruins of Despair. Find and kill monsters:",
+      "7. Return to Adonius Priest and talk to him.",
+      "8. Teleport to Gludio. Find Sidra Magister in the Dark Elf Guild and talk to her.",
+      "9. To change your profession, talk to Tobias Grand Master in the Dark Elf Guild of Gludio."
+    ]
+  },
+  "Path of the Orc Raider": {
+    "id": 630,
+    "type": "post",
+    "npcId": 30570,
+    "npcName": "Karukia",
+    "coords": {
+      "x": 1420.384180791,
+      "y": 855.12994350282
+    },
+    "steps": [
+      "1. The starting NPC Karukia Prefect is located on the first floor of the Hall of Kings in the Orc Village. Talk to Karukia to start the quest.",
+      "2. Teleport from Orc Village to Immortal Plateau — North. Find and kill monsters:",
+      "3. Return to Karukia Prefect and talk to her.",
+      "4. Teleport to Gludin Village. Find Kasman Prefect in the Orc Guild and talk to him.",
+      "5. Teleport to Dark Elf Village, then to Spider Nest. Head west towards the mountains. Find and kill monsters:",
+      "6. Return to Kasman Prefect and talk to him.",
+      "7. To change your profession, talk to Osborn High Prefect in the Orc Guild of Gludin."
+    ]
+  },
+  "Path of the Orc Monk": {
+    "id": 631,
+    "type": "post",
+    "npcId": 30587,
+    "npcName": "Gantaki Zu Urutu",
+    "coords": {
+      "x": 1427.8870056497,
+      "y": 869.94915254237
+    },
+    "steps": [
+      "1. The starting NPC Gantaki Zu Urutu is located next to the Orc Village Weapon Shop. Talk to Gantaki Zu Urutu to start the quest.",
+      "2. Teleport from Orc Village to Frozen Waterfalls. At the lake, find Rosheek Khavatari and talk to him.",
+      "3. In the Frozen Waterfalls, find and kill monsters:",
+      "4. Return to Rosheek Khavatari and talk to him.",
+      "5. In the Frozen Waterfalls, find and kill monsters:",
+      "6. Return to Rosheek Khavatari and talk to him.",
+      "7. Teleport to Orc Village, then to Cave of Trials. Head inside the cave. In the second room find and kill monsters:",
+      "8. Return to Rosheek Khavatari and talk to him.",
+      "9. Teleport to Orc Village. Find Gantaki Zu Urutu near the Weapon Shop and talk to him.",
+      "10. Teleport to Gludin Village. Find Kasman Prefect in the Orc Guild and talk to him.",
+      "11. Teleport from Gludin to Fellmere Harvesting Grounds. Follow the road south, find Toruku Khavatari and talk to him.",
+      "12. Teleport to Gludio. Exit the city through the western gate and head southwest. Find and kill monsters:",
+      "13. Teleport to Gludin Village, then to Langk Lizardmen Dwellings. Find and kill monsters:",
+      "14. Teleport to Gludin Village, then to Windmill Hill. Find and kill monsters:",
+      "15. Teleport to Gludin Village, then to Fellmere Harvesting Grounds. Follow the road south. Find and kill monsters:",
+      "16. Head south along the road. Find Toruku Khavatari and talk to him.",
+      "17. Teleport to Gludin Village. Find Kasman Prefect in the Orc Guild and talk to him.",
+      "18. To change your profession, talk to Osborn High Prefect in the Orc Guild of Gludin."
+    ]
+  },
+  "Path of the Orc Shaman": {
+    "id": 632,
+    "type": "post",
+    "npcId": 30585,
+    "npcName": "Tataru Zu Hestui",
+    "coords": {
+      "x": 1423.9096045198,
+      "y": 853.77401129944
+    },
+    "steps": [
+      "1. The starting NPC Tataru Zu Hestui is located to the right of the entrance to the Hall of Kings of the Orc Village. Talk to Tataru Zu Hestui to start the quest.",
+      "2. Teleport from Orc Village to Frozen Waterfall. Go down the slope, find and kill monsters:",
+      "3. Teleport to Orc Village, then to Cave of Trial. Head to the second room. Find and kill monsters:",
+      "4. Teleport to Orc Village. Find Tataru Zu Hestui to the right of the entrance to the Hall of Kings and talk to him.",
+      "5. Exit the Orc Village through the southern gate and head south. Near the ruins find Hestui Totem Spirit and talk to him.",
+      "6. Return to Tataru Zu Hestui and talk to him",
+      "7. Teleport to Gludin Village. Find Umos Seer in the Orc Guild and talk to him.",
+      "8. Teleport from Gludin to Fellmere Harvesting Grounds. Head west, find and kill monsters:",
+      "9. Return to Umos Seer and talk to him.",
+      "10. Leave the city through the northern gate. Go past the Gludio Arena. Find Duda-Mara Totem Spirit at the well and talk to him.",
+      "11. Teleport to Gludin Village, then to Windmill Hill. Find and kill monsters:",
+      "12. Return to Duda-Mara Totem Spirit and talk to him.",
+      "13. Teleport to Gludin Village. Find Umos Seer in the Orc Guild and talk to him.",
+      "14. To change your profession, talk to Osborn High Prefect in the Orc Guild of Gludin."
+    ]
+  },
+  "Path of the Scavenger": {
+    "id": 633,
+    "type": "post",
+    "npcId": 30524,
+    "npcName": "Pippi",
+    "coords": {
+      "x": 2333.209039548,
+      "y": 466.60451977401
+    },
+    "steps": [
+      "1. The starting NPC Pippi Collector is located in the north of the Dwarven Village. Talk to Pippi to start the quest.",
+      "2. Head to the Dwarven Village Grocery Store. Find Mion Grocer and talk to her.",
+      "3. Head to one of the NPCs in Dwarven Village depending on the item you received earlier.",
+      "5. Teleport from Dwarven Village to Western Mining Zone. Follow the road northeast to the mouth of the river. On the island near the northern shore, find Toma Master and talk to him.",
+      "6. Head to the Western Mining Zone. Find and kill monsters:",
+      "7. Return to Toma Master and talk to him.",
+      "8. In the Western Mining Zone, find and kill monsters:",
+      "9. Return to Toma Master and talk to him.",
+      "10. Teleport to Gludin Village. Find Raut Warehouse Keeper in the Warehouse and talk to him.",
+      "11. Teleport to Giran, then to Dragon Valley. Head south, find Torai and talk to him.",
+      "12. Return to Raut Warehouse Keeper and talk to him.",
+      "13. To change your profession, talk to Moke Warehouse Chief in the Gludin Warehouse."
+    ]
+  },
+  "Path of the Artisan": {
+    "id": 634,
+    "type": "post",
+    "npcId": 30527,
+    "npcName": "Silvera",
+    "coords": {
+      "x": 2331.2485875706,
+      "y": 469.8418079096
+    },
+    "steps": [
+      "1. The starting NPC Silvera Blacksmith is located in the Dwarven Village Blacksmith Shop. Talk to Silvera to start the quest.",
+      "2. Teleport from Dwarven Village to Abandoned Coal Mines. Go deep into the location. Find and kill monsters:",
+      "3. Return to Silvera Blacksmith and talk to her.",
+      "4. Teleport to Gludin Village. Find Kluto Blacksmith in the Blacksmith Shop and talk to him.",
+      "5. Teleport to Gludio. Find Pinter Blacksmith in the Blacksmith Shop and talk to him.",
+      "6. Teleport to Gludin Village, then to Windmill Hill. Find and kill monsters:",
+      "7. Return to Pinter Blacksmith and talk to him.",
+      "8. Teleport to Gludin Village. Find Pinter Blacksmith in the Blacksmith Shop and talk to him.",
+      "9. To change your profession, talk to Tapoy Head Blacksmith in Gludin's Blacksmith Shop."
+    ]
+  },
+  "Trial of Geomancer": {
+    "id": 153,
+    "type": "post",
+    "npcId": 38555,
+    "npcName": "Dabrigit Stoneshoulder",
+    "coords": {
+      "x": 1221.3446327684,
+      "y": 2349.186440678
+    },
+    "steps": []
+  }
+}
