@@ -618,7 +618,7 @@ export default function QuestsTab() {
             const tag = (row.original as Quest).rewardTag;
             return (
               <span style={{ fontWeight: 600 }}>
-                {(tag === 'soulshot' || tag === 'both') && <span className={styles.tagSoulshot}>🔥 </span>}
+                {category === 'racial' && (tag === 'soulshot' || tag === 'both') && <span className={styles.tagSoulshot}>🔥 </span>}
                 {getValue()}
               </span>
             );
