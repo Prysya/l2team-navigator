@@ -153,6 +153,8 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - Извлекает: полные шаги, NPC ID, имя NPC, координаты на карте
 - Результат: `src/data/QUEST_DATA.json`
 - Используется в `QuestsTab.tsx` как fallback для `QUEST_STEPS`, `QUEST_DETAILS`, `NPC_COORDS`
+- Цепочка палач храма: посты 54–62 (добавлены в `QUESTS.posts`)
+- `enrichQuest()` проверяет: хардкод-мапы → поле квеста → `QUEST_DATA.json`
 
 **Запуск:** `node scripts/parse-quests.mjs`
 **Добавить квест:** дополнить словари `QUESTS.quest` или `QUESTS.posts` в скрипте
