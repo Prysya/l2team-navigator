@@ -1,5 +1,22 @@
 # L2team Navigator — Project Context
 
+## Git Workflow
+
+### Branch Naming
+| Prefix | Usage |
+|--------|-------|
+| `feature/*` | New features, redesigns, enhancements |
+| `fix/*` | Bug fixes |
+| `ci/*` | CI/CD, workflows, tooling config |
+| `refactor/*` | Code refactoring, no functional changes |
+| `chore/*` | Dependencies, version bumps, housekeeping |
+
+### Rules for AI Agent
+- **Always ask permission** before committing, pushing, or creating PRs
+- Always create a branch from `main` for new work
+- PR target: `main`
+- Version bumps go in the PR body, not as separate commits (auto-tag workflow handles tagging on merge)
+
 ## Stack
 - Vite 5 + React 18 + TypeScript (strict, no `any`) + SCSS Modules + normalize.css
 - No CRA, no external UI library
