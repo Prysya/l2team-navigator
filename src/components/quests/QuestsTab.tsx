@@ -190,8 +190,14 @@ const NPC_COORDS: Record<number, { x: number; y: number }> = {
   30644: { x: 1792.04, y: 2318.46 },
   30648: { x: 1199.76, y: 2099.45 },
   30510: { x: 1792.56, y: 2311.02 },
-  30103: { x: 2150.42, y: 2330.26 },
-  30104: { x: 2150.41, y: 2331.02 },
+   30103: { x: 2150.42, y: 2330.26 },
+   30104: { x: 2150.41, y: 2331.02 },
+   // Temple Executor chain NPCs
+   30067: { x: 1771.92, y: 2306.86 },
+   30068: { x: 1772.97, y: 2306.79 },
+   30070: { x: 1769.24, y: 2306.22 },
+   30895: { x: 2299.34, y: 2745.45 },
+   30894: { x: 2299.36, y: 2745.89 },
 };
 
 const QUEST_DETAILS: Record<string, { npc: string; npcId: number; location: string; startLvl: number; endLvl: number }> = {
@@ -442,15 +448,15 @@ const QUESTS_BY_RACE: Record<string, Quest[]> = {
 };
 
 const TEMPLE_EXECUTOR_QUESTS: Quest[] = [
-  { lvl: 35, name: 'Temple Missionary', desc: 'Цепочка палач храма, часть 1', reward: '253k Exp, 25k SP, 20k aden, банки, эликсиры', npc: 'Glyvka Priestess', location: 'Dion, Храм', npcId: 0 },
-  { lvl: 35, name: 'Temple Executor', desc: 'Цепочка палач храма, часть 2', reward: '253k Exp, 25k SP, 23.7k aden, банки', npc: 'Shegfield Priest', location: 'Dion, Храм', npcId: 0 },
-  { lvl: 35, name: 'Temple Champion — 1', desc: 'Цепочка палач храма, часть 3', reward: '316k Exp, 31k SP, 31.5k aden, соски D, CP Potion', npc: 'Sylvain High Priest', location: 'Dion, Храм', npcId: 0 },
-  { lvl: 36, name: 'Temple Champion — 2', desc: 'Цепочка палач храма, часть 4', reward: '352k Exp, 35k SP, 36k aden, эликсиры', npc: 'Sylvain High Priest', location: 'Dion → Giran', npcId: 0 },
-  { lvl: 37, name: 'Shadow Fox — 1', desc: 'Цепочка палач храма, часть 5', reward: '313k Exp, 31k SP, 26k aden, банки', npc: 'Mia Warehouse Keeper', location: 'Hein, Склад', npcId: 0 },
-  { lvl: 37, name: 'Shadow Fox — 2', desc: 'Цепочка палач храма, часть 6', reward: '313k Exp, 31k SP, 26k aden, банки', npc: 'Kluck Warehouse Keeper', location: 'Hein, Склад', npcId: 0 },
-  { lvl: 37, name: 'Shadow Fox — 3', desc: 'Цепочка палач храма, часть 7', reward: '313k Exp, 31k SP, 26k aden, соски D, CP Potion', npc: 'Natools Warehouse Chief', location: 'Hein, Склад', npcId: 0 },
-  { lvl: 38, name: 'Fallen Angel — Request of Dawn', desc: 'Цепочка палач храма, на выбор (Dawn)', reward: '592k Exp, 59k SP, 58.5k aden, соски D, CP, ресы', npc: 'Natools Warehouse Chief', location: 'Hein, Склад', npcId: 0 },
-  { lvl: 38, name: 'Fallen Angel — Request of Dusk', desc: 'Цепочка палач храма, на выбор (Dusk)', reward: '435k Exp, 43k SP, 41k aden, CP, ресы', npc: 'Natools Warehouse Chief', location: 'Hein, Склад', npcId: 0 },
+  { lvl: 35, name: 'Temple Missionary', desc: 'Цепочка палач храма, часть 1', reward: '253k Exp, 25k SP, 20k aden, банки, эликсиры', npc: 'Glyvka Priestess', location: 'Dion, Храм', npcId: 30067 },
+  { lvl: 35, name: 'Temple Executor', desc: 'Цепочка палач храма, часть 2', reward: '253k Exp, 25k SP, 23.7k aden, банки', npc: 'Shegfield Priest', location: 'Dion, Храм', npcId: 30068 },
+  { lvl: 35, name: 'Temple Champion — 1', desc: 'Цепочка палач храма, часть 3', reward: '316k Exp, 31k SP, 31.5k aden, соски D, CP Potion', npc: 'Sylvain High Priest', location: 'Dion, Храм', npcId: 30070 },
+  { lvl: 36, name: 'Temple Champion — 2', desc: 'Цепочка палач храма, часть 4', reward: '352k Exp, 35k SP, 36k aden, эликсиры', npc: 'Sylvain High Priest', location: 'Dion → Giran', npcId: 30070 },
+  { lvl: 37, name: 'Shadow Fox — 1', desc: 'Цепочка палач храма, часть 5', reward: '313k Exp, 31k SP, 26k aden, банки', npc: 'Mia Warehouse Keeper', location: 'Hein, Склад', npcId: 35554 },
+  { lvl: 37, name: 'Shadow Fox — 2', desc: 'Цепочка палач храма, часть 6', reward: '313k Exp, 31k SP, 26k aden, банки', npc: 'Kluck Warehouse Keeper', location: 'Hein, Склад', npcId: 30895 },
+  { lvl: 37, name: 'Shadow Fox — 3', desc: 'Цепочка палач храма, часть 7', reward: '313k Exp, 31k SP, 26k aden, соски D, CP Potion', npc: 'Natools Warehouse Chief', location: 'Hein, Склад', npcId: 30894 },
+  { lvl: 38, name: 'Fallen Angel — Request of Dawn', desc: 'Цепочка палач храма, на выбор (Dawn)', reward: '592k Exp, 59k SP, 58.5k aden, соски D, CP, ресы', npc: 'Natools Warehouse Chief', location: 'Hein, Склад', npcId: 30894 },
+  { lvl: 38, name: 'Fallen Angel — Request of Dusk', desc: 'Цепочка палач храма, на выбор (Dusk)', reward: '435k Exp, 43k SP, 41k aden, CP, ресы', npc: 'Natools Warehouse Chief', location: 'Hein, Склад', npcId: 30894 },
 ];
 
 type QuestCategory = 'racial' | 'profession' | 'temple';
