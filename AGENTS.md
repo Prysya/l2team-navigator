@@ -17,6 +17,18 @@
 - PR target: `main`
 - Version bumps go in the PR body, not as separate commits (auto-tag workflow handles tagging on merge)
 
+### Commit Messages
+Use conventional commits: `type: description` (lowercase, no caps).
+| Type | When |
+|------|------|
+| `feat:` | New feature |
+| `fix:` | Bug fix |
+| `chore:` | Housekeeping, deps, version |
+| `ci:` | CI/CD, workflows |
+| `refactor:` | Code restructuring |
+| `docs:` | Documentation only |
+| `style:` | Styling, formatting (no logic change) |
+
 ## Stack
 - Vite 5 + React 18 + TypeScript (strict, no `any`) + SCSS Modules + normalize.css
 - No CRA, no external UI library
