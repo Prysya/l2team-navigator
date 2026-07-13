@@ -1,13 +1,17 @@
-import { useState, useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
 import type { Spellbook } from '../../types';
 import SPELLBOOKS_DATA from '../../data/SPELLBOOKS.json';
 import { RACES } from '../../data/races';
-import { renderMonsterRow, sortMonsters, escapeHtml } from '../../utils/helpers';
+import { renderMonsterRow, sortMonsters } from '../../utils/helpers';
+import CopyLink from '../../components/shared/CopyLink';
+import CustomSelect from '../../components/shared/CustomSelect';
+import FloatingLabel from '../../components/shared/FloatingLabel';
 import styles from './SpellbookTab.module.scss';
+import { useLanguageStore, type Lang } from '../../stores/languageStore';
+import { useSpellbookStore } from '../../stores/spellbookStore';
+import cx from 'classnames';
 
 const SPELLBOOKS = SPELLBOOKS_DATA as Spellbook[];
-
-type Lang = 'en' | 'ru';
 
 const RACE_LABELS_RU: Record<string, string> = {
   Human: 'Человек', Elf: 'Светлый Эльф', 'Dark Elf': 'Тёмный Эльф', Orc: 'Орк', Dwarf: 'Гном',
@@ -58,14 +62,23 @@ function getClassName(cls: string, lang: Lang): string {
 }
 
 export default function SpellbookTab() {
-  const [lang, setLang] = useState<Lang>('en');
-  const [selectedRace, setSelectedRace] = useState(
-    () => new URLSearchParams(window.location.search).get('sbRace') ?? ''
-  );
-  const [selectedClass, setSelectedClass] = useState('');
-  const [searchQuery, setSearchQuery] = useState(
-    () => new URLSearchParams(window.location.search).get('sbQ') ?? ''
-  );
+  const lang = useLanguageStore(s => s.lang);
+  const setLang = useLanguageStore(s => s.setLang);
+  const selectedRace = useSpellbookStore(s => s.selectedRace);
+  const selectedClass = useSpellbookStore(s => s.selectedClass);
+  const searchQuery = useSpellbookStore(s => s.searchQuery);
+  const setSelectedRace = useSpellbookStore(s => s.setSelectedRace);
+  const setSelectedClass = useSpellbookStore(s => s.setSelectedClass);
+  const setSearchQuery = useSpellbookStore(s => s.setSearchQuery);
+  useEffect(() => {
+    const hash = window.location.hash;
+    const qsIndex = hash.indexOf('?');
+    const params = new URLSearchParams(qsIndex >= 0 ? hash.slice(qsIndex) : '');
+    const race = params.get('sbRace') ?? '';
+    const q = params.get('sbQ') ?? '';
+    setSelectedRace(race);
+    setSearchQuery(q);
+  }, [setSelectedRace, setSearchQuery]);
 
   const classesForRace = useMemo(() => {
     if (!selectedRace) return [];
@@ -103,46 +116,58 @@ export default function SpellbookTab() {
     [filtered]
   );
 
-  const tableHtml = useMemo(
+  const tableRows = useMemo(
     () =>
-      filtered
-        .map((sb) => {
-          const sorted = sortMonsters(sb.monster);
-          const rowspan = sorted.length || 1;
+      filtered.flatMap((sb) => {
+        const sorted = sortMonsters(sb.monster);
+        const rowspan = sorted.length || 1;
 
-          const classTags = sb.classes
-            .map(
-              (c) =>
-                `<span class="class-tag">${escapeHtml(getRaceLabel(c.race, lang))} — ${escapeHtml(getClassName(c.class_name, lang))}</span>`
-            )
-            .join(' ');
+        const classTags = sb.classes.map((c) => (
+          <span className="class-tag" key={`${c.race}-${c.class_name}`}>
+            {getRaceLabel(c.race, lang)} — {getClassName(c.class_name, lang)}
+          </span>
+        ));
 
-          const classesRow = `<div class="spellbook-classes">${classTags}</div>`;
-
-          const bookCell = `<div class="spellbook-name"><a href="${escapeHtml(sb.spellbook_url)}" target="_blank" rel="noopener">${escapeHtml(sb.spellbook_name)}</a>${classesRow}</div>`;
-
-          return sorted
-            .map((m, idx) => {
-              const cells = renderMonsterRow(m);
-              return `<tr>
-            ${idx === 0 ? `<td rowspan="${rowspan}">${bookCell}</td><td rowspan="${rowspan}">${sb.lvl}</td>` : ''}
-            <td>${cells.monsterCell}</td>
-            <td>${cells.locationsCell}</td>
-            <td>${cells.dropCell}</td>
-            <td>${cells.spoilCell}</td>
-            <td>${cells.commentCell}</td>
-          </tr>`;
-            })
-            .join('');
-        })
-        .join(''),
-    [filtered, lang]
+        return sorted.map((m, idx) => {
+          const cells = renderMonsterRow(m);
+          return (
+            <tr key={`${sb.skill_name}-${idx}`}>
+              {idx === 0 && (
+                <>
+                  <td rowSpan={rowspan}>
+                    <div className="spellbook-name">
+                      <div className={styles.bookTitle}>
+                        <a href={sb.spellbook_url} target="_blank" rel="noopener">
+                          {sb.spellbook_name}
+                        </a>
+                        <CopyLink
+                          getUrl={() =>
+                            window.location.origin +
+                            import.meta.env.BASE_URL +
+                            '#spellbooks?sbRace=' +
+                            encodeURIComponent(selectedRace) +
+                            '&sbQ=' +
+                            encodeURIComponent(sb.skill_name)
+                          }
+                        />
+                      </div>
+                      <div className="spellbook-classes">{classTags}</div>
+                    </div>
+                  </td>
+                  <td rowSpan={rowspan}>{sb.lvl}</td>
+                </>
+              )}
+              <td dangerouslySetInnerHTML={{ __html: cells.monsterCell }} />
+              <td dangerouslySetInnerHTML={{ __html: cells.locationsCell }} />
+              <td dangerouslySetInnerHTML={{ __html: cells.dropCell }} />
+              <td dangerouslySetInnerHTML={{ __html: cells.spoilCell }} />
+              <td dangerouslySetInnerHTML={{ __html: cells.commentCell }} />
+            </tr>
+          );
+        });
+      }),
+    [filtered, lang, selectedRace]
   );
-
-  const handleRaceChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedRace(e.target.value);
-    setSelectedClass('');
-  };
 
   return (
     <div>
@@ -150,51 +175,46 @@ export default function SpellbookTab() {
         <div className={styles.langBar}>
           <span className={styles.langLabel}>Язык рас и профессий:</span>
           <button
-            className={`${styles.langOpt} ${lang === 'en' ? styles.langOptActive : ''}`}
+            className={cx(styles.langOpt, lang === 'en' && styles.langOptActive)}
             onClick={() => setLang('en')}
           >
             EN
           </button>
           <button
-            className={`${styles.langOpt} ${lang === 'ru' ? styles.langOptActive : ''}`}
+            className={cx(styles.langOpt, lang === 'ru' && styles.langOptActive)}
             onClick={() => setLang('ru')}
           >
             RU
           </button>
         </div>
 
-        <label className={styles.label}>🧙 Раса:</label>
-        <select className={styles.select} value={selectedRace} onChange={handleRaceChange}>
-          <option value="">Все расы</option>
-          {RACES.map((r) => (
-            <option key={r} value={r}>
-              {getRaceLabel(r, lang)}
-            </option>
-          ))}
-        </select>
+        <div className={styles.field}>
+          <CustomSelect
+            label="Раса"
+            value={selectedRace}
+            onChange={(v) => { setSelectedRace(v); setSelectedClass(''); }}
+            options={RACES.map((r) => ({ value: r, label: getRaceLabel(r, lang) }))}
+          />
+        </div>
 
-        <label className={styles.label}>⚔️ Профессия:</label>
-        <select
-          className={styles.select}
-          value={selectedClass}
-          onChange={(e) => setSelectedClass(e.target.value)}
-          disabled={!selectedRace}
-        >
-          <option value="">Все профессии</option>
-          {classesForRace.map((c) => (
-            <option key={c} value={c}>
-              {getClassName(c, lang)}
-            </option>
-          ))}
-        </select>
+        <div className={styles.field}>
+          <CustomSelect
+            label="Профессия"
+            value={selectedClass}
+            onChange={(v) => setSelectedClass(v)}
+            options={classesForRace.map((c) => ({ value: c, label: getClassName(c, lang) }))}
+            disabled={!selectedRace}
+          />
+        </div>
 
-        <input
-          className={styles.input}
-          type="text"
-          placeholder="🔍 Поиск..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
+        <FloatingLabel label="Поиск" value={searchQuery}>
+          <input
+            className={styles.input}
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </FloatingLabel>
 
         <div
           className={styles.count}
@@ -222,7 +242,7 @@ export default function SpellbookTab() {
                 <th>Комментарий</th>
               </tr>
             </thead>
-            <tbody dangerouslySetInnerHTML={{ __html: tableHtml }} />
+            <tbody>{tableRows}</tbody>
           </table>
         </div>
       ) : (

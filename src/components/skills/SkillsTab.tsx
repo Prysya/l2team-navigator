@@ -1,9 +1,15 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useMemo, useEffect } from 'react';
 import type { ClassSkill, Spellbook } from '../../types';
 import { RACES } from '../../data/races';
 import skillsData from '../../data/SKILLS.json';
 import spellbooksData from '../../data/SPELLBOOKS.json';
 import styles from './SkillsTab.module.scss';
+import CopyLink from '../../components/shared/CopyLink';
+import FloatingLabel from '../../components/shared/FloatingLabel';
+import CustomSelect from '../../components/shared/CustomSelect';
+import { useSkillsStore } from '../../stores/skillsStore';
+import { useLanguageStore, type Lang } from '../../stores/languageStore';
+import cx from 'classnames';
 
 const spellbookByName = new Map<string, Spellbook>();
 (spellbooksData as Spellbook[]).forEach(sb => {
@@ -55,8 +61,6 @@ const RACE_LABELS_RU: Record<string, string> = {
 const RACE_LABELS_EN: Record<string, string> = {
   Human: 'Human', Elf: 'Elf', 'Dark Elf': 'Dark Elf', Orc: 'Orc', Dwarf: 'Dwarf',
 };
-
-type Lang = 'en' | 'ru';
 
 const skillsMap = skillsData as Record<string, { className: string; race: string; skills: ClassSkill[] }>;
 const ALL_CLASSES = Object.keys(skillsMap).sort();
@@ -117,11 +121,16 @@ interface SkillsTabProps {
 }
 
 export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
-  const [lang, setLang] = useState<Lang>('en');
-  const [selectedRace, setSelectedRace] = useState('');
-  const [selectedClass, setSelectedClass] = useState('');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [filterType, setFilterType] = useState<'all' | 'active' | 'passive'>('all');
+  const lang = useLanguageStore(s => s.lang);
+  const setLang = useLanguageStore(s => s.setLang);
+  const selectedRace = useSkillsStore(s => s.selectedRace);
+  const selectedClass = useSkillsStore(s => s.selectedClass);
+  const searchQuery = useSkillsStore(s => s.searchQuery);
+  const filterType = useSkillsStore(s => s.filterType);
+  const setSearchQuery = useSkillsStore(s => s.setSearchQuery);
+  const setFilterType = useSkillsStore(s => s.setFilterType);
+  const setSelectedRace = useSkillsStore(s => s.setSelectedRace);
+  const setSelectedClass = useSkillsStore(s => s.setSelectedClass);
 
   const availableClasses = useMemo(() => {
     if (!selectedRace) return [];
@@ -145,14 +154,17 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
     return list;
   }, [currentSkills, filterType, searchQuery]);
 
-  const handleRaceChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedRace(e.target.value);
-    setSelectedClass('');
-  }, []);
-
-  const handleClassChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedClass(e.target.value);
-  }, []);
+  useEffect(() => {
+    const hash = window.location.hash;
+    const qsIndex = hash.indexOf('?');
+    const params = new URLSearchParams(qsIndex >= 0 ? hash.slice(qsIndex) : '');
+    const race = params.get('race');
+    const cls = params.get('class');
+    const skill = params.get('skill');
+    if (race) setSelectedRace(race);
+    if (cls) setSelectedClass(cls);
+    if (skill) setSearchQuery(skill);
+  }, [setSelectedRace, setSelectedClass, setSearchQuery]);
 
   return (
     <div>
@@ -160,62 +172,61 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
         <div className={styles.langBar}>
           <span className={styles.langLabel}>Язык рас и профессий:</span>
           <button
-            className={`${styles.langOpt} ${lang === 'en' ? styles.langOptActive : ''}`}
+            className={cx(styles.langOpt, lang === 'en' && styles.langOptActive)}
             onClick={() => setLang('en')}
           >
             EN
           </button>
           <button
-            className={`${styles.langOpt} ${lang === 'ru' ? styles.langOptActive : ''}`}
+            className={cx(styles.langOpt, lang === 'ru' && styles.langOptActive)}
             onClick={() => setLang('ru')}
           >
             RU
           </button>
         </div>
-        <label className={styles.label}>Раса:</label>
-        <select className={styles.select} value={selectedRace} onChange={handleRaceChange}>
-          <option value="">Все расы</option>
-          {RACES.map(r => (
-            <option key={r} value={r}>{getRaceLabel(r, lang)}</option>
-          ))}
-        </select>
+        <div className={styles.field}>
+          <CustomSelect
+            label="Раса"
+            value={selectedRace}
+            onChange={(v) => { setSelectedRace(v); setSelectedClass(''); }}
+            options={RACES.map(r => ({ value: r, label: getRaceLabel(r, lang) }))}
+          />
+        </div>
 
-        <label className={styles.label}>Класс:</label>
-        <select
-          className={styles.select}
-          value={selectedClass}
-          onChange={handleClassChange}
-          disabled={!selectedRace}
-        >
-          <option value="">Выберите класс</option>
-          {availableClasses.map(cls => (
-            <option key={cls} value={cls}>{getClassName(cls, lang)}</option>
-          ))}
-        </select>
+        <div className={styles.field}>
+          <CustomSelect
+            label="Класс"
+            value={selectedClass}
+            onChange={(v) => setSelectedClass(v)}
+            options={availableClasses.map(c => ({ value: c, label: getClassName(c, lang) }))}
+            disabled={!selectedRace}
+          />
+        </div>
 
-        <input
-          className={styles.input}
-          type="text"
-          placeholder="Поиск по названию скилла..."
-          value={searchQuery}
-          onChange={e => setSearchQuery(e.target.value)}
-        />
+        <FloatingLabel label="Поиск по названию скилла" value={searchQuery}>
+          <input
+            className={styles.input}
+            type="text"
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+          />
+        </FloatingLabel>
 
         <div className={styles.filterGroup}>
           <button
-            className={`${styles.filterBtn} ${filterType === 'all' ? styles.filterBtnActive : ''}`}
+            className={cx(styles.filterBtn, filterType === 'all' && styles.filterBtnActive)}
             onClick={() => setFilterType('all')}
           >
             Все
           </button>
           <button
-            className={`${styles.filterBtn} ${filterType === 'active' ? styles.filterBtnActive : ''}`}
+            className={cx(styles.filterBtn, filterType === 'active' && styles.filterBtnActive)}
             onClick={() => setFilterType('active')}
           >
             Активные
           </button>
           <button
-            className={`${styles.filterBtn} ${filterType === 'passive' ? styles.filterBtnActive : ''}`}
+            className={cx(styles.filterBtn, filterType === 'passive' && styles.filterBtnActive)}
             onClick={() => setFilterType('passive')}
           >
             Пассивные
@@ -246,7 +257,10 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
                   />
                 )}
                 <div className={styles.skillInfo}>
-                  <div className={styles.skillName}>{skill.name}</div>
+                  <div className={styles.skillName}>
+                    {skill.name}
+                    <CopyLink getUrl={() => window.location.origin + import.meta.env.BASE_URL + '#skills?race=' + encodeURIComponent(selectedRace) + '&class=' + encodeURIComponent(selectedClass) + '&skill=' + encodeURIComponent(skill.name)} />
+                  </div>
                   <div className={styles.skillMeta}>
                     <span className={skill.type === 'passive' ? styles.typePassive : styles.typeActive}>
                       {skill.type === 'passive' ? 'Пассивный' : 'Активный'}
@@ -276,7 +290,9 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
                     <button
                       className={styles.sbLink}
                       onClick={() => {
-                        const params = new URLSearchParams(window.location.search);
+                        const hash = window.location.hash;
+                        const qsIndex = hash.indexOf('?');
+                        const params = new URLSearchParams(qsIndex >= 0 ? hash.slice(qsIndex) : '');
                         if (selectedRace) params.set('sbRace', selectedRace);
                         params.set('sbQ', skill.name);
                         const qs = params.toString();

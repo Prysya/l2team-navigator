@@ -1,0 +1,138 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.wrapper {
+  position: relative;
+  min-width: 200px;
+  flex-shrink: 0;
+
+  @include tablet {
+    width: 100%;
+    min-width: unset;
+  }
+}
+
+.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.trigger {
+  all: unset;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 38px;
+  padding: 14px 36px 6px 12px;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+  background: #0b0f1a;
+  color: $color-text;
+  font-size: $font-size-lg;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  .wrapper:focus-within & {
+    border-color: $color-primary;
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.15);
+  }
+}
+
+.value {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.arrow {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  color: $color-primary;
+  flex-shrink: 0;
+  pointer-events: none;
+  transition: transform 0.2s;
+
+  .wrapper.isOpen & {
+    transform: translateY(-50%) rotate(180deg);
+  }
+}
+
+.label {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: $color-text-muted;
+  font-size: $font-size-lg;
+  pointer-events: none;
+  transition: all 0.15s ease;
+  background: #0b0f1a;
+  padding: 0 4px;
+  z-index: 1;
+  white-space: nowrap;
+  line-height: 1;
+
+  &.floating {
+    top: 0;
+    transform: translateY(-50%);
+    font-size: $font-size-xs;
+    color: $color-primary;
+  }
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  max-height: 280px;
+  overflow-y: auto;
+  background: #0b0f1a;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  z-index: 1000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $color-border;
+    border-radius: 3px;
+  }
+}
+
+.option {
+  padding: 10px 12px;
+  color: $color-text;
+  font-size: $font-size-base;
+  cursor: pointer;
+  transition: background 0.1s;
+
+  &:hover {
+    background: $color-surface-hover;
+  }
+}
+
+.optionActive {
+  color: $color-primary;
+  font-weight: 600;
+  background: rgba(56, 189, 248, 0.08);
+}
+
+.groupLabel {
+  padding: 6px 12px 2px;
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  pointer-events: none;
+}
