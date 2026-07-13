@@ -137,6 +137,58 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - `RESOURCES.json` — resource data
 - `cities.ts`, `classes.ts`, `groupNames.ts`, `races.ts` — TS constants
 
+## Quest Data (`scripts/parse-quests.mjs`)
+
+Парсер извлекает данные квестов с mw2.wiki:
+- HTTP/2, `Accept-Language: en`, случайная задержка 1.5-3с
+- 4 параллельных запроса (Semaphore)
+- Извлекает: полные шаги, NPC ID, имя NPC, координаты на карте
+- Результат: `src/data/QUEST_DATA.json`
+- Используется в `QuestsTab.tsx` как fallback для `QUEST_STEPS`, `QUEST_DETAILS`, `NPC_COORDS`
+
+**Запуск:** `node scripts/parse-quests.mjs`
+**Добавить квест:** дополнить словари `QUESTS.quest` или `QUESTS.posts` в скрипте
+
+### Known mw2.wiki Issues (для всех парсеров)
+
+| # | Проблема | Решение |
+|---|---|---|
+| 1 | Cloudflare защита | `httpx.AsyncClient(http2=True)` |
+| 2 | Пагинация | `seen_ids: Set[int]` + `stale_count` |
+| 3 | Склеенный grade в названии | `clean_item_name(name, grade)` |
+| 4 | Неправильный ID секции | Использовать `#contained` и `#capsule` явно |
+| 5 | CSS селекторы классов | Использовать атрибутные селекторы: `[class*="text-center"]` |
+| 6 | Русские ключи в таблицах | Нормализация через `normalize_enchant_key()` |
+| 7 | Флаг is_rare | Проверка `<Rare Item Effect>` в описании |
+| 8 | Первая страница уже в base_soup | Оптимизация `first_page_soup` |
+| 9 | Yii2 роутинг | Формат `"Search[item_type]": "5"` |
+| 10 | Длинные описания | Сохранять HTML как есть, парсить связи отдельно |
+| 11 | URL префиксы | Универсальный regex `r'/item/(\d+)-'` |
+| 12 | Числа с пробелами | Функции `safe_int()` / `safe_float()` |
+| 13 | Вложенный HTML в таблицах | `find_all(..., recursive=True)` |
+| 14 | Кнопки локаций | Парсить: выпадающее меню И прямую ссылку |
+| 15 | Флаги в `item-name__additional` | Парсить флаги ДО вызова `decompose()` |
+| 16 | Язык | `cookies={"language": "en"}` + `Accept-Language` |
+| 17 | 404 на пагинации | Считать 404 как "конец пагинации" |
+| 18 | "Массовые" предметы (Adena) | Пропускать через `SKIP_PAGINATION_ITEM_IDS` |
+| 19 | Soul crystals триггер | Использовать английский триггер `'soul crystal'` |
+| 20 | Set parts триггер | Использовать английский триггер `'set'` |
+| 21 | Дробный `data-initial-amount` | `safe_amount()` с fallback |
+| 22 | ID поста ≠ ID квеста | Resolve через HTTP для извлечения `quest_wiki_id` |
+| 23 | Разный порядок колонок | Динамический поиск ячейки по наличию ссылки |
+| 24 | Аккордеоны в наградах | Развернуть в текст с `[Heading]` |
+| 25 | `find_parent` возвращает None | Переключиться на `soup.select('div.stat_line')` |
+| 26 | `_load_existing_items` = None | Добавить явный `return [], set()` |
+| 27 | Дублирование HTTP в Enricher | Оптимизация `first_page_html` |
+| 28 | Race condition с headers | Передавать User-Agent явно в КАЖДОМ запросе |
+| 29 | Цвета в таблицах | Извлекать `style` или вложенный `<span>` |
+
+**Параметры:**
+- `STAGES_CONFIG` — конфигурация для batch-обработки
+- `asyncio.Semaphore(4)` — лимит параллельных запросов
+- `random.uniform(1.5, 3.0)` — человеческая задержка
+- `httpx.AsyncClient(http2=True, follow_redirects=True, cookies={"language": "en"})` — HTTP/2 + английский язык
+
 ## Scripts (`scripts/`)
 - `fetch-skills.mjs` — fetches skill data from lu4db API
 - `fetch-raidbosses.mjs` — intended for raid boss data (blocked: lu4db is SPA, requires JS rendering)
