@@ -8,7 +8,6 @@ import CopyLink from '../../components/shared/CopyLink';
 import FloatingLabel from '../../components/shared/FloatingLabel';
 import CustomSelect from '../../components/shared/CustomSelect';
 import { useSkillsStore } from '../../stores/skillsStore';
-import { useLanguageStore, type Lang } from '../../stores/languageStore';
 import cx from 'classnames';
 
 const spellbookByName = new Map<string, Spellbook>();
@@ -54,11 +53,7 @@ const EN_CLASS_NAMES: Record<string, string> = {
   'Кузнец': 'Warsmith', 'Геомант': 'Geomancer', 'Террамант': 'Terramancer',
 };
 
-const RACE_LABELS_RU: Record<string, string> = {
-  Human: 'Человек', Elf: 'Светлый Эльф', 'Dark Elf': 'Тёмный Эльф', Orc: 'Орк', Dwarf: 'Гном',
-};
-
-const RACE_LABELS_EN: Record<string, string> = {
+const RACE_LABELS: Record<string, string> = {
   Human: 'Human', Elf: 'Elf', 'Dark Elf': 'Dark Elf', Orc: 'Orc', Dwarf: 'Dwarf',
 };
 
@@ -69,13 +64,12 @@ function getClassesByRace(race: string): string[] {
   return ALL_CLASSES.filter(cls => CLASS_RACE_MAP[cls] === race);
 }
 
-function getClassName(cls: string, lang: Lang): string {
-  return lang === 'en' ? (EN_CLASS_NAMES[cls] ?? cls) : cls;
+function getClassName(cls: string): string {
+  return EN_CLASS_NAMES[cls] ?? cls;
 }
 
-function getRaceLabel(race: string, lang: Lang): string {
-  const map = lang === 'en' ? RACE_LABELS_EN : RACE_LABELS_RU;
-  return map[race] ?? race;
+function getRaceLabel(race: string): string {
+  return RACE_LABELS[race] ?? race;
 }
 
 function highlightNumbers(text: string): React.ReactNode {
@@ -121,8 +115,6 @@ interface SkillsTabProps {
 }
 
 export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
-  const lang = useLanguageStore(s => s.lang);
-  const setLang = useLanguageStore(s => s.setLang);
   const selectedRace = useSkillsStore(s => s.selectedRace);
   const selectedClass = useSkillsStore(s => s.selectedClass);
   const searchQuery = useSkillsStore(s => s.searchQuery);
@@ -169,27 +161,12 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
   return (
     <div>
       <div className={styles.controls}>
-        <div className={styles.langBar}>
-          <span className={styles.langLabel}>Язык рас и профессий:</span>
-          <button
-            className={cx(styles.langOpt, lang === 'en' && styles.langOptActive)}
-            onClick={() => setLang('en')}
-          >
-            EN
-          </button>
-          <button
-            className={cx(styles.langOpt, lang === 'ru' && styles.langOptActive)}
-            onClick={() => setLang('ru')}
-          >
-            RU
-          </button>
-        </div>
         <div className={styles.field}>
           <CustomSelect
             label="Раса"
             value={selectedRace}
             onChange={(v) => { setSelectedRace(v); setSelectedClass(''); }}
-            options={RACES.map(r => ({ value: r, label: getRaceLabel(r, lang) }))}
+            options={RACES.map(r => ({ value: r, label: getRaceLabel(r) }))}
           />
         </div>
 
@@ -198,19 +175,10 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
             label="Класс"
             value={selectedClass}
             onChange={(v) => setSelectedClass(v)}
-            options={availableClasses.map(c => ({ value: c, label: getClassName(c, lang) }))}
+            options={availableClasses.map(c => ({ value: c, label: getClassName(c) }))}
             disabled={!selectedRace}
           />
         </div>
-
-        <FloatingLabel label="Поиск по названию скилла" value={searchQuery}>
-          <input
-            className={styles.input}
-            type="text"
-            value={searchQuery}
-            onChange={e => setSearchQuery(e.target.value)}
-          />
-        </FloatingLabel>
 
         <div className={styles.filterGroup}>
           <button
@@ -231,6 +199,18 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
           >
             Пассивные
           </button>
+        </div>
+
+        <div className={styles.searchWrap}>
+          <FloatingLabel className={styles.searchField} label="Поиск по названию скилла" value={searchQuery}>
+            <input
+              className={styles.input}
+              type="text"
+              name="skill-search"
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+            />
+          </FloatingLabel>
         </div>
       </div>
 

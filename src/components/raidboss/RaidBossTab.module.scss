@@ -21,18 +21,11 @@
   }
 }
 
-.label {
-  font-weight: bold;
-  color: $color-primary;
-  white-space: nowrap;
-  @include tablet { margin-bottom: -5px; }
-  @include mobile { font-size: $font-size-md; }
-}
-
 .input {
   min-width: 200px;
   min-height: 38px;
   padding: 14px 12px 6px;
+  font-weight: 500;
   border-radius: $radius-lg;
   border: 1px solid $color-border;
   background: #0b0f1a;
@@ -409,7 +402,7 @@
   transition: background 0.15s;
 
   &:hover {
-    background: rgba($color-primary, 0.1);
+    background: var(--color-primary-alpha-10);
   }
 }
 
@@ -496,7 +489,7 @@
   border-radius: 50%;
   background: $color-danger;
   border: 2px solid #fff;
-  box-shadow: 0 0 12px rgba($color-danger, 0.6);
+  box-shadow: 0 0 12px var(--color-danger-alpha-60);
   z-index: 10;
 }
 

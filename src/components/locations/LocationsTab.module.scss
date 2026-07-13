@@ -21,18 +21,6 @@
   }
 }
 
-.label {
-  font-weight: bold;
-  color: $color-primary;
-  white-space: nowrap;
-  @include tablet {
-    margin-bottom: -5px;
-  }
-  @include mobile {
-    font-size: $font-size-md;
-  }
-}
-
 .typeSwitcher {
   display: flex;
   gap: $spacing-xs;
@@ -87,43 +75,11 @@
   }
 }
 
-.select {
-  appearance: none;
-  min-width: 200px;
-  padding: 14px 36px 6px 12px;
-  border-radius: $radius-lg;
-  border: 1px solid $color-border;
-  background: #0b0f1a url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2338bdf8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 10px center / 12px;
-  color: $color-text;
-  font-size: $font-size-lg;
-  cursor: pointer;
-  transition: border-color 0.2s, box-shadow 0.2s;
-
-  &:focus:not(:disabled) {
-    outline: none;
-    border-color: $color-primary;
-    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.15);
-  }
-
-  &:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
-
-  @include tablet {
-    width: 100%;
-    min-width: unset;
-  }
-  @include mobile {
-    font-size: $font-size-md;
-    padding: 6px 8px;
-  }
-}
-
 .input {
   min-width: 200px;
   min-height: 38px;
   padding: 14px 12px 6px;
+  font-weight: 500;
   border-radius: $radius-lg;
   border: 1px solid $color-border;
   background: #0b0f1a;
@@ -371,6 +327,4 @@
   font-size: $font-size-lg;
 }
 
-.hidden {
-  display: none;
-}
+

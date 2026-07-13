@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import TabBar from './components/tabs/TabBar';
+
 import RecipeTab from './components/recipes/RecipeTab';
 import SpellbookTab from './components/spellbooks/SpellbookTab';
 import LocationsTab from './components/locations/LocationsTab';
