@@ -53,9 +53,7 @@ export default function SpellbookTab() {
   const [sorting, setSorting] = useState<SortingState>([]);
 
   useEffect(() => {
-    const hash = window.location.hash;
-    const qsIndex = hash.indexOf('?');
-    const params = new URLSearchParams(qsIndex >= 0 ? hash.slice(qsIndex) : '');
+    const params = new URLSearchParams(window.location.search);
     const race = params.get('sbRace') ?? '';
     const q = params.get('sbQ') ?? '';
     setSelectedRace(race);
@@ -113,7 +111,7 @@ export default function SpellbookTab() {
               getUrl={() =>
                 window.location.origin +
                 import.meta.env.BASE_URL +
-                '#spellbooks?sbRace=' +
+                'spellbooks?sbRace=' +
                 encodeURIComponent(selectedRace) +
                 '&sbQ=' +
                 encodeURIComponent(sb.skill_name)
@@ -223,19 +221,14 @@ export default function SpellbookTab() {
           </FloatingLabel>
         </div>
 
-        <div
-          className={styles.count}
-          dangerouslySetInnerHTML={{
-            __html: `Найдено книг: <b>${filtered.length}</b>`,
-          }}
-        />
+        <div className={styles.count}>
+          Найдено книг: <b>{filtered.length}</b> | Мобов: <b>{totalMonsters}</b>
+        </div>
       </div>
 
-      <div className={styles.summary}>
-        Книг: <b>{filtered.length}</b> | Мобов: <b>{totalMonsters}</b>
-      </div>
-
-      {flatData.length > 0 ? (
+      {!selectedRace && !selectedClass && !searchQuery.trim() ? (
+        <div className={styles.emptyState}>Выберите расу или профессию для просмотра</div>
+      ) : flatData.length > 0 ? (
         <div className={styles.tableWrap}>
           <table className={styles.table}>
             <thead>

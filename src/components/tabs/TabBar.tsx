@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import { useRef, useEffect, useCallback } from 'react';
+import { useRef, useLayoutEffect } from 'react';
 import type { FC } from 'react';
 import styles from './TabBar.module.scss';
 
@@ -13,26 +13,15 @@ const TabBar: FC<TabBarProps> = ({ tabs, activeTab, onTabChange }) => {
   const tabsRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
 
-  const updateSlider = useCallback(() => {
+  useLayoutEffect(() => {
     const container = tabsRef.current;
     const slider = sliderRef.current;
     if (!container || !slider) return;
     const activeBtn = container.querySelector(`[data-tab="${activeTab}"]`) as HTMLElement | null;
     if (!activeBtn) return;
-    const { offsetLeft, offsetWidth } = activeBtn;
-    slider.style.setProperty('--left', `${offsetLeft}px`);
-    slider.style.setProperty('--width', `${offsetWidth}px`);
+    slider.style.setProperty('--left', `${activeBtn.offsetLeft}px`);
+    slider.style.setProperty('--width', `${activeBtn.offsetWidth}px`);
   }, [activeTab]);
-
-  useEffect(() => {
-    updateSlider();
-  }, [updateSlider]);
-
-  useEffect(() => {
-    const onResize = () => updateSlider();
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, [updateSlider]);
 
   return (
     <div className={styles.tabs} ref={tabsRef}>

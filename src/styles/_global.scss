@@ -24,6 +24,7 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
 }
 
 :root {
@@ -195,13 +196,11 @@ table {
   border-collapse: collapse;
   background: $color-surface;
   border-radius: $radius-xl;
+  overflow: hidden;
   margin-top: 15px;
 
   @include mobile {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
+    width: 100%;
   }
 }
 
@@ -378,6 +377,20 @@ a {
 
 .chance-empty {
   color: #4a4f5a;
+}
+
+.class-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: $color-surface-hover;
+  color: $color-text;
+  padding: 3px 8px;
+  border-radius: $radius-md;
+  font-size: $font-size-base;
+  border: 1px solid $color-border;
+  margin: 2px 4px 2px 0;
+  white-space: nowrap;
 }
 
 .type-badge {
@@ -653,9 +666,23 @@ a {
 // ─── Footer ───
 .app-footer {
   margin-top: auto;
-  padding: 12px 0;
-  border-top: 1px solid $color-border;
+  padding: 32px 0 12px;
   text-align: left;
+
+  &::before {
+    content: '';
+    display: block;
+    margin-bottom: 12px;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      $color-border 15%,
+      $color-primary 50%,
+      $color-border 85%,
+      transparent
+    );
+  }
 }
 
 .footer-content {

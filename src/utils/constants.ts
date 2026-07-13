@@ -10,4 +10,5 @@ export const TAB_NAMES = [
   { key: 'locations', icon: '\uD83D\uDDFA\uFE0F', label: '\u041B\u043E\u043A\u0430\u0446\u0438\u0438' },
   { key: 'skills', icon: '\uD83C\uDFCA', label: '\u0421\u043A\u0438\u043B\u043B\u044B' },
   { key: 'raidboss', icon: '\uD83D\uDC79', label: '\u0420\u0435\u0439\u0434-\u0431\u043E\u0441\u0441\u044B' },
+  { key: 'calculator', icon: '\uD83D\uDCC8', label: '\u041F\u0440\u043E\u043A\u0430\u0447\u043A\u0430' },
 ] as const;

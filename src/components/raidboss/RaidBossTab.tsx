@@ -39,9 +39,7 @@ export default function RaidBossTab() {
   const [raidSort, setRaidSort] = useState<SortingState>([{ id: 'level', desc: false }]);
 
   useEffect(() => {
-    const hash = window.location.hash;
-    const qsIndex = hash.indexOf('?');
-    const params = new URLSearchParams(qsIndex >= 0 ? hash.slice(qsIndex) : '');
+    const params = new URLSearchParams(window.location.search);
     const bossName = params.get('boss');
     if (bossName) {
       const decoded = decodeURIComponent(bossName);
@@ -86,7 +84,7 @@ export default function RaidBossTab() {
           <span className={styles.bossName}>
             {expanded.has(row.original.name + row.original.level) ? '▼ ' : '▶ '}{getValue()}
           </span>
-          <CopyLink getUrl={() => window.location.origin + import.meta.env.BASE_URL + '#raidboss?boss=' + encodeURIComponent(row.original.name)} />
+          <CopyLink getUrl={() => window.location.origin + import.meta.env.BASE_URL + 'raidboss?boss=' + encodeURIComponent(row.original.name)} />
         </div>
       ),
     }),

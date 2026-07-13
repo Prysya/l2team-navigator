@@ -52,6 +52,7 @@ Use conventional commits: `type: description` (lowercase, no caps).
 | `#locations` | LocationsTab | `src/components/locations/LocationsTab.tsx` |
 | `#skills` | SkillsTab | `src/components/skills/SkillsTab.tsx` |
 | `#raidboss` | RaidBossTab | `src/components/raidboss/RaidBossTab.tsx` |
+| `#calculator` | CalculatorTab | `src/components/calculator/CalculatorTab.tsx` |
 
 - Valid tabs constant in `src/utils/constants.ts` (`TAB_NAMES`, `VALID_TABS`)
 - TabBar component renders all tabs; active tab determined by `window.location.hash`
@@ -162,7 +163,8 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - All native `<select>` replaced with `CustomSelect` (custom dropdown component)
 - Conditional classNames use `classnames` (`cx()`) everywhere
 - URL params for copy-links live in the hash fragment (`#tab?key=val`), read via `window.location.hash`
-- `getTabFromHash()` splits on `?` to extract tab name from hash with params
+- Path-based routing via `react-router-dom` (`BrowserRouter` with `basename`)
+- Navigation uses `useNavigate`, `useLocation`, `useSearchParams`
 - `fullHash` state + `key={fullHash}` on tab wrappers forces re-mount on any hash change
 
 ## Known Constraints

@@ -109,9 +109,9 @@
 }
 
 .skillsCount {
+  flex-basis: 100%;
   color: $color-text-muted;
-  font-size: $font-size-md;
-  margin-bottom: $spacing-lg;
+  font-size: $font-size-base;
   b {
     color: $color-primary;
   }
