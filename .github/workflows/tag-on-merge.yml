@@ -1,0 +1,48 @@
+name: Tag on Merge
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Get version and bump if unchanged
+        id: version
+        run: |
+          CURRENT=$(jq -r '.version' package.json)
+          PREVIOUS=$(git show HEAD~1:package.json 2>/dev/null | jq -r '.version' 2>/dev/null || echo "")
+
+          if [ "$CURRENT" = "$PREVIOUS" ] || [ -z "$PREVIOUS" ]; then
+            echo "Version unchanged ($CURRENT). Bumping patch..."
+            npm version patch --no-git-tag-version
+            NEW=$(jq -r '.version' package.json)
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add package.json package-lock.json
+            git commit -m "chore: bump to $NEW [skip ci]"
+            git push
+            echo "version=$NEW" >> "$GITHUB_OUTPUT"
+          else
+            echo "Version changed: $PREVIOUS -> $CURRENT"
+            echo "version=$CURRENT" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create tag
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          git tag "v$VERSION"
+          git push origin "v$VERSION"
