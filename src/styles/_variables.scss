@@ -1,41 +1,50 @@
+// ────────────────────────────────────
+// Design Variables (CSS Custom Properties)
+// All color/gradient/shadow/font values are CSS custom properties
+// for runtime theming. Defaults set in :root in _global.scss.
+// ────────────────────────────────────
+
 // Colors
-$color-bg: #05070d;
-$color-surface: #121a2b;
-$color-surface-alt: #0f1626;
-$color-surface-hover: #1a2338;
-$color-border: #24304a;
-$color-primary: #38bdf8;
-$color-primary-dark: #0ea5e9;
-$color-primary-glow: rgba(56, 189, 248, 0.35);
-$color-accent-purple: #a78bfa;
-$color-accent-green: #7ee787;
-$color-accent-orange: #ffa657;
-$color-text: #dbe4f0;
-$color-text-muted: #8291ab;
-$color-link: #6ab7ff;
-$color-danger: #ef4444;
-$color-danger-bg: #7f1d1d;
-$color-danger-text: #fecaca;
-$color-boss-bg: #2a1414;
-$color-agr: #ff3b3b;
+$color-bg: var(--color-bg);
+$color-surface: var(--color-surface);
+$color-surface-alt: var(--color-surface-alt);
+$color-surface-hover: var(--color-surface-hover);
+$color-border: var(--color-border);
+$color-primary: var(--color-primary);
+$color-primary-dark: var(--color-primary-dark);
+$color-primary-glow: var(--color-primary-glow);
+$color-accent-purple: var(--color-accent-purple);
+$color-accent-green: var(--color-accent-green);
+$color-accent-orange: var(--color-accent-orange);
+$color-text: var(--color-text);
+$color-text-muted: var(--color-text-muted);
+$color-link: var(--color-link);
+$color-danger: var(--color-danger);
+$color-danger-bg: var(--color-danger-bg);
+$color-danger-text: var(--color-danger-text);
+$color-boss-bg: var(--color-boss-bg);
+$color-agr: var(--color-agr);
 
 // Gradients
-$gradient-primary: linear-gradient(135deg, #38bdf8, #0ea5e9);
-$gradient-bg-1: radial-gradient(ellipse 900px 500px at 15% -10%, rgba(56, 189, 248, 0.16), transparent 60%);
-$gradient-bg-2: radial-gradient(ellipse 700px 400px at 100% 0%, rgba(56, 189, 248, 0.10), transparent 60%);
+$gradient-primary: var(--gradient-primary);
+$gradient-bg-1: var(--gradient-bg-1);
+$gradient-bg-2: var(--gradient-bg-2);
+$gradient-bg-3: var(--gradient-bg-3);
 
-// Typography
+// Typography (family stays static)
 $font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 $font-mono: 'Consolas', 'Courier New', monospace;
-$font-size-xs: 10px;
-$font-size-sm: 11px;
-$font-size-base: 12px;
-$font-size-md: 13px;
-$font-size-lg: 14px;
-$font-size-xl: 18px;
-$font-size-h1: 1.4rem;
 
-// Spacing
+// Typography (sizes are themeable)
+$font-size-xs: var(--font-size-xs);
+$font-size-sm: var(--font-size-sm);
+$font-size-base: var(--font-size-base);
+$font-size-md: var(--font-size-md);
+$font-size-lg: var(--font-size-lg);
+$font-size-xl: var(--font-size-xl);
+$font-size-h1: var(--font-size-h1);
+
+// Spacing (static, not themeable)
 $spacing-xs: 4px;
 $spacing-sm: 8px;
 $spacing-md: 10px;
@@ -43,19 +52,19 @@ $spacing-lg: 12px;
 $spacing-xl: 15px;
 $spacing-2xl: 20px;
 
-// Border radius
+// Border radius (static)
 $radius-sm: 3px;
 $radius-md: 4px;
 $radius-lg: 6px;
 $radius-xl: 8px;
 
-// Shadows
-$shadow-primary: 0 0 14px rgba(56, 189, 248, 0.45);
-$shadow-primary-sm: 0 0 10px rgba(56, 189, 248, 0.4);
-$shadow-text: 0 0 14px rgba(56, 189, 248, 0.35);
-$shadow-box: 0 2px 12px -4px rgba(56, 189, 248, 0.5);
+// Shadows (themeable, they use colors)
+$shadow-primary: var(--shadow-primary);
+$shadow-primary-sm: var(--shadow-primary-sm);
+$shadow-text: var(--shadow-text);
+$shadow-box: var(--shadow-box);
 
-// Breakpoints
+// Breakpoints (static)
 $bp-tablet: 1024px;
 $bp-mobile: 768px;
 $bp-small: 480px;

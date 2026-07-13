@@ -7,63 +7,19 @@ import CopyLink from '../../components/shared/CopyLink';
 import CustomSelect from '../../components/shared/CustomSelect';
 import FloatingLabel from '../../components/shared/FloatingLabel';
 import styles from './SpellbookTab.module.scss';
-import { useLanguageStore, type Lang } from '../../stores/languageStore';
 import { useSpellbookStore } from '../../stores/spellbookStore';
-import cx from 'classnames';
 
 const SPELLBOOKS = SPELLBOOKS_DATA as Spellbook[];
 
-const RACE_LABELS_RU: Record<string, string> = {
-  Human: 'Человек', Elf: 'Светлый Эльф', 'Dark Elf': 'Тёмный Эльф', Orc: 'Орк', Dwarf: 'Гном',
-};
-
-const RACE_LABELS_EN: Record<string, string> = {
+const RACE_LABELS: Record<string, string> = {
   Human: 'Human', Elf: 'Elf', 'Dark Elf': 'Dark Elf', Orc: 'Orc', Dwarf: 'Dwarf',
 };
 
-const RU_CLASS_NAMES: Record<string, string> = {
-  'Abyss Walker': 'Странник Бездны',
-  Bishop: 'Епископ',
-  Bladedancer: 'Танцор Смерти',
-  'Bounty Hunter': 'Охотник за Наградой',
-  'Dark Avenger': 'Мститель',
-  Destroyer: 'Разрушитель',
-  'Elemental Summoner': 'Последователь Стихий',
-  'Elven Elder': 'Мудрец Евы',
-  Gladiator: 'Гладиатор',
-  Necromancer: 'Некромант',
-  Overlord: 'Верховный Шаман',
-  Paladin: 'Паладин',
-  'Phantom Ranger': 'Призрачный Рейнджер',
-  'Phantom Summoner': 'Последователь Тьмы',
-  Prophet: 'Проповедник',
-  'Shillien Elder': 'Мудрец Шилен',
-  'Shillien Knight': 'Рыцарь Шилен',
-  Sorcerer: 'Волшебник',
-  Spellhowler: 'Заклинатель Ветра',
-  Spellsinger: 'Певец Заклинаний',
-  Swordsinger: 'Менестрель',
-  'Temple Knight': 'Рыцарь Евы',
-  Terramancer: 'Террамант',
-  Tyrant: 'Тиран',
-  Warcryer: 'Вестник Войны',
-  Warlock: 'Колдун',
-  Warlord: 'Копейщик',
-  Warsmith: 'Кузнец',
-};
-
-function getRaceLabel(race: string, lang: Lang): string {
-  const map = lang === 'en' ? RACE_LABELS_EN : RACE_LABELS_RU;
-  return map[race] ?? race;
-}
-
-function getClassName(cls: string, lang: Lang): string {
-  return lang === 'ru' ? (RU_CLASS_NAMES[cls] ?? cls) : cls;
+function getRaceLabel(race: string): string {
+  return RACE_LABELS[race] ?? race;
 }
 
 export default function SpellbookTab() {
-  const lang = useLanguageStore(s => s.lang);
-  const setLang = useLanguageStore(s => s.setLang);
   const selectedRace = useSpellbookStore(s => s.selectedRace);
   const selectedClass = useSpellbookStore(s => s.selectedClass);
   const searchQuery = useSpellbookStore(s => s.searchQuery);
@@ -124,7 +80,7 @@ export default function SpellbookTab() {
 
         const classTags = sb.classes.map((c) => (
           <span className="class-tag" key={`${c.race}-${c.class_name}`}>
-            {getRaceLabel(c.race, lang)} — {getClassName(c.class_name, lang)}
+            {getRaceLabel(c.race)} — {c.class_name}
           </span>
         ));
 
@@ -166,34 +122,18 @@ export default function SpellbookTab() {
           );
         });
       }),
-    [filtered, lang, selectedRace]
+    [filtered, selectedRace]
   );
 
   return (
     <div>
       <div className={styles.controls}>
-        <div className={styles.langBar}>
-          <span className={styles.langLabel}>Язык рас и профессий:</span>
-          <button
-            className={cx(styles.langOpt, lang === 'en' && styles.langOptActive)}
-            onClick={() => setLang('en')}
-          >
-            EN
-          </button>
-          <button
-            className={cx(styles.langOpt, lang === 'ru' && styles.langOptActive)}
-            onClick={() => setLang('ru')}
-          >
-            RU
-          </button>
-        </div>
-
         <div className={styles.field}>
           <CustomSelect
             label="Раса"
             value={selectedRace}
             onChange={(v) => { setSelectedRace(v); setSelectedClass(''); }}
-            options={RACES.map((r) => ({ value: r, label: getRaceLabel(r, lang) }))}
+            options={RACES.map((r) => ({ value: r, label: getRaceLabel(r) }))}
           />
         </div>
 
@@ -202,19 +142,22 @@ export default function SpellbookTab() {
             label="Профессия"
             value={selectedClass}
             onChange={(v) => setSelectedClass(v)}
-            options={classesForRace.map((c) => ({ value: c, label: getClassName(c, lang) }))}
+            options={classesForRace.map((c) => ({ value: c, label: c }))}
             disabled={!selectedRace}
           />
         </div>
 
-        <FloatingLabel label="Поиск" value={searchQuery}>
-          <input
-            className={styles.input}
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </FloatingLabel>
+        <div className={styles.searchWrap}>
+          <FloatingLabel className={styles.searchField} label="Поиск" value={searchQuery}>
+            <input
+              className={styles.input}
+              type="text"
+              name="spellbook-search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </FloatingLabel>
+        </div>
 
         <div
           className={styles.count}

@@ -22,6 +22,47 @@ html {
 
 :root {
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  // ─── Current (default) theme ───
+  --color-bg: #05070d;
+  --color-surface: #121a2b;
+  --color-surface-alt: #0f1626;
+  --color-surface-hover: #1a2338;
+  --color-border: #24304a;
+  --color-primary: #38bdf8;
+  --color-primary-dark: #0ea5e9;
+  --color-primary-glow: rgba(56, 189, 248, 0.35);
+  --color-primary-alpha-10: rgba(56, 189, 248, 0.1);
+  --color-accent-purple: #a78bfa;
+  --color-accent-green: #7ee787;
+  --color-accent-orange: #ffa657;
+  --color-text: #dbe4f0;
+  --color-text-muted: #8291ab;
+  --color-link: #6ab7ff;
+  --color-danger: #ef4444;
+  --color-danger-bg: #7f1d1d;
+  --color-danger-text: #fecaca;
+  --color-danger-alpha-60: rgba(239, 68, 68, 0.6);
+  --color-boss-bg: #2a1414;
+  --color-agr: #ff3b3b;
+
+  --gradient-primary: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  --gradient-bg-1: radial-gradient(ellipse 900px 500px at 15% -10%, rgba(56, 189, 248, 0.18), transparent 60%);
+  --gradient-bg-2: radial-gradient(ellipse 700px 400px at 100% 0%, rgba(56, 189, 248, 0.12), transparent 60%);
+  --gradient-bg-3: radial-gradient(ellipse 800px 400px at 50% 110%, rgba(56, 189, 248, 0.06), transparent 60%);
+
+  --shadow-primary: 0 0 14px rgba(56, 189, 248, 0.45);
+  --shadow-primary-sm: 0 0 10px rgba(56, 189, 248, 0.4);
+  --shadow-text: 0 0 14px rgba(56, 189, 248, 0.35);
+  --shadow-box: 0 2px 12px -4px rgba(56, 189, 248, 0.5);
+
+  --font-size-xs: 10px;
+  --font-size-sm: 11px;
+  --font-size-base: 12px;
+  --font-size-md: 13px;
+  --font-size-lg: 14px;
+  --font-size-xl: 18px;
+  --font-size-h1: 1.4rem;
 }
 
 body {
@@ -30,9 +71,27 @@ body {
   padding: 20px;
   color: $color-text;
   background-color: $color-bg;
-  background-image: $gradient-bg-1, $gradient-bg-2;
-  background-repeat: no-repeat;
+  background-image:
+    $gradient-bg-3,
+    $gradient-bg-1,
+    $gradient-bg-2,
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.008) 2px,
+      rgba(255, 255, 255, 0.008) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.008) 2px,
+      rgba(255, 255, 255, 0.008) 4px
+    );
+  background-repeat: no-repeat, no-repeat, no-repeat, repeat, repeat;
   background-attachment: fixed;
+  background-size: auto, auto, auto, 4px 4px, 4px 4px;
   min-height: 100vh;
 
   @include mobile {
@@ -68,11 +127,6 @@ body {
     display: block;
     height: 44px;
     width: auto;
-    transition: opacity 0.2s;
-
-    &:hover {
-      opacity: 0.8;
-    }
 
     @include mobile {
       height: 34px;
@@ -86,45 +140,6 @@ body {
   gap: 8px;
   margin-left: auto;
   flex-shrink: 0;
-}
-
-.header-title {
-  flex-shrink: 0;
-
-  h1 {
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .header-logo {
-    display: block;
-    height: 44px;
-    width: auto;
-    transition: opacity 0.2s;
-
-    &:hover {
-      opacity: 0.8;
-    }
-
-    @include mobile {
-      height: 34px;
-    }
-  }
-}
-
-.header-links {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-left: auto;
-  flex-shrink: 0;
-
-  @include mobile {
-    justify-content: center;
-    margin-left: 0;
-  }
 }
 
 .social-link {
@@ -243,26 +258,8 @@ tr:hover td {
   background: #2a2e38;
 }
 
-select, input {
-  padding: 8px 12px;
-  background: #0b0f1a;
-  color: $color-text;
-  border: 1px solid $color-border;
-  border-radius: $radius-md;
-  font-size: $font-size-lg;
-
-  &:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
-
-  @include mobile {
-    width: 100%;
-    min-width: unset;
-    font-size: $font-size-md;
-    padding: 6px 8px;
-  }
-}
+// All native inputs are replaced by FloatingLabel + .input class in modules.
+// Native selects are replaced by CustomSelect component.
 
 a {
   color: $color-link;
@@ -286,18 +283,6 @@ a {
 
   @include mobile {
     font-size: 12px;
-  }
-}
-
-.social-links {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-
-  @include mobile {
-    flex-direction: column;
-    gap: 6px;
   }
 }
 
@@ -427,200 +412,4 @@ a {
   font-weight: bold;
 }
 
-.group-badge {
-  display: inline-block;
-  padding: 2px 8px;
-  border-radius: $radius-md;
-  font-size: $font-size-sm;
-  margin-left: 8px;
-  vertical-align: middle;
-}
 
-.group-1 {
-  background: #1e3a8a;
-  color: #bfdbfe;
-}
-
-.group-2 {
-  background: #14532d;
-  color: #bbf7d0;
-}
-
-.group-3 {
-  background: #2a3550;
-  color: #cbd5e1;
-}
-
-.comment-cell {
-  font-size: $font-size-base;
-  line-height: 1.4;
-  color: $color-text;
-  min-width: 200px;
-
-  .rec-item {
-    background: $color-surface-alt;
-    padding: 4px 8px;
-    border-radius: $radius-md;
-    margin: 3px 0;
-    border-left: 3px solid $color-link;
-  }
-
-  .rec-item.spoil {
-    border-left-color: $color-accent-orange;
-  }
-
-  .rec-item.drop-only {
-    border-left-color: $color-accent-green;
-  }
-
-  .rec-item.boss {
-    border-left-color: $color-danger;
-    background: $color-boss-bg;
-  }
-
-  .method {
-    font-weight: bold;
-    color: $color-primary;
-    font-size: $font-size-sm;
-  }
-
-  .party-size {
-    color: $color-text-muted;
-    font-size: $font-size-sm;
-  }
-
-  .party-size.boss-warning {
-    color: #fca5a5;
-    font-weight: bold;
-  }
-}
-
-.item-name {
-  color: $color-link;
-  font-weight: 600;
-
-  &.spellbook {
-    color: $color-accent-purple;
-  }
-}
-
-.item-monster {
-  font-size: $font-size-base;
-  color: $color-text;
-
-  .boss-tag {
-    display: inline-block;
-    background: $color-danger-bg;
-    color: $color-danger-text;
-    padding: 1px 5px;
-    border-radius: $radius-sm;
-    font-size: $font-size-xs;
-    margin-left: 4px;
-    font-weight: bold;
-  }
-}
-
-.empty {
-  text-align: center;
-  padding: 40px;
-  color: $color-text-muted;
-  font-style: italic;
-}
-
-.race-tag {
-  display: inline-block;
-  background: $color-border;
-  color: $color-text;
-  padding: 2px 6px;
-  border-radius: $radius-sm;
-  font-size: $font-size-xs;
-  margin-left: 4px;
-}
-
-.book-classes {
-  margin-top: 12px;
-  padding: 12px 15px;
-  background: $color-surface-alt;
-  border-radius: $radius-lg;
-  border-left: 3px solid $color-accent-purple;
-
-  .label {
-    color: $color-accent-purple;
-    font-weight: 600;
-    font-size: $font-size-md;
-    display: block;
-    margin-bottom: 8px;
-  }
-
-  .classes-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-
-    @include mobile {
-      gap: 4px;
-    }
-  }
-
-  .class-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    background: $color-surface-hover;
-    color: $color-text;
-    padding: 4px 10px;
-    border-radius: $radius-md;
-    font-size: $font-size-base;
-    border: 1px solid $color-border;
-
-    .race-icon {
-      font-size: $font-size-sm;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
-    @include mobile {
-      font-size: $font-size-xs;
-      padding: 2px 6px;
-    }
-  }
-}
-
-.spellbooks-summary {
-  color: $color-text-muted;
-  font-size: $font-size-md;
-  margin-bottom: 10px;
-  padding: 8px 12px;
-  background: $color-surface;
-  border-radius: $radius-lg;
-
-  b {
-    color: $color-accent-purple;
-  }
-}
-
-.city-separator td {
-  background: $color-surface-hover;
-  color: $color-primary;
-  font-weight: 700;
-  font-size: $font-size-lg;
-  padding: 8px 12px;
-  border-top: 2px solid $color-primary;
-}
-
-@media screen and (max-width: 480px) {
-  .full-text { display: none; }
-  .short-text { display: inline; }
-}
-
-@media screen and (min-width: 481px) {
-  .short-text { display: none; }
-  .full-text { display: inline; }
-}
