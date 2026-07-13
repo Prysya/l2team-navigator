@@ -132,14 +132,17 @@ export default function RaidBossTab() {
   return (
     <div>
       <div className={styles.controls}>
-        <FloatingLabel label="Поиск по имени или локации" value={searchQuery}>
-          <input
-            className={styles.input}
-            type="text"
-            value={searchQuery}
-            onChange={e => setSearchQuery(e.target.value)}
-          />
-        </FloatingLabel>
+        <div className={styles.searchWrap}>
+          <FloatingLabel label="Поиск по имени или локации" value={searchQuery}>
+            <input
+              className={styles.input}
+              type="text"
+              name="raidboss-search"
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+            />
+          </FloatingLabel>
+        </div>
         <div className={styles.count}>
           Эпиков: <b>{epics.length}</b> &middot; РБ: <b>{raids.length}</b>
         </div>

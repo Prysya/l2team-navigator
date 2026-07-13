@@ -51,10 +51,15 @@
   @include mobile { font-size: $font-size-md; padding: 6px 8px; }
 }
 
+.searchWrap {
+  flex: 1;
+  min-width: 200px;
+}
+
 .count {
+  flex-basis: 100%;
   font-size: $font-size-base;
   color: $color-text-muted;
-  white-space: nowrap;
   b { color: $color-primary; }
 }
 
