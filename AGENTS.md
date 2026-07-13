@@ -137,6 +137,18 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - `RESOURCES.json` — resource data
 - `cities.ts`, `classes.ts`, `groupNames.ts`, `races.ts` — TS constants
 
+## Quest Data (`scripts/parse-quests.mjs`)
+
+Парсер извлекает данные квестов с mw2.wiki:
+- HTTP/2, `Accept-Language: en`, случайная задержка 1.5-3с
+- 4 параллельных запроса (Semaphore)
+- Извлекает: полные шаги, NPC ID, имя NPC, координаты на карте
+- Результат: `src/data/QUEST_DATA.json`
+- Используется в `QuestsTab.tsx` как fallback для `QUEST_STEPS`, `QUEST_DETAILS`, `NPC_COORDS`
+
+**Запуск:** `node scripts/parse-quests.mjs`
+**Добавить квест:** дополнить словари `QUESTS.quest` или `QUESTS.posts` в скрипте
+
 ## Scripts (`scripts/`)
 - `fetch-skills.mjs` — fetches skill data from lu4db API
 - `fetch-raidbosses.mjs` — intended for raid boss data (blocked: lu4db is SPA, requires JS rendering)
