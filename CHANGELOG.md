@@ -1,90 +1,88 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+Все значимые изменения проекта фиксируются в этом файле.
 
 ## [1.1.2] - 2026-07-13
 
-### Added
-- CSS custom properties for all colors, gradients, shadows, font sizes
-- `DESIGN_SYSTEM.md` with design tokens documentation
-- `_tokens.scss` with component-level variables
-- Enhanced background with third gradient layer + micro grid texture
-- burger menu on mobile (slide-in from left, 60% width)
-- JS-delegated tooltips for location type badges
-- Styled tooltips via `data-tooltip` attribute
-- `.monster-name` class for larger monster name font
+### Добавлено
+- CSS custom properties для всех цветов, градиентов, теней и размеров шрифтов
+- `DESIGN_SYSTEM.md` с документацией дизайн-токенов
+- `_tokens.scss` с компонентными переменными
+- Улучшенный фон: третий слой градиента + микро-сетка
+- Бургер-меню на мобилке (выезжает слева, 60% ширины)
+- JS-тултипы для бейджей типов локаций
+- Стилизованные подсказки через `data-tooltip`
+- Класс `.monster-name` для увеличенного шрифта имени монстра
 
-### Changed
-- Header logo replaces text title
-- TabBar → Chakra `Tabs` (reverted)
-- Tab icons with text below on mobile
-- All tables migrated to TanStack Table (RaidBoss, Spellbook, Recipe)
-- Floating label with border matching input
-- Social links moved into burger menu on mobile
-- Item names in drop table use `$color-link` (blue)
-- Recipe name is clickable link instead of Wiki button
-- Material section uses `$color-primary` instead of orange
+### Изменено
+- Логотип в шапке вместо текста
+- Иконки табов с подписями на мобилке
+- Все таблицы переведены на TanStack Table (RaidBoss, Spellbook, Recipe)
+- Floating label с обводкой под бордер инпута
+- Соцсети перенесены в бургер-меню на мобилке
+- Названия предметов в drop-таблице — синий `$color-link`
+- Название рецепта — кликабельная ссылка вместо кнопки Wiki
+- Секция материала — `$color-primary` вместо оранжевого
 
-### Fixed
-- Search input 100% width in RecipeTab
-- Missing `name` attribute on inputs (HTML validation error)
-- Select arrow centered vertically with rotation animation
-- Input height matching select height (38px)
-- Header links staying right on mobile
-- Duplicate SCSS classes cleaned up
-- HTML entity double-escaping in monster names
-- Table overflow clipping tooltips
-- Scroll lock when burger menu open
+### Исправлено
+- Инпут поиска в рецептах на 100% ширины
+- Отсутствующий `name` на инпутах (ошибка HTML-валидации)
+- Стрелка селекта по центру с анимацией вращения
+- Высота инпутов приведена к высоте селектов (38px)
+- Соц-иконки справа на мобилке
+- Дублирующиеся SCSS классы удалены
+- Двойное экранирование HTML-сущностей в именах монстров
+- Тултипы обрезались из-за `overflow: hidden` у таблицы
+- Блокировка скролла при открытом бургере
 
-### Removed
-- EN/RU language toggle (English only)
+### Удалено
+- Переключатель EN/RU (оставлен только английский)
 - `languageStore` (zustand)
-- SVG logo file
-- Theme switcher widget
-- AGR badge from header
-- Unused SCSS classes from all modules
-- `_tokens.scss` (was unused)
-- Row hover highlighting on tables
+- SVG-логотип
+- Виджет смены темы
+- Бейдж AGR из шапки
+- Неиспользуемые SCSS классы
+- `_tokens.scss` (не использовался)
+- Подсветка строк таблицы при наведении
 
 ## [1.1.1] - 2026-07-13
 
-### Added
-- Auto-tag workflow on merge to main (`tag-on-merge.yml`)
-- Auto patch version bump if unchanged in PR
+### Добавлено
+- Workflow авто-тэгирования при merge в main (`tag-on-merge.yml`)
+- Авто-бамп patch-версии, если версия не менялась в PR
 
-### Fixed
-- RaidBoss search input full width
-- Move epic/RB count below search input
+### Исправлено
+- Инпут поиска в RaidBossTab на всю ширину
+- Счётчик эпиков/рейд-боссов под инпутом
 
 ## [1.1.0] - 2026-07-13
 
-### Added
-- Header logo (`logo-l2team.png`) instead of text
-- Tab icons with text below on mobile
-- `FloatingLabel` with `className` prop
-- `_tokens.scss` with component design tokens
+### Добавлено
+- Логотип в шапке (`logo-l2team.png`) вместо текста
+- Иконки табов с подписями под ними на мобилке
+- Проп `className` у `FloatingLabel`
 
-### Changed
-- TabBar responsive design (icons + text)
+### Изменено
+- Адаптивный дизайн TabBar (иконка + текст)
 
-### Fixed
-- Search input full width in RecipeTab
-- Missing `name` attribute on inputs
-- Select arrow centered + rotation animation
-- Input height matching selects (38px)
-- Header links position on mobile
+### Исправлено
+- Инпут поиска в RecipeTab на всю ширину
+- Добавлен `name` на инпуты
+- Стрелка селекта по центру + анимация
+- Высота инпутов = высоте селектов (38px)
+- Положение соц-ссылок в шапке на мобилке
 
 ## [1.0.0] - 2026-07-13
 
-### Added
-- Initial release
-- RaidBossTab with 139 bosses, images, world map
-- SkillsTab with 2145 skills, EN/RU toggle
-- SpellbookTab with book/mob data
-- RecipeTab with group filters and monster tables
-- LocationsTab with city/location filters
-- Custom SCSS modules, dark gaming theme
-- TabBar with hash-based navigation
-- CopyLink for sharing URLs
-- CustomSelect + FloatingLabel components
-- All data in local JSON files
+### Добавлено
+- Первый релиз
+- RaidBossTab: 139 боссов, изображения, карта мира
+- SkillsTab: 2145 скиллов, переключатель EN/RU
+- SpellbookTab: данные книг и мобов
+- RecipeTab: фильтры по группам, таблицы мобов
+- LocationsTab: фильтры по городам/локациям
+- Кастомные SCSS модули, тёмная игровая тема
+- TabBar с навигацией через hash
+- CopyLink для копирования ссылок
+- Компоненты CustomSelect + FloatingLabel
+- Все данные в локальных JSON-файлах
