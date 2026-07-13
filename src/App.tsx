@@ -23,6 +23,7 @@ function getTabFromHash(): ActiveTab {
 function App() {
   const [activeTab, setActiveTab] = useState<ActiveTab>(getTabFromHash);
   const [fullHash, setFullHash] = useState(window.location.hash);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const id = '__inter-fonts';
@@ -47,6 +48,7 @@ function App() {
       window.history.replaceState({}, '', url.toString());
     }
     setActiveTab(key as ActiveTab);
+    setMenuOpen(false);
   }, []);
 
   useEffect(() => {
@@ -57,6 +59,11 @@ function App() {
     window.addEventListener('hashchange', onHashChange);
     return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
 
   return (
     <div className="container">
@@ -74,6 +81,14 @@ function App() {
         </div>
 
         <div className="header-links">
+          <button
+            className="burger-btn"
+            onClick={() => setMenuOpen(prev => !prev)}
+            aria-label="Меню"
+          >
+            <span className={`burger-line${menuOpen ? ' open' : ''}`} />
+          </button>
+
           <a
             href="https://www.youtube.com/@ActualStormAGR"
             target="_blank"
@@ -112,7 +127,77 @@ function App() {
         </div>
       </header>
 
-      <TabBar tabs={TAB_NAMES} activeTab={activeTab} onTabChange={handleTabChange} />
+      <div className="tab-bar-desktop">
+        <TabBar tabs={TAB_NAMES} activeTab={activeTab} onTabChange={handleTabChange} />
+      </div>
+
+      {menuOpen && (
+        <div className="burger-overlay" onClick={() => setMenuOpen(false)}>
+          <div className="burger-menu" onClick={e => e.stopPropagation()}>
+            <div className="burger-header">
+              <span className="burger-title">Меню</span>
+              <button className="burger-close" onClick={() => setMenuOpen(false)}>✕</button>
+            </div>
+
+            <div className="burger-body">
+              {TAB_NAMES.map(tab => (
+                <button
+                  key={tab.key}
+                  className={`burger-item${activeTab === tab.key ? ' active' : ''}`}
+                  onClick={() => handleTabChange(tab.key)}
+                >
+                  <span className="burger-item-icon">{tab.icon}</span>
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
+            <div className="burger-divider" />
+
+            <div className="burger-socials">
+              <a
+                href="https://www.youtube.com/@ActualStormAGR"
+                target="_blank"
+                rel="noopener"
+                className="burger-social-link social-youtube"
+                title="YouTube"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                  <path d="M23.498 6.186a2.997 2.997 0 0 0-2.112-2.12C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.386.521a2.997 2.997 0 0 0-2.112 2.12A31.26 31.26 0 0 0 0 12a31.26 31.26 0 0 0 .502 5.814 2.997 2.997 0 0 0 2.112 2.12c1.881.521 9.386.521 9.386.521s7.505 0 9.386-.521a2.997 2.997 0 0 0 2.112-2.12A31.26 31.26 0 0 0 24 12a31.26 31.26 0 0 0-.502-5.814zM9.75 15.568V8.432L15.818 12z" />
+                </svg>
+                YouTube
+              </a>
+              <a
+                href="https://t.me/L2teamAGR"
+                target="_blank"
+                rel="noopener"
+                className="burger-social-link social-telegram"
+                title="Telegram"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                  <path d="M23.91 3.79 20.3 20.84c-.25 1.21-.98 1.5-2 .94l-5.5-4.06-2.66 2.57c-.3.3-.55.55-1.1.55l.4-5.56 10.11-9.13c.44-.39-.1-.61-.68-.22L7.72 13.62l-5.5-1.72c-1.2-.38-1.21-1.2.25-1.77l21.5-8.28c1-.38 1.87.24 1.54 1.94z" />
+                </svg>
+                Telegram
+              </a>
+              <a
+                href="https://mw5.community/topic/218849-l2teamagr-pereezzhaet-na-lu4-%E2%80%94-nabor-kp-mini-grupp-i-soloigrokov/"
+                target="_blank"
+                rel="noopener"
+                className="burger-social-link social-forum"
+                title="Forum"
+              >
+                <img
+                  src={`${import.meta.env.BASE_URL}mw2-favicon.ico`}
+                  alt="Forum"
+                  width="20" height="20"
+                  style={{ flexShrink: 0 }}
+                />
+                Forum
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
 
       {activeTab === 'recipes' && (
         <div id="tab-recipes" key={fullHash}>
@@ -139,6 +224,19 @@ function App() {
           <RaidBossTab />
         </div>
       )}
+
+      <footer className="app-footer">
+        <div className="footer-content">
+          <p className="footer-text">
+            Неофициальная wiki база знаний игры lu4, с дропом, боссами и калькулятором, созданная для игроков клана{' '}
+            <a href="https://t.me/L2teamAGR" target="_blank" rel="noopener" className="footer-link">L2team</a>.
+          </p>
+          <p className="footer-text">
+            Сайт является некоммерческим и неофициальным фанатским ресурсом,
+            не связан с авторами игры и создан исключительно в ознакомительных целях.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }

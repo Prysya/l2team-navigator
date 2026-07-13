@@ -3,11 +3,12 @@ import type { Monster, CommentData, ChanceInfo, MonsterRowCells } from '../types
 export function escapeHtml(str: string | null | undefined): string {
   if (str === null || str === undefined) return '';
   return String(str)
+    .replace(/&#39;/g, '\u2019')
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
+    .replace(/'/g, '\u2019');
 }
 
 export function formatChance(value: number | null | undefined): ChanceInfo {
@@ -96,8 +97,8 @@ export function generateComment(monster: Monster): CommentData[] {
 
 export function renderMonsterRow(m: Monster): MonsterRowCells {
   const monsterLink = m.monster_url
-    ? `<a href="${escapeHtml(m.monster_url)}" target="_blank" rel="noopener">${escapeHtml(m.monster_name)}</a>`
-    : escapeHtml(m.monster_name);
+    ? `<a class="monster-name" href="${escapeHtml(m.monster_url)}" target="_blank" rel="noopener">${escapeHtml(m.monster_name)}</a>`
+    : `<span class="monster-name">${escapeHtml(m.monster_name)}</span>`;
 
   const badges: string[] = [];
   if (m.monster_lvl) badges.push(`<span class="stat-badge stat-lvl">Lvl ${m.monster_lvl}</span>`);
@@ -111,10 +112,11 @@ export function renderMonsterRow(m: Monster): MonsterRowCells {
       .map((loc) => {
         const mainName = loc.main_location_name || loc.location_name;
         const subName = loc.main_location_name ? loc.location_name : '';
-        const types = Array.isArray(loc.location_type)
-          ? loc.location_type.join(', ')
-          : loc.location_type || '';
-        const typeStr = types ? `<span class="type">[${escapeHtml(types)}]</span>` : '';
+        const typesArr = Array.isArray(loc.location_type) ? loc.location_type : (loc.location_type ? [loc.location_type] : []);
+        const typeMap: Record<string, string> = { S: 'Одиночный (solo)', SG: 'Минигруппа (small group)', G: 'Полная группа (group)' };
+        const typeStr = typesArr.length > 0
+          ? `<span class="type">[${typesArr.map(t => `<span data-tooltip="${typeMap[t] ?? t}" title="${typeMap[t] ?? t}">${escapeHtml(t)}</span>`).join(', ')}]</span>`
+          : '';
         return `<div class="location-tag"><span class="main-loc">${escapeHtml(mainName)}</span>${
           subName ? `<span class="sub-loc">\u2192 ${escapeHtml(subName)}</span>` : ''
         }${typeStr}</div>`;

@@ -1,5 +1,13 @@
 import cx from 'classnames';
 import { useMemo, Fragment, useCallback, useRef, useEffect, useState } from 'react';
+import {
+  useReactTable,
+  getCoreRowModel,
+  getSortedRowModel,
+  flexRender,
+  createColumnHelper,
+  type SortingState,
+} from '@tanstack/react-table';
 import RAIDBOSSES from '../../data/RAIDBOSSES.json';
 import styles from './RaidBossTab.module.scss';
 import { useRaidBossStore, type RaidBoss } from '../../stores/raidBossStore';
@@ -15,19 +23,20 @@ function formatNum(s: string | null): string {
 
 const isEpic = (b: RaidBoss) => b.respawn && b.respawn.includes('Фиксированное');
 
+const columnHelper = createColumnHelper<RaidBoss>();
+
 export default function RaidBossTab() {
   const searchQuery = useRaidBossStore(s => s.searchQuery);
   const expanded = useRaidBossStore(s => s.expanded);
-  const epicSortAsc = useRaidBossStore(s => s.epicSortAsc);
-  const raidSortAsc = useRaidBossStore(s => s.raidSortAsc);
   const mapBoss = useRaidBossStore(s => s.mapBoss);
   const previewBoss = useRaidBossStore(s => s.previewBoss);
   const setSearchQuery = useRaidBossStore(s => s.setSearchQuery);
   const toggleRow = useRaidBossStore(s => s.toggleRow);
-  const toggleEpicSort = useRaidBossStore(s => s.toggleEpicSort);
-  const toggleRaidSort = useRaidBossStore(s => s.toggleRaidSort);
   const setMapBoss = useRaidBossStore(s => s.setMapBoss);
   const setPreviewBoss = useRaidBossStore(s => s.setPreviewBoss);
+
+  const [epicSort, setEpicSort] = useState<SortingState>([{ id: 'level', desc: false }]);
+  const [raidSort, setRaidSort] = useState<SortingState>([{ id: 'level', desc: false }]);
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -59,75 +68,130 @@ export default function RaidBossTab() {
       );
     }
     return {
-      epics: [...list.filter(isEpic)].sort((a, b) =>
-        epicSortAsc
-          ? a.level - b.level || a.name.localeCompare(b.name)
-          : b.level - a.level || a.name.localeCompare(b.name)
-      ),
-      raids: [...list.filter(b => !isEpic(b))].sort((a, b) =>
-        raidSortAsc
-          ? a.level - b.level || a.name.localeCompare(b.name)
-          : b.level - a.level || a.name.localeCompare(b.name)
-      ),
+      epics: list.filter(isEpic),
+      raids: list.filter(b => !isEpic(b)),
     };
-  }, [searchQuery, epicSortAsc, raidSortAsc]);
+  }, [searchQuery]);
 
-  const renderTable = (items: RaidBoss[], title: string, icon: string, sortAsc: boolean, onToggleSort: () => void) => (
-    <Fragment>
-      <div className={styles.sectionTitle}>{icon} {title} ({items.length})</div>
-      <div className={styles.tableWrap}>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th className={styles.colName}>Босс</th>
-              <th className={styles.colLvl}>
-                <span className={styles.sortable} onClick={onToggleSort}>
-                  Ур. {sortAsc ? '▲' : '▼'}
-                </span>
-              </th>
-              <th className={styles.colResp}>Респ</th>
-              <th className={styles.colLoc}>Локация</th>
-            </tr>
-          </thead>
-          <tbody>
-            {items.map((boss) => {
-              const id = boss.name + boss.level;
-              const isOpen = expanded.has(id);
-              return (
-                <Fragment key={id}>
-                  <tr id={'boss-' + id}>
-                    <td
-                      className={styles.clickableCell}
-                      onClick={() => toggleRow(id)}
-                    >
-                      <span className={styles.bossName}>
-                        {isOpen ? '▼ ' : '▶ '}{boss.name}
-                      </span>
-                      <CopyLink getUrl={() => window.location.origin + import.meta.env.BASE_URL + '#raidboss?boss=' + encodeURIComponent(boss.name)} />
-                    </td>
-                    <td className={styles.colLvl}><span className={styles.lvlBadge}>{boss.level}</span></td>
-                    <td className={styles.colResp}>
-                      <span className={cx(styles.respawnBadge, isEpic(boss) && styles.respawnFixed)}>
-                        {boss.respawn}
-                      </span>
-                    </td>
-                    <td className={styles.colLoc}>{boss.location}</td>
+  const toggleExpand = useCallback((id: string) => {
+    toggleRow(id);
+  }, [toggleRow]);
+
+  const columns = useMemo(() => [
+    columnHelper.accessor('name', {
+      header: 'Босс',
+      enableSorting: false,
+      cell: ({ row, getValue }) => (
+        <div className={styles.clickableCell} onClick={() => toggleExpand(row.original.name + row.original.level)}>
+          <span className={styles.bossName}>
+            {expanded.has(row.original.name + row.original.level) ? '▼ ' : '▶ '}{getValue()}
+          </span>
+          <CopyLink getUrl={() => window.location.origin + import.meta.env.BASE_URL + '#raidboss?boss=' + encodeURIComponent(row.original.name)} />
+        </div>
+      ),
+    }),
+    columnHelper.accessor('level', {
+      header: 'Ур.',
+      cell: ({ getValue }) => (
+        <span className={styles.lvlBadge}>{getValue()}</span>
+      ),
+    }),
+    columnHelper.accessor('respawn', {
+      header: 'Респ',
+      enableSorting: false,
+      cell: ({ row, getValue }) => (
+        <span className={cx(styles.respawnBadge, isEpic(row.original) && styles.respawnFixed)}>
+          {getValue()}
+        </span>
+      ),
+    }),
+    columnHelper.accessor('location', {
+      header: 'Локация',
+      enableSorting: false,
+      cell: ({ getValue }) => getValue(),
+    }),
+  ], [expanded, toggleExpand]);
+
+  function BossTable({ data, title, icon }: { data: RaidBoss[]; title: string; icon: string }) {
+    const sortState = title.includes('Эпик') ? epicSort : raidSort;
+    const setSortState = title.includes('Эпик') ? setEpicSort : setRaidSort;
+
+    const table = useReactTable({
+      data,
+      columns,
+      state: { sorting: sortState },
+      onSortingChange: setSortState,
+      getCoreRowModel: getCoreRowModel(),
+      getSortedRowModel: getSortedRowModel(),
+      getRowCanExpand: () => true,
+    });
+
+    return (
+      <Fragment>
+        <div className={styles.sectionTitle}>{icon} {title} ({data.length})</div>
+        <div className={styles.tableWrap}>
+          <table className={styles.table}>
+            <thead>
+              {table.getHeaderGroups().map(headerGroup => (
+                <tr key={headerGroup.id}>
+                  {headerGroup.headers.map(header => {
+                    const widthClass =
+                      header.id === 'name' ? styles.colName :
+                      header.id === 'level' ? styles.colLvl :
+                      header.id === 'respawn' ? styles.colResp :
+                      header.id === 'location' ? styles.colLoc : '';
+                    return (
+                      <th
+                        key={header.id}
+                        colSpan={header.colSpan}
+                        className={widthClass}
+                        onClick={header.column.getToggleSortingHandler()}
+                        style={{ cursor: header.column.getCanSort() ? 'pointer' : 'default' }}
+                      >
+                        {flexRender(header.column.columnDef.header, header.getContext())}
+                        {header.column.getCanSort() && (
+                          <span className={styles.sortable}>
+                            {{
+                              asc: ' ▲',
+                              desc: ' ▼',
+                            }[header.column.getIsSorted() as string] ?? ' ⇅'}
+                          </span>
+                        )}
+                      </th>
+                    );
+                  })}
+                </tr>
+              ))}
+            </thead>
+            <tbody>
+              {table.getRowModel().rows.map(row => (
+                <Fragment key={row.id}>
+                  <tr id={'boss-' + row.original.name + row.original.level}>
+                    {row.getVisibleCells().map(cell => (
+                      <td key={cell.id}>
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      </td>
+                    ))}
                   </tr>
-                  {isOpen && (
+                  {expanded.has(row.original.name + row.original.level) && (
                     <tr className={styles.detailRow}>
-                      <td colSpan={4} className={styles.detailCell}>
-                        <BossDetail boss={boss} onShowMap={boss.coords ? () => setMapBoss(boss) : undefined} onShowImage={boss.image ? () => setPreviewBoss(boss) : undefined} />
+                      <td colSpan={columns.length} className={styles.detailCell}>
+                        <BossDetail
+                          boss={row.original}
+                          onShowMap={row.original.coords ? () => setMapBoss(row.original) : undefined}
+                          onShowImage={row.original.image ? () => setPreviewBoss(row.original) : undefined}
+                        />
                       </td>
                     </tr>
                   )}
                 </Fragment>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    </Fragment>
-  );
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Fragment>
+    );
+  }
 
   return (
     <div>
@@ -150,11 +214,11 @@ export default function RaidBossTab() {
 
       {epics.length + raids.length > 0 ? (
         searchQuery.trim() ? (
-          renderTable([...epics, ...raids], 'Результаты поиска', '🔍', epicSortAsc, toggleEpicSort)
+          <BossTable data={[...epics, ...raids]} title="Результаты поиска" icon="🔍" />
         ) : (
           <Fragment>
-            {epics.length > 0 && renderTable(epics, 'Эпик боссы', '🔥', epicSortAsc, toggleEpicSort)}
-            {raids.length > 0 && renderTable(raids, 'Рейд-боссы', '👹', raidSortAsc, toggleRaidSort)}
+            {epics.length > 0 && <BossTable data={epics} title="Эпик боссы" icon="🔥" />}
+            {raids.length > 0 && <BossTable data={raids} title="Рейд-боссы" icon="👹" />}
           </Fragment>
         )
       ) : (
@@ -185,16 +249,7 @@ export default function RaidBossTab() {
 function BossDetail({ boss, onShowMap, onShowImage }: { boss: RaidBoss; onShowMap?: () => void; onShowImage?: () => void }) {
   const hasStats = boss.stats?.hp || false;
 
-  const flatDrops = useMemo(() => {
-    if (!boss.drops) return [];
-    return boss.drops.flatMap(g =>
-      g.items.map(item => ({
-        ...item,
-        groupChance: g.groupChance,
-        effectiveChance: g.groupChance * item.chance / 100,
-      }))
-    );
-  }, [boss.drops]);
+  const dropGroups = boss.drops ?? [];
 
   return (
     <div className={styles.detailPanel}>
@@ -240,7 +295,7 @@ function BossDetail({ boss, onShowMap, onShowImage }: { boss: RaidBoss; onShowMa
         </div>
       </div>
 
-      {flatDrops.length > 0 && (
+      {dropGroups.length > 0 && (
         <>
           <div className={styles.subTitle}>🎁 Дроп</div>
           <div className={styles.dropTableWrap}>
@@ -251,23 +306,19 @@ function BossDetail({ boss, onShowMap, onShowImage }: { boss: RaidBoss; onShowMa
                   <th className={styles.dColGrade}>Грейд</th>
                   <th className={styles.dColAmount}>Кол-во</th>
                   <th className={styles.dColChance}>Шанс</th>
-                  <th className={styles.dColGroup}>Шанс внутри группы</th>
                 </tr>
               </thead>
               <tbody>
-                {flatDrops.map((item, i) => {
-                  const isNewGroup = i === 0 || flatDrops[i - 1].groupChance !== item.groupChance;
-                  return (
-                    <Fragment key={i}>
-                      {isNewGroup && (
-                        <tr className={styles.dropGroupHeader}>
-                          <td colSpan={5}>
-                            <span className={styles.groupLabel}>Шанс дропа группы:</span>
-                            <span className={styles.groupChance}>{item.groupChance}%</span>
-                          </td>
-                        </tr>
-                      )}
-                      <tr>
+                {dropGroups.map((group, gi) => (
+                  <Fragment key={gi}>
+                    <tr className={styles.dropGroupHeader}>
+                      <td colSpan={4}>
+                        <span className={styles.groupLabel}>Шанс дропа группы:</span>
+                        <span className={styles.groupChance}>{group.groupChance}%</span>
+                      </td>
+                    </tr>
+                    {group.items.map((item, ii) => (
+                      <tr key={`${gi}-${ii}`}>
                         <td className={styles.dColItem}>
                           <a
                             className={styles.itemLink}
@@ -279,28 +330,23 @@ function BossDetail({ boss, onShowMap, onShowImage }: { boss: RaidBoss; onShowMa
                           </a>
                         </td>
                         <td className={styles.dColGrade}>
-                          {item.grade !== 'NG' ? (
-                            <span className={styles.itemGrade}>{item.grade}</span>
-                          ) : '—'}
+                          {item.grade !== 'NG' ? <span className={styles.itemGrade}>{item.grade}</span> : '—'}
                         </td>
                         <td className={styles.dColAmount}>{item.amount}</td>
                         <td className={styles.dColChance}>
                           <span className={styles.dropChanceVal}>{item.chance}%</span>
                         </td>
-                        <td className={styles.dColGroup}>
-                          <span className={styles.groupBadge}>{item.groupChance}%</span>
-                        </td>
                       </tr>
-                    </Fragment>
-                  );
-                })}
+                    ))}
+                  </Fragment>
+                ))}
               </tbody>
             </table>
           </div>
         </>
       )}
 
-      {!hasStats && flatDrops.length === 0 && (
+      {!hasStats && dropGroups.length === 0 && (
         <div className={styles.noData}>Нет данных</div>
       )}
     </div>
@@ -317,7 +363,6 @@ function BossMap({ boss, onClose }: { boss: RaidBoss; onClose: () => void }) {
 
   const coords = boss.coords!;
 
-  // Center on boss on mount
   useEffect(() => {
     const vw = window.innerWidth * 0.9;
     const vh = window.innerHeight * 0.9;

@@ -82,7 +82,6 @@
   border-radius: $radius-xl;
   padding: $spacing-2xl;
   margin-bottom: $spacing-2xl;
-  border-left: 4px solid $color-primary;
 
   @include mobile {
     padding: $spacing-lg;
@@ -117,6 +116,16 @@
   font-size: $font-size-sm;
   font-weight: 600;
   white-space: nowrap;
+}
+
+.recipeLink {
+  color: $color-primary;
+  text-decoration: none;
+
+  &:hover {
+    color: #7dd3fc;
+    text-decoration: underline;
+  }
 }
 
 .wikiLink {
@@ -166,7 +175,12 @@
 
   td {
     color: $color-text;
-    vertical-align: top;
+    vertical-align: middle;
+  }
+
+  th:nth-child(n+2),
+  td:nth-child(n+2) {
+    text-align: center;
   }
 
   @include mobile {
@@ -189,9 +203,10 @@
   border-top: 1px solid $color-border;
 
   h4 {
-    color: $color-accent-orange;
+    color: $color-primary;
     margin: 0 0 $spacing-lg;
     font-size: $font-size-lg;
+    font-weight: 600;
   }
 
   @include mobile {
@@ -201,7 +216,7 @@
 }
 
 .materialLink {
-  color: $color-accent-orange;
+  color: $color-link;
   text-decoration: none;
 
   &:hover {

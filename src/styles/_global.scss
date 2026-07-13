@@ -8,13 +8,19 @@
 .container {
   max-width: 1700px;
   margin: 0 auto;
-  padding: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 
   @include mobile {
     max-width: 100%;
     overflow-x: hidden;
+    padding: 10px;
   }
 }
+
+
 
 html {
   -webkit-text-size-adjust: 100%;
@@ -68,9 +74,10 @@ html {
 body {
   font-family: var(--font-family);
   margin: 0;
-  padding: 20px;
+  padding: 0;
   color: $color-text;
   background-color: $color-bg;
+  min-height: auto;
   background-image:
     $gradient-bg-3,
     $gradient-bg-1,
@@ -92,11 +99,6 @@ body {
   background-repeat: no-repeat, no-repeat, no-repeat, repeat, repeat;
   background-attachment: fixed;
   background-size: auto, auto, auto, 4px 4px, 4px 4px;
-  min-height: 100vh;
-
-  @include mobile {
-    padding: 10px;
-  }
 }
 
 .app-header {
@@ -193,7 +195,6 @@ table {
   border-collapse: collapse;
   background: $color-surface;
   border-radius: $radius-xl;
-  overflow: hidden;
   margin-top: 15px;
 
   @include mobile {
@@ -254,20 +255,12 @@ td {
   }
 }
 
-tr:hover td {
-  background: #2a2e38;
-}
-
 // All native inputs are replaced by FloatingLabel + .input class in modules.
 // Native selects are replaced by CustomSelect component.
 
 a {
   color: $color-link;
   text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
 }
 
 // Common shared styles
@@ -334,6 +327,11 @@ a {
   }
 }
 
+.monster-name {
+  font-size: $font-size-lg;
+  font-weight: 600;
+}
+
 .location-tag {
   display: block;
   background: $color-border;
@@ -342,6 +340,7 @@ a {
   margin: 2px 0;
   font-size: $font-size-base;
   line-height: 1.3;
+  text-align: left;
 
   .main-loc {
     color: $color-primary;
@@ -366,7 +365,7 @@ a {
 .chance {
   font-family: $font-mono;
   font-weight: bold;
-  font-size: $font-size-base;
+  font-size: $font-size-lg;
 }
 
 .chance-drop {
@@ -379,6 +378,39 @@ a {
 
 .chance-empty {
   color: #4a4f5a;
+}
+
+.type-badge {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+  margin-left: 4px;
+  color: $color-primary;
+  font-weight: 600;
+
+  &:before {
+    content: attr(data-tooltip);
+    visibility: hidden;
+    position: absolute;
+    bottom: 150%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a2338;
+    color: #dbe4f0;
+    font-size: 11px;
+    font-weight: 400;
+    white-space: nowrap;
+    padding: 5px 10px;
+    border-radius: 6px;
+    border: 1px solid #24304a;
+    pointer-events: none;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  &:hover:before {
+    visibility: visible;
+  }
 }
 
 .stat-badge {
@@ -410,6 +442,237 @@ a {
   background: $color-danger-bg;
   color: $color-danger-text;
   font-weight: bold;
+}
+
+// ─── Burger Menu ───
+.burger-btn {
+  display: none;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  cursor: pointer;
+  padding: 0;
+  color: $color-text;
+  flex-shrink: 0;
+  order: -1;
+  position: relative;
+
+  @include mobile {
+    display: inline-flex;
+  }
+}
+
+.burger-line {
+  display: block;
+  width: 16px;
+  height: 2px;
+  background: $color-text;
+  border-radius: 1px;
+  position: absolute;
+  transition: background 0.2s;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    width: 16px;
+    height: 2px;
+    background: $color-text;
+    border-radius: 1px;
+    position: absolute;
+    transition: transform 0.2s;
+  }
+
+  &::before { transform: translateY(-5px); }
+  &::after  { transform: translateY(5px); }
+
+  &.open {
+    background: transparent;
+    &::before { transform: rotate(45deg); }
+    &::after  { transform: rotate(-45deg); }
+  }
+}
+
+.tab-bar-desktop {
+  @include mobile {
+    display: none;
+  }
+}
+
+.burger-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+
+  @include mobile {
+    display: block;
+  }
+}
+
+.burger-menu {
+  width: 60%;
+  max-width: 320px;
+  height: 100%;
+  background: $color-surface;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.burger-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid $color-border;
+}
+
+.burger-title {
+  font-size: $font-size-lg;
+  font-weight: 700;
+  color: $color-text;
+}
+
+.burger-close {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  color: $color-text-muted;
+  cursor: pointer;
+  font-size: 16px;
+  transition: color 0.15s;
+
+  &:hover {
+    color: $color-text;
+  }
+}
+
+.burger-body {
+  flex: 1;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.burger-divider {
+  height: 1px;
+  background: $color-border;
+  margin: 8px 0;
+}
+
+.burger-item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: 14px 12px;
+  background: transparent;
+  border: none;
+  border-radius: $radius-lg;
+  color: $color-text-muted;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: color 0.15s, background 0.15s;
+
+  &:hover {
+    color: $color-text;
+    background: $color-surface-hover;
+  }
+
+  &.active {
+    color: $color-primary;
+  }
+}
+
+.burger-item-icon {
+  font-size: 1.3rem;
+  width: 26px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.burger-socials {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.burger-social-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 12px;
+  border-radius: $radius-lg;
+  color: $color-text-muted;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.15s, background 0.15s;
+
+  &.social-youtube:hover {
+    color: #ff6666;
+    background: rgba(255, 0, 0, 0.08);
+  }
+
+  &.social-telegram:hover {
+    color: #6fc8f0;
+    background: rgba(34, 158, 217, 0.08);
+  }
+
+  &.social-forum:hover {
+    color: #ff6666;
+    background: rgba(255, 0, 0, 0.08);
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+// Hide social links in header on mobile
+.header-links .social-link {
+  @include mobile {
+    display: none;
+  }
+}
+
+// ─── Footer ───
+.app-footer {
+  margin-top: auto;
+  padding: 12px 0;
+  border-top: 1px solid $color-border;
+  text-align: left;
+}
+
+.footer-content {
+  max-width: 800px;
+}
+
+.footer-text {
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+  line-height: 1.5;
+  margin: 0 0 4px;
+}
+
+.footer-link {
+  color: $color-primary;
+  text-decoration: none;
+  font-weight: 600;
 }
 
 

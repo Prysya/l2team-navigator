@@ -149,6 +149,12 @@
   margin-bottom: 4px;
 }
 
+.sortIndicator {
+  user-select: none;
+  color: $color-primary;
+  margin-left: 2px;
+}
+
 .emptyState {
   text-align: center;
   padding: 60px 20px;
