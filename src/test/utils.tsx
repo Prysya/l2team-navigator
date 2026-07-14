@@ -8,10 +8,7 @@ interface RenderOptions {
   route?: string;
 }
 
-export function renderWithProviders(
-  ui: ReactElement,
-  { route = '/' }: RenderOptions = {},
-): RenderResult {
+export function renderWithProviders(ui: ReactElement, { route = '/' }: RenderOptions = {}): RenderResult {
   window.history.pushState({}, '', route);
   return render(<BrowserRouter>{ui}</BrowserRouter>);
 }

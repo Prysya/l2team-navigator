@@ -134,16 +134,8 @@ function LocationRow({
           )}
           <div className={`${styles.locParty} ${partyInfo.cls}`}>{partyInfo.text}</div>
           <div className={styles.locMetaRow}>
-            {loc.has_spoil && (
-              <span className="spoil-badge">
-                ✅ Есть спойл
-              </span>
-            )}{' '}
-            {loc.has_boss && (
-              <span className="boss-badge">
-                ⚠️ Босс
-              </span>
-            )}
+            {loc.has_spoil && <span className="spoil-badge">✅ Есть спойл</span>}{' '}
+            {loc.has_boss && <span className="boss-badge">⚠️ Босс</span>}
           </div>
           <div className={styles.locLevel}>Avg Lvl: {loc.avg_level}</div>
         </div>
@@ -354,8 +346,7 @@ export default function LocationsTab() {
                         <span className={styles.cityIcon}>🏰</span>
                         {city}
                         <span className={styles.cityMeta}>
-                          ({locCount} локаций, {itemCount}{' '}
-                          предметов)
+                          ({locCount} локаций, {itemCount} предметов)
                         </span>
                       </td>
                     </tr>

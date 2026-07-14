@@ -6,14 +6,22 @@ import MainPage from '../MainPage';
 
 describe('MainPage', () => {
   it('renders subtitle and 7 section cards', () => {
-    render(<BrowserRouter><MainPage /></BrowserRouter>);
+    render(
+      <BrowserRouter>
+        <MainPage />
+      </BrowserRouter>,
+    );
     expect(screen.getByText('Выберите раздел')).toBeTruthy();
     expect(screen.getByText('Рецепты')).toBeTruthy();
     expect(screen.getByText('Квесты')).toBeTruthy();
   });
 
   it('easter egg appears on iddqd input', () => {
-    render(<BrowserRouter><MainPage /></BrowserRouter>);
+    render(
+      <BrowserRouter>
+        <MainPage />
+      </BrowserRouter>,
+    );
     expect(screen.queryByText('Саша Ролекс Пес')).toBeNull();
     fireEvent.keyDown(window, { key: 'i' });
     fireEvent.keyDown(window, { key: 'd' });
@@ -24,7 +32,11 @@ describe('MainPage', () => {
   });
 
   it('closes easter egg on overlay click', () => {
-    render(<BrowserRouter><MainPage /></BrowserRouter>);
+    render(
+      <BrowserRouter>
+        <MainPage />
+      </BrowserRouter>,
+    );
     fireEvent.keyDown(window, { key: 'i' });
     fireEvent.keyDown(window, { key: 'd' });
     fireEvent.keyDown(window, { key: 'd' });

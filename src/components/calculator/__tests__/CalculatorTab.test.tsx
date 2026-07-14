@@ -6,13 +6,21 @@ import CalculatorTab from '../CalculatorTab';
 
 describe('CalculatorTab', () => {
   it('renders title', () => {
-    render(<BrowserRouter><CalculatorTab /></BrowserRouter>);
+    render(
+      <BrowserRouter>
+        <CalculatorTab />
+      </BrowserRouter>,
+    );
     const titles = screen.getAllByText('Калькулятор опыта');
     expect(titles.length).toBeGreaterThanOrEqual(1);
   });
 
   it('renders floating nav', () => {
-    render(<BrowserRouter><CalculatorTab /></BrowserRouter>);
+    render(
+      <BrowserRouter>
+        <CalculatorTab />
+      </BrowserRouter>,
+    );
     expect(screen.getByText('Пенальти')).toBeTruthy();
     expect(screen.getByText('Советы')).toBeTruthy();
   });

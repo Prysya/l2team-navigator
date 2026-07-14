@@ -60,15 +60,13 @@ export function generateComment(monster: Monster): CommentData[] {
     let partySizeClass = '';
 
     if (bossFlag) {
-      partySize =
-        '⚠️ полная группа (босс)';
+      partySize = '⚠️ полная группа (босс)';
       partySizeClass = 'boss-warning';
       methodClass = 'boss';
     } else {
       const types = Array.from(data.types);
       if (types.includes('G')) {
-        partySize =
-          'нужна полная группа';
+        partySize = 'нужна полная группа';
       } else if (types.includes('SG')) {
         partySize = 'хватит минигруппы';
       } else if (types.includes('S')) {

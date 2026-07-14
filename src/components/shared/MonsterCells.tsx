@@ -51,11 +51,7 @@ export const MonsterLocationsCell: FC<{ locations: MonsterLocation[] }> = ({ loc
         return (
           <div key={i} className="location-tag">
             <span className="main-loc">{mainName}</span>
-            {subName && (
-              <span className="sub-loc">
-                → {subName}
-              </span>
-            )}
+            {subName && <span className="sub-loc">→ {subName}</span>}
             {typesArr.length > 0 && (
               <span className="type">
                 [
