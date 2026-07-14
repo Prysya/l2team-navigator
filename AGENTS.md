@@ -17,6 +17,7 @@
 - PR target: `main`
 - Version bumps go in the PR body, not as separate commits (auto-tag workflow handles tagging on merge)
 - **Update CHANGELOG.md** with each version — describe changes in Russian under Added/Changed/Fixed/Removed
+- **All new features must be covered by tests** — unit (Vitest) for pure functions and stores, component tests for UI, E2E (Playwright) for critical user flows
 
 ### Commit Messages
 Use conventional commits: `type: description` (lowercase, no caps).
@@ -29,6 +30,9 @@ Use conventional commits: `type: description` (lowercase, no caps).
 | `refactor:` | Code restructuring |
 | `docs:` | Documentation only |
 | `style:` | Styling, formatting (no logic change) |
+
+### Code Style
+- **No Unicode escapes** — пишем обычный русский текст (`'дроп'`), не `'\u0434\u0440\u043E\u043F'`
 
 ## Stack
 - Vite 5 + React 18 + TypeScript (strict, no `any`) + SCSS Modules + normalize.css
@@ -308,3 +312,11 @@ If adding an interactive map to RaidBossTab, use data from **L2J DataPack** (ope
 - Show all boss markers on one map view
 - L2J DataPack integration for coordinate conversion
 - Boss filter/search on the map
+
+## Skills
+
+| Skill | Description |
+|-------|-------------|
+| `vitest` | Vitest testing patterns — unit tests, component tests, store tests, project conventions |
+| `scss-modules` | SCSS Modules: переменные темы, нейминг, миксины, отзывчивый дизайн |
+| `react-router` | React Router v6: навигация, query params, CopyLink, lazy-loading |

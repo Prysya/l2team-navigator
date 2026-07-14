@@ -26,5 +26,8 @@ jobs:
       - name: Format check
         run: npm run format:check
 
+      - name: Test
+        run: npm test
+
       - name: Type check & Build
         run: npm run build

@@ -19,24 +19,24 @@ export const MonsterNameCell: FC<{ monster: Monster }> = ({ monster: m }) => {
         {m.monster_x && <span className="stat-badge stat-hp">HP {m.monster_x}</span>}{' '}
         {m.monster_respawn && (
           <span className="stat-badge stat-resp">
-            {'\u23F1'} Респ: {m.monster_respawn.replace(/seconds?/gi, '\u0441').replace(/minutes?/gi, '\u043C')}
+            ⏱ Респ: {m.monster_respawn.replace(/seconds?/gi, 'с').replace(/minutes?/gi, 'м')}
           </span>
         )}{' '}
-        {isBossMon(m) && <span className="stat-badge stat-boss">{'\uD83D\uDC80'} BOSS</span>}
+        {isBossMon(m) && <span className="stat-badge stat-boss">💀 BOSS</span>}
       </div>
     </div>
   );
 };
 
 const LOC_TYPE_MAP: Record<string, string> = {
-  S: '\u041E\u0434\u0438\u043D\u043E\u0447\u043D\u044B\u0439 (solo)',
-  SG: '\u041C\u0438\u043D\u0438\u0433\u0440\u0443\u043F\u043F\u0430 (small group)',
-  G: '\u041F\u043E\u043B\u043D\u0430\u044F \u0433\u0440\u0443\u043F\u043F\u0430 (group)',
+  S: 'Одиночный (solo)',
+  SG: 'Минигруппа (small group)',
+  G: 'Полная группа (group)',
 };
 
 export const MonsterLocationsCell: FC<{ locations: MonsterLocation[] }> = ({ locations }) => {
   if (!locations || locations.length === 0) {
-    return <span className="text-muted">{'\u2014'}</span>;
+    return <span className="text-muted">—</span>;
   }
   return (
     <>
@@ -51,11 +51,7 @@ export const MonsterLocationsCell: FC<{ locations: MonsterLocation[] }> = ({ loc
         return (
           <div key={i} className="location-tag">
             <span className="main-loc">{mainName}</span>
-            {subName && (
-              <span className="sub-loc">
-                {'\u2192'} {subName}
-              </span>
-            )}
+            {subName && <span className="sub-loc">→ {subName}</span>}
             {typesArr.length > 0 && (
               <span className="type">
                 [

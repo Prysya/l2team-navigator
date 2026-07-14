@@ -18,9 +18,9 @@ const LOCATIONS_ALL = LOCATIONS_ALL_DATA as LocationEntry[];
 type TypeFilter = 'all' | 'recipe' | 'spellbook';
 
 const TYPE_BUTTONS: { key: TypeFilter; label: string }[] = [
-  { key: 'all', label: '\u0412\u0441\u0435' },
-  { key: 'recipe', label: '\uD83D\uDCDC \u0420\u0435\u0446\u0435\u043F\u0442\u044B' },
-  { key: 'spellbook', label: '\uD83D\uDCDA \u041A\u043D\u0438\u0433\u0438' },
+  { key: 'all', label: 'Все' },
+  { key: 'recipe', label: '📜 Рецепты' },
+  { key: 'spellbook', label: '📚 Книги' },
 ];
 
 const TYPE_TOOLTIP: Record<string, string> = {
@@ -42,10 +42,10 @@ function LocationMonsterRow({ m }: { m: LocationMonster }) {
         m.monster_name
       )}{' '}
       {m.monster_lvl ? <span className="stat-badge stat-lvl">Lvl {m.monster_lvl}</span> : null}{' '}
-      {m.is_boss ? <span className="stat-badge stat-boss">{'\uD83D\uDC80'} BOSS</span> : null}
+      {m.is_boss ? <span className="stat-badge stat-boss">💀 BOSS</span> : null}
       <div className={styles.locChances}>
-        {'\u0434\u0440\u043E\u043F'}: <span className={'chance ' + drop.cls}>{drop.text}</span>
-        {' | \u0441\u043F\u043E\u0439\u043B'}: <span className={'chance ' + spoil.cls}>{spoil.text}</span>
+        дроп: <span className={'chance ' + drop.cls}>{drop.text}</span>
+        {' | спойл'}: <span className={'chance ' + spoil.cls}>{spoil.text}</span>
       </div>
     </div>
   );
@@ -59,7 +59,7 @@ function LocationItemRow({ item }: { item: LocationItem }) {
     <div className={styles.locItem}>
       <div className={styles.itemHeader}>
         <span className={`${styles.itemTypeBadge} ${isRecipe ? styles.itemTypeRecipe : styles.itemTypeSpellbook}`}>
-          {isRecipe ? '\u0420\u0435\u0446\u0435\u043F\u0442' : '\u041A\u043D\u0438\u0433\u0430'}
+          {isRecipe ? 'Рецепт' : 'Книга'}
         </span>
         {item.item_url ? (
           <a href={item.item_url} target="_blank" rel="noopener noreferrer" className={styles.itemName}>
@@ -73,7 +73,7 @@ function LocationItemRow({ item }: { item: LocationItem }) {
         <div className={styles.itemClasses}>
           {item.classes.map((c, i) => (
             <span key={i} className="class-tag">
-              {c.race} {'\u2014'} {c.class_name}
+              {c.race} — {c.class_name}
             </span>
           ))}
         </div>
@@ -84,8 +84,8 @@ function LocationItemRow({ item }: { item: LocationItem }) {
         ))}
       </div>
       <div className={styles.itemTotal}>
-        {'\u0434\u0440\u043E\u043F'}: <b>{totalDrop.toFixed(2)}%</b>
-        {' | \u0441\u043F\u043E\u0439\u043B'}: <b>{totalSpoil.toFixed(2)}%</b>
+        дроп: <b>{totalDrop.toFixed(2)}%</b>
+        {' | спойл'}: <b>{totalSpoil.toFixed(2)}%</b>
       </div>
     </div>
   );
@@ -134,16 +134,8 @@ function LocationRow({
           )}
           <div className={`${styles.locParty} ${partyInfo.cls}`}>{partyInfo.text}</div>
           <div className={styles.locMetaRow}>
-            {loc.has_spoil && (
-              <span className="spoil-badge">
-                {'\u2705'} {'\u0415\u0441\u0442\u044C \u0441\u043F\u043E\u0439\u043B'}
-              </span>
-            )}{' '}
-            {loc.has_boss && (
-              <span className="boss-badge">
-                {'\u26A0\uFE0F'} {'\u0411\u043E\u0441\u0441'}
-              </span>
-            )}
+            {loc.has_spoil && <span className="spoil-badge">✅ Есть спойл</span>}{' '}
+            {loc.has_boss && <span className="boss-badge">⚠️ Босс</span>}
           </div>
           <div className={styles.locLevel}>Avg Lvl: {loc.avg_level}</div>
         </div>
@@ -351,11 +343,10 @@ export default function LocationsTab() {
                   <Fragment key={city}>
                     <tr className={styles.citySeparator}>
                       <td colSpan={2}>
-                        <span className={styles.cityIcon}>{'\uD83C\uDFF0'}</span>
+                        <span className={styles.cityIcon}>🏰</span>
                         {city}
                         <span className={styles.cityMeta}>
-                          ({locCount} {'\u043B\u043E\u043A\u0430\u0446\u0438\u0439'}, {itemCount}{' '}
-                          {'\u043F\u0440\u0435\u0434\u043C\u0435\u0442\u043E\u0432'})
+                          ({locCount} локаций, {itemCount} предметов)
                         </span>
                       </td>
                     </tr>

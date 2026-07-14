@@ -27,7 +27,7 @@ type QuestDataEntry = {
   steps: string[];
 };
 
-function detectRewardTag(reward: string): RewardTag {
+export function detectRewardTag(reward: string): RewardTag {
   const r = reward.toLowerCase();
   const hasWeapon =
     /sword|staff|wand|blade|saber|hammer|club|dagger|knife|shield|spellbook|weapon|меч|молот|булава|dagger/i.test(r);
@@ -40,7 +40,7 @@ function detectRewardTag(reward: string): RewardTag {
   return 'other';
 }
 
-function enrichQuest(q: Quest): Quest & {
+export function enrichQuest(q: Quest): Quest & {
   npc: string;
   npcId: number;
   location: string;
