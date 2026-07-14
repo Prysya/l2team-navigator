@@ -84,5 +84,5 @@ export const QUEST_IDS: Record<string, number> = {
   '3 in 1 Overlord': 317,
   '3 in 1 Warcryer': 318,
   '3 in 1 Bounty Hunter': 319,
-  '3 in 1 Warsmith': 320
+  '3 in 1 Warsmith': 320,
 };

@@ -367,6 +367,6 @@ export const QUEST_STEPS: Record<string, string[]> = {
     '9. Return to Altran (Blacksmith).',
     '10. Teleport to Gludio → Ruins of Despair → Fellmere Harvesting Grounds.',
     '11. Return to Earth Snake Wise.',
-    '12. For prof change → Sisealine (High Priestess, Gludin Warehouse).'
+    '12. For prof change → Sisealine (High Priestess, Gludin Warehouse).',
   ],
 };
