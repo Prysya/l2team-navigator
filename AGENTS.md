@@ -252,6 +252,9 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - `npm run dev` — Vite dev server
 - `npm run build` — `tsc -b && vite build`
 - `npm run deploy` — `gh-pages -d dist` (pushes to `gh-pages` branch)
+- CI: PR-check на lint + format + build при каждом PR в main
+- Деплой на GitHub Pages автоматически при push в main
+- Auto-tag при merge в main (формирует vX.Y.Z тэг)
 
 ## Data Notes
 - `RAIDBOSSES.json` now has `image` and `coords` fields (added by `fetch-mw2-bosses.mjs`)

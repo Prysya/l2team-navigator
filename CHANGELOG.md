@@ -2,6 +2,17 @@
 
 Все значимые изменения проекта фиксируются в этом файле.
 
+## [1.6.1] - 2026-07-14
+
+### Добавлено
+- PR-check workflow: проверка lint, format, build при каждом PR в main
+- OpenCode skills в `.opencode/skills/` (32 files)
+
+### Исправлено
+- Конфликт зависимостей: `eslint-import-resolver-typescript` закреплён на v3
+- Деплой: `npm ci --legacy-peer-deps` для корректной установки в CI
+- Убран `[skip ci]` из auto-tag, чтобы деплой гарантированно запускался
+
 ## [1.6.0] - 2026-07-14
 
 ### Добавлено
