@@ -3,7 +3,7 @@ import FloatingLabel from '@shared/FloatingLabel';
 
 import styles from './CalculatorTab.module.scss';
 
-function clamp(val: number, min: number, max: number): number {
+export function clamp(val: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, val));
 }
 
@@ -142,7 +142,7 @@ const XP_DATA = [
 
 const fm = (n: number) => n.toLocaleString('ru');
 
-function computeTotal(level: number): number {
+export function computeTotal(level: number): number {
   return XP_DATA.filter((d) => d.level <= level).reduce((s, d) => s + d.expToLevel, 0);
 }
 

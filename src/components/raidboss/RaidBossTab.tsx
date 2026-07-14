@@ -21,12 +21,12 @@ import styles from './RaidBossTab.module.scss';
 
 const BOSSES = RAIDBOSSES as RaidBoss[];
 
-function formatNum(s: string | null): string {
+export function formatNum(s: string | null): string {
   if (!s) return '–';
   return Number(s).toLocaleString('ru');
 }
 
-const isEpic = (b: RaidBoss) => b.respawn && b.respawn.includes('Фиксированное');
+export const isEpic = (b: RaidBoss) => b.respawn && b.respawn.includes('Фиксированное');
 
 const columnHelper = createColumnHelper<RaidBoss>();
 

@@ -163,11 +163,11 @@ function highlightNumbers(text: string): React.ReactNode {
   });
 }
 
-function cleanStatText(text: string): string {
+export function cleanStatText(text: string): string {
   return text.replace(/\b0+(\d+)\b/g, '$1');
 }
 
-function compressLevels(levels: ClassSkill['levels']): { levels: string; changes: string[]; rowspan: number }[] {
+export function compressLevels(levels: ClassSkill['levels']): { levels: string; changes: string[]; rowspan: number }[] {
   if (!levels.length) return [];
   const groups: { levels: string; changes: string[]; rowspan: number }[] = [];
   let i = 0;
@@ -184,7 +184,7 @@ function compressLevels(levels: ClassSkill['levels']): { levels: string; changes
   return groups;
 }
 
-function getStatIcon(label: string): string {
+export function getStatIcon(label: string): string {
   if (label === 'MP') return '💧';
   if (label === 'КД') return '⏱';
   if (label === 'Длит.') return '⏳';
