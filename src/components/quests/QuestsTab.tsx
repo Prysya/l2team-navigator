@@ -91,7 +91,6 @@ const CATEGORIES: { key: QuestCategory; label: string }[] = [
 
 type ProfType = 'first' | 'second';
 
-
 const columnHelper = createColumnHelper<Quest>();
 
 export default function QuestsTab() {

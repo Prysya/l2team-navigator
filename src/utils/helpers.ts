@@ -82,7 +82,6 @@ export function generateComment(monster: Monster): CommentData[] {
   return comments;
 }
 
-
 export function getPartyText(types: string[], hasBoss: boolean): { text: string; cls: string } {
   if (hasBoss) {
     return {

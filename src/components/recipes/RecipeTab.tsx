@@ -14,7 +14,6 @@ import styles from './RecipeTab.module.scss';
 
 const RESOURCES = RESOURCES_DATA as Resource[];
 
-
 function recipeSelectLabel(recipe: Resource): string {
   return recipe.recipe_name;
 }

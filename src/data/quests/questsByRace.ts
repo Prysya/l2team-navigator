@@ -1,4 +1,4 @@
-import type { Quest } from "./types";
+import type { Quest } from './types';
 
 export const QUESTS_BY_RACE: Record<string, Quest[]> = {
   'Human Mage': [

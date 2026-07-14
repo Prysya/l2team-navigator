@@ -134,8 +134,16 @@ function LocationRow({
           )}
           <div className={`${styles.locParty} ${partyInfo.cls}`}>{partyInfo.text}</div>
           <div className={styles.locMetaRow}>
-            {loc.has_spoil && <span className="spoil-badge">{'\u2705'} {'\u0415\u0441\u0442\u044C \u0441\u043F\u043E\u0439\u043B'}</span>}{' '}
-            {loc.has_boss && <span className="boss-badge">{'\u26A0\uFE0F'} {'\u0411\u043E\u0441\u0441'}</span>}
+            {loc.has_spoil && (
+              <span className="spoil-badge">
+                {'\u2705'} {'\u0415\u0441\u0442\u044C \u0441\u043F\u043E\u0439\u043B'}
+              </span>
+            )}{' '}
+            {loc.has_boss && (
+              <span className="boss-badge">
+                {'\u26A0\uFE0F'} {'\u0411\u043E\u0441\u0441'}
+              </span>
+            )}
           </div>
           <div className={styles.locLevel}>Avg Lvl: {loc.avg_level}</div>
         </div>
@@ -346,7 +354,8 @@ export default function LocationsTab() {
                         <span className={styles.cityIcon}>{'\uD83C\uDFF0'}</span>
                         {city}
                         <span className={styles.cityMeta}>
-                          ({locCount} {'\u043B\u043E\u043A\u0430\u0446\u0438\u0439'}, {itemCount} {'\u043F\u0440\u0435\u0434\u043C\u0435\u0442\u043E\u0432'})
+                          ({locCount} {'\u043B\u043E\u043A\u0430\u0446\u0438\u0439'}, {itemCount}{' '}
+                          {'\u043F\u0440\u0435\u0434\u043C\u0435\u0442\u043E\u0432'})
                         </span>
                       </td>
                     </tr>

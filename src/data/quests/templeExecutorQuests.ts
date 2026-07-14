@@ -1,4 +1,4 @@
-import type { Quest } from "./types";
+import type { Quest } from './types';
 
 export const TEMPLE_EXECUTOR_QUESTS: Quest[] = [
   {

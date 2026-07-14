@@ -1,4 +1,4 @@
-import type { Quest } from "./types";
+import type { Quest } from './types';
 
 export const SHARED_QUESTS: Quest[] = [
   { lvl: 15, name: 'Offspring of Nightmares', desc: 'Хороший EXP', reward: '20000 Exp, 2000 SP, 15000 aden' },
@@ -18,5 +18,5 @@ export const SHARED_QUESTS: Quest[] = [
     name: 'Blood Fiend',
     desc: 'опыт и расходка.',
     reward: 'вся расходка согласно квеста 100000 Exp, 10000 Sp',
-  }
+  },
 ];
