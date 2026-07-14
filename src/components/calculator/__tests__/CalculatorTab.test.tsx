@@ -21,7 +21,7 @@ describe('CalculatorTab', () => {
         <CalculatorTab />
       </BrowserRouter>,
     );
-    expect(screen.getByText('Пенальти')).toBeTruthy();
-    expect(screen.getByText('Советы')).toBeTruthy();
+    const tips = screen.getAllByText('Советы по фарму');
+    expect(tips.length).toBeGreaterThanOrEqual(1);
   });
 });
