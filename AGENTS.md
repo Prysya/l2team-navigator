@@ -37,6 +37,37 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - Deployed to GitHub Pages at `/l2team-navigator/`
 - Sass: `sass-embedded` with `api: 'modern-compiler'` in vite.config.ts
 - `classnames` for conditional className composition
+- ESLint + Prettier for code quality (configs: `.eslintrc.json`, `.prettierrc`)
+- Import aliases: `@/`, `@shared/`, `@components/`, `@utils/`, `@data/`, `@styles/`
+
+## Code Quality
+
+### ESLint
+- `simple-import-sort` — сортировка импортов (react → external → `@/` → relative → `.scss`)
+- `unused-imports` — автоудаление неиспользуемых импортов
+- `consistent-type-imports` — `import type` для типов
+- `no-non-null-assertion` — запрет `!` (warn)
+- `react/jsx-curly-brace-presence` — убирает лишние `{}` в JSX
+
+Команды: `npm run lint`, `npm run lint:fix`
+
+### Prettier
+- 120 символов, single quotes, trailing commas
+- `.prettierrc` + `.prettierignore`
+- `eslint-config-prettier` для избежания конфликтов
+
+Команды: `npm run format`, `npm run format:check`
+
+### Zustand Stores
+Все табы используют Zustand для состояния:
+| Store | File |
+|-------|------|
+| `useRaidBossStore` | `src/stores/raidBossStore.ts` |
+| `useLocationsStore` | `src/stores/locationsStore.ts` |
+| `useSkillsStore` | `src/stores/skillsStore.ts` |
+| `useSpellbookStore` | `src/stores/spellbookStore.ts` |
+| `useRecipeStore` | `src/stores/recipeStore.ts` |
+| `useQuestStore` | `src/stores/questStore.ts` |
 
 ## Theme
 - Dark gaming-themed UI
@@ -97,7 +128,19 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - Skill stats rendered as separate bordered pills
 - Numbers in skill descriptions highlighted with `$color-accent-orange`
 - "Где выбить книгу" button in skill cards — navigates to spellbooks tab with `?sbRace=&sbQ=` URL params
+## SkillsTab
+- EN/RU language toggle (radio buttons) at top of controls bar
+- Race + class `CustomSelect` dropdowns; labels localize based on language
+- EN_CLASS_NAMES map (51 classes), RU_CLASS_NAMES map (28 entries), CLASS_RACE_MAP
+- Skill search (`FloatingLabel`) and level filter
+- `compressLevels` — groups consecutive levels with identical description into comma-separated ranges
+- `cleanStatText` — strips leading zeros, hides HP stats
+- Skill stats rendered as separate bordered pills
+- Numbers in skill descriptions highlighted with `$color-accent-orange`
+- "Где выбить книгу" button in skill cards — navigates to spellbooks tab with `?sbRace=&sbQ=` URL params
 - Imports data from `src/data/SKILLS.json` (2145 skills)
+- CopyLink per skill card: `#skills?race=&class=&skill=`
+- **Lazy-loaded** via `React.lazy(() => import(...))` — SKILLS.json (3.6 MB) не в основном бандле
 - CopyLink per skill card: `#skills?race=&class=&skill=`
 
 ### SpellbookTab

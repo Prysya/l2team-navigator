@@ -31,6 +31,5 @@ export const useLocationsStore = create<LocationsStore>((set) => ({
   setSelectedCity: (city) => set({ selectedCity: city }),
   setSelectedLocation: (loc) => set({ selectedLocation: loc }),
   setSearchQuery: (q) => set({ searchQuery: q }),
-  handleTypeChange: (key) =>
-    set({ typeFilter: key, selectedRace: '', selectedClass: '' }),
+  handleTypeChange: (key) => set({ typeFilter: key, selectedRace: '', selectedClass: '' }),
 }));

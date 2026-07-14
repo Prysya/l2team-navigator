@@ -1,4 +1,5 @@
-import { useState, useCallback } from 'react';
+import { useCallback, useState } from 'react';
+
 import styles from './CopyLink.module.scss';
 
 function isTelegramWebApp(): boolean {
@@ -15,8 +16,6 @@ interface CopyLinkProps {
 
 export default function CopyLink({ getUrl }: CopyLinkProps) {
   const [copied, setCopied] = useState(false);
-
-  if (isTelegramWebApp()) return null;
 
   const handleCopy = useCallback(async () => {
     try {
@@ -36,14 +35,39 @@ export default function CopyLink({ getUrl }: CopyLinkProps) {
     }
   }, [getUrl]);
 
+  if (isTelegramWebApp()) return null;
+
   return (
-    <span className={styles.copyBtn} onClick={e => { e.stopPropagation(); handleCopy(); }} title="Копировать ссылку">
+    <span
+      className={styles.copyBtn}
+      onClick={(e) => {
+        e.stopPropagation();
+        handleCopy();
+      }}
+      title="Копировать ссылку"
+    >
       {copied ? (
-        <svg className={styles.linkIcon} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg
+          className={styles.linkIcon}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#4ade80"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
           <polyline points="20 6 9 17 4 12" />
         </svg>
       ) : (
-        <svg className={styles.linkIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg
+          className={styles.linkIcon}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
           <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
           <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
         </svg>

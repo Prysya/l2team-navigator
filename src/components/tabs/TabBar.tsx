@@ -1,10 +1,12 @@
-import cx from 'classnames';
-import { useRef, useLayoutEffect } from 'react';
 import type { FC } from 'react';
+import { useLayoutEffect, useRef } from 'react';
+import TabIcon from '@shared/TabIcon';
+import cx from 'classnames';
+
 import styles from './TabBar.module.scss';
 
 interface TabBarProps {
-  tabs: readonly { key: string; icon: string; label: string }[];
+  tabs: readonly { key: string; label: string }[];
   activeTab: string;
   onTabChange: (key: string) => void;
 }
@@ -33,7 +35,7 @@ const TabBar: FC<TabBarProps> = ({ tabs, activeTab, onTabChange }) => {
           data-tab={tab.key}
           onClick={() => onTabChange(tab.key)}
         >
-          <span className={styles.icon}>{tab.icon}</span>
+          <TabIcon tab={tab.key} className={styles.icon} size={22} />
           <span className={styles.label}>{tab.label}</span>
         </button>
       ))}

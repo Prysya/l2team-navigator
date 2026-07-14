@@ -1,6 +1,8 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { TAB_NAMES } from '../../utils/constants';
+import TabIcon from '@shared/TabIcon';
+import { TAB_ACCENT, TAB_NAMES } from '@utils/constants';
+
 import styles from './MainPage.module.scss';
 
 const KONAMI = 'iddqd';
@@ -31,13 +33,21 @@ export default function MainPage() {
     <div className={styles.page}>
       <p className={styles.subtitle}>Выберите раздел</p>
       <div className={styles.grid}>
-        {visibleTabs.map(tab => (
+        {visibleTabs.map((tab, idx) => (
           <button
             key={tab.key}
             className={styles.card}
+            style={
+              {
+                '--card-accent': TAB_ACCENT[tab.key],
+                '--card-index': idx,
+              } as React.CSSProperties
+            }
             onClick={() => navigate('/' + tab.key)}
           >
-            <span className={styles.cardIcon}>{tab.icon}</span>
+            <span className={styles.cardIcon}>
+              <TabIcon tab={tab.key} size={40} />
+            </span>
             <span className={styles.cardLabel}>{tab.label}</span>
           </button>
         ))}
@@ -45,11 +55,13 @@ export default function MainPage() {
 
       {easter && (
         <div className={styles.overlay} onClick={() => setEaster(false)}>
-          <div className={styles.modal} onClick={e => e.stopPropagation()}>
+          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
             <div className={styles.modalContent}>
               <span className={styles.eggText}>Саша Ролекс Пес</span>
             </div>
-            <button className={styles.closeBtn} onClick={() => setEaster(false)}>✕</button>
+            <button className={styles.closeBtn} onClick={() => setEaster(false)}>
+              ✕
+            </button>
           </div>
         </div>
       )}

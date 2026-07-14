@@ -2,6 +2,32 @@
 
 Все значимые изменения проекта фиксируются в этом файле.
 
+## [1.6.0] - 2026-07-14
+
+### Добавлено
+- ESLint с правилами: simple-import-sort, unused-imports, consistent-type-imports, no-non-null-assertion
+- Prettier с конфигом (120 символов, single quotes, trailing commas)
+- Импорт-алиасы: `@/`, `@shared/`, `@components/`, `@utils/`, `@data/`, `@styles/`
+- Zustand-стор `questStore.ts` для QuestsTab
+- 404-роут (fallback на главную)
+- Скрипты `npm run lint`, `npm run lint:fix`, `npm run format`, `npm run format:check`
+
+### Изменено
+- Вынесены статические данные из QuestsTab в `src/data/quests/` (9 файлов, -1400 строк)
+- Все `dangerouslySetInnerHTML` заменены на React-компоненты (SpellbookTab, RecipeTab, LocationsTab)
+- LocationsTab переписан с HTML-строк на JSX-компоненты (LocationRow, LocationItemRow, LocationMonsterRow)
+- WorldMap переписан с инлайн-стилей на SCSS-модуль
+- Типы RaidBoss перенесены из стора в `types/index.ts`
+- MonsterTanStackTable вынесен из RecipeTab в отдельный файл `MonsterTable.tsx`
+- SkillsTab загружается лениво через React.lazy (бандл уменьшен на 40%)
+- Удалён дублирующийся `.social-link` в `_global.scss`
+- Инлайн-стили заменены на CSS-классы
+
+### Удалено
+- Мёртвый код: `src/hooks/` (3 файла), `MonsterTable.tsx` (старый), `src/pages/`, `groupNames.ts`
+- Функции `renderMonsterRow`, `escapeHtml` в `helpers.ts`
+- Интерфейс `MonsterRowCells`
+
 ## [1.5.1] - 2026-07-14
 
 ### Изменено

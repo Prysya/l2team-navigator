@@ -1,14 +1,17 @@
-import cx from 'classnames';
-import { useMemo, useState, useCallback, useRef } from 'react';
+import { Fragment, useCallback, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import type { LocationEntry, LocationItem, LocationMonster } from '../../types';
-import LOCATIONS_ALL_DATA from '../../data/LOCATIONS_ALL.json';
-import FloatingLabel from '../../components/shared/FloatingLabel';
-import CustomSelect from '../../components/shared/CustomSelect';
-import { RACES } from '../../data/races';
-import { escapeHtml, formatChance, getPartyText } from '../../utils/helpers';
+import LOCATIONS_ALL_DATA from '@data/LOCATIONS_ALL.json';
+import { RACES } from '@data/races';
+import CustomSelect from '@shared/CustomSelect';
+import EmptyState from '@shared/EmptyState';
+import FloatingLabel from '@shared/FloatingLabel';
+import { formatChance, getPartyText } from '@utils/helpers';
+import cx from 'classnames';
+
+import { useLocationsStore } from '@/stores/locationsStore';
+import type { LocationEntry, LocationItem, LocationMonster } from '@/types';
+
 import styles from './LocationsTab.module.scss';
-import { useLocationsStore } from '../../stores/locationsStore';
 
 const LOCATIONS_ALL = LOCATIONS_ALL_DATA as LocationEntry[];
 
@@ -20,82 +23,86 @@ const TYPE_BUTTONS: { key: TypeFilter; label: string }[] = [
   { key: 'spellbook', label: '\uD83D\uDCDA \u041A\u043D\u0438\u0433\u0438' },
 ];
 
-function renderLocationMonster(m: LocationMonster): string {
-  const name = m.monster_url
-    ? `<a href="${escapeHtml(m.monster_url)}" target="_blank" rel="noopener">${escapeHtml(m.monster_name)}</a>`
-    : escapeHtml(m.monster_name);
-  const levelBadge = m.monster_lvl
-    ? `<span class="stat-badge stat-lvl">Lvl ${m.monster_lvl}</span>`
-    : '';
-  const bossBadge = m.is_boss
-    ? `<span class="stat-badge stat-boss">\uD83D\uDC80 BOSS</span>`
-    : '';
+const TYPE_TOOLTIP: Record<string, string> = {
+  S: 'Одиночный (solo)',
+  SG: 'Минигруппа (small group)',
+  G: 'Полная группа (group)',
+};
+
+function LocationMonsterRow({ m }: { m: LocationMonster }) {
   const drop = formatChance(m.drop_chance);
   const spoil = formatChance(m.spoil_chance);
-  return `<div class="${styles.locMonster}">${name} ${levelBadge} ${bossBadge}
-    <div class="${styles.locChances}">\u0434\u0440\u043E\u043F: <span class="chance ${drop.cls}">${drop.text}</span> | \u0441\u043F\u043E\u0439\u043B: <span class="chance ${spoil.cls}">${spoil.text}</span></div>
-  </div>`;
+  return (
+    <div className={styles.locMonster}>
+      {m.monster_url ? (
+        <a href={m.monster_url} target="_blank" rel="noopener noreferrer">
+          {m.monster_name}
+        </a>
+      ) : (
+        m.monster_name
+      )}{' '}
+      {m.monster_lvl ? <span className="stat-badge stat-lvl">Lvl {m.monster_lvl}</span> : null}{' '}
+      {m.is_boss ? <span className="stat-badge stat-boss">{'\uD83D\uDC80'} BOSS</span> : null}
+      <div className={styles.locChances}>
+        {'\u0434\u0440\u043E\u043F'}: <span className={'chance ' + drop.cls}>{drop.text}</span>
+        {' | \u0441\u043F\u043E\u0439\u043B'}: <span className={'chance ' + spoil.cls}>{spoil.text}</span>
+      </div>
+    </div>
+  );
 }
 
-function renderItem(item: LocationItem): string {
-  const name = item.item_url
-    ? `<a href="${escapeHtml(item.item_url)}" target="_blank" rel="noopener" class="${styles.itemName}">${escapeHtml(item.item_name)}</a>`
-    : `<span class="${styles.itemName}">${escapeHtml(item.item_name)}</span>`;
-
-  const typeBadgeCss =
-    item.item_type === 'recipe'
-      ? `${styles.itemTypeBadge} ${styles.itemTypeRecipe}`
-      : `${styles.itemTypeBadge} ${styles.itemTypeSpellbook}`;
-  const typeLabel = item.item_type === 'recipe' ? '\u0420\u0435\u0446\u0435\u043F\u0442' : '\u041A\u043D\u0438\u0433\u0430';
-
-  const classTags =
-    item.classes.length > 0
-      ? item.classes
-          .map(
-            (c) =>
-              `<span class="class-tag">${escapeHtml(c.race)} \u2014 ${escapeHtml(c.class_name)}</span>`
-          )
-          .join(' ')
-      : '';
-
-  const monstersHtml = item.monsters.map(renderLocationMonster).join('');
-
+function LocationItemRow({ item }: { item: LocationItem }) {
   const totalDrop = item.monsters.reduce((s, m) => s + (m.drop_chance || 0), 0);
   const totalSpoil = item.monsters.reduce((s, m) => s + (m.spoil_chance || 0), 0);
-  const totalHtml = `<div class="${styles.itemTotal}">\u0434\u0440\u043E\u043F: <b>${totalDrop.toFixed(2)}%</b> | \u0441\u043F\u043E\u0439\u043B: <b>${totalSpoil.toFixed(2)}%</b></div>`;
-
-  return `<div class="${styles.locItem}">
-    <div class="${styles.itemHeader}">
-      <span class="${typeBadgeCss}">${typeLabel}</span>
-      ${name}
+  const isRecipe = item.item_type === 'recipe';
+  return (
+    <div className={styles.locItem}>
+      <div className={styles.itemHeader}>
+        <span className={`${styles.itemTypeBadge} ${isRecipe ? styles.itemTypeRecipe : styles.itemTypeSpellbook}`}>
+          {isRecipe ? '\u0420\u0435\u0446\u0435\u043F\u0442' : '\u041A\u043D\u0438\u0433\u0430'}
+        </span>
+        {item.item_url ? (
+          <a href={item.item_url} target="_blank" rel="noopener noreferrer" className={styles.itemName}>
+            {item.item_name}
+          </a>
+        ) : (
+          <span className={styles.itemName}>{item.item_name}</span>
+        )}
+      </div>
+      {item.classes.length > 0 && (
+        <div className={styles.itemClasses}>
+          {item.classes.map((c, i) => (
+            <span key={i} className="class-tag">
+              {c.race} {'\u2014'} {c.class_name}
+            </span>
+          ))}
+        </div>
+      )}
+      <div className={styles.itemMonsters}>
+        {item.monsters.map((m, i) => (
+          <LocationMonsterRow key={i} m={m} />
+        ))}
+      </div>
+      <div className={styles.itemTotal}>
+        {'\u0434\u0440\u043E\u043F'}: <b>{totalDrop.toFixed(2)}%</b>
+        {' | \u0441\u043F\u043E\u0439\u043B'}: <b>{totalSpoil.toFixed(2)}%</b>
+      </div>
     </div>
-    ${classTags ? `<div class="${styles.itemClasses}">${classTags}</div>` : ''}
-    <div class="${styles.itemMonsters}">${monstersHtml}</div>
-    ${totalHtml}
-  </div>`;
+  );
 }
 
-function getTypeTooltip(t: string): string {
-  const map: Record<string, string> = {
-    S: 'Одиночный (solo)',
-    SG: 'Минигруппа (small group)',
-    G: 'Полная группа (group)',
-  };
-  return map[t] ?? t;
-}
-
-function renderLocation(loc: LocationEntry, typeFilter: TypeFilter, selectedRace: string, selectedClass: string): string {
+function LocationRow({
+  loc,
+  typeFilter,
+  selectedRace,
+  selectedClass,
+}: {
+  loc: LocationEntry;
+  typeFilter: TypeFilter;
+  selectedRace: string;
+  selectedClass: string;
+}) {
   const partyInfo = getPartyText(loc.location_types, loc.has_boss);
-
-  const typesHtml =
-    loc.location_types.length > 0
-      ? loc.location_types
-          .map((t) => `<span class="type-badge" data-tooltip="${escapeHtml(getTypeTooltip(t))}">${escapeHtml(t)}</span>`)
-          .join('')
-      : '';
-
-  const spoilHtml = loc.has_spoil ? '<span class="spoil-badge">\u2705 \u0415\u0441\u0442\u044C \u0441\u043F\u043E\u0439\u043B</span>' : '';
-  const bossHtml = loc.has_boss ? '<span class="boss-badge">\u26A0\uFE0F \u0411\u043E\u0441\u0441</span>' : '';
 
   let items = loc.items;
   if (typeFilter !== 'all') {
@@ -105,28 +112,41 @@ function renderLocation(loc: LocationEntry, typeFilter: TypeFilter, selectedRace
     items = items.filter((i) => {
       if (i.item_type === 'recipe') return true;
       return i.classes.some(
-        (c) =>
-          (!selectedRace || c.race === selectedRace) &&
-          (!selectedClass || c.class_name === selectedClass)
+        (c) => (!selectedRace || c.race === selectedRace) && (!selectedClass || c.class_name === selectedClass),
       );
     });
   }
-  if (items.length === 0) return '';
+  if (items.length === 0) return null;
 
-  const itemsHtml = items.map(renderItem).join('');
-
-  return `<tr>
-    <td class="${styles.locCell}">
-      <div class="${styles.locName}">${escapeHtml(loc.location_name)}</div>
-      <div class="${styles.locMeta}">
-        ${typesHtml ? `<div class="${styles.locTypes}">${typesHtml}</div>` : ''}
-        <div class="${styles.locParty} ${partyInfo.cls}">${escapeHtml(partyInfo.text)}</div>
-        <div class="${styles.locMetaRow}">${spoilHtml} ${bossHtml}</div>
-        <div class="${styles.locLevel}">Avg Lvl: ${loc.avg_level}</div>
-      </div>
-    </td>
-    <td class="${styles.itemsCell}">${itemsHtml}</td>
-  </tr>`;
+  return (
+    <tr>
+      <td className={styles.locCell}>
+        <div className={styles.locName}>{loc.location_name}</div>
+        <div className={styles.locMeta}>
+          {loc.location_types.length > 0 && (
+            <div className={styles.locTypes}>
+              {loc.location_types.map((t, i) => (
+                <span key={i} className="type-badge" data-tooltip={TYPE_TOOLTIP[t] ?? t}>
+                  {t}
+                </span>
+              ))}
+            </div>
+          )}
+          <div className={`${styles.locParty} ${partyInfo.cls}`}>{partyInfo.text}</div>
+          <div className={styles.locMetaRow}>
+            {loc.has_spoil && <span className="spoil-badge">{'\u2705'} {'\u0415\u0441\u0442\u044C \u0441\u043F\u043E\u0439\u043B'}</span>}{' '}
+            {loc.has_boss && <span className="boss-badge">{'\u26A0\uFE0F'} {'\u0411\u043E\u0441\u0441'}</span>}
+          </div>
+          <div className={styles.locLevel}>Avg Lvl: {loc.avg_level}</div>
+        </div>
+      </td>
+      <td className={styles.itemsCell}>
+        {items.map((item, i) => (
+          <LocationItemRow key={i} item={item} />
+        ))}
+      </td>
+    </tr>
+  );
 }
 
 export default function LocationsTab() {
@@ -148,7 +168,10 @@ export default function LocationsTab() {
 
   const handleMouseOver = useCallback((e: React.MouseEvent) => {
     const target = (e.target as HTMLElement).closest('[data-tooltip]') as HTMLElement | null;
-    if (!target) { setTooltip(null); return; }
+    if (!target) {
+      setTooltip(null);
+      return;
+    }
     const rect = target.getBoundingClientRect();
     setTooltip({
       text: target.getAttribute('data-tooltip') ?? '',
@@ -206,9 +229,7 @@ export default function LocationsTab() {
         items = items.filter((i) => {
           if (i.item_type === 'recipe') return true;
           return i.classes.some(
-            (c) =>
-              (!selectedRace || c.race === selectedRace) &&
-              (!selectedClass || c.class_name === selectedClass)
+            (c) => (!selectedRace || c.race === selectedRace) && (!selectedClass || c.class_name === selectedClass),
           );
         });
       }
@@ -232,34 +253,7 @@ export default function LocationsTab() {
     return map;
   }, [filteredData]);
 
-  const totalItemCount = useMemo(
-    () => filteredData.reduce((sum, loc) => sum + loc.items.length, 0),
-    [filteredData]
-  );
-
-  const tableHtml = useMemo(
-    () =>
-      Object.entries(grouped)
-        .map(([city, locations]) => {
-          const locCount = locations.length;
-          const itemCount = locations.reduce((s, loc) => s + loc.items.length, 0);
-
-          const locationRows = locations
-            .map((loc) => renderLocation(loc, typeFilter, selectedRace, selectedClass))
-            .filter(Boolean)
-            .join('');
-
-          return `<tr class="${styles.citySeparator}">
-            <td colspan="2">
-              <span class="${styles.cityIcon}">\uD83C\uDFF0</span>
-              ${escapeHtml(city)}
-              <span class="${styles.cityMeta}">(${locCount} \u043B\u043E\u043A\u0430\u0446\u0438\u0439, ${itemCount} \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u043E\u0432)</span>
-            </td>
-          </tr>${locationRows}`;
-        })
-        .join(''),
-    [grouped, typeFilter, selectedRace, selectedClass]
-  );
+  const totalItemCount = useMemo(() => filteredData.reduce((sum, loc) => sum + loc.items.length, 0), [filteredData]);
 
   const isRecipeType = typeFilter === 'recipe';
 
@@ -283,15 +277,18 @@ export default function LocationsTab() {
             <CustomSelect
               label="Раса"
               value={selectedRace}
-              onChange={(v) => { setSelectedRace(v); setSelectedClass(''); }}
-              options={RACES.map(r => ({ value: r, label: r }))}
+              onChange={(v) => {
+                setSelectedRace(v);
+                setSelectedClass('');
+              }}
+              options={RACES.map((r) => ({ value: r, label: r }))}
             />
 
             <CustomSelect
               label="Класс"
               value={selectedClass}
               onChange={(v) => setSelectedClass(v)}
-              options={classesForRace.map(c => ({ value: c, label: c }))}
+              options={classesForRace.map((c) => ({ value: c, label: c }))}
               disabled={!selectedRace}
             />
           </>
@@ -300,15 +297,18 @@ export default function LocationsTab() {
         <CustomSelect
           label="Город"
           value={selectedCity}
-          onChange={(v) => { setSelectedCity(v); setSelectedLocation(''); }}
-          options={cities.map(c => ({ value: c, label: c }))}
+          onChange={(v) => {
+            setSelectedCity(v);
+            setSelectedLocation('');
+          }}
+          options={cities.map((c) => ({ value: c, label: c }))}
         />
 
         <CustomSelect
           label="Локация"
           value={selectedLocation}
           onChange={(v) => setSelectedLocation(v)}
-          options={locationsForCity.map(loc => ({ value: loc.location_name, label: loc.location_name }))}
+          options={locationsForCity.map((loc) => ({ value: loc.location_name, label: loc.location_name }))}
           disabled={!selectedCity}
         />
 
@@ -335,32 +335,62 @@ export default function LocationsTab() {
                 <th>Предметы</th>
               </tr>
             </thead>
-            <tbody dangerouslySetInnerHTML={{ __html: tableHtml }} />
+            <tbody>
+              {Object.entries(grouped).map(([city, locations]) => {
+                const locCount = locations.length;
+                const itemCount = locations.reduce((s, loc) => s + loc.items.length, 0);
+                return (
+                  <Fragment key={city}>
+                    <tr className={styles.citySeparator}>
+                      <td colSpan={2}>
+                        <span className={styles.cityIcon}>{'\uD83C\uDFF0'}</span>
+                        {city}
+                        <span className={styles.cityMeta}>
+                          ({locCount} {'\u043B\u043E\u043A\u0430\u0446\u0438\u0439'}, {itemCount} {'\u043F\u0440\u0435\u0434\u043C\u0435\u0442\u043E\u0432'})
+                        </span>
+                      </td>
+                    </tr>
+                    {locations.map((loc) => (
+                      <LocationRow
+                        key={loc.location_name}
+                        loc={loc}
+                        typeFilter={typeFilter}
+                        selectedRace={selectedRace}
+                        selectedClass={selectedClass}
+                      />
+                    ))}
+                  </Fragment>
+                );
+              })}
+            </tbody>
           </table>
-          {tooltip && createPortal(
-            <div style={{
-              position: 'fixed',
-              top: tooltip.top,
-              left: tooltip.left,
-              transform: 'translate(-50%, -100%)',
-              background: '#1a2338',
-              color: '#dbe4f0',
-              fontSize: 11,
-              whiteSpace: 'nowrap',
-              padding: '5px 10px',
-              borderRadius: 6,
-              border: '1px solid #24304a',
-              pointerEvents: 'none',
-              zIndex: 99999,
-              boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
-            }}>
-              {tooltip.text}
-            </div>,
-            document.body
-          )}
+          {tooltip &&
+            createPortal(
+              <div
+                style={{
+                  position: 'fixed',
+                  top: tooltip.top,
+                  left: tooltip.left,
+                  transform: 'translate(-50%, -100%)',
+                  background: '#1a2338',
+                  color: '#dbe4f0',
+                  fontSize: 11,
+                  whiteSpace: 'nowrap',
+                  padding: '5px 10px',
+                  borderRadius: 6,
+                  border: '1px solid #24304a',
+                  pointerEvents: 'none',
+                  zIndex: 99999,
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
+                }}
+              >
+                {tooltip.text}
+              </div>,
+              document.body,
+            )}
         </div>
       ) : (
-        <div className={styles.emptyState}>Локации не найдены</div>
+        <EmptyState message="Локации не найдены" />
       )}
     </div>
   );

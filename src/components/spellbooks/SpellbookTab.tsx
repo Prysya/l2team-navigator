@@ -1,26 +1,34 @@
-import { useMemo, useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { RACES } from '@data/races';
+import SPELLBOOKS_DATA from '@data/SPELLBOOKS.json';
+import CopyLink from '@shared/CopyLink';
+import CustomSelect from '@shared/CustomSelect';
+import EmptyState from '@shared/EmptyState';
+import FloatingLabel from '@shared/FloatingLabel';
+import { monsterCells } from '@shared/MonsterCells';
 import {
-  useReactTable,
+  createColumnHelper,
+  flexRender,
   getCoreRowModel,
   getSortedRowModel,
-  flexRender,
-  createColumnHelper,
   type SortingState,
+  useReactTable,
 } from '@tanstack/react-table';
-import type { Spellbook } from '../../types';
-import SPELLBOOKS_DATA from '../../data/SPELLBOOKS.json';
-import { RACES } from '../../data/races';
-import { renderMonsterRow, sortMonsters } from '../../utils/helpers';
-import CopyLink from '../../components/shared/CopyLink';
-import CustomSelect from '../../components/shared/CustomSelect';
-import FloatingLabel from '../../components/shared/FloatingLabel';
+import { sortMonsters } from '@utils/helpers';
+
+import { useSpellbookStore } from '@/stores/spellbookStore';
+import type { Spellbook } from '@/types';
+
 import styles from './SpellbookTab.module.scss';
-import { useSpellbookStore } from '../../stores/spellbookStore';
 
 const SPELLBOOKS = SPELLBOOKS_DATA as Spellbook[];
 
 const RACE_LABELS: Record<string, string> = {
-  Human: 'Human', Elf: 'Elf', 'Dark Elf': 'Dark Elf', Orc: 'Orc', Dwarf: 'Dwarf',
+  Human: 'Human',
+  Elf: 'Elf',
+  'Dark Elf': 'Dark Elf',
+  Orc: 'Orc',
+  Dwarf: 'Dwarf',
 };
 
 function getRaceLabel(race: string): string {
@@ -33,23 +41,23 @@ interface FlatRow {
   spellbookUrl: string;
   skillName: string;
   level: string;
-  monsterHtml: string;
-  locationHtml: string;
-  dropHtml: string;
-  spoilHtml: string;
-  commentHtml: string;
+  monsterHtml: React.ReactNode;
+  locationHtml: React.ReactNode;
+  dropHtml: React.ReactNode;
+  spoilHtml: React.ReactNode;
+  commentHtml: React.ReactNode;
   classTags: React.ReactNode;
 }
 
 const columnHelper = createColumnHelper<FlatRow>();
 
 export default function SpellbookTab() {
-  const selectedRace = useSpellbookStore(s => s.selectedRace);
-  const selectedClass = useSpellbookStore(s => s.selectedClass);
-  const searchQuery = useSpellbookStore(s => s.searchQuery);
-  const setSelectedRace = useSpellbookStore(s => s.setSelectedRace);
-  const setSelectedClass = useSpellbookStore(s => s.setSelectedClass);
-  const setSearchQuery = useSpellbookStore(s => s.setSearchQuery);
+  const selectedRace = useSpellbookStore((s) => s.selectedRace);
+  const selectedClass = useSpellbookStore((s) => s.selectedClass);
+  const searchQuery = useSpellbookStore((s) => s.searchQuery);
+  const setSelectedRace = useSpellbookStore((s) => s.setSelectedRace);
+  const setSelectedClass = useSpellbookStore((s) => s.setSelectedClass);
+  const setSearchQuery = useSpellbookStore((s) => s.setSearchQuery);
   const [sorting, setSorting] = useState<SortingState>([]);
 
   useEffect(() => {
@@ -85,7 +93,7 @@ export default function SpellbookTab() {
         (sb) =>
           sb.spellbook_name.toLowerCase().includes(q) ||
           (sb.smart_name && sb.smart_name.toLowerCase().includes(q)) ||
-          sb.skill_name.toLowerCase().includes(q)
+          sb.skill_name.toLowerCase().includes(q),
       );
     }
     return list;
@@ -104,7 +112,7 @@ export default function SpellbookTab() {
       const bookContent = (
         <div className="spellbook-name">
           <div className={styles.bookTitle}>
-            <a href={sb.spellbook_url} target="_blank" rel="noopener">
+            <a href={sb.spellbook_url} target="_blank" rel="noopener noreferrer">
               {sb.spellbook_name}
             </a>
             <CopyLink
@@ -123,7 +131,7 @@ export default function SpellbookTab() {
       );
 
       return sorted.map((m, idx) => {
-        const cells = renderMonsterRow(m);
+        const cells = monsterCells(m);
         return {
           id: `${sb.skill_name}-${idx}`,
           spellbookName: sb.spellbook_name,
@@ -141,42 +149,42 @@ export default function SpellbookTab() {
     });
   }, [filtered, selectedRace]);
 
-  const totalMonsters = useMemo(
-    () => filtered.reduce((sum, sb) => sum + sb.monster.length, 0),
-    [filtered]
-  );
+  const totalMonsters = useMemo(() => filtered.reduce((sum, sb) => sum + sb.monster.length, 0), [filtered]);
 
-  const columns = useMemo(() => [
-    columnHelper.accessor('classTags', {
-      header: 'Книга',
-      enableSorting: false,
-      cell: ({ getValue }) => getValue(),
-    }),
-    columnHelper.accessor('level', {
-      header: 'Lvl',
-      cell: ({ getValue }) => getValue(),
-    }),
-    columnHelper.accessor('monsterHtml', {
-      header: 'Монстр',
-      cell: ({ getValue }) => <span dangerouslySetInnerHTML={{ __html: getValue() }} />,
-    }),
-    columnHelper.accessor('locationHtml', {
-      header: 'Локации',
-      cell: ({ getValue }) => <span dangerouslySetInnerHTML={{ __html: getValue() }} />,
-    }),
-    columnHelper.accessor('dropHtml', {
-      header: 'Шанс дропа',
-      cell: ({ getValue }) => <span dangerouslySetInnerHTML={{ __html: getValue() }} />,
-    }),
-    columnHelper.accessor('spoilHtml', {
-      header: 'Шанс спойла',
-      cell: ({ getValue }) => <span dangerouslySetInnerHTML={{ __html: getValue() }} />,
-    }),
-    columnHelper.accessor('commentHtml', {
-      header: 'Комментарий',
-      cell: ({ getValue }) => <span dangerouslySetInnerHTML={{ __html: getValue() }} />,
-    }),
-  ], []);
+  const columns = useMemo(
+    () => [
+      columnHelper.accessor('classTags', {
+        header: 'Книга',
+        enableSorting: false,
+        cell: ({ getValue }) => getValue(),
+      }),
+      columnHelper.accessor('level', {
+        header: 'Lvl',
+        cell: ({ getValue }) => getValue(),
+      }),
+      columnHelper.accessor('monsterHtml', {
+        header: 'Монстр',
+        cell: ({ getValue }) => getValue(),
+      }),
+      columnHelper.accessor('locationHtml', {
+        header: 'Локации',
+        cell: ({ getValue }) => getValue(),
+      }),
+      columnHelper.accessor('dropHtml', {
+        header: 'Шанс дропа',
+        cell: ({ getValue }) => getValue(),
+      }),
+      columnHelper.accessor('spoilHtml', {
+        header: 'Шанс спойла',
+        cell: ({ getValue }) => getValue(),
+      }),
+      columnHelper.accessor('commentHtml', {
+        header: 'Комментарий',
+        cell: ({ getValue }) => getValue(),
+      }),
+    ],
+    [],
+  );
 
   const table = useReactTable({
     data: flatData,
@@ -194,7 +202,10 @@ export default function SpellbookTab() {
           <CustomSelect
             label="Раса"
             value={selectedRace}
-            onChange={(v) => { setSelectedRace(v); setSelectedClass(''); }}
+            onChange={(v) => {
+              setSelectedRace(v);
+              setSelectedClass('');
+            }}
             options={RACES.map((r) => ({ value: r, label: getRaceLabel(r) }))}
           />
         </div>
@@ -227,14 +238,14 @@ export default function SpellbookTab() {
       </div>
 
       {!selectedRace && !selectedClass && !searchQuery.trim() ? (
-        <div className={styles.emptyState}>Выберите расу или профессию для просмотра</div>
+        <EmptyState message="Выберите расу или профессию для просмотра" />
       ) : flatData.length > 0 ? (
         <div className={styles.tableWrap}>
           <table className={styles.table}>
             <thead>
-              {table.getHeaderGroups().map(headerGroup => (
+              {table.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id}>
-                  {headerGroup.headers.map(header => (
+                  {headerGroup.headers.map((header) => (
                     <th
                       key={header.id}
                       onClick={header.column.getToggleSortingHandler()}
@@ -255,12 +266,10 @@ export default function SpellbookTab() {
               ))}
             </thead>
             <tbody>
-              {table.getRowModel().rows.map(row => (
+              {table.getRowModel().rows.map((row) => (
                 <tr key={row.id}>
-                  {row.getVisibleCells().map(cell => (
-                    <td key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </td>
+                  {row.getVisibleCells().map((cell) => (
+                    <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
                   ))}
                 </tr>
               ))}
@@ -268,7 +277,7 @@ export default function SpellbookTab() {
           </table>
         </div>
       ) : (
-        <div className={styles.emptyState}>Книги не найдены</div>
+        <EmptyState message="Книги не найдены" />
       )}
     </div>
   );

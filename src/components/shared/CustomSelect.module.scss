@@ -1,5 +1,5 @@
-@use '../../styles/variables' as *;
-@use '../../styles/mixins' as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
 .wrapper {
   position: relative;
@@ -32,7 +32,9 @@
   color: $color-text;
   font-size: $font-size-lg;
   cursor: pointer;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 
   .wrapper:focus-within & {
     border-color: $color-primary;

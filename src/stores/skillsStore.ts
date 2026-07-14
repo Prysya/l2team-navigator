@@ -21,6 +21,5 @@ export const useSkillsStore = create<SkillsStore>((set) => ({
   setSelectedClass: (cls) => set({ selectedClass: cls }),
   setSearchQuery: (q) => set({ searchQuery: q }),
   setFilterType: (t) => set({ filterType: t }),
-  handleRaceChange: (e) =>
-    set({ selectedRace: e.target.value, selectedClass: '' }),
+  handleRaceChange: (e) => set({ selectedRace: e.target.value, selectedClass: '' }),
 }));

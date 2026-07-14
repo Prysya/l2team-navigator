@@ -1,5 +1,5 @@
-@use '../../styles/variables' as *;
-@use '../../styles/mixins' as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
 .page {
   display: flex;
@@ -16,6 +16,7 @@
   margin-bottom: 32px;
   text-align: center;
   text-shadow: $shadow-text;
+  animation: fadeSlideIn 0.4s ease both;
 }
 
 .grid {
@@ -42,26 +43,58 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  padding: 32px 16px;
-  background: $color-surface;
+  gap: 14px;
+  padding: 36px 16px;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.015) 2px,
+      rgba(255, 255, 255, 0.015) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.015) 2px,
+      rgba(255, 255, 255, 0.015) 4px
+    ),
+    $color-surface;
+  background-size:
+    4px 4px,
+    4px 4px,
+    auto;
   border: 1px solid $color-border;
   border-radius: $radius-xl;
   cursor: pointer;
   color: $color-text-muted;
-  transition: color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
   text-decoration: none;
   user-select: none;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeSlideIn 0.35s ease forwards;
+  animation-delay: calc(var(--card-index, 0) * 0.07s);
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.25s ease,
+    transform 0.15s ease,
+    background-color 0.2s ease;
 
   &:hover {
-    color: $color-primary;
-    border-color: $color-primary;
-    box-shadow: $shadow-primary-sm;
-    transform: translateY(-2px);
+    color: var(--card-accent, $color-primary);
+    border-color: var(--card-accent, $color-primary);
+    background-color: color-mix(in srgb, var(--card-accent, $color-primary) 6%, $color-surface);
+    box-shadow:
+      0 0 20px color-mix(in srgb, var(--card-accent, $color-primary) 35%, transparent),
+      inset 0 0 20px color-mix(in srgb, var(--card-accent, $color-primary) 8%, transparent);
+    transform: translateY(-3px);
   }
 
   &:active {
     transform: translateY(0);
+    transition: transform 0.08s ease;
   }
 
   @include mobile {
@@ -71,11 +104,20 @@
 }
 
 .cardIcon {
-  font-size: 2.5rem;
-  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  transition: transform 0.25s ease;
+
+  .card:hover & {
+    transform: scale(1.08);
+  }
 
   @include mobile {
-    font-size: 2rem;
+    width: 40px;
+    height: 40px;
   }
 }
 
@@ -84,6 +126,7 @@
   font-weight: 600;
   line-height: 1.2;
   text-align: center;
+  transition: color 0.2s ease;
 }
 
 .overlay {
@@ -138,11 +181,32 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes scaleIn {
-  from { transform: scale(0.8); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
