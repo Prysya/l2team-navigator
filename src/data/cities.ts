@@ -1,3 +1,43 @@
-export const CITIES_RECIPES: string[] = ["Talking Island Village", "Elven Village", "Orc Village", "Dwarven Village", "Dark Elven Village", "Schuttgart", "Gludio", "Gludin", "Neutral Waters", "Dion", "Heine", "Giran", "Oren", "Hunter's Village", "Aden"];
-export const CITIES_SPELLBOOKS: string[] = ["Neutral Waters", "Hunter's Village", "Heine", "Giran", "Dion", "Oren", "Aden"];
-export const CITIES_ALL: string[] = ["Talking Island Village", "Elven Village", "Orc Village", "Dwarven Village", "Dark Elven Village", "Schuttgart", "Gludio", "Gludin", "Dion", "Neutral Waters", "Heine", "Hunter's Village", "Giran", "Oren", "Aden"];
+export const CITIES_RECIPES: string[] = [
+  'Talking Island Village',
+  'Elven Village',
+  'Orc Village',
+  'Dwarven Village',
+  'Dark Elven Village',
+  'Schuttgart',
+  'Gludio',
+  'Gludin',
+  'Neutral Waters',
+  'Dion',
+  'Heine',
+  'Giran',
+  'Oren',
+  "Hunter's Village",
+  'Aden',
+];
+export const CITIES_SPELLBOOKS: string[] = [
+  'Neutral Waters',
+  "Hunter's Village",
+  'Heine',
+  'Giran',
+  'Dion',
+  'Oren',
+  'Aden',
+];
+export const CITIES_ALL: string[] = [
+  'Talking Island Village',
+  'Elven Village',
+  'Orc Village',
+  'Dwarven Village',
+  'Dark Elven Village',
+  'Schuttgart',
+  'Gludio',
+  'Gludin',
+  'Dion',
+  'Neutral Waters',
+  'Heine',
+  "Hunter's Village",
+  'Giran',
+  'Oren',
+  'Aden',
+];

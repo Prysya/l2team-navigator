@@ -1,5 +1,6 @@
-import cx from 'classnames';
 import type { ReactNode } from 'react';
+import cx from 'classnames';
+
 import styles from './FloatingLabel.module.scss';
 
 interface FloatingLabelProps {

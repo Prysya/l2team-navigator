@@ -16,6 +16,8 @@ $color-primary-glow: var(--color-primary-glow);
 $color-accent-purple: var(--color-accent-purple);
 $color-accent-green: var(--color-accent-green);
 $color-accent-orange: var(--color-accent-orange);
+$color-accent-amber: var(--color-accent-amber);
+$color-accent-cyan: var(--color-accent-cyan);
 $color-text: var(--color-text);
 $color-text-muted: var(--color-text-muted);
 $color-link: var(--color-link);
@@ -32,8 +34,8 @@ $gradient-bg-2: var(--gradient-bg-2);
 $gradient-bg-3: var(--gradient-bg-3);
 
 // Typography (family stays static)
-$font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-$font-mono: 'Consolas', 'Courier New', monospace;
+$font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+$font-mono: "Consolas", "Courier New", monospace;
 
 // Typography (sizes are themeable)
 $font-size-xs: var(--font-size-xs);

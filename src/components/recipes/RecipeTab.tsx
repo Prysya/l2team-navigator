@@ -1,143 +1,31 @@
 import { useMemo } from 'react';
-import {
-  useReactTable,
-  getCoreRowModel,
-  getSortedRowModel,
-  flexRender,
-  createColumnHelper,
-  type SortingState,
-} from '@tanstack/react-table';
-import { useState } from 'react';
-import type { Resource, Monster } from '../../types';
-import { useRecipeStore } from '../../stores/recipeStore';
-import RESOURCES_DATA from '../../data/RESOURCES.json';
-import { GROUP_NAMES } from '../../utils/constants';
-import { renderMonsterRow, sortMonsters } from '../../utils/helpers';
-import FloatingLabel from '../../components/shared/FloatingLabel';
-import CustomSelect from '../../components/shared/CustomSelect';
+import RESOURCES_DATA from '@data/RESOURCES.json';
+import CustomSelect from '@shared/CustomSelect';
+import EmptyState from '@shared/EmptyState';
+import FloatingLabel from '@shared/FloatingLabel';
+import { GROUP_NAMES } from '@utils/constants';
+
+import { useRecipeStore } from '@/stores/recipeStore';
+import type { Resource } from '@/types';
+
+import MonsterTable from './MonsterTable';
+
 import styles from './RecipeTab.module.scss';
 
 const RESOURCES = RESOURCES_DATA as Resource[];
 
-interface MonsterRow {
-  id: string;
-  monsterHtml: string;
-  locationHtml: string;
-  dropHtml: string;
-  spoilHtml: string;
-  commentHtml: string;
-}
-
-const columnHelper = createColumnHelper<MonsterRow>();
-
-function useMonsterColumns() {
-  return useMemo(() => [
-    columnHelper.accessor('monsterHtml', {
-      header: 'Монстр',
-      cell: ({ getValue }) => <span dangerouslySetInnerHTML={{ __html: getValue() }} />,
-    }),
-    columnHelper.accessor('locationHtml', {
-      header: 'Локации',
-      cell: ({ getValue }) => <span dangerouslySetInnerHTML={{ __html: getValue() }} />,
-    }),
-    columnHelper.accessor('dropHtml', {
-      header: 'Шанс дропа',
-      cell: ({ getValue }) => <span dangerouslySetInnerHTML={{ __html: getValue() }} />,
-    }),
-    columnHelper.accessor('spoilHtml', {
-      header: 'Шанс спойла',
-      cell: ({ getValue }) => <span dangerouslySetInnerHTML={{ __html: getValue() }} />,
-    }),
-    columnHelper.accessor('commentHtml', {
-      header: 'Комментарий',
-      cell: ({ getValue }) => <span dangerouslySetInnerHTML={{ __html: getValue() }} />,
-    }),
-  ], []);
-}
-
-function MonsterTanStackTable({ monsters, className }: { monsters: Monster[]; className?: string }) {
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const columns = useMonsterColumns();
-
-  const data = useMemo(() => {
-    const sorted = sortMonsters(monsters);
-    return sorted.map((m, idx) => {
-      const cells = renderMonsterRow(m);
-      return {
-        id: String(idx),
-        monsterHtml: cells.monsterCell,
-        locationHtml: cells.locationsCell,
-        dropHtml: cells.dropCell,
-        spoilHtml: cells.spoilCell,
-        commentHtml: cells.commentCell,
-      };
-    });
-  }, [monsters]);
-
-  const table = useReactTable({
-    data,
-    columns,
-    state: { sorting },
-    onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-  });
-
-  if (data.length === 0) return null;
-
-  return (
-    <div className={className}>
-      <table className={styles.table}>
-        <thead>
-          {table.getHeaderGroups().map(headerGroup => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map(header => (
-                <th
-                  key={header.id}
-                  onClick={header.column.getToggleSortingHandler()}
-                  style={{ cursor: header.column.getCanSort() ? 'pointer' : 'default' }}
-                >
-                  {flexRender(header.column.columnDef.header, header.getContext())}
-                  {header.column.getCanSort() && (
-                    <span style={{ userSelect: 'none', color: 'var(--color-primary)', marginLeft: '2px' }}>
-                      {{
-                        asc: ' ▲',
-                        desc: ' ▼',
-                      }[header.column.getIsSorted() as string] ?? ' ⇅'}
-                    </span>
-                  )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map(row => (
-            <tr key={row.id}>
-              {row.getVisibleCells().map(cell => (
-                <td key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
 
 function recipeSelectLabel(recipe: Resource): string {
   return recipe.recipe_name;
 }
 
 export default function RecipeTab() {
-  const selectedGroup = useRecipeStore(s => s.selectedGroup);
-  const selectedNumber = useRecipeStore(s => s.selectedNumber);
-  const searchQuery = useRecipeStore(s => s.searchQuery);
-  const setSelectedGroup = useRecipeStore(s => s.setSelectedGroup);
-  const setSelectedNumber = useRecipeStore(s => s.setSelectedNumber);
-  const setSearchQuery = useRecipeStore(s => s.setSearchQuery);
+  const selectedGroup = useRecipeStore((s) => s.selectedGroup);
+  const selectedNumber = useRecipeStore((s) => s.selectedNumber);
+  const searchQuery = useRecipeStore((s) => s.searchQuery);
+  const setSelectedGroup = useRecipeStore((s) => s.setSelectedGroup);
+  const setSelectedNumber = useRecipeStore((s) => s.setSelectedNumber);
+  const setSearchQuery = useRecipeStore((s) => s.setSearchQuery);
 
   const availableGroups = useMemo(() => {
     const set = new Set<number>();
@@ -150,14 +38,12 @@ export default function RecipeTab() {
   const filteredResources = useMemo(() => {
     let list = RESOURCES;
     if (selectedGroup !== null) {
-      list = list.filter(r => r.group === selectedGroup);
+      list = list.filter((r) => r.group === selectedGroup);
     }
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase().trim();
       list = list.filter(
-        (r) =>
-          r.recipe_name.toLowerCase().includes(q) ||
-          (r.smart_name && r.smart_name.toLowerCase().includes(q))
+        (r) => r.recipe_name.toLowerCase().includes(q) || (r.smart_name && r.smart_name.toLowerCase().includes(q)),
       );
     }
     return list;
@@ -176,7 +62,7 @@ export default function RecipeTab() {
             label="Группа"
             value={selectedGroup !== null ? String(selectedGroup) : ''}
             onChange={(v) => setSelectedGroup(v ? Number(v) : null)}
-            options={availableGroups.map(g => ({ value: String(g), label: GROUP_NAMES[g] || `Группа ${g}` }))}
+            options={availableGroups.map((g) => ({ value: String(g), label: GROUP_NAMES[g] || `Группа ${g}` }))}
           />
         </div>
         <div className={styles.field}>
@@ -184,7 +70,7 @@ export default function RecipeTab() {
             label="Рецепт"
             value={String(selectedNumber ?? '')}
             onChange={(v) => setSelectedNumber(v ? Number(v) : null)}
-            options={filteredResources.map(r => ({ value: String(r.number), label: recipeSelectLabel(r) }))}
+            options={filteredResources.map((r) => ({ value: String(r.number), label: recipeSelectLabel(r) }))}
           />
         </div>
         <div className={styles.searchWrap}>
@@ -208,7 +94,7 @@ export default function RecipeTab() {
                 <a
                   href={currentRecipe.recipe_url}
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                   className={styles.recipeLink}
                 >
                   {currentRecipe.recipe_name}
@@ -217,19 +103,15 @@ export default function RecipeTab() {
             ) : (
               <h3>{currentRecipe.recipe_name}</h3>
             )}
-            <span className={styles.badge}>
-              {GROUP_NAMES[currentRecipe.group] || `Группа ${currentRecipe.group}`}
-            </span>
+            <span className={styles.badge}>{GROUP_NAMES[currentRecipe.group] || `Группа ${currentRecipe.group}`}</span>
           </div>
 
           <div className={styles.monsterCount}>
             Мобов: {currentRecipe.monster.length}
-            {currentRecipe.material
-              ? ` + материал: ${currentRecipe.material.monster.length}`
-              : ''}
+            {currentRecipe.material ? ` + материал: ${currentRecipe.material.monster.length}` : ''}
           </div>
 
-          <MonsterTanStackTable monsters={currentRecipe.monster} className={styles.tableWrap} />
+          <MonsterTable monsters={currentRecipe.monster} className={styles.tableWrap} />
 
           {currentRecipe.group === 2 && currentRecipe.material && (
             <div className={styles.materialSection}>
@@ -239,7 +121,7 @@ export default function RecipeTab() {
                   <a
                     href={currentRecipe.material.url}
                     target="_blank"
-                    rel="noopener"
+                    rel="noopener noreferrer"
                     className={styles.materialLink}
                   >
                     {currentRecipe.material.name}
@@ -248,16 +130,18 @@ export default function RecipeTab() {
                   currentRecipe.material.name
                 )}
               </h4>
-              <MonsterTanStackTable monsters={currentRecipe.material.monster} className={styles.tableWrap} />
+              <MonsterTable monsters={currentRecipe.material.monster} className={styles.tableWrap} />
             </div>
           )}
         </div>
       ) : (
-        <div className={styles.emptyState}>
-          {searchQuery.trim() && filteredResources.length === 0
-            ? 'Рецепты не найдены'
-            : 'Выберите рецепт для просмотра'}
-        </div>
+        <EmptyState
+          message={
+            searchQuery.trim() && filteredResources.length === 0
+              ? 'Рецепты не найдены'
+              : 'Выберите рецепт для просмотра'
+          }
+        />
       )}
     </div>
   );

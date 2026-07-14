@@ -1,5 +1,6 @@
-import { useState, useMemo, useCallback } from 'react';
-import FloatingLabel from '../../components/shared/FloatingLabel';
+import { useCallback, useMemo, useState } from 'react';
+import FloatingLabel from '@shared/FloatingLabel';
+
 import styles from './CalculatorTab.module.scss';
 
 function clamp(val: number, min: number, max: number): number {
@@ -28,28 +29,35 @@ function NumberInput({ value, onChange, min, max, step = 1, decimals = 0 }: Numb
     onChange(String(prev));
   }, [value, onChange, min, max, step, decimals]);
 
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const raw = e.target.value;
-    if (raw === '') { onChange(''); return; }
-    const re = decimals > 0 ? /^\d*\.?\d{0,5}$/ : /^\d*$/;
-    if (!re.test(raw)) return;
-    const num = parseFloat(raw);
-    if (isNaN(num)) { onChange(raw); return; }
-    if (num < min || num > max) return;
-    onChange(raw);
-  }, [onChange, min, max, decimals]);
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const raw = e.target.value;
+      if (raw === '') {
+        onChange('');
+        return;
+      }
+      const re = decimals > 0 ? /^\d*\.?\d{0,5}$/ : /^\d*$/;
+      if (!re.test(raw)) return;
+      const num = parseFloat(raw);
+      if (isNaN(num)) {
+        onChange(raw);
+        return;
+      }
+      if (num < min || num > max) return;
+      onChange(raw);
+    },
+    [onChange, min, max, decimals],
+  );
 
   return (
     <div className={styles.numInput}>
-      <input
-        className={styles.input}
-        type="text"
-        inputMode="decimal"
-        value={value}
-        onChange={handleChange}
-      />
-      <button type="button" className={styles.numBtn} onClick={dec} tabIndex={-1}>−</button>
-      <button type="button" className={styles.numBtn} onClick={inc} tabIndex={-1}>+</button>
+      <input className={styles.input} type="text" inputMode="decimal" value={value} onChange={handleChange} />
+      <button type="button" className={styles.numBtn} onClick={dec} tabIndex={-1}>
+        −
+      </button>
+      <button type="button" className={styles.numBtn} onClick={inc} tabIndex={-1}>
+        +
+      </button>
     </div>
   );
 }
@@ -135,7 +143,7 @@ const XP_DATA = [
 const fm = (n: number) => n.toLocaleString('ru');
 
 function computeTotal(level: number): number {
-  return XP_DATA.filter(d => d.level <= level).reduce((s, d) => s + d.expToLevel, 0);
+  return XP_DATA.filter((d) => d.level <= level).reduce((s, d) => s + d.expToLevel, 0);
 }
 
 const NAV_ITEMS = [
@@ -159,9 +167,10 @@ export default function CalculatorTab() {
     if (isNaN(pct) || pct < 0 || pct >= 100) return null;
     if (lvl === 75) return { isMax: true };
 
-    const currentXP = XP_DATA.find(d => d.level === lvl)!;
+    const currentXP = XP_DATA.find((d) => d.level === lvl);
+    if (!currentXP) return { isMax: true };
     const currentTotal = computeTotal(lvl - 1);
-    const expNow = currentTotal + (currentXP.expToLevel * pct / 100);
+    const expNow = currentTotal + (currentXP.expToLevel * pct) / 100;
     const expNeeded = computeTotal(lvl) - expNow;
 
     return { isMax: false, nextLevel: lvl + 1, xp: fm(Math.round(expNeeded)) };
@@ -170,7 +179,7 @@ export default function CalculatorTab() {
   return (
     <div className={styles.wrapper}>
       <nav className={styles.floatingNav}>
-        {NAV_ITEMS.map(item => (
+        {NAV_ITEMS.map((item) => (
           <a key={item.id} href={`#${item.id}`} className={styles.navLink}>
             {item.label}
           </a>
@@ -211,10 +220,14 @@ export default function CalculatorTab() {
             <div className={styles.tableScroll}>
               <table className={styles.table}>
                 <thead>
-                  <tr><th>Уровень</th><th>Всего опыта</th><th>Опыт до уровня</th></tr>
+                  <tr>
+                    <th>Уровень</th>
+                    <th>Всего опыта</th>
+                    <th>Опыт до уровня</th>
+                  </tr>
                 </thead>
                 <tbody>
-                  {XP_DATA.map(d => {
+                  {XP_DATA.map((d) => {
                     const total = computeTotal(d.level);
                     return (
                       <tr key={d.level}>
@@ -232,14 +245,34 @@ export default function CalculatorTab() {
 
         <section id="calc-group" className={styles.card}>
           <h2 className={styles.title}>Групповой опыт</h2>
-          <p className={styles.text}>На Lu4 бонус группового опыта переработан. При убийстве монстров в группе персонажи получают бонус к EXP, SP и Vitality.</p>
+          <p className={styles.text}>
+            На Lu4 бонус группового опыта переработан. При убийстве монстров в группе персонажи получают бонус к EXP, SP
+            и Vitality.
+          </p>
           <div className={styles.tableWrap}>
             <div className={styles.tableScroll}>
               <table className={styles.table}>
-                <thead><tr><th>Игроков в группе</th><th>Lu4</th></tr></thead>
+                <thead>
+                  <tr>
+                    <th>Игроков в группе</th>
+                    <th>Lu4</th>
+                  </tr>
+                </thead>
                 <tbody>
-                  {[{ p: 2, lu4: '110%' }, { p: 3, lu4: '125%' }, { p: 4, lu4: '140%' }, { p: 5, lu4: '150%' }, { p: 6, lu4: '180%' }, { p: 7, lu4: '210%' }, { p: 8, lu4: '240%' }, { p: 9, lu4: '270%' }].map(row => (
-                    <tr key={row.p}><td>{row.p}</td><td className={styles.lu4Cell}>{row.lu4}</td></tr>
+                  {[
+                    { p: 2, lu4: '110%' },
+                    { p: 3, lu4: '125%' },
+                    { p: 4, lu4: '140%' },
+                    { p: 5, lu4: '150%' },
+                    { p: 6, lu4: '180%' },
+                    { p: 7, lu4: '210%' },
+                    { p: 8, lu4: '240%' },
+                    { p: 9, lu4: '270%' },
+                  ].map((row) => (
+                    <tr key={row.p}>
+                      <td>{row.p}</td>
+                      <td className={styles.lu4Cell}>{row.lu4}</td>
+                    </tr>
                   ))}
                 </tbody>
               </table>
@@ -248,11 +281,20 @@ export default function CalculatorTab() {
 
           <details className={styles.details}>
             <summary className={styles.detailsSummary}>Опыт группы по сравнению с соло (база 1000 EXP)</summary>
-            <p className={styles.text} style={{ marginTop: 12 }}>Опыт делится между всеми участниками группы.</p>
+            <p className={styles.text} style={{ marginTop: 12 }}>
+              Опыт делится между всеми участниками группы.
+            </p>
             <div className={styles.tableWrap}>
               <div className={styles.tableScroll}>
                 <table className={styles.table}>
-                  <thead><tr><th>Игроков в группе</th><th>Старые бонусы</th><th>Новые бонусы</th><th>Разница</th></tr></thead>
+                  <thead>
+                    <tr>
+                      <th>Игроков в группе</th>
+                      <th>Старые бонусы</th>
+                      <th>Новые бонусы</th>
+                      <th>Разница</th>
+                    </tr>
+                  </thead>
                   <tbody>
                     {[
                       { p: 2, old: '1100 EXP', new: '1100 EXP', diff: '0' },
@@ -263,8 +305,13 @@ export default function CalculatorTab() {
                       { p: 7, old: '2000 EXP', new: '2100 EXP', diff: '+100' },
                       { p: 8, old: '2100 EXP', new: '2400 EXP', diff: '+300' },
                       { p: 9, old: '2200 EXP', new: '2700 EXP', diff: '+500' },
-                    ].map(row => (
-                      <tr key={row.p}><td>{row.p}</td><td>{row.old}</td><td className={styles.lu4Cell}>{row.new}</td><td className={styles.diffCell}>{row.diff}</td></tr>
+                    ].map((row) => (
+                      <tr key={row.p}>
+                        <td>{row.p}</td>
+                        <td>{row.old}</td>
+                        <td className={styles.lu4Cell}>{row.new}</td>
+                        <td className={styles.diffCell}>{row.diff}</td>
+                      </tr>
                     ))}
                   </tbody>
                 </table>
@@ -273,7 +320,8 @@ export default function CalculatorTab() {
           </details>
 
           <div className={styles.note}>
-            <strong>В группе из 5–9 игроков вы получаете одинаковое количество опыта.</strong> Учитывая, что большая группа убивает монстров быстрее, крупная пати — самый эффективный способ прокачки.
+            <strong>В группе из 5–9 игроков вы получаете одинаковое количество опыта.</strong> Учитывая, что большая
+            группа убивает монстров быстрее, крупная пати — самый эффективный способ прокачки.
           </div>
         </section>
 
@@ -288,54 +336,92 @@ export default function CalculatorTab() {
             </div>
 
             <div className={styles.penaltyRowWrap}>
-            <div className={styles.penaltyRow}>
-              {(() => {
-                const raw = [
-                  { d: '+15', p: '95%' }, { d: '+14', p: '95%' }, { d: '+13', p: '95%' }, { d: '+12', p: '95%' }, { d: '+11', p: '95%' },
-                  { d: '+10', p: '90%' }, { d: '+9', p: '80%' }, { d: '+8', p: '65%' }, { d: '+7', p: '50%' }, { d: '+6', p: '30%' },
-                  { d: '+5', p: '15%' }, { d: '+4', p: '0' }, { d: '+3', p: '0' },
-                  { d: '+2', p: '0' }, { d: '+1', p: '0' }, { d: '0', p: '0' }, { d: '-1', p: '0' }, { d: '-2', p: '0' },
-                  { d: '-3', p: '0' }, { d: '-4', p: '0' }, { d: '-5', p: '0' },
-                  { d: '-6', p: '15%' }, { d: '-7', p: '30%' }, { d: '-8', p: '50%' }, { d: '-9', p: '65%' }, { d: '-10', p: '80%' },
-                  { d: '-11', p: '90%' }, { d: '-12', p: '95%' }, { d: '-13', p: '95%' }, { d: '-14', p: '95%' }, { d: '-15', p: '95%' },
-                ];
-                const colors = [
-                  '#b91c1c', '#dc2626', '#ef4444', '#f87171', '#fca5a5',
-                  '#fecaca', '#fee2e2',
-                  '#f5f5f5', '#ffffff', '#f5f5f5',
-                  '#e0f2fe', '#bae6fd', '#7dd3fc', '#38bdf8',
-                  '#0ea5e9', '#0284c7', '#0369a1',
-                ];
-                const lightColors = new Set(['#fecaca', '#fee2e2', '#f5f5f5', '#ffffff', '#e0f2fe', '#bae6fd']);
-                const grouped: { p: string; color: string; start: string; end: string }[] = [];
-                let ci = 0;
-                for (let i = 0; i < raw.length; i++) {
-                  const item = raw[i];
-                  const last = grouped[grouped.length - 1];
-                  if (last && last.p === item.p) {
-                    last.end = item.d;
-                  } else {
-                    grouped.push({ p: item.p, color: colors[ci] ?? '#666', start: item.d, end: item.d });
-                    ci++;
+              <div className={styles.penaltyRow}>
+                {(() => {
+                  const raw = [
+                    { d: '+15', p: '95%' },
+                    { d: '+14', p: '95%' },
+                    { d: '+13', p: '95%' },
+                    { d: '+12', p: '95%' },
+                    { d: '+11', p: '95%' },
+                    { d: '+10', p: '90%' },
+                    { d: '+9', p: '80%' },
+                    { d: '+8', p: '65%' },
+                    { d: '+7', p: '50%' },
+                    { d: '+6', p: '30%' },
+                    { d: '+5', p: '15%' },
+                    { d: '+4', p: '0' },
+                    { d: '+3', p: '0' },
+                    { d: '+2', p: '0' },
+                    { d: '+1', p: '0' },
+                    { d: '0', p: '0' },
+                    { d: '-1', p: '0' },
+                    { d: '-2', p: '0' },
+                    { d: '-3', p: '0' },
+                    { d: '-4', p: '0' },
+                    { d: '-5', p: '0' },
+                    { d: '-6', p: '15%' },
+                    { d: '-7', p: '30%' },
+                    { d: '-8', p: '50%' },
+                    { d: '-9', p: '65%' },
+                    { d: '-10', p: '80%' },
+                    { d: '-11', p: '90%' },
+                    { d: '-12', p: '95%' },
+                    { d: '-13', p: '95%' },
+                    { d: '-14', p: '95%' },
+                    { d: '-15', p: '95%' },
+                  ];
+                  const colors = [
+                    '#b91c1c',
+                    '#dc2626',
+                    '#ef4444',
+                    '#f87171',
+                    '#fca5a5',
+                    '#fecaca',
+                    '#fee2e2',
+                    '#f5f5f5',
+                    '#ffffff',
+                    '#f5f5f5',
+                    '#e0f2fe',
+                    '#bae6fd',
+                    '#7dd3fc',
+                    '#38bdf8',
+                    '#0ea5e9',
+                    '#0284c7',
+                    '#0369a1',
+                  ];
+                  const lightColors = new Set(['#fecaca', '#fee2e2', '#f5f5f5', '#ffffff', '#e0f2fe', '#bae6fd']);
+                  const grouped: { p: string; color: string; start: string; end: string }[] = [];
+                  let ci = 0;
+                  for (let i = 0; i < raw.length; i++) {
+                    const item = raw[i];
+                    const last = grouped[grouped.length - 1];
+                    if (last && last.p === item.p) {
+                      last.end = item.d;
+                    } else {
+                      grouped.push({ p: item.p, color: colors[ci] ?? '#666', start: item.d, end: item.d });
+                      ci++;
+                    }
                   }
-                }
-                return grouped.map(group => {
-                  const textColor = lightColors.has(group.color) ? '#111' : '#fff';
-                  const range = group.start === group.end ? group.start : `${group.start}…${group.end}`;
-                  return (
-                    <div key={group.start} className={styles.penaltyCell} style={{ background: group.color, color: textColor }}>
-                      <span className={styles.penaltyPct}>{group.p}</span>
-                      <span className={styles.penaltyDiff}>{range}</span>
-                    </div>
-                  );
-                });
-              })()}
-            </div>
+                  return grouped.map((group) => {
+                    const textColor = lightColors.has(group.color) ? '#111' : '#fff';
+                    const range = group.start === group.end ? group.start : `${group.start}…${group.end}`;
+                    return (
+                      <div
+                        key={group.start}
+                        className={styles.penaltyCell}
+                        style={{ background: group.color, color: textColor }}
+                      >
+                        <span className={styles.penaltyPct}>{group.p}</span>
+                        <span className={styles.penaltyDiff}>{range}</span>
+                      </div>
+                    );
+                  });
+                })()}
+              </div>
             </div>
 
-            <div className={styles.penaltyFooter}>
-              шкала штрафа — EXP, Drop и Spoil одинаковые %
-            </div>
+            <div className={styles.penaltyFooter}>шкала штрафа — EXP, Drop и Spoil одинаковые %</div>
           </div>
         </section>
 
@@ -343,25 +429,44 @@ export default function CalculatorTab() {
           <h2 className={styles.title}>Советы по фарму</h2>
           <div className={styles.subCard}>
             <h3 className={styles.subTitle}>Монстры</h3>
-            <p className={styles.text}>Для эффективной прокачки лучше выбирать локации с монстрами не ниже 5 уровней от персонажа и не выше 4 уровней.</p>
-            <p className={styles.text}>Если нет свободного спота с «белыми» мобами, можно фармить «синих» с небольшим штрафом. Идти на «красных» бессмысленно из-за высоких штрафов на опыт и дроп/спойл.</p>
+            <p className={styles.text}>
+              Для эффективной прокачки лучше выбирать локации с монстрами не ниже 5 уровней от персонажа и не выше 4
+              уровней.
+            </p>
+            <p className={styles.text}>
+              Если нет свободного спота с «белыми» мобами, можно фармить «синих» с небольшим штрафом. Идти на «красных»
+              бессмысленно из-за высоких штрафов на опыт и дроп/спойл.
+            </p>
           </div>
           <div className={styles.subCard}>
             <h3 className={styles.subTitle}>Рейд-боссы</h3>
-            <p className={styles.text}>На Lu4 нет смысла фармить «красных» и «синих» РБ: кроме высокой сложности, дроп будет снижен вплоть до отсутствия.</p>
-            <p className={styles.text}>Текущее окно уровня босса относительно персонажа: от «на 5 уровней ниже» до «на 4 уровня выше».</p>
+            <p className={styles.text}>
+              На Lu4 нет смысла фармить «красных» и «синих» РБ: кроме высокой сложности, дроп будет снижен вплоть до
+              отсутствия.
+            </p>
+            <p className={styles.text}>
+              Текущее окно уровня босса относительно персонажа: от «на 5 уровней ниже» до «на 4 уровня выше».
+            </p>
           </div>
         </section>
 
         <section id="calc-premium" className={styles.card}>
           <h2 className={styles.title}>Премиум Аккаунт</h2>
-          <p className={styles.text}>Премиум Аккаунт — специальный статус игрового аккаунта. Обладатели ПА получают дополнительные бонусы к опыту и дропу, доступ к магической поддержке и другие преимущества.</p>
+          <p className={styles.text}>
+            Премиум Аккаунт — специальный статус игрового аккаунта. Обладатели ПА получают дополнительные бонусы к опыту
+            и дропу, доступ к магической поддержке и другие преимущества.
+          </p>
           <div className={styles.subCard}>
             <h3 className={styles.subTitle}>Стоимость Премиума</h3>
             <div className={styles.tableWrap}>
               <div className={styles.tableScroll}>
                 <table className={styles.table}>
-                  <thead><tr><th>Длительность</th><th>Стоимость</th></tr></thead>
+                  <thead>
+                    <tr>
+                      <th>Длительность</th>
+                      <th>Стоимость</th>
+                    </tr>
+                  </thead>
                   <tbody>
                     {[
                       ['Премиум на 1 день', 'Master Coin × 20'],
@@ -371,7 +476,10 @@ export default function CalculatorTab() {
                       ['Премиум на 30 дней', 'Master Coin × 250'],
                       ['Премиум на 100 дней', 'Master Coin × 500'],
                     ].map(([d, c]) => (
-                      <tr key={d}><td>{d}</td><td>{c}</td></tr>
+                      <tr key={d}>
+                        <td>{d}</td>
+                        <td>{c}</td>
+                      </tr>
                     ))}
                   </tbody>
                 </table>
@@ -382,17 +490,31 @@ export default function CalculatorTab() {
             <h3 className={styles.subTitle}>Бонусы Премиума</h3>
             <div className={styles.tableWrap}>
               <table className={styles.table}>
-                <thead><tr><th>Параметр</th><th>Бонус</th></tr></thead>
+                <thead>
+                  <tr>
+                    <th>Параметр</th>
+                    <th>Бонус</th>
+                  </tr>
+                </thead>
                 <tbody>
                   {[
-                    ['EXP', '+50%'], ['SP', '+50%'], ['Drop', '+50%'], ['Spoil', '+50%'],
-                    ['Лимит Веса', '+50%'], ['Расширение Инвентаря', '+50 слотов'],
-                    ['Расширение Склада', '+50 слотов'], ['Расширение Торговли', '+5 слотов'],
-                    ['Расширение Книги Рецептов', '+5 слотов'], ['Глобальный чат', 'Доступ'],
+                    ['EXP', '+50%'],
+                    ['SP', '+50%'],
+                    ['Drop', '+50%'],
+                    ['Spoil', '+50%'],
+                    ['Лимит Веса', '+50%'],
+                    ['Расширение Инвентаря', '+50 слотов'],
+                    ['Расширение Склада', '+50 слотов'],
+                    ['Расширение Торговли', '+5 слотов'],
+                    ['Расширение Книги Рецептов', '+5 слотов'],
+                    ['Глобальный чат', 'Доступ'],
                     ['Сервисы', 'Магическая поддержка + скидки'],
                     ['Лимит окон', '+1 окно'],
                   ].map(([p, b]) => (
-                    <tr key={p}><td>{p}</td><td className={styles.lu4Cell}>{b}</td></tr>
+                    <tr key={p}>
+                      <td>{p}</td>
+                      <td className={styles.lu4Cell}>{b}</td>
+                    </tr>
                   ))}
                 </tbody>
               </table>
@@ -402,16 +524,33 @@ export default function CalculatorTab() {
 
         <section id="calc-autoloot" className={styles.card}>
           <h2 className={styles.title}>Автоматический сбор лута (Автолут)</h2>
-          <p className={styles.text}>Автоматически собирает добычу при убийстве монстров. Действует аналогично ручному сбору — предметы распределяются внутри группы, согласно настройкам распределения добычи.</p>
+          <p className={styles.text}>
+            Автоматически собирает добычу при убийстве монстров. Действует аналогично ручному сбору — предметы
+            распределяются внутри группы, согласно настройкам распределения добычи.
+          </p>
           <div className={styles.subCard}>
             <h3 className={styles.subTitle}>Виды автолута</h3>
             <div className={styles.tableWrap}>
               <div className={styles.tableScroll}>
                 <table className={styles.table}>
-                  <thead><tr><th>Тип</th><th>Радиус</th><th>Скорость в мирной зоне</th></tr></thead>
+                  <thead>
+                    <tr>
+                      <th>Тип</th>
+                      <th>Радиус</th>
+                      <th>Скорость в мирной зоне</th>
+                    </tr>
+                  </thead>
                   <tbody>
-                    <tr><td>Ближний</td><td>до 400</td><td>+15 к скорости</td></tr>
-                    <tr><td>Дальний</td><td>до 1500</td><td>+25 к скорости</td></tr>
+                    <tr>
+                      <td>Ближний</td>
+                      <td>до 400</td>
+                      <td>+15 к скорости</td>
+                    </tr>
+                    <tr>
+                      <td>Дальний</td>
+                      <td>до 1500</td>
+                      <td>+25 к скорости</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -422,7 +561,13 @@ export default function CalculatorTab() {
             <div className={styles.tableWrap}>
               <div className={styles.tableScroll}>
                 <table className={styles.table}>
-                  <thead><tr><th>Срок</th><th>Ближний</th><th>Дальний</th></tr></thead>
+                  <thead>
+                    <tr>
+                      <th>Срок</th>
+                      <th>Ближний</th>
+                      <th>Дальний</th>
+                    </tr>
+                  </thead>
                   <tbody>
                     {[
                       ['1 день', '6 MC', '10 MC'],
@@ -432,7 +577,11 @@ export default function CalculatorTab() {
                       ['30 дней', '75 MC', '125 MC'],
                       ['100 дней', '150 MC', '250 MC'],
                     ].map(([d, n, f]) => (
-                      <tr key={d}><td>{d}</td><td>{n}</td><td>{f}</td></tr>
+                      <tr key={d}>
+                        <td>{d}</td>
+                        <td>{n}</td>
+                        <td>{f}</td>
+                      </tr>
                     ))}
                   </tbody>
                 </table>

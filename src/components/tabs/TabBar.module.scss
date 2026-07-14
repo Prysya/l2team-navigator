@@ -1,5 +1,5 @@
-@use '../../styles/variables' as *;
-@use '../../styles/mixins' as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
 .tabs {
   display: flex;
@@ -29,8 +29,9 @@
   height: 3px;
   border-radius: 2px;
   background: $gradient-primary;
-  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    left 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
 
   @include mobile {
@@ -53,7 +54,9 @@
   font-weight: 400;
   flex: 1;
   text-align: center;
-  transition: color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
 
   &:hover {
     color: $color-text;
@@ -66,14 +69,16 @@
 
 .active {
   color: $color-primary;
+  background: rgba(56, 189, 248, 0.07);
 }
 
 .icon {
-  font-size: 1.5rem;
-  line-height: 1;
+  width: 22px;
+  height: 22px;
 
   @include tablet {
-    font-size: 1.2rem;
+    width: 20px;
+    height: 20px;
   }
 }
 

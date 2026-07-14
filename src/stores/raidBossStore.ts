@@ -1,40 +1,6 @@
 import { create } from 'zustand';
 
-export interface BossStats {
-  hp: string | null;
-  mp: string | null;
-  pAtk: string | null;
-  mAtk: string | null;
-  pDef: string | null;
-  mDef: string | null;
-  exp: string | null;
-  sp: string | null;
-  atkAttr?: string | null;
-  defAttr?: string | null;
-}
-
-export interface DropItem {
-  name: string;
-  grade: string;
-  amount: string;
-  chance: number;
-}
-
-export interface DropGroup {
-  groupChance: number;
-  items: DropItem[];
-}
-
-export interface RaidBoss {
-  name: string;
-  level: number;
-  respawn: string;
-  location: string;
-  stats: BossStats | null;
-  drops: DropGroup[] | null;
-  image?: string;
-  coords?: { x: number; y: number };
-}
+import type { RaidBoss } from '@/types';
 
 interface RaidBossStore {
   searchQuery: string;

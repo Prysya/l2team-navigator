@@ -17,6 +17,5 @@ export const useSpellbookStore = create<SpellbookStore>((set) => ({
   setSelectedRace: (race) => set({ selectedRace: race }),
   setSelectedClass: (cls) => set({ selectedClass: cls }),
   setSearchQuery: (q) => set({ searchQuery: q }),
-  handleRaceChange: (e) =>
-    set({ selectedRace: e.target.value, selectedClass: '' }),
+  handleRaceChange: (e) => set({ selectedRace: e.target.value, selectedClass: '' }),
 }));

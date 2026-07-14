@@ -1,5 +1,5 @@
-@use '../../styles/variables' as *;
-@use '../../styles/mixins' as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
 .wrapper {
   display: flex;
@@ -40,7 +40,9 @@
   font-weight: 500;
   text-decoration: none;
   white-space: nowrap;
-  transition: color 0.15s, background 0.15s;
+  transition:
+    color 0.15s,
+    background 0.15s;
 
   &:hover {
     color: $color-text;
@@ -135,7 +137,9 @@
   font-size: $font-size-lg;
   font-weight: 700;
   cursor: pointer;
-  transition: color 0.15s, border-color 0.15s;
+  transition:
+    color 0.15s,
+    border-color 0.15s;
   flex-shrink: 0;
 
   &:first-child {
@@ -221,7 +225,8 @@
   border-collapse: collapse;
   font-size: $font-size-lg;
 
-  th, td {
+  th,
+  td {
     padding: 10px 14px;
     border: 1px solid $color-border;
     text-align: center;
@@ -246,7 +251,8 @@
   }
 
   @include mobile {
-    th, td {
+    th,
+    td {
       padding: 4px 6px;
     }
   }

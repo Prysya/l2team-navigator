@@ -1,5 +1,5 @@
-@use '../../styles/variables' as *;
-@use '../../styles/mixins' as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
 .controls {
   background: $color-surface;
@@ -247,7 +247,8 @@
   border-collapse: collapse;
   font-size: $font-size-base;
 
-  th, td {
+  th,
+  td {
     padding: 6px 10px;
     border: 1px solid $color-border;
     text-align: left;
@@ -267,13 +268,13 @@
   }
 
   @include mobile {
-    th, td {
+    th,
+    td {
       padding: 4px 6px;
       font-size: $font-size-sm;
     }
   }
 }
-
 
 .lvlClass {
   text-align: center;
@@ -302,12 +303,4 @@
   color: $color-accent-orange;
   font-weight: 600;
   font-family: $font-mono;
-}
-
-.emptyState {
-  text-align: center;
-  padding: 60px 20px;
-  color: $color-text-muted;
-  font-style: italic;
-  font-size: $font-size-lg;
 }

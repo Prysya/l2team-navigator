@@ -1,5 +1,5 @@
-@use 'variables' as *;
-@use 'mixins' as *;
+@use "variables" as *;
+@use "mixins" as *;
 
 * {
   box-sizing: border-box;
@@ -20,7 +20,21 @@
   }
 }
 
+.tab-page {
+  flex: 1;
+  animation: tabSlideIn 0.25s ease both;
+}
 
+@keyframes tabSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 html {
   -webkit-text-size-adjust: 100%;
@@ -28,7 +42,7 @@ html {
 }
 
 :root {
-  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   // ─── Current (default) theme ───
   --color-bg: #05070d;
@@ -43,6 +57,8 @@ html {
   --color-accent-purple: #a78bfa;
   --color-accent-green: #7ee787;
   --color-accent-orange: #ffa657;
+  --color-accent-amber: #fbbf24;
+  --color-accent-cyan: #22d3ee;
   --color-text: #dbe4f0;
   --color-text-muted: #8291ab;
   --color-link: #6ab7ff;
@@ -63,13 +79,13 @@ html {
   --shadow-text: 0 0 14px rgba(56, 189, 248, 0.35);
   --shadow-box: 0 2px 12px -4px rgba(56, 189, 248, 0.5);
 
-  --font-size-xs: 10px;
-  --font-size-sm: 11px;
-  --font-size-base: 12px;
-  --font-size-md: 13px;
-  --font-size-lg: 14px;
-  --font-size-xl: 18px;
-  --font-size-h1: 1.4rem;
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-base: 13px;
+  --font-size-md: 14px;
+  --font-size-lg: 15px;
+  --font-size-xl: 20px;
+  --font-size-h1: 1.5rem;
 }
 
 body {
@@ -79,10 +95,10 @@ body {
   color: $color-text;
   background-color: $color-bg;
   min-height: auto;
+  scrollbar-width: thin;
+  scrollbar-color: $color-border $color-surface;
   background-image:
-    $gradient-bg-3,
-    $gradient-bg-1,
-    $gradient-bg-2,
+    $gradient-bg-3, $gradient-bg-1, $gradient-bg-2,
     repeating-linear-gradient(
       0deg,
       transparent,
@@ -99,7 +115,26 @@ body {
     );
   background-repeat: no-repeat, no-repeat, no-repeat, repeat, repeat;
   background-attachment: fixed;
-  background-size: auto, auto, auto, 4px 4px, 4px 4px;
+  background-size:
+    auto,
+    auto,
+    auto,
+    4px 4px,
+    4px 4px;
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: $color-surface;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color-border;
+  border-radius: 1px;
 }
 
 .app-header {
@@ -107,12 +142,23 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 12px 0;
+  padding: 12px 0 16px;
   margin-bottom: 16px;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, $color-border 20%, $color-border 80%, transparent);
+  }
 
   @include mobile {
     gap: 10px;
-    padding: 10px 0;
+    padding: 10px 0 14px;
   }
 }
 
@@ -158,7 +204,8 @@ body {
   text-decoration: none;
   transition: all 0.2s;
 
-  svg, .forum-icon {
+  svg,
+  .forum-icon {
     width: 16px;
     height: 16px;
     flex-shrink: 0;
@@ -278,57 +325,17 @@ a {
   }
 }
 
-.social-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background: $color-surface;
-  border: 1px solid $color-border;
-  border-radius: $radius-xl;
-  color: $color-text;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: $font-size-lg;
-  transition: all 0.2s;
-
-  svg {
-    width: 18px;
-    height: 18px;
-    flex-shrink: 0;
-  }
-
-  &:hover {
-    background: $color-surface-hover;
-    transform: translateY(-1px);
-  }
-
-  &.social-youtube:hover {
-    border-color: #ff0000;
-    color: #ff6666;
-  }
-
-  &.social-telegram:hover {
-    border-color: #229ed9;
-    color: #6fc8f0;
-  }
-
-  &.social-forum:hover {
-    border-color: $color-agr;
-    color: #ff8080;
-  }
-
-  @include mobile {
-    justify-content: center;
-    width: 100%;
-    font-size: $font-size-md;
-    padding: 10px;
-  }
-}
-
 .monster-name {
   font-size: $font-size-lg;
   font-weight: 600;
+}
+
+.monster-badges {
+  margin-top: 3px;
+}
+
+.text-muted {
+  color: $color-text-muted;
 }
 
 .location-tag {
@@ -490,7 +497,7 @@ a {
 
   &::before,
   &::after {
-    content: '';
+    content: "";
     display: block;
     width: 16px;
     height: 2px;
@@ -500,13 +507,21 @@ a {
     transition: transform 0.2s;
   }
 
-  &::before { transform: translateY(-5px); }
-  &::after  { transform: translateY(5px); }
+  &::before {
+    transform: translateY(-5px);
+  }
+  &::after {
+    transform: translateY(5px);
+  }
 
   &.open {
     background: transparent;
-    &::before { transform: rotate(45deg); }
-    &::after  { transform: rotate(-45deg); }
+    &::before {
+      transform: rotate(45deg);
+    }
+    &::after {
+      transform: rotate(-45deg);
+    }
   }
 }
 
@@ -517,14 +532,17 @@ a {
 }
 
 .burger-overlay {
-  display: none;
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
   z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
 
-  @include mobile {
-    display: block;
+  &.open {
+    opacity: 1;
+    pointer-events: auto;
   }
 }
 
@@ -536,6 +554,12 @@ a {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+  .burger-overlay.open & {
+    transform: translateX(0);
+  }
 }
 
 .burger-header {
@@ -599,23 +623,29 @@ a {
   cursor: pointer;
   width: 100%;
   text-align: left;
-  transition: color 0.15s, background 0.15s;
+  transition:
+    color 0.15s,
+    background 0.15s;
 
   &:hover {
-    color: $color-text;
-    background: $color-surface-hover;
+    color: var(--burger-accent, $color-text);
+    background: color-mix(in srgb, var(--burger-accent, $color-text-muted) 8%, $color-surface-hover);
   }
 
   &.active {
-    color: $color-primary;
+    color: var(--burger-accent, $color-primary);
+    background: color-mix(in srgb, var(--burger-accent, $color-primary) 10%, transparent);
   }
 }
 
 .burger-item-icon {
-  font-size: 1.3rem;
-  width: 26px;
-  text-align: center;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
+}
+
+.burger-item-label {
+  font-size: 15px;
 }
 
 .burger-socials {
@@ -634,7 +664,9 @@ a {
   font-size: 15px;
   font-weight: 600;
   text-decoration: none;
-  transition: color 0.15s, background 0.15s;
+  transition:
+    color 0.15s,
+    background 0.15s;
 
   &.social-youtube:hover {
     color: #ff6666;
@@ -670,7 +702,7 @@ a {
   text-align: left;
 
   &::before {
-    content: '';
+    content: "";
     display: block;
     margin-bottom: 12px;
     height: 1px;
@@ -696,10 +728,15 @@ a {
   margin: 0 0 4px;
 }
 
+.footer-version {
+  color: $color-border;
+  font-size: $font-size-xs;
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
 .footer-link {
   color: $color-primary;
   text-decoration: none;
   font-weight: 600;
 }
-
-

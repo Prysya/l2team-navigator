@@ -1,19 +1,23 @@
-import cx from 'classnames';
-import { useMemo, Fragment, useCallback, useEffect, useState } from 'react';
+import { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
+import RAIDBOSSES from '@data/RAIDBOSSES.json';
+import CopyLink from '@shared/CopyLink';
+import EmptyState from '@shared/EmptyState';
+import FloatingLabel from '@shared/FloatingLabel';
+import WorldMap from '@shared/WorldMap';
 import {
-  useReactTable,
+  createColumnHelper,
+  flexRender,
   getCoreRowModel,
   getSortedRowModel,
-  flexRender,
-  createColumnHelper,
   type SortingState,
+  useReactTable,
 } from '@tanstack/react-table';
-import RAIDBOSSES from '../../data/RAIDBOSSES.json';
+import cx from 'classnames';
+
+import { useRaidBossStore } from '@/stores/raidBossStore';
+import type { RaidBoss } from '@/types';
+
 import styles from './RaidBossTab.module.scss';
-import { useRaidBossStore, type RaidBoss } from '../../stores/raidBossStore';
-import CopyLink from '../../components/shared/CopyLink';
-import WorldMap from '../../components/shared/WorldMap';
-import FloatingLabel from '../../components/shared/FloatingLabel';
 
 const BOSSES = RAIDBOSSES as RaidBoss[];
 
@@ -27,14 +31,14 @@ const isEpic = (b: RaidBoss) => b.respawn && b.respawn.includes('Фиксиро�
 const columnHelper = createColumnHelper<RaidBoss>();
 
 export default function RaidBossTab() {
-  const searchQuery = useRaidBossStore(s => s.searchQuery);
-  const expanded = useRaidBossStore(s => s.expanded);
-  const mapBoss = useRaidBossStore(s => s.mapBoss);
-  const previewBoss = useRaidBossStore(s => s.previewBoss);
-  const setSearchQuery = useRaidBossStore(s => s.setSearchQuery);
-  const toggleRow = useRaidBossStore(s => s.toggleRow);
-  const setMapBoss = useRaidBossStore(s => s.setMapBoss);
-  const setPreviewBoss = useRaidBossStore(s => s.setPreviewBoss);
+  const searchQuery = useRaidBossStore((s) => s.searchQuery);
+  const expanded = useRaidBossStore((s) => s.expanded);
+  const mapBoss = useRaidBossStore((s) => s.mapBoss);
+  const previewBoss = useRaidBossStore((s) => s.previewBoss);
+  const setSearchQuery = useRaidBossStore((s) => s.setSearchQuery);
+  const toggleRow = useRaidBossStore((s) => s.toggleRow);
+  const setMapBoss = useRaidBossStore((s) => s.setMapBoss);
+  const setPreviewBoss = useRaidBossStore((s) => s.setPreviewBoss);
 
   const [epicSort, setEpicSort] = useState<SortingState>([{ id: 'level', desc: false }]);
   const [raidSort, setRaidSort] = useState<SortingState>([{ id: 'level', desc: false }]);
@@ -45,7 +49,7 @@ export default function RaidBossTab() {
     if (bossName) {
       const decoded = decodeURIComponent(bossName);
       setSearchQuery(decoded);
-      const boss = BOSSES.find(b => b.name.toLowerCase() === decoded.toLowerCase());
+      const boss = BOSSES.find((b) => b.name.toLowerCase() === decoded.toLowerCase());
       if (boss) {
         const id = boss.name + boss.level;
         toggleRow(id);
@@ -55,61 +59,70 @@ export default function RaidBossTab() {
         }, 100);
       }
     }
-  }, []);
+  }, [setSearchQuery, toggleRow]);
 
   const { epics, raids } = useMemo(() => {
     let list = BOSSES;
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase().trim();
-      list = list.filter(b =>
-        b.name.toLowerCase().includes(q) ||
-        (b.location && b.location.toLowerCase().includes(q))
+      list = list.filter(
+        (b) => b.name.toLowerCase().includes(q) || (b.location && b.location.toLowerCase().includes(q)),
       );
     }
     return {
       epics: list.filter(isEpic),
-      raids: list.filter(b => !isEpic(b)),
+      raids: list.filter((b) => !isEpic(b)),
     };
   }, [searchQuery]);
 
-  const toggleExpand = useCallback((id: string) => {
-    toggleRow(id);
-  }, [toggleRow]);
+  const toggleExpand = useCallback(
+    (id: string) => {
+      toggleRow(id);
+    },
+    [toggleRow],
+  );
 
-  const columns = useMemo(() => [
-    columnHelper.accessor('name', {
-      header: 'Босс',
-      enableSorting: false,
-      cell: ({ row, getValue }) => (
-        <div className={styles.clickableCell} onClick={() => toggleExpand(row.original.name + row.original.level)}>
-          <span className={styles.bossName}>
-            {expanded.has(row.original.name + row.original.level) ? '▼ ' : '▶ '}{getValue()}
-          </span>
-          <CopyLink getUrl={() => window.location.origin + import.meta.env.BASE_URL + 'raidboss?boss=' + encodeURIComponent(row.original.name)} />
-        </div>
-      ),
-    }),
-    columnHelper.accessor('level', {
-      header: 'Ур.',
-      cell: ({ getValue }) => (
-        <span className={styles.lvlBadge}>{getValue()}</span>
-      ),
-    }),
-    columnHelper.accessor('respawn', {
-      header: 'Респ',
-      enableSorting: false,
-      cell: ({ row, getValue }) => (
-        <span className={cx(styles.respawnBadge, isEpic(row.original) && styles.respawnFixed)}>
-          {getValue()}
-        </span>
-      ),
-    }),
-    columnHelper.accessor('location', {
-      header: 'Локация',
-      enableSorting: false,
-      cell: ({ getValue }) => getValue(),
-    }),
-  ], [expanded, toggleExpand]);
+  const columns = useMemo(
+    () => [
+      columnHelper.accessor('name', {
+        header: 'Босс',
+        enableSorting: false,
+        cell: ({ row, getValue }) => (
+          <div className={styles.clickableCell} onClick={() => toggleExpand(row.original.name + row.original.level)}>
+            <span className={styles.bossName}>
+              {expanded.has(row.original.name + row.original.level) ? '▼ ' : '▶ '}
+              {getValue()}
+            </span>
+            <CopyLink
+              getUrl={() =>
+                window.location.origin +
+                import.meta.env.BASE_URL +
+                'raidboss?boss=' +
+                encodeURIComponent(row.original.name)
+              }
+            />
+          </div>
+        ),
+      }),
+      columnHelper.accessor('level', {
+        header: 'Ур.',
+        cell: ({ getValue }) => <span className={styles.lvlBadge}>{getValue()}</span>,
+      }),
+      columnHelper.accessor('respawn', {
+        header: 'Респ',
+        enableSorting: false,
+        cell: ({ row, getValue }) => (
+          <span className={cx(styles.respawnBadge, isEpic(row.original) && styles.respawnFixed)}>{getValue()}</span>
+        ),
+      }),
+      columnHelper.accessor('location', {
+        header: 'Локация',
+        enableSorting: false,
+        cell: ({ getValue }) => getValue(),
+      }),
+    ],
+    [expanded, toggleExpand],
+  );
 
   function BossTable({ data, title, icon }: { data: RaidBoss[]; title: string; icon: string }) {
     const sortState = title.includes('Эпик') ? epicSort : raidSort;
@@ -127,18 +140,25 @@ export default function RaidBossTab() {
 
     return (
       <Fragment>
-        <div className={styles.sectionTitle}>{icon} {title} ({data.length})</div>
+        <div className={styles.sectionTitle}>
+          {icon} {title} ({data.length})
+        </div>
         <div className={styles.tableWrap}>
           <table className={styles.table}>
             <thead>
-              {table.getHeaderGroups().map(headerGroup => (
+              {table.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id}>
-                  {headerGroup.headers.map(header => {
+                  {headerGroup.headers.map((header) => {
                     const widthClass =
-                      header.id === 'name' ? styles.colName :
-                      header.id === 'level' ? styles.colLvl :
-                      header.id === 'respawn' ? styles.colResp :
-                      header.id === 'location' ? styles.colLoc : '';
+                      header.id === 'name'
+                        ? styles.colName
+                        : header.id === 'level'
+                          ? styles.colLvl
+                          : header.id === 'respawn'
+                            ? styles.colResp
+                            : header.id === 'location'
+                              ? styles.colLoc
+                              : '';
                     return (
                       <th
                         key={header.id}
@@ -163,13 +183,11 @@ export default function RaidBossTab() {
               ))}
             </thead>
             <tbody>
-              {table.getRowModel().rows.map(row => (
+              {table.getRowModel().rows.map((row) => (
                 <Fragment key={row.id}>
                   <tr id={'boss-' + row.original.name + row.original.level}>
-                    {row.getVisibleCells().map(cell => (
-                      <td key={cell.id}>
-                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                      </td>
+                    {row.getVisibleCells().map((cell) => (
+                      <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
                     ))}
                   </tr>
                   {expanded.has(row.original.name + row.original.level) && (
@@ -202,7 +220,7 @@ export default function RaidBossTab() {
               type="text"
               name="raidboss-search"
               value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
           </FloatingLabel>
         </div>
@@ -221,7 +239,7 @@ export default function RaidBossTab() {
           </Fragment>
         )
       ) : (
-        <div className={styles.emptyState}>Боссы не найдены</div>
+        <EmptyState message="Боссы не найдены" />
       )}
 
       {mapBoss && mapBoss.coords && (
@@ -230,8 +248,10 @@ export default function RaidBossTab() {
 
       {previewBoss && (
         <div className={styles.imgPreviewOverlay} onClick={() => setPreviewBoss(null)}>
-          <div className={styles.imgPreviewModal} onClick={e => e.stopPropagation()}>
-            <button className={styles.imgPreviewClose} onClick={() => setPreviewBoss(null)}>✕</button>
+          <div className={styles.imgPreviewModal} onClick={(e) => e.stopPropagation()}>
+            <button className={styles.imgPreviewClose} onClick={() => setPreviewBoss(null)}>
+              ✕
+            </button>
             <img
               className={styles.imgPreviewImage}
               src={`${import.meta.env.BASE_URL}${previewBoss.image}`}
@@ -245,8 +265,17 @@ export default function RaidBossTab() {
   );
 }
 
-function BossDetail({ boss, onShowMap, onShowImage }: { boss: RaidBoss; onShowMap?: () => void; onShowImage?: () => void }) {
-  const hasStats = boss.stats?.hp || false;
+function BossDetail({
+  boss,
+  onShowMap,
+  onShowImage,
+}: {
+  boss: RaidBoss;
+  onShowMap?: () => void;
+  onShowImage?: () => void;
+}) {
+  const stats = boss.stats;
+  const hasStats = stats?.hp || false;
 
   const dropGroups = boss.drops ?? [];
 
@@ -264,19 +293,19 @@ function BossDetail({ boss, onShowMap, onShowImage }: { boss: RaidBoss; onShowMa
           </div>
         )}
         <div className={styles.detailStats}>
-          {hasStats && (
+          {stats && (
             <>
               <div className={styles.subTitle}>📊 Характеристики</div>
               <div className={styles.statsGrid}>
                 {[
-                  ['HP', boss.stats!.hp],
-                  ['MP', boss.stats!.mp],
-                  ['P.Atk', boss.stats!.pAtk],
-                  ['M.Atk', boss.stats!.mAtk],
-                  ['P.Def', boss.stats!.pDef],
-                  ['M.Def', boss.stats!.mDef],
-                  ['Exp', boss.stats!.exp],
-                  ['SP', boss.stats!.sp],
+                  ['HP', stats.hp],
+                  ['MP', stats.mp],
+                  ['P.Atk', stats.pAtk],
+                  ['M.Atk', stats.mAtk],
+                  ['P.Def', stats.pDef],
+                  ['M.Def', stats.mDef],
+                  ['Exp', stats.exp],
+                  ['SP', stats.sp],
                 ].map(([label, val]) => (
                   <div key={label as string} className={styles.statItem}>
                     <span className={styles.statLabel}>{label as string}</span>
@@ -345,11 +374,7 @@ function BossDetail({ boss, onShowMap, onShowImage }: { boss: RaidBoss; onShowMa
         </>
       )}
 
-      {!hasStats && dropGroups.length === 0 && (
-        <div className={styles.noData}>Нет данных</div>
-      )}
+      {!hasStats && dropGroups.length === 0 && <div className={styles.noData}>Нет данных</div>}
     </div>
   );
 }
-
-
