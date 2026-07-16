@@ -1,0 +1,17 @@
+# L2team Database
+
+L2team Database — база данных по игре Lineage 2 (сервер Lu4). Справочник рецептов крафта, рейд-боссов, скиллов, квестов, локаций и книг заклинаний.
+
+## Key sections
+
+- Recipes: крафт оружия, брони, аксессуаров, сoulshots, эликсиров и ресурсов
+- Spellbooks: книга заклинаний с дропом по расам и классам
+- Locations: локации с монстрами, их дропом и спойлом
+- Skills: скиллы всех 51 классов с описаниями
+- RaidBosses: 139 рейд-боссов со статами, дроп-таблицами и картой
+- Calculator: калькулятор прокачки персонажа
+- Quests: расовые квесты, профессии, цепочка палач храма
+
+## Tech
+
+Built with React 18, TypeScript, Vite, Zustand, SCSS Modules. Static data in JSON files (no runtime API). Deployed on GitHub Pages.

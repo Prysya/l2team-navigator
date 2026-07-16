@@ -171,10 +171,11 @@ export default function QuestsTab() {
         header: 'Квест',
         enableSorting: false,
         cell: ({ getValue, row }) => {
-          const tag = (row.original as Quest).rewardTag;
+          const r = row.original as Quest;
+          const tag = r.rewardTag;
           return (
             <span className={styles.questName}>
-              {category === 'racial' && (tag === 'soulshot' || tag === 'both') && (
+              {category === 'racial' && (tag === 'soulshot' || tag === 'both') && r.name !== 'Millennium Love' && (
                 <span className={styles.tagSoulshot}>🔥 </span>
               )}
               {getValue()}
@@ -298,6 +299,7 @@ export default function QuestsTab() {
                     className={cx(
                       category === 'racial' &&
                         (eq.rewardTag === 'soulshot' || eq.rewardTag === 'both') &&
+                        eq.name !== 'Millennium Love' &&
                         styles.rowSoulshot,
                     )}
                     style={{ cursor: 'pointer' }}

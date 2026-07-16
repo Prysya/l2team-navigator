@@ -12,6 +12,7 @@ import {
   type SortingState,
   useReactTable,
 } from '@tanstack/react-table';
+import { goal } from '@utils/metrics';
 import cx from 'classnames';
 
 import { useRaidBossStore } from '@/stores/raidBossStore';
@@ -88,7 +89,15 @@ export default function RaidBossTab() {
         header: 'Босс',
         enableSorting: false,
         cell: ({ row, getValue }) => (
-          <div className={styles.clickableCell} onClick={() => toggleExpand(row.original.name + row.original.level)}>
+          <div
+            className={styles.clickableCell}
+            onClick={() => {
+              toggleExpand(row.original.name + row.original.level);
+              if (!expanded.has(row.original.name + row.original.level)) {
+                goal('boss_expand');
+              }
+            }}
+          >
             <span className={styles.bossName}>
               {expanded.has(row.original.name + row.original.level) ? '▼ ' : '▶ '}
               {getValue()}

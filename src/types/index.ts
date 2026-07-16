@@ -169,3 +169,40 @@ export interface ClassSkillsData {
   className: string;
   skills: ClassSkill[];
 }
+
+export type RecipeType = 'Weapon' | 'Armor' | 'Accessory' | 'Soulshot' | 'Material' | 'Elixir' | 'Other';
+export type RecipeGrade = 'NG' | 'D' | 'C' | 'B' | 'A';
+
+export interface RecipeComponent {
+  itemId: number;
+  name: string;
+  amount: number;
+  isComposite: boolean;
+  children: RecipeComponent[];
+}
+
+export interface RecipeEntry {
+  recipeId: number;
+  recipeName: string;
+  recipeUrl: string;
+  resultName: string;
+  resultUrl: string;
+  resultDescription: string | null;
+  resultWeight: number | null;
+  resultPrice: number | null;
+  resultParameter: string | null;
+  resultCanDrop: boolean | null;
+  resultCanTrade: boolean | null;
+  resultCanEnchant: boolean | null;
+  resultCanAttribute: boolean | null;
+  recipeType: RecipeType;
+  resultGrade: RecipeGrade;
+  otherCategory: string | null;
+  resultItemSubtype: string | null;
+  craftLevel: number;
+  manaCost: number;
+  successRate: number;
+  monsters: Monster[];
+  requiredItems: RecipeComponent[];
+  mainPieceMonsters: Monster[];
+}

@@ -19,4 +19,10 @@ export const SHARED_QUESTS: Quest[] = [
     desc: 'опыт и расходка.',
     reward: 'вся расходка согласно квеста 100000 Exp, 10000 Sp',
   },
+  {
+    lvl: 21,
+    name: 'Seed of evil',
+    desc: 'Убить Nerkas в Elven Ruins',
+    reward: '50000 Exp, 5000 SP, 50 Healing Potions, Blessed Scroll of Resurrection',
+  },
 ];

@@ -155,11 +155,13 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - CopyLink next to book title: `#spellbooks?sbRace=&sbQ=`
 
 ### RecipeTab
-- Group `CustomSelect` (select category) → Recipe `CustomSelect` (filtered by group + search)
+- Type `CustomSelect` (All / Weapon / Armor / Accessory / Soulshot / Material / Elixir / Other) + Grade `CustomSelect` (NG/D/C/B/A)
+- Recipe `CustomSelect` filtered by type + grade + search; grouping by subtype for Armor (Heavy/Light/Robe/Helmet/Gloves/Boots/Shields/HairAccessory), Weapon (Sword/Blunt/Dagger/Bow/Polearm/Fist/Misc), Accessory (Earring/Ring/Necklace)
+- Grade selector hidden for Material/Other types; NG hidden for Soulshot type
+- Card with 4 tabs: Рецепт (NPC дроп рецепта), Куски (NPC дроп основного материала), Крафт (уровень/MP/шанс + дерево компонентов), Информация о предмете (вес/цена/параметр/описание)
 - Search (`FloatingLabel`) full width via `.searchWrap { flex: 1 }`
-- Card layout with border-left accent
-- Recipe select labels show only recipe name (no `#number —` prefix)
-- Store: `selectedGroup: number | null`, selecting a group clears `selectedNumber`
+- Dynamic import of data: RECIPES.json загружается через `import()` внутри `useEffect` (отдельные чанки)
+- Store: `selectedType`, `selectedGrade`, `selectedRecipeId`, `searchQuery`
 
 ### LocationsTab
 - Gradient active buttons for sub-tabs
@@ -204,6 +206,27 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - `enrichQuest()` проверяет: хардкод-мапы → поле квеста → `QUEST_DATA.json`
 
 **Запуск:** `node scripts/parse-quests.mjs`
+
+## Scripts (`scripts/`)
+- `build-recipes.mjs` — собирает `src/data/RECIPES.json` из `tmp/recipe_json.json`, `tmp/items.json`, `tmp/npc_json_with_subtypes.json`
+- Фильтрует S-grade и deprecated предметы, объединяет рецепты с NPC-дропом/спойлом
+- Распределяет Etc-рецепты по подтипам: Soulshot/Elixir/Material/Other
+- Определяет категорию для брони по `item_parameter` (Helmet/Gloves/Boots/Shield/HairAccessory)
+
+## Analytics
+- Яндекс.Метрика (ID: 110798252) добавлена в `index.html`
+- Отслеживание просмотров страниц: `useEffect` в `AppLayout()` шлёт `hit(location)`
+- Отслеживание целей: `goal('goal_name')` — выбор рецепта, раскрытие босса
+- Все вызовы через `src/utils/metrics.ts`: `hit(path)` / `goal(name)`
+- В футере — уведомление о сборе анонимной статистики (152-ФЗ)
+
+## Lazy Loading
+- SkillsTab — ленивый через `React.lazy(() => import(...))` (SKILLS.json 3.6 MB)
+- RecipeTab — ленивый через `React.lazy()`, данные RECIPES.json загружаются динамическим `import()` внутри компонента (отдельные чанки)
+- При использовании динамического import данных — обязателен loading state через `dataLoaded`
+
+## SEO
+- `llms.txt` в `public/llms.txt` — описание сайта для LLM и поисковиков
 **Добавить квест:** дополнить словари `QUESTS.quest` или `QUESTS.posts` в скрипте
 
 ### Known mw2.wiki Issues (для всех парсеров)

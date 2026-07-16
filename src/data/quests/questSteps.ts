@@ -149,9 +149,11 @@ export const QUEST_STEPS: Record<string, string[]> = {
     '3. Получите EXP (280k-330k) + SP + адена + рандомные банки.',
   ],
   'Seed of evil': [
-    '1. Поговорите с Biotin High Priest на Talking Island (храм).',
-    '2. Выполните задание.',
-    '3. Получите EXP 50k + 50 банок + шанс на D-свитки заточки.',
+    '1. Поговорите с Biotin High Priest на Talking Island (храм). Он расскажет о зле в руинах эльфов и попросит уничтожить его.',
+    '2. Отправляйтесь в Elven Ruins (восточная часть острова). Убейте Nerkas (гигантский демон с крыльями летучей мыши).',
+    '3. Заберите Clay Tablet из трупа Nerkas.',
+    '4. Верните Biotin High Priest глиняную табличку.',
+    '5. Награда: 50,000 Exp, 5,000 SP, 50 Healing Potions, Personal Blessed Scroll of Resurrection, шанс на случайную награду.',
   ],
   'Blood Fiend': [
     '1. Поговорите с Creamees Accessory Merchant в Elven Village (лавка).',

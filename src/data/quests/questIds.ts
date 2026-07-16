@@ -32,7 +32,7 @@ export const QUEST_IDS: Record<string, number> = {
   'Dragon Fangs': 38,
   'Red-Eyed Invaders': 169,
   'Blood Fiend': 170,
-  'Seed of evil': 171,
+  'Seed of evil': 158,
   // 1st profession quests
   'Path of the Warrior': 618,
   'Path of the Human Knight': 445,
