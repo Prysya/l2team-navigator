@@ -244,7 +244,7 @@
   color: $color-text-muted;
 
   & + &::before {
-    content: '|';
+    content: "|";
     margin-right: $spacing-md;
     color: $color-border;
   }
@@ -337,7 +337,9 @@
   background: transparent;
   border-bottom: 2px solid transparent;
   white-space: nowrap;
-  transition: color 0.15s, border-color 0.15s;
+  transition:
+    color 0.15s,
+    border-color 0.15s;
 
   &:hover {
     color: $color-text;
@@ -365,7 +367,8 @@
   border-collapse: collapse;
   font-size: $font-size-base;
 
-  th, td {
+  th,
+  td {
     padding: 8px 12px;
     border: 1px solid $color-border;
     text-align: left;
@@ -455,13 +458,14 @@
     vertical-align: middle;
   }
 
-  th:nth-child(n+2),
-  td:nth-child(n+2) {
+  th:nth-child(n + 2),
+  td:nth-child(n + 2) {
     text-align: center;
   }
 
   @include mobile {
-    th, td {
+    th,
+    td {
       padding: 6px;
       font-size: $font-size-sm;
     }

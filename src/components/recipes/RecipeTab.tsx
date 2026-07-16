@@ -139,9 +139,7 @@ function ResultItem({ result }: { result: RecipeEntry }) {
     if (!result.resultDescription) return null;
     const raw = result.resultDescription;
     const parts = raw.split(/\.(?=\s*[A-Z][a-zA-Z\s]+:)/);
-    return parts
-      .map((s) => s.replace(/<[^>]+>/g, '').trim())
-      .filter(Boolean);
+    return parts.map((s) => s.replace(/<[^>]+>/g, '').trim()).filter(Boolean);
   }, [result.resultDescription]);
 
   return (
@@ -166,11 +164,15 @@ function ResultItem({ result }: { result: RecipeEntry }) {
           <tbody>
             <tr>
               <td className={styles.resultTableLabel}>Вес</td>
-              <td className={styles.resultTableValue}>{result.resultWeight != null ? `${result.resultWeight}` : '—'}</td>
+              <td className={styles.resultTableValue}>
+                {result.resultWeight != null ? `${result.resultWeight}` : '—'}
+              </td>
             </tr>
             <tr>
               <td className={styles.resultTableLabel}>Цена продажи</td>
-              <td className={styles.resultTableValue}>{result.resultPrice != null ? `${result.resultPrice.toLocaleString()} Adena` : '—'}</td>
+              <td className={styles.resultTableValue}>
+                {result.resultPrice != null ? `${result.resultPrice.toLocaleString()} Adena` : '—'}
+              </td>
             </tr>
             {result.resultParameter && (
               <tr>
@@ -195,7 +197,15 @@ function ResultItem({ result }: { result: RecipeEntry }) {
   );
 }
 
-function RecipeTabBar({ tabs, activeTab, onTabChange }: { tabs: TabItem[]; activeTab: string; onTabChange: (k: string) => void }) {
+function RecipeTabBar({
+  tabs,
+  activeTab,
+  onTabChange,
+}: {
+  tabs: TabItem[];
+  activeTab: string;
+  onTabChange: (k: string) => void;
+}) {
   return (
     <div className={styles.tabBar}>
       {tabs.map((t) => (
@@ -241,7 +251,12 @@ function ComponentTree({ components, depth }: { components: RecipeComponent[]; d
   );
 }
 
-function ComponentRow({ component: c, depth, expanded, toggle }: {
+function ComponentRow({
+  component: c,
+  depth,
+  expanded,
+  toggle,
+}: {
   component: RecipeComponent;
   depth: number;
   expanded: Record<number, boolean>;
@@ -273,9 +288,12 @@ function ComponentRow({ component: c, depth, expanded, toggle }: {
         </td>
         <td className={styles.compQtyCell}>x{c.amount}</td>
       </tr>
-      {c.isComposite && expanded[c.itemId] && c.children.length > 0 && c.children.map((child) => (
-        <ComponentRow key={child.itemId} component={child} depth={depth + 1} expanded={expanded} toggle={toggle} />
-      ))}
+      {c.isComposite &&
+        expanded[c.itemId] &&
+        c.children.length > 0 &&
+        c.children.map((child) => (
+          <ComponentRow key={child.itemId} component={child} depth={depth + 1} expanded={expanded} toggle={toggle} />
+        ))}
     </>
   );
 }
@@ -285,14 +303,8 @@ export default function RecipeTab() {
   const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
-    Promise.all([
-      import('@data/RECIPES.json'),
-      import('@data/RECIPES_NODROP.json'),
-    ]).then(([r, nr]) => {
-      setAllRecipes([
-        ...(r.default as RecipeEntry[]),
-        ...(nr.default as RecipeEntry[]),
-      ]);
+    Promise.all([import('@data/RECIPES.json'), import('@data/RECIPES_NODROP.json')]).then(([r, nr]) => {
+      setAllRecipes([...(r.default as RecipeEntry[]), ...(nr.default as RecipeEntry[])]);
       setDataLoaded(true);
     });
   }, []);
@@ -327,11 +339,7 @@ export default function RecipeTab() {
 
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase().trim();
-      list = list.filter(
-        (r) =>
-          r.recipeName.toLowerCase().includes(q) ||
-          r.resultName.toLowerCase().includes(q),
-      );
+      list = list.filter((r) => r.recipeName.toLowerCase().includes(q) || r.resultName.toLowerCase().includes(q));
     }
 
     return list;
@@ -359,9 +367,10 @@ export default function RecipeTab() {
       }
 
       for (const r of filteredRecipes) {
-        const st = r.resultItemSubtype && subtypeOrder.includes(r.resultItemSubtype)
-          ? r.resultItemSubtype
-          : subtypeOrder[subtypeOrder.length - 1] || 'None';
+        const st =
+          r.resultItemSubtype && subtypeOrder.includes(r.resultItemSubtype)
+            ? r.resultItemSubtype
+            : subtypeOrder[subtypeOrder.length - 1] || 'None';
         if (grouped[st]) {
           grouped[st].push(r);
         } else {
@@ -399,9 +408,7 @@ export default function RecipeTab() {
   }, [allRecipes, selectedRecipeId]);
 
   if (!dataLoaded) {
-    return (
-      <EmptyState message="Загрузка данных..." />
-    );
+    return <EmptyState message="Загрузка данных..." />;
   }
 
   return (
@@ -456,7 +463,12 @@ export default function RecipeTab() {
             <div className={styles.cardHeaderLeft}>
               {currentRecipe.recipeUrl ? (
                 <h3>
-                  <a href={currentRecipe.recipeUrl} target="_blank" rel="noopener noreferrer" className={styles.recipeLink}>
+                  <a
+                    href={currentRecipe.recipeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.recipeLink}
+                  >
                     {currentRecipe.recipeName}
                   </a>
                 </h3>
@@ -487,8 +499,8 @@ export default function RecipeTab() {
           />
 
           <div className={styles.tabContent}>
-            {activeTab === 'recipe' && (
-              currentRecipe.monsters.length > 0 ? (
+            {activeTab === 'recipe' &&
+              (currentRecipe.monsters.length > 0 ? (
                 <>
                   <div className={styles.craftInfo}>
                     <span className={styles.infoItem}>
@@ -499,14 +511,16 @@ export default function RecipeTab() {
                 </>
               ) : (
                 <div className={styles.noData}>Нет данных о дропе/спойле этого рецепта</div>
-              )
-            )}
+              ))}
 
             {activeTab === 'piece' && currentRecipe.mainPieceMonsters.length > 0 && (
               <>
                 <div className={styles.craftInfo}>
                   <span className={styles.infoItem}>
-                    Кусок: <strong className={styles.accentColor}>{currentRecipe.requiredItems[0]?.name || 'Основной кусок'}</strong>
+                    Кусок:{' '}
+                    <strong className={styles.accentColor}>
+                      {currentRecipe.requiredItems[0]?.name || 'Основной кусок'}
+                    </strong>
                   </span>
                   <span className={styles.infoItem}>
                     Мобов: <strong className={styles.accentColor}>{currentRecipe.mainPieceMonsters.length}</strong>
@@ -519,13 +533,28 @@ export default function RecipeTab() {
             {activeTab === 'craft' && (
               <>
                 <div className={styles.craftInfo}>
-                  <span className={styles.infoItem}>Уровень крафта: <strong className={styles.accentColor}>{currentRecipe.craftLevel}</strong></span>
-                  <span className={styles.infoItem}>MP: <strong className={styles.accentColor}>{currentRecipe.manaCost}</strong></span>
-                  <span className={styles.infoItem}>Шанс: <strong className={styles.accentColor}>{currentRecipe.successRate}%</strong></span>
                   <span className={styles.infoItem}>
-                    Тип: <strong className={styles.accentColor}>{TYPE_LABEL[currentRecipe.recipeType] || currentRecipe.recipeType}</strong>
+                    Уровень крафта: <strong className={styles.accentColor}>{currentRecipe.craftLevel}</strong>
+                  </span>
+                  <span className={styles.infoItem}>
+                    MP: <strong className={styles.accentColor}>{currentRecipe.manaCost}</strong>
+                  </span>
+                  <span className={styles.infoItem}>
+                    Шанс: <strong className={styles.accentColor}>{currentRecipe.successRate}%</strong>
+                  </span>
+                  <span className={styles.infoItem}>
+                    Тип:{' '}
+                    <strong className={styles.accentColor}>
+                      {TYPE_LABEL[currentRecipe.recipeType] || currentRecipe.recipeType}
+                    </strong>
                     {currentRecipe.resultItemSubtype && currentRecipe.resultItemSubtype !== 'None' && (
-                      <> &middot; <strong className={styles.accentColor}>{SUBTYPE_LABELS[currentRecipe.resultItemSubtype] || currentRecipe.resultItemSubtype}</strong></>
+                      <>
+                        {' '}
+                        &middot;{' '}
+                        <strong className={styles.accentColor}>
+                          {SUBTYPE_LABELS[currentRecipe.resultItemSubtype] || currentRecipe.resultItemSubtype}
+                        </strong>
+                      </>
                     )}
                   </span>
                 </div>
@@ -539,9 +568,7 @@ export default function RecipeTab() {
       ) : (
         <EmptyState
           message={
-            searchQuery.trim() && filteredRecipes.length === 0
-              ? 'Рецепты не найдены'
-              : 'Выберите рецепт для просмотра'
+            searchQuery.trim() && filteredRecipes.length === 0 ? 'Рецепты не найдены' : 'Выберите рецепт для просмотра'
           }
         />
       )}

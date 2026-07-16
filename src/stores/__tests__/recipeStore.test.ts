@@ -30,6 +30,4 @@ describe('recipeStore', () => {
     useRecipeStore.getState().setSearchQuery('bone');
     expect(useRecipeStore.getState().searchQuery).toBe('bone');
   });
-
-
 });
