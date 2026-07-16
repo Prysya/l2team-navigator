@@ -5,6 +5,9 @@ import { resolve } from 'path';
 export default defineConfig({
   plugins: [react()],
   base: '/l2team-navigator/',
+  build: {
+    chunkSizeWarningLimit: 5000,
+  },
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),

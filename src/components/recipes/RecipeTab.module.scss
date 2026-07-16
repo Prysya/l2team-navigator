@@ -14,10 +14,8 @@
   @include tablet {
     flex-direction: column;
     align-items: stretch;
-    gap: $spacing-md;
-  }
-  @include mobile {
     padding: $spacing-lg;
+    gap: $spacing-md;
   }
 }
 
@@ -147,6 +145,332 @@
   font-size: $font-size-base;
   color: $color-text-muted;
   margin-bottom: $spacing-lg;
+}
+
+.cardHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+}
+
+.gradeBadge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: $radius-lg;
+  font-size: $font-size-sm;
+  font-weight: 700;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+
+.gradeBadgeSmall {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: $radius-md;
+  font-size: $font-size-xs;
+  font-weight: 700;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+}
+
+.gradeNg {
+  background: rgba(148, 163, 184, 0.2);
+  color: #94a3b8;
+}
+
+.gradeD {
+  background: rgba(250, 204, 21, 0.15);
+  color: #eab308;
+}
+
+.gradeC {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.gradeB {
+  background: rgba(59, 130, 246, 0.15);
+  color: #3b82f6;
+}
+
+.gradeA {
+  background: rgba(168, 85, 247, 0.15);
+  color: #a855f7;
+}
+
+.catMaterial {
+  background: rgba(234, 179, 8, 0.15);
+  color: #eab308;
+}
+
+.catDye {
+  background: rgba(236, 72, 153, 0.15);
+  color: #ec4899;
+}
+
+.catArrow {
+  background: rgba(34, 211, 238, 0.15);
+  color: #22d3ee;
+}
+
+.catFishing {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+}
+
+.catOther {
+  background: rgba(148, 163, 184, 0.15);
+  color: #94a3b8;
+}
+
+.craftInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
+  padding: $spacing-md;
+  background: rgba(11, 15, 26, 0.6);
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+}
+
+.accentColor {
+  color: $color-primary;
+  font-weight: 700;
+}
+
+.infoItem {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+
+  & + &::before {
+    content: '|';
+    margin-right: $spacing-md;
+    color: $color-border;
+  }
+}
+
+.resultSection {
+  margin-bottom: $spacing-lg;
+  background: rgba(56, 189, 248, 0.04);
+  border: 1px solid rgba(56, 189, 248, 0.12);
+  border-radius: $radius-lg;
+  overflow: hidden;
+}
+
+.resultHeader {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md;
+}
+
+.resultLabel {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.resultLink {
+  color: $color-link;
+  text-decoration: none;
+  font-size: $font-size-base;
+  font-weight: 600;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.resultBody {
+  padding: 0 $spacing-md $spacing-md;
+}
+
+.resultTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: $font-size-sm;
+
+  td {
+    padding: 6px 10px;
+    border: 1px solid $color-border;
+  }
+}
+
+.resultTableLabel {
+  color: $color-text-muted;
+  font-weight: 500;
+  white-space: nowrap;
+  width: 150px;
+  background: rgba(11, 15, 26, 0.4);
+}
+
+.resultTableValue {
+  color: $color-text;
+}
+
+.noData {
+  padding: $spacing-xl;
+  text-align: center;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+  background: rgba(11, 15, 26, 0.4);
+  border-radius: $radius-lg;
+  border: 1px dashed $color-border;
+}
+
+.tabBar {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid $color-border;
+  margin-bottom: $spacing-xl;
+}
+
+.tabBtn {
+  padding: 10px 18px;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  color: $color-text-muted;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: color 0.15s, border-color 0.15s;
+
+  &:hover {
+    color: $color-text;
+  }
+}
+
+.tabBtnActive {
+  color: $color-primary;
+  border-bottom-color: $color-primary;
+}
+
+.tabContent {
+  min-height: 60px;
+}
+
+.mainPieceName {
+  font-size: $font-size-base;
+  color: $color-primary;
+  font-weight: 600;
+  margin-bottom: $spacing-lg;
+}
+
+.compTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: $font-size-base;
+
+  th, td {
+    padding: 8px 12px;
+    border: 1px solid $color-border;
+    text-align: left;
+  }
+
+  th {
+    background: $color-surface-hover;
+    color: $color-primary;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  td {
+    color: $color-text;
+    vertical-align: middle;
+  }
+
+  th:last-child,
+  td:last-child {
+    text-align: center;
+  }
+}
+
+.compNameCell {
+  min-width: 200px;
+}
+
+.compQtyCell {
+  font-weight: 700;
+  color: $color-accent-orange;
+  white-space: nowrap;
+  text-align: center;
+  width: 80px;
+}
+
+.compRowNested td {
+  background: rgba(11, 15, 26, 0.3);
+}
+
+.compToggle {
+  cursor: pointer;
+  color: $color-primary;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.compToggleOpen {
+  transform: rotate(90deg);
+}
+
+.componentsSection {
+  margin-bottom: $spacing-2xl;
+  padding-bottom: $spacing-2xl;
+  border-bottom: 1px solid $color-border;
+}
+
+.componentsTitle {
+  margin: 0 0 $spacing-lg;
+  font-size: $font-size-base;
+  color: $color-primary;
+  font-weight: 600;
+}
+
+.componentsTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: $font-size-base;
+
+  th,
+  td {
+    padding: 8px 12px;
+    border: 1px solid $color-border;
+    text-align: left;
+  }
+
+  th {
+    background: $color-surface-hover;
+    color: $color-primary;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  td {
+    color: $color-text;
+    vertical-align: middle;
+  }
+
+  th:nth-child(n+2),
+  td:nth-child(n+2) {
+    text-align: center;
+  }
+
+  @include mobile {
+    th, td {
+      padding: 6px;
+      font-size: $font-size-sm;
+    }
+  }
+}
+
+.componentAmount {
+  font-weight: 700;
+  color: $color-accent-orange;
 }
 
 .tableWrap {

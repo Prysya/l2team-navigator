@@ -1,19 +1,18 @@
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import { BrowserRouter, Route, Routes, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { hit } from '@utils/metrics';
 import cx from 'classnames';
-
-import { version } from '../package.json';
 
 import CalculatorTab from './components/calculator/CalculatorTab';
 import LocationsTab from './components/locations/LocationsTab';
 import MainPage from './components/main/MainPage';
 import QuestsTab from './components/quests/QuestsTab';
 import RaidBossTab from './components/raidboss/RaidBossTab';
-import RecipeTab from './components/recipes/RecipeTab';
 import TabIcon from './components/shared/TabIcon';
 import SpellbookTab from './components/spellbooks/SpellbookTab';
 
 const LazySkillsTab = lazy(() => import('./components/skills/SkillsTab'));
+const LazyRecipeTab = lazy(() => import('./components/recipes/RecipeTab'));
 import TabBar from './components/tabs/TabBar';
 import { TAB_ACCENT, TAB_NAMES } from './utils/constants';
 
@@ -62,6 +61,10 @@ function AppLayout() {
 `;
     document.head.appendChild(style);
   }, []);
+
+  useEffect(() => {
+    hit(location.pathname + location.search + location.hash);
+  }, [location]);
 
   const handleTabChange = (key: string) => {
     if (key.startsWith('spellbooks?')) {
@@ -167,31 +170,31 @@ function AppLayout() {
               target="_blank"
               rel="noopener noreferrer"
               className="burger-social-link social-youtube"
+              aria-label="YouTube"
             >
-              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+              <svg viewBox="0 0 24 24" fill="currentColor">
                 <path d="M23.498 6.186a2.997 2.997 0 0 0-2.112-2.12C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.386.521a2.997 2.997 0 0 0-2.112 2.12A31.26 31.26 0 0 0 0 12a31.26 31.26 0 0 0 .502 5.814 2.997 2.997 0 0 0 2.112 2.12c1.881.521 9.386.521 9.386.521s7.505 0 9.386-.521a2.997 2.997 0 0 0 2.112-2.12A31.26 31.26 0 0 0 24 12a31.26 31.26 0 0 0-.502-5.814zM9.75 15.568V8.432L15.818 12z" />
               </svg>
-              YouTube
             </a>
             <a
               href="https://t.me/L2teamAGR"
               target="_blank"
               rel="noopener noreferrer"
               className="burger-social-link social-telegram"
+              aria-label="Telegram"
             >
-              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+              <svg viewBox="0 0 24 24" fill="currentColor">
                 <path d="M23.91 3.79 20.3 20.84c-.25 1.21-.98 1.5-2 .94l-5.5-4.06-2.66 2.57c-.3.3-.55.55-1.1.55l.4-5.56 10.11-9.13c.44-.39-.1-.61-.68-.22L7.72 13.62l-5.5-1.72c-1.2-.38-1.21-1.2.25-1.77l21.5-8.28c1-.38 1.87.24 1.54 1.94z" />
               </svg>
-              Telegram
             </a>
             <a
               href="https://mw5.community/topic/218849-l2teamagr-pereezzhaet-na-lu4-%E2%80%94-nabor-kp-mini-grupp-i-soloigrokov/"
               target="_blank"
               rel="noopener noreferrer"
               className="burger-social-link social-forum"
+              aria-label="Forum"
             >
-              <img src={`${BASE}mw2-favicon.ico`} alt="Forum" width="20" height="20" style={{ flexShrink: 0 }} />
-              Forum
+              <img src={`${BASE}mw2-favicon.ico`} alt="Forum" />
             </a>
           </div>
         </div>
@@ -200,7 +203,14 @@ function AppLayout() {
       <div className="tab-page" key={location.pathname}>
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/recipes" element={<RecipeTab />} />
+          <Route
+            path="/recipes"
+            element={
+              <Suspense fallback={<div className="tab-page" />}>
+                <LazyRecipeTab />
+              </Suspense>
+            }
+          />
           <Route path="/spellbooks" element={<SpellbookTab />} />
           <Route path="/locations" element={<LocationsTab />} />
           <Route
@@ -231,7 +241,10 @@ function AppLayout() {
             Сайт является некоммерческим и неофициальным фанатским ресурсом, не связан с авторами игры и создан
             исключительно в ознакомительных целях.
           </p>
-          <p className="footer-text footer-version">v{version}</p>
+
+          <p className="footer-text footer-metrics">
+            Сайт использует Яндекс.Метрику для сбора анонимной статистики посещений.
+          </p>
         </div>
       </footer>
     </div>
