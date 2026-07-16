@@ -24,7 +24,8 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
-    "prepush": "npm run lint && npm run format:check && npm test && npm run build"
+    "prepush": "npm run lint && npm run format:check && npm test && npm run build",
+    "prepare": "husky"
   },
   "dependencies": {
     "@saikus08/opencode-workbench": "^0.1.9",
@@ -35,6 +36,15 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.18.1",
     "zustand": "^5.0.14"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{scss,css,json}": [
+      "prettier --write"
+    ]
   },
   "devDependencies": {
     "@playwright/test": "^1.61.1",
@@ -55,7 +65,9 @@
     "eslint-plugin-simple-import-sort": "^13.0.0",
     "eslint-plugin-unused-imports": "^4.4.1",
     "gh-pages": "^6.2.0",
+    "husky": "^9.1.7",
     "jsdom": "^29.1.1",
+    "lint-staged": "^17.0.8",
     "prettier": "^3.9.5",
     "sass": "^1.81.0",
     "sass-embedded": "^1.100.0",
