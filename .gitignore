@@ -28,5 +28,6 @@ Thumbs.db
 # misc
 *.log
 /tmp
+/data
 test-results/
 .vite/

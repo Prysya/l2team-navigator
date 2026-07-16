@@ -31,7 +31,7 @@ function NumberInput({ value, onChange, min, max, step = 1, decimals = 0 }: Numb
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      const raw = e.target.value;
+      const raw = e.target.value.replace(',', '.');
       if (raw === '') {
         onChange('');
         return;

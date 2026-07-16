@@ -3,8 +3,9 @@ import type { ChanceInfo, CommentData, Monster } from '@/types';
 export function formatChance(value: number | null | undefined): ChanceInfo {
   if (value === null || value === undefined) return { text: '—', cls: 'chance-empty' };
   const num = Number(value);
-  if (isNaN(num) || num === 0) return { text: '—', cls: 'chance-empty' };
-  return { text: num.toFixed(2) + '%', cls: '' };
+  if (isNaN(num) || num <= 0) return { text: '—', cls: 'chance-empty' };
+  const decimals = num >= 10 ? 2 : num >= 1 ? 3 : 4;
+  return { text: num.toFixed(decimals) + '%', cls: '' };
 }
 
 export function getLocationType(loc: { location_type?: string[] | string | null } | null | undefined): string | null {

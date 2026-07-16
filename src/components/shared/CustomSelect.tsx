@@ -20,9 +20,18 @@ interface CustomSelectProps {
   groups?: SelectGroup[];
   label: string;
   disabled?: boolean;
+  dataTestId?: string;
 }
 
-export default function CustomSelect({ value, onChange, options, groups, label, disabled }: CustomSelectProps) {
+export default function CustomSelect({
+  value,
+  onChange,
+  options,
+  groups,
+  label,
+  disabled,
+  dataTestId,
+}: CustomSelectProps) {
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -58,6 +67,7 @@ export default function CustomSelect({ value, onChange, options, groups, label, 
         className={styles.trigger}
         onClick={() => !disabled && setIsOpen((prev) => !prev)}
         disabled={disabled}
+        data-testid={dataTestId}
       >
         <span className={styles.value}>{value ? selectedLabel : ''}</span>
         <svg
@@ -84,6 +94,7 @@ export default function CustomSelect({ value, onChange, options, groups, label, 
                       key={opt.value}
                       className={cx(styles.option, opt.value === value && styles.optionActive)}
                       onClick={() => handleSelect(opt.value)}
+                      data-testid={`select-option-${opt.value}`}
                     >
                       {opt.label}
                     </div>
@@ -95,6 +106,7 @@ export default function CustomSelect({ value, onChange, options, groups, label, 
                   key={opt.value}
                   className={cx(styles.option, opt.value === value && styles.optionActive)}
                   onClick={() => handleSelect(opt.value)}
+                  data-testid={`select-option-${opt.value}`}
                 >
                   {opt.label}
                 </div>

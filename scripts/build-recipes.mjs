@@ -100,7 +100,7 @@ function buildMonsters(recipeId) {
         spoil_chance: 0,
       };
     }
-    npcMap[key].drop_chance = d.dropChance;
+    npcMap[key].drop_chance = +(npcMap[key].drop_chance + d.groupChance * d.dropChance / 100).toFixed(4);
   });
 
   spoils.forEach(s => {
@@ -271,7 +271,7 @@ recipesNoDrop.sort((a, b) => {
 });
 
 writeFileSync(resolve(ROOT, 'src/data/RECIPES.json'), JSON.stringify(recipes, null, 2));
-writeFileSync(resolve(ROOT, 'src/data/RECIPES_NODROP.json'), JSON.stringify(recipesNoDrop, null, 2));
+writeFileSync(resolve(ROOT, 'data/RECIPES_NODROP.json'), JSON.stringify(recipesNoDrop, null, 2));
 
 console.log(`RECIPES.json: ${recipes.length} entries (with drop/spoil)`);
 console.log(`RECIPES_NODROP.json: ${recipesNoDrop.length} entries (without drop/spoil)`);
