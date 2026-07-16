@@ -120,14 +120,23 @@
   align-items: center;
   width: 100%;
 
-  .input {
+  > .input {
     border-right: none;
+    border-radius: $radius-lg 0 0 $radius-lg;
+  }
+
+  > :nth-child(2) {
+    border-right: none;
+  }
+
+  > :last-child {
+    border-radius: 0 $radius-lg $radius-lg 0;
   }
 }
 
 .numBtn {
-  width: 36px;
-  min-height: 38px;
+  width: 40px;
+  height: 39.25px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -141,15 +150,6 @@
     color 0.15s,
     border-color 0.15s;
   flex-shrink: 0;
-
-  &:first-child {
-    border-left: none;
-    border-radius: 0;
-  }
-
-  &:last-child {
-    border-radius: 0 $radius-lg $radius-lg 0;
-  }
 
   &:hover {
     color: $color-primary;

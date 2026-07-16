@@ -22,6 +22,18 @@ describe('formatChance', () => {
   it('returns formatted percent for decimal value', () => {
     expect(formatChance(12.345)).toEqual({ text: '12.35%', cls: '' });
   });
+
+  it('shows 3 decimals for medium values', () => {
+    expect(formatChance(8.76)).toEqual({ text: '8.760%', cls: '' });
+  });
+
+  it('shows 4 decimals for small values', () => {
+    expect(formatChance(0.0185)).toEqual({ text: '0.0185%', cls: '' });
+  });
+
+  it('shows 4 decimals for very small values', () => {
+    expect(formatChance(0.00336)).toEqual({ text: '0.0034%', cls: '' });
+  });
 });
 
 describe('getLocationType', () => {

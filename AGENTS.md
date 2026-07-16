@@ -118,6 +118,7 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - Supports flat `options` array and grouped `groups` (for optgroup-style data)
 - Option highlighting on hover, active state for selected value
 - Scrollable menu with max-height + custom scrollbar
+- Accepts `dataTestId` prop — пробрасывается на кнопку триггера и опции (`data-testid`)
 - All native `<select>` and their `<option>`/`<optgroup>` elements removed from codebase
 
 ## Features by Tab
@@ -159,7 +160,9 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - Recipe `CustomSelect` filtered by type + grade + search; grouping by subtype for Armor (Heavy/Light/Robe/Helmet/Gloves/Boots/Shields/HairAccessory), Weapon (Sword/Blunt/Dagger/Bow/Polearm/Fist/Misc), Accessory (Earring/Ring/Necklace)
 - Grade selector hidden for Material/Other types; NG hidden for Soulshot type
 - Card with 4 tabs: Рецепт (NPC дроп рецепта), Куски (NPC дроп основного материала), Крафт (уровень/MP/шанс + дерево компонентов), Информация о предмете (вес/цена/параметр/описание)
-- Search (`FloatingLabel`) full width via `.searchWrap { flex: 1 }`
+- Search (`FloatingLabel`) с дропдауном: открывается при фокусе, закрывается по blur/click-outside, крестик очистки
+- Поиск не влияет на селекторы — результаты показываются под полем поиска в абсолютном дропдауне
+- `formatChance` — адаптивная точность: 2 знака для ≥10%, 3 для 1-10%, 4 для <1%
 - Dynamic import of data: RECIPES.json загружается через `import()` внутри `useEffect` (отдельные чанки)
 - Store: `selectedType`, `selectedGrade`, `selectedRecipeId`, `searchQuery`
 

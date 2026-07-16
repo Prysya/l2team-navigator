@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import CustomSelect from '@shared/CustomSelect';
 import EmptyState from '@shared/EmptyState';
 import FloatingLabel from '@shared/FloatingLabel';
@@ -303,8 +303,8 @@ export default function RecipeTab() {
   const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
-    Promise.all([import('@data/RECIPES.json'), import('@data/RECIPES_NODROP.json')]).then(([r, nr]) => {
-      setAllRecipes([...(r.default as RecipeEntry[]), ...(nr.default as RecipeEntry[])]);
+    import('@data/RECIPES.json').then((m) => {
+      setAllRecipes(m.default as RecipeEntry[]);
       setDataLoaded(true);
     });
   }, []);
@@ -318,15 +318,28 @@ export default function RecipeTab() {
   const setSelectedRecipeId = useRecipeStore((s) => s.setSelectedRecipeId);
   const setSearchQuery = useRecipeStore((s) => s.setSearchQuery);
   const [activeTab, setActiveTab] = useState<'recipe' | 'piece' | 'craft' | 'info'>('recipe');
+  const [searchFocused, setSearchFocused] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+  const blurTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     setActiveTab('recipe');
   }, [selectedRecipeId]);
 
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+        setSearchFocused(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const hideGrade = selectedType === 'Material' || selectedType === 'Other';
   const gradeOptions = selectedType === 'Soulshot' ? GRADE_OPTIONS_NO_NG : GRADE_OPTIONS_ALL;
 
-  const filteredRecipes = useMemo(() => {
+  const baseRecipes = useMemo(() => {
     let list = allRecipes;
 
     if (selectedType !== 'all') {
@@ -337,13 +350,14 @@ export default function RecipeTab() {
       list = list.filter((r) => r.resultGrade === selectedGrade);
     }
 
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase().trim();
-      list = list.filter((r) => r.recipeName.toLowerCase().includes(q) || r.resultName.toLowerCase().includes(q));
-    }
-
     return list;
-  }, [allRecipes, selectedType, selectedGrade, searchQuery, hideGrade]);
+  }, [allRecipes, selectedType, selectedGrade, hideGrade]);
+
+  const searchResults = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    if (!q) return [];
+    return baseRecipes.filter((r) => r.recipeName.toLowerCase().includes(q) || r.resultName.toLowerCase().includes(q));
+  }, [baseRecipes, searchQuery]);
 
   const recipeSelectProps = useMemo(() => {
     let subtypeOrder: string[] | null = null;
@@ -366,7 +380,7 @@ export default function RecipeTab() {
         grouped[st] = [];
       }
 
-      for (const r of filteredRecipes) {
+      for (const r of baseRecipes) {
         const st =
           r.resultItemSubtype && subtypeOrder.includes(r.resultItemSubtype)
             ? r.resultItemSubtype
@@ -395,12 +409,12 @@ export default function RecipeTab() {
 
     return {
       groups: null as null,
-      flat: filteredRecipes.map((r) => ({
+      flat: baseRecipes.map((r) => ({
         value: String(r.recipeId),
         label: r.recipeName,
       })),
     };
-  }, [filteredRecipes, selectedType]);
+  }, [baseRecipes, selectedType]);
 
   const currentRecipe = useMemo(() => {
     if (selectedRecipeId === null) return null;
@@ -420,6 +434,7 @@ export default function RecipeTab() {
             value={selectedType}
             onChange={(v) => setSelectedType(v as FilterType)}
             options={TYPE_OPTIONS}
+            dataTestId="recipe-type-select"
           />
         </div>
         {!hideGrade && (
@@ -429,6 +444,7 @@ export default function RecipeTab() {
               value={selectedGrade}
               onChange={(v) => setSelectedGrade(v as FilterGrade)}
               options={gradeOptions}
+              dataTestId="recipe-grade-select"
             />
           </div>
         )}
@@ -442,9 +458,10 @@ export default function RecipeTab() {
             }}
             options={recipeSelectProps.flat ?? undefined}
             groups={recipeSelectProps.groups ?? undefined}
+            dataTestId="recipe-recipe-select"
           />
         </div>
-        <div className={styles.searchWrap}>
+        <div className={styles.searchWrap} ref={searchRef}>
           <FloatingLabel className={styles.searchField} label="Поиск по названию" value={searchQuery}>
             <input
               className={styles.input}
@@ -452,8 +469,50 @@ export default function RecipeTab() {
               name="recipe-search"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              onFocus={() => {
+                if (blurTimeoutRef.current) clearTimeout(blurTimeoutRef.current);
+                setSearchFocused(true);
+              }}
+              onBlur={() => {
+                blurTimeoutRef.current = setTimeout(() => setSearchFocused(false), 200);
+              }}
             />
           </FloatingLabel>
+          {searchQuery && (
+            <button className={styles.searchClear} onClick={() => setSearchQuery('')} aria-label="Очистить поиск">
+              ✕
+            </button>
+          )}
+          {searchFocused && searchQuery.trim() && (
+            <div className={styles.searchDropdown}>
+              {searchResults.length > 0 ? (
+                searchResults.map((r) => (
+                  <div
+                    key={r.recipeId}
+                    className={styles.searchResultItem}
+                    onMouseDown={() => setSelectedRecipeId(r.recipeId)}
+                  >
+                    <span className={styles.searchResultName}>{r.recipeName}</span>
+                    <span className={styles.searchResultMeta}>
+                      {TYPE_LABEL[r.recipeType] || r.recipeType}
+                      {r.resultItemSubtype && r.resultItemSubtype !== 'None' && (
+                        <> · {SUBTYPE_LABELS[r.resultItemSubtype] || r.resultItemSubtype}</>
+                      )}
+                      {' · '}
+                      {r.resultGrade}
+                    </span>
+                  </div>
+                ))
+              ) : (
+                <div
+                  className={styles.searchResultItem}
+                  style={{ cursor: 'default', color: 'var(--color-text-muted)' }}
+                >
+                  Рецепты не найдены
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
@@ -568,7 +627,7 @@ export default function RecipeTab() {
       ) : (
         <EmptyState
           message={
-            searchQuery.trim() && filteredRecipes.length === 0 ? 'Рецепты не найдены' : 'Выберите рецепт для просмотра'
+            searchQuery.trim() && searchResults.length === 0 ? 'Рецепты не найдены' : 'Выберите рецепт для просмотра'
           }
         />
       )}
