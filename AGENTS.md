@@ -72,6 +72,7 @@ Use conventional commits: `type: description` (lowercase, no caps).
 | `useSpellbookStore` | `src/stores/spellbookStore.ts` |
 | `useRecipeStore` | `src/stores/recipeStore.ts` |
 | `useQuestStore` | `src/stores/questStore.ts` |
+| `useTelegramStore` | `src/stores/telegramStore.ts` |
 
 ## Theme
 - Dark gaming-themed UI
@@ -222,6 +223,9 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - Отслеживание целей: `goal('goal_name')` — выбор рецепта, раскрытие босса
 - Все вызовы через `src/utils/metrics.ts`: `hit(path)` / `goal(name)`
 - В футере — уведомление о сборе анонимной статистики (152-ФЗ)
+- Пользователи Telegram Mini App: детекция через URL-параметр `tgWebAppData`, данные сохраняются в `useTelegramStore`
+- CopyLink не показывается пользователям Telegram
+- `setTelegramUser(user, platform)` — отправляет ID, платформу и премиум-статус в метрику
 
 ## Lazy Loading
 - SkillsTab — ленивый через `React.lazy(() => import(...))` (SKILLS.json 3.6 MB)

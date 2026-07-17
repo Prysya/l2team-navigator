@@ -17,3 +17,16 @@ export function hit(path: string) {
 export function goal(name: string) {
   ym('reachGoal', name);
 }
+
+export function setTelegramUser(
+  user: { id: number; firstName: string; languageCode: string; isPremium: boolean },
+  platform: string,
+) {
+  ym('userParams', {
+    tgUserId: user.id,
+    tgFirstName: user.firstName,
+    tgLanguage: user.languageCode,
+    tgIsPremium: user.isPremium,
+    tgPlatform: platform,
+  });
+}

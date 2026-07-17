@@ -1,7 +1,9 @@
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import { BrowserRouter, Route, Routes, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { hit } from '@utils/metrics';
+import { hit, setTelegramUser } from '@utils/metrics';
 import cx from 'classnames';
+
+import { useTelegramStore } from '@/stores/telegramStore';
 
 import CalculatorTab from './components/calculator/CalculatorTab';
 import LocationsTab from './components/locations/LocationsTab';
@@ -65,6 +67,25 @@ function AppLayout() {
   useEffect(() => {
     hit(location.pathname + location.search + location.hash);
   }, [location]);
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (!hash.includes('tgWebAppData')) return;
+
+    useTelegramStore.getState().initFromHash(hash);
+
+    const store = useTelegramStore.getState();
+    if (store.user) {
+      setTelegramUser(store.user, store.platform || '');
+    }
+
+    const clean = hash
+      .split('&')
+      .filter((part) => !/^#?tgWebApp\w*=/.test(part))
+      .join('&')
+      .replace(/^&/, '#');
+    window.history.replaceState(null, '', window.location.pathname + clean);
+  }, []);
 
   const handleTabChange = (key: string) => {
     if (key.startsWith('spellbooks?')) {

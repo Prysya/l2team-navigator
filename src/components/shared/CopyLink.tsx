@@ -1,20 +1,15 @@
 import { useCallback, useState } from 'react';
 
-import styles from './CopyLink.module.scss';
+import { useTelegramStore } from '@/stores/telegramStore';
 
-function isTelegramWebApp(): boolean {
-  try {
-    return typeof window !== 'undefined' && navigator.userAgent.includes('Telegram');
-  } catch {
-    return false;
-  }
-}
+import styles from './CopyLink.module.scss';
 
 interface CopyLinkProps {
   getUrl: () => string;
 }
 
 export default function CopyLink({ getUrl }: CopyLinkProps) {
+  const isTelegram = useTelegramStore((s) => s.isTelegram);
   const [copied, setCopied] = useState(false);
 
   const handleCopy = useCallback(async () => {
@@ -35,7 +30,7 @@ export default function CopyLink({ getUrl }: CopyLinkProps) {
     }
   }, [getUrl]);
 
-  if (isTelegramWebApp()) return null;
+  if (isTelegram) return null;
 
   return (
     <span
