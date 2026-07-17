@@ -27,6 +27,7 @@ Thumbs.db
 
 # misc
 *.log
+*.tsbuildinfo
 /tmp
 /data
 test-results/
