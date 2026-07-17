@@ -44,24 +44,31 @@ html {
 :root {
   --font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-  // ─── Current (default) theme ───
-  --color-bg: #05070d;
-  --color-surface: #121a2b;
-  --color-surface-alt: #0f1626;
-  --color-surface-hover: #1a2338;
-  --color-border: #24304a;
-  --color-primary: #38bdf8;
-  --color-primary-dark: #0ea5e9;
-  --color-primary-glow: rgba(56, 189, 248, 0.35);
-  --color-primary-alpha-10: rgba(56, 189, 248, 0.1);
+  // ─── Dark fantasy theme ───
+  --color-bg: #020617;
+  --color-surface: #0b1121;
+  --color-surface-alt: #080e1c;
+  --color-surface-hover: #111b2e;
+  --color-surface-raised: #141f35;
+  --color-border: #1e2d4a;
+  --color-border-hover: #2d4570;
+
+  --color-primary: #3b82f6;
+  --color-primary-dark: #2563eb;
+  --color-primary-glow: rgba(59, 130, 246, 0.4);
+  --color-primary-alpha-10: rgba(59, 130, 246, 0.1);
+  --color-primary-alpha-20: rgba(59, 130, 246, 0.2);
+
   --color-accent-purple: #a78bfa;
-  --color-accent-green: #7ee787;
-  --color-accent-orange: #ffa657;
+  --color-accent-green: #4ade80;
+  --color-accent-orange: #fb923c;
   --color-accent-amber: #fbbf24;
   --color-accent-cyan: #22d3ee;
-  --color-text: #dbe4f0;
-  --color-text-muted: #8291ab;
-  --color-link: #6ab7ff;
+
+  --color-text: #e2e8f0;
+  --color-text-muted: #64748b;
+  --color-link: #60a5fa;
+
   --color-danger: #ef4444;
   --color-danger-bg: #7f1d1d;
   --color-danger-text: #fecaca;
@@ -69,15 +76,20 @@ html {
   --color-boss-bg: #2a1414;
   --color-agr: #ff3b3b;
 
-  --gradient-primary: linear-gradient(135deg, #38bdf8, #0ea5e9);
-  --gradient-bg-1: radial-gradient(ellipse 900px 500px at 15% -10%, rgba(56, 189, 248, 0.18), transparent 60%);
-  --gradient-bg-2: radial-gradient(ellipse 700px 400px at 100% 0%, rgba(56, 189, 248, 0.12), transparent 60%);
-  --gradient-bg-3: radial-gradient(ellipse 800px 400px at 50% 110%, rgba(56, 189, 248, 0.06), transparent 60%);
+  --gradient-primary: linear-gradient(135deg, #3b82f6, #2563eb);
+  --gradient-bg-1: radial-gradient(ellipse 900px 500px at 15% -10%, rgba(59, 130, 246, 0.15), transparent 60%);
+  --gradient-bg-2: radial-gradient(ellipse 700px 400px at 100% 0%, rgba(59, 130, 246, 0.1), transparent 60%);
+  --gradient-bg-3: radial-gradient(ellipse 800px 400px at 50% 110%, rgba(59, 130, 246, 0.06), transparent 60%);
 
-  --shadow-primary: 0 0 14px rgba(56, 189, 248, 0.45);
-  --shadow-primary-sm: 0 0 10px rgba(56, 189, 248, 0.4);
-  --shadow-text: 0 0 14px rgba(56, 189, 248, 0.35);
-  --shadow-box: 0 2px 12px -4px rgba(56, 189, 248, 0.5);
+  --shadow-primary: 0 0 14px rgba(59, 130, 246, 0.45);
+  --shadow-primary-sm: 0 0 10px rgba(59, 130, 246, 0.4);
+  --shadow-text: 0 0 14px rgba(59, 130, 246, 0.35);
+  --shadow-box: 0 2px 12px -4px rgba(59, 130, 246, 0.5);
+
+  // Rarity glows
+  --glow-rare: 0 0 6px rgba(74, 222, 128, 0.5);
+  --glow-epic: 0 0 6px rgba(167, 139, 250, 0.5);
+  --glow-legendary: 0 0 10px rgba(251, 191, 36, 0.6);
 
   --font-size-xs: 11px;
   --font-size-sm: 12px;
@@ -85,7 +97,7 @@ html {
   --font-size-md: 14px;
   --font-size-lg: 15px;
   --font-size-xl: 20px;
-  --font-size-h1: 1.5rem;
+  --font-size-h1: 1.75rem;
 }
 
 body {
@@ -135,6 +147,29 @@ body {
 ::-webkit-scrollbar-thumb {
   background: $color-border;
   border-radius: 1px;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  color: $color-primary;
+  text-shadow: $shadow-text;
+}
+
+h2 {
+  font-size: 1.3rem;
+  color: $color-text;
+}
+
+h3 {
+  font-size: 1rem;
+  color: $color-primary;
 }
 
 .app-header {

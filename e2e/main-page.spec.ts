@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Main Page', () => {
   test.beforeEach(async ({ page }) => {
@@ -6,13 +6,14 @@ test.describe('Main Page', () => {
     await page.locator('body').click();
   });
 
-  test('shows subtitle and section cards', async ({ page }) => {
-    await expect(page.getByText('Выберите раздел')).toBeVisible();
+  test('shows title and section cards', async ({ page }) => {
+    await expect(page.getByText('L2team Database')).toBeVisible();
     await expect(page.locator('button').filter({ hasText: 'Рецепты' }).first()).toBeVisible();
   });
 
   test('navigates to quests tab on card click', async ({ page }) => {
-    await page.locator('button').filter({ hasText: 'Квесты' }).last().click();
+    const questCard = page.locator('[class*="grid"] button').filter({ hasText: 'Квесты' });
+    await questCard.click();
     await expect(page).toHaveURL(/\/quests/);
   });
 

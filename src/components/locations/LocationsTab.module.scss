@@ -146,10 +146,29 @@
   }
 
   @include mobile {
-    th,
+    thead {
+      display: none;
+    }
+
+    tbody tr {
+      display: block;
+      background: $color-surface;
+      border: 1px solid $color-border;
+      border-radius: $radius-xl;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
     td {
-      padding: 6px;
+      display: block;
+      padding: 8px 12px;
+      border: none;
+      border-bottom: 1px solid rgba($color-border, 0.3);
       font-size: $font-size-sm;
+
+      &:last-child {
+        border-bottom: none;
+      }
     }
   }
   @include small {

@@ -1,6 +1,5 @@
 import { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
 import RAIDBOSSES from '@data/RAIDBOSSES.json';
-import CopyLink from '@shared/CopyLink';
 import EmptyState from '@shared/EmptyState';
 import FloatingLabel from '@shared/FloatingLabel';
 import WorldMap from '@shared/WorldMap';
@@ -98,36 +97,53 @@ export default function RaidBossTab() {
               }
             }}
           >
-            <span className={styles.bossName}>
-              {expanded.has(row.original.name + row.original.level) ? '▼ ' : '▶ '}
-              {getValue()}
-            </span>
-            <CopyLink
-              getUrl={() =>
-                window.location.origin +
-                import.meta.env.BASE_URL +
-                'raidboss?boss=' +
-                encodeURIComponent(row.original.name)
-              }
-            />
+            <span className={styles.mobileLabel}>Босс</span>
+            <div className={styles.bossCard}>
+              {row.original.image && (
+                <img
+                  className={styles.bossCardImg}
+                  src={`${import.meta.env.BASE_URL}${row.original.image}`}
+                  alt={row.original.name}
+                />
+              )}
+              <div className={styles.bossCardInfo}>
+                <span className={styles.bossName}>
+                  {expanded.has(row.original.name + row.original.level) ? '▼ ' : '▶ '}
+                  {getValue()}
+                </span>
+                <span className={cx(styles.lvlBadge, isEpic(row.original) && styles.lvlEpic)}>
+                  Lv {row.original.level}
+                </span>
+                {row.original.stats?.hp && (
+                  <span className={styles.bossHp}>
+                    <span className={styles.hpBarFull}>
+                      <span className={styles.hpBarFill} />
+                      <span className={styles.hpBarText}>HP: {formatNum(row.original.stats.hp)}</span>
+                    </span>
+                  </span>
+                )}
+                <span className={cx(styles.respawnBadge, isEpic(row.original) && styles.respawnFixed)}>
+                  {row.original.respawn}
+                </span>
+                <span className={styles.bossLocation}>{row.original.location}</span>
+              </div>
+            </div>
           </div>
         ),
       }),
       columnHelper.accessor('level', {
         header: 'Ур.',
-        cell: ({ getValue }) => <span className={styles.lvlBadge}>{getValue()}</span>,
+        cell: () => null,
       }),
       columnHelper.accessor('respawn', {
         header: 'Респ',
         enableSorting: false,
-        cell: ({ row, getValue }) => (
-          <span className={cx(styles.respawnBadge, isEpic(row.original) && styles.respawnFixed)}>{getValue()}</span>
-        ),
+        cell: () => null,
       }),
       columnHelper.accessor('location', {
         header: 'Локация',
         enableSorting: false,
-        cell: ({ getValue }) => getValue(),
+        cell: () => null,
       }),
     ],
     [expanded, toggleExpand],
@@ -194,7 +210,11 @@ export default function RaidBossTab() {
             <tbody>
               {table.getRowModel().rows.map((row) => (
                 <Fragment key={row.id}>
-                  <tr id={'boss-' + row.original.name + row.original.level}>
+                  <tr
+                    id={'boss-' + row.original.name + row.original.level}
+                    data-expanded={expanded.has(row.original.name + row.original.level) ? 'true' : undefined}
+                    style={{ '--boss-index': row.index } as React.CSSProperties}
+                  >
                     {row.getVisibleCells().map((cell) => (
                       <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
                     ))}

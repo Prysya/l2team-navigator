@@ -26,13 +26,54 @@ interface MonsterRow {
 const columnHelper = createColumnHelper<MonsterRow>();
 
 function useMonsterColumns() {
+  const ml = (label: string) => <span className={styles.mobileLabel}>{label}</span>;
   return useMemo(
     () => [
-      columnHelper.accessor('monsterHtml', { header: 'Монстр', cell: ({ getValue }) => getValue() }),
-      columnHelper.accessor('locationHtml', { header: 'Локации', cell: ({ getValue }) => getValue() }),
-      columnHelper.accessor('dropHtml', { header: 'Шанс дропа', cell: ({ getValue }) => getValue() }),
-      columnHelper.accessor('spoilHtml', { header: 'Шанс спойла', cell: ({ getValue }) => getValue() }),
-      columnHelper.accessor('commentHtml', { header: 'Комментарий', cell: ({ getValue }) => getValue() }),
+      columnHelper.accessor('monsterHtml', {
+        header: 'Монстр',
+        cell: ({ getValue }) => (
+          <>
+            {ml('Монстр')}
+            {getValue()}
+          </>
+        ),
+      }),
+      columnHelper.accessor('locationHtml', {
+        header: 'Локации',
+        cell: ({ getValue }) => (
+          <>
+            {ml('Локации')}
+            {getValue()}
+          </>
+        ),
+      }),
+      columnHelper.accessor('dropHtml', {
+        header: 'Шанс дропа',
+        cell: ({ getValue }) => (
+          <>
+            {ml('Дроп')}
+            {getValue()}
+          </>
+        ),
+      }),
+      columnHelper.accessor('spoilHtml', {
+        header: 'Шанс спойла',
+        cell: ({ getValue }) => (
+          <>
+            {ml('Спойл')}
+            {getValue()}
+          </>
+        ),
+      }),
+      columnHelper.accessor('commentHtml', {
+        header: 'Комментарий',
+        cell: ({ getValue }) => (
+          <>
+            {ml('Коммент')}
+            {getValue()}
+          </>
+        ),
+      }),
     ],
     [],
   );

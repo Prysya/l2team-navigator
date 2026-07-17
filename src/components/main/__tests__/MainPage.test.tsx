@@ -11,7 +11,7 @@ describe('MainPage', () => {
         <MainPage />
       </BrowserRouter>,
     );
-    expect(screen.getByText('Выберите раздел')).toBeTruthy();
+    expect(screen.getByText('L2team Database')).toBeTruthy();
     expect(screen.getByText('Рецепты')).toBeTruthy();
     expect(screen.getByText('Квесты')).toBeTruthy();
   });
