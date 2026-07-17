@@ -9,12 +9,14 @@ interface RaidBossStore {
   raidSortAsc: boolean;
   mapBoss: RaidBoss | null;
   previewBoss: RaidBoss | null;
+  selectedBoss: RaidBoss | null;
   setSearchQuery: (q: string) => void;
   toggleRow: (id: string) => void;
   toggleEpicSort: () => void;
   toggleRaidSort: () => void;
   setMapBoss: (boss: RaidBoss | null) => void;
   setPreviewBoss: (boss: RaidBoss | null) => void;
+  setSelectedBoss: (boss: RaidBoss | null) => void;
 }
 
 export const useRaidBossStore = create<RaidBossStore>((set) => ({
@@ -24,6 +26,7 @@ export const useRaidBossStore = create<RaidBossStore>((set) => ({
   raidSortAsc: true,
   mapBoss: null,
   previewBoss: null,
+  selectedBoss: null,
   setSearchQuery: (q) => set({ searchQuery: q }),
   toggleRow: (id) =>
     set((state) => {
@@ -36,4 +39,5 @@ export const useRaidBossStore = create<RaidBossStore>((set) => ({
   toggleRaidSort: () => set((state) => ({ raidSortAsc: !state.raidSortAsc })),
   setMapBoss: (boss) => set({ mapBoss: boss }),
   setPreviewBoss: (boss) => set({ previewBoss: boss }),
+  setSelectedBoss: (boss) => set({ selectedBoss: boss }),
 }));

@@ -44,6 +44,22 @@ html {
 :root {
   --font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
+  // ─── Rarity colors (Lineage 2 grade system) ───
+  --rarity-normal: #a0a0a0;
+  --rarity-d: #ffffff;
+  --rarity-c: #1eff00;
+  --rarity-b: #0070dd;
+  --rarity-a: #a335ee;
+  --rarity-s: #ff8000;
+  --rarity-s80: #e6cc80;
+  --rarity-s84: #ffd700;
+
+  // ─── Glow effects ───
+  --glow-rare: 0 0 20px rgba(0, 112, 221, 0.4);
+  --glow-epic: 0 0 25px rgba(163, 53, 238, 0.5);
+  --glow-legendary: 0 0 30px rgba(255, 128, 0, 0.6);
+  --glow-mythic: 0 0 40px rgba(255, 215, 0, 0.7);
+
   // ─── Current (default) theme ───
   --color-bg: #05070d;
   --color-surface: #121a2b;
@@ -310,6 +326,76 @@ a {
 }
 
 // Common shared styles
+// ─── Rarity utility classes ───
+.rarity-normal {
+  color: $rarity-normal;
+}
+.rarity-d {
+  color: $rarity-d;
+}
+.rarity-c {
+  color: $rarity-c;
+}
+.rarity-b {
+  color: $rarity-b;
+}
+.rarity-a {
+  color: $rarity-a;
+}
+.rarity-s {
+  color: $rarity-s;
+}
+.rarity-s80 {
+  color: $rarity-s80;
+}
+.rarity-s84 {
+  color: $rarity-s84;
+}
+
+.rarity-glow-rare {
+  box-shadow: $glow-rare;
+}
+.rarity-glow-epic {
+  box-shadow: $glow-epic;
+}
+.rarity-glow-legendary {
+  box-shadow: $glow-legendary;
+}
+.rarity-glow-mythic {
+  box-shadow: $glow-mythic;
+}
+
+// ─── Card animations ───
+.card-hover {
+  transition:
+    transform $transition-card,
+    box-shadow $transition-card;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+// ─── Legendary glow pulse ───
+@keyframes legendaryGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+  }
+}
+
+.glow-legendary-pulse {
+  animation: legendaryGlow 2s ease-in-out infinite;
+}
+
 .agr-badge {
   font-size: 15px;
   font-weight: 800;

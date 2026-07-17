@@ -1,0 +1,90 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+
+  &.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1001;
+  background: $color-surface;
+  border-top: 1px solid $color-border;
+  border-radius: $radius-xl $radius-xl 0 0;
+  display: flex;
+  flex-direction: column;
+  max-height: 85vh;
+  transform: translateY(100%);
+  animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.4);
+
+  &.auto {
+    max-height: 85vh;
+  }
+
+  &.half {
+    max-height: 60vh;
+  }
+
+  &.full {
+    height: calc(100vh - 44px);
+    max-height: calc(100vh - 44px);
+    border-radius: $radius-xl $radius-xl 0 0;
+  }
+}
+
+.handle {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 4px;
+  flex-shrink: 0;
+  cursor: grab;
+  touch-action: none;
+}
+
+.handleBar {
+  width: 36px;
+  height: 4px;
+  background: $color-border;
+  border-radius: 2px;
+}
+
+.title {
+  font-size: $font-size-lg;
+  font-weight: 700;
+  color: $color-primary;
+  letter-spacing: 1px;
+  padding: 0 20px 12px;
+  flex-shrink: 0;
+}
+
+.body {
+  flex: 1 0 auto;
+  overflow-y: auto;
+  padding: 0 20px 24px;
+  min-height: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

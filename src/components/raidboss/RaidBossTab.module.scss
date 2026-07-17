@@ -85,130 +85,154 @@
   margin-bottom: $spacing-sm;
 }
 
-.tableWrap {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+/* ── Card Grid ────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: $spacing-lg;
   margin-bottom: $spacing-2xl;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+  }
+
+  @include small {
+    grid-template-columns: 1fr;
+  }
 }
 
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: $font-size-base;
-  table-layout: auto;
+.card {
+  display: flex;
+  gap: $spacing-lg;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-xl;
+  padding: $spacing-lg;
+  cursor: pointer;
+  align-items: flex-start;
+  transition:
+    transform $transition-card,
+    box-shadow $transition-card,
+    border-color 0.2s ease;
 
-  th,
-  td {
-    padding: 8px 10px;
-    border: 1px solid $color-border;
-    text-align: left;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    border-color: $color-primary;
   }
 
-  th {
-    background: $color-surface-hover;
-    color: $color-primary;
-    font-weight: 600;
-    white-space: nowrap;
-  }
-
-  td {
-    color: $color-text;
-    vertical-align: top;
-  }
-
-  tbody tr:hover td {
-    background: transparent;
+  &:active {
+    transform: scale(0.98);
   }
 
   @include mobile {
-    th,
-    td {
-      padding: 6px;
-      font-size: $font-size-sm;
-    }
-  }
-  @include small {
-    th,
-    td {
-      padding: 4px;
-      font-size: $font-size-xs;
-    }
+    padding: $spacing-md;
+    gap: $spacing-md;
   }
 }
 
-.colName {
-  width: 30%;
-}
-.colLvl {
-  width: 65px;
-}
-.colResp {
-  width: 18%;
-}
-.colLoc {
-  width: 44%;
-}
+.cardEpic {
+  border-color: $color-accent-orange;
+  background: linear-gradient(135deg, $color-surface 95%, rgba(255, 166, 87, 0.05));
 
-.sortable {
-  cursor: pointer;
-  user-select: none;
   &:hover {
-    color: #fff;
+    border-color: $color-accent-orange;
+    box-shadow: 0 8px 24px rgba($color-accent-orange, 0.15);
   }
 }
 
-.clickableCell {
-  cursor: pointer;
-  user-select: none;
-}
-
-.detailRow td {
-  padding: 0 !important;
-  border-top: none;
-}
-
-.detailCell {
-  padding: 0 !important;
-}
-
-.bossName {
-  font-weight: 600;
-  color: $color-accent-orange;
-  font-size: $font-size-md;
-}
-
-.lvlBadge {
-  display: inline-block;
-  padding: 2px 10px;
+.cardImageWrap {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
   border-radius: $radius-lg;
-  background: #2b3a55;
-  color: #fff;
-  font-weight: 600;
-  font-size: $font-size-base;
+  overflow: hidden;
+  border: 1px solid $color-border;
+  background: $color-surface-alt;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include mobile {
+    width: 48px;
+    height: 48px;
+  }
 }
 
-.respawnBadge {
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cardImagePlaceholder {
+  font-size: 32px;
+  line-height: 1;
+
+  @include mobile {
+    font-size: 24px;
+  }
+}
+
+.cardBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.cardName {
+  font-size: $font-size-lg;
+  font-weight: 600;
+  color: $color-primary;
+  margin-bottom: 6px;
+  word-break: break-word;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  .cardEpic & {
+    color: $color-accent-orange;
+  }
+}
+
+.cardTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.cardTag {
   display: inline-block;
-  padding: 2px 10px;
-  border-radius: $radius-lg;
-  background: #1e3a8a;
-  color: #bfdbfe;
+  padding: 2px 8px;
+  border-radius: $radius-md;
+  font-size: $font-size-xs;
   font-weight: 500;
-  font-size: $font-size-sm;
   white-space: nowrap;
 }
 
-.respawnFixed {
+.tagLvl {
+  background: #2b3a55;
+  color: #fff;
+}
+
+.tagResp {
+  background: #1e3a8a;
+  color: #bfdbfe;
+}
+
+.tagRespFixed {
   background: #7c2d12;
   color: $color-accent-orange;
 }
 
+.tagLoc {
+  background: $color-border;
+  color: $color-text-muted;
+}
+
+/* ── Boss Detail (inside Modal) ──────────── */
 .detailPanel {
-  padding: $spacing-lg;
-  background: $color-surface;
-  border: 1px solid $color-border;
-  border-top: none;
-  border-radius: 0 0 $radius-lg $radius-lg;
+  padding: 0;
 }
 
 .statsGrid {
@@ -389,6 +413,7 @@
   color: $color-text-muted;
   font-style: italic;
 }
+
 /* ── Boss Image ──────────────────────────── */
 .detailHeader {
   display: flex;
@@ -443,197 +468,18 @@
   }
 }
 
-/* ── Map Modal ───────────────────────────── */
-.mapOverlay {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  background: rgba(0, 0, 0, 0.75);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.mapModal {
-  width: 90vw;
-  height: 90vh;
-  max-width: 1200px;
-  background: $color-surface;
-  border: 1px solid $color-border;
-  border-radius: $radius-xl;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.mapHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: $spacing-lg $spacing-xl;
-  border-bottom: 1px solid $color-border;
-  font-weight: 600;
-  color: $color-primary;
-}
-
-.mapClose {
-  width: 28px;
-  height: 28px;
-  border: 1px solid $color-border;
-  border-radius: $radius-md;
-  background: transparent;
-  color: $color-text-muted;
-  font-size: $font-size-lg;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &:hover {
-    color: #fff;
-    border-color: $color-text;
-  }
-}
-
-.mapContainer {
-  flex: 1;
-  overflow: hidden;
-  cursor: grab;
-  background: #0a0e1a;
-  position: relative;
-
-  &:active {
-    cursor: grabbing;
-  }
-}
-
-.mapInner {
-  width: 3004px;
-  height: 3004px;
-  background-size: 3004px 3004px;
-  background-repeat: no-repeat;
-  position: relative;
-  will-change: transform;
-  pointer-events: none;
-}
-
-.mapMarker {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  margin-left: -10px;
-  margin-top: -10px;
-  border-radius: 50%;
-  background: $color-danger;
-  border: 2px solid #fff;
-  box-shadow: 0 0 12px var(--color-danger-alpha-60);
-  z-index: 10;
-}
-
-.mapMarkerLabel {
-  position: absolute;
-  left: 24px;
-  top: 50%;
-  transform: translateY(-50%);
-  white-space: nowrap;
-  background: rgba(0, 0, 0, 0.75);
-  color: #fff;
-  padding: 2px 8px;
-  border-radius: $radius-sm;
-  font-size: $font-size-sm;
-  font-weight: 600;
-  pointer-events: none;
-}
-
-.mapFooter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: $spacing-md;
-  padding: $spacing-sm $spacing-xl;
-  border-top: 1px solid $color-border;
-}
-
-.mapZoomBtn {
-  width: 30px;
-  height: 30px;
-  border: 1px solid $color-border;
-  border-radius: $radius-md;
-  background: transparent;
-  color: $color-text;
-  font-size: $font-size-xl;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &:hover {
-    background: $color-surface-hover;
-    color: $color-primary;
-  }
-}
-
-.mapZoomLevel {
-  color: $color-text-muted;
-  font-size: $font-size-sm;
-  min-width: 36px;
-  text-align: center;
-}
-
-.imgPreviewOverlay {
-  position: fixed;
-  inset: 0;
-  z-index: 10000;
-  background: rgba(0, 0, 0, 0.85);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.imgPreviewModal {
-  position: relative;
+/* ── Image Preview (inside Modal) ────────── */
+.imgPreviewBody {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
 }
 
-.imgPreviewClose {
-  position: absolute;
-  top: -36px;
-  right: -36px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 1px solid $color-border;
-  background: #0b0f1a;
-  color: $color-text;
-  font-size: 16px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10001;
-  line-height: 1;
-
-  &:hover {
-    background: $color-surface-hover;
-    color: $color-primary;
-    border-color: $color-primary;
-  }
-}
-
 .imgPreviewImage {
-  max-width: 90vw;
-  max-height: 80vh;
+  max-width: 100%;
+  max-height: 70vh;
   border-radius: $radius-lg;
   border: 2px solid $color-border;
   object-fit: contain;
-}
-
-.imgPreviewName {
-  color: $color-text;
-  font-size: $font-size-lg;
-  font-weight: 600;
-  text-align: center;
 }

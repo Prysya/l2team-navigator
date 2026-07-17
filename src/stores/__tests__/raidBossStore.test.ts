@@ -12,6 +12,7 @@ beforeEach(() => {
     raidSortAsc: true,
     mapBoss: null,
     previewBoss: null,
+    selectedBoss: null,
   });
 });
 
@@ -46,5 +47,14 @@ describe('raidBossStore', () => {
     const boss = { name: 'Core', level: 50, respawn: '', location: '', stats: null, drops: null } as RaidBoss;
     useRaidBossStore.getState().setMapBoss(boss);
     expect(useRaidBossStore.getState().mapBoss?.name).toBe('Core');
+  });
+
+  it('sets selected boss', () => {
+    const boss = { name: 'Core', level: 50, respawn: '', location: '', stats: null, drops: null } as RaidBoss;
+    useRaidBossStore.getState().setSelectedBoss(boss);
+    expect(useRaidBossStore.getState().selectedBoss?.name).toBe('Core');
+
+    useRaidBossStore.getState().setSelectedBoss(null);
+    expect(useRaidBossStore.getState().selectedBoss).toBeNull();
   });
 });

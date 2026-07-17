@@ -33,6 +33,25 @@ $gradient-bg-1: var(--gradient-bg-1);
 $gradient-bg-2: var(--gradient-bg-2);
 $gradient-bg-3: var(--gradient-bg-3);
 
+// Rarity colors (Lineage 2 grade system)
+$rarity-normal: var(--rarity-normal);
+$rarity-d: var(--rarity-d);
+$rarity-c: var(--rarity-c);
+$rarity-b: var(--rarity-b);
+$rarity-a: var(--rarity-a);
+$rarity-s: var(--rarity-s);
+$rarity-s80: var(--rarity-s80);
+$rarity-s84: var(--rarity-s84);
+
+// Glow effects for rarity
+$glow-rare: var(--glow-rare);
+$glow-epic: var(--glow-epic);
+$glow-legendary: var(--glow-legendary);
+$glow-mythic: var(--glow-mythic);
+
+// Card transitions
+$transition-card: 0.2s ease;
+
 // Typography (family stays static)
 $font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 $font-mono: "Consolas", "Courier New", monospace;

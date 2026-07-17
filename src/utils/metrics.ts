@@ -1,7 +1,12 @@
 const METRIKA_ID = 110798252;
 
+function isProd() {
+  return import.meta.env.MODE !== 'development';
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function ym(...args: any[]) {
+  if (!isProd()) return;
   if (typeof window !== 'undefined') {
     const w = window as unknown as { ym?: (...a: unknown[]) => void };
     if (typeof w.ym === 'function') {

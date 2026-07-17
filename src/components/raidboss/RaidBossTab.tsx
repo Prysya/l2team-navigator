@@ -1,17 +1,10 @@
-import { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
+import { Fragment, useCallback, useEffect, useMemo } from 'react';
 import RAIDBOSSES from '@data/RAIDBOSSES.json';
 import CopyLink from '@shared/CopyLink';
 import EmptyState from '@shared/EmptyState';
 import FloatingLabel from '@shared/FloatingLabel';
+import Modal from '@shared/Modal';
 import WorldMap from '@shared/WorldMap';
-import {
-  createColumnHelper,
-  flexRender,
-  getCoreRowModel,
-  getSortedRowModel,
-  type SortingState,
-  useReactTable,
-} from '@tanstack/react-table';
 import { goal } from '@utils/metrics';
 import cx from 'classnames';
 
@@ -21,6 +14,7 @@ import type { RaidBoss } from '@/types';
 import styles from './RaidBossTab.module.scss';
 
 const BOSSES = RAIDBOSSES as RaidBoss[];
+const BASE = import.meta.env.BASE_URL;
 
 export function formatNum(s: string | null): string {
   if (!s) return '–';
@@ -29,20 +23,15 @@ export function formatNum(s: string | null): string {
 
 export const isEpic = (b: RaidBoss) => b.respawn && b.respawn.includes('Фиксированное');
 
-const columnHelper = createColumnHelper<RaidBoss>();
-
 export default function RaidBossTab() {
   const searchQuery = useRaidBossStore((s) => s.searchQuery);
-  const expanded = useRaidBossStore((s) => s.expanded);
   const mapBoss = useRaidBossStore((s) => s.mapBoss);
   const previewBoss = useRaidBossStore((s) => s.previewBoss);
+  const selectedBoss = useRaidBossStore((s) => s.selectedBoss);
   const setSearchQuery = useRaidBossStore((s) => s.setSearchQuery);
-  const toggleRow = useRaidBossStore((s) => s.toggleRow);
   const setMapBoss = useRaidBossStore((s) => s.setMapBoss);
   const setPreviewBoss = useRaidBossStore((s) => s.setPreviewBoss);
-
-  const [epicSort, setEpicSort] = useState<SortingState>([{ id: 'level', desc: false }]);
-  const [raidSort, setRaidSort] = useState<SortingState>([{ id: 'level', desc: false }]);
+  const setSelectedBoss = useRaidBossStore((s) => s.setSelectedBoss);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -52,15 +41,15 @@ export default function RaidBossTab() {
       setSearchQuery(decoded);
       const boss = BOSSES.find((b) => b.name.toLowerCase() === decoded.toLowerCase());
       if (boss) {
-        const id = boss.name + boss.level;
-        toggleRow(id);
+        setSelectedBoss(boss);
+        goal('boss_expand');
         setTimeout(() => {
-          const el = document.getElementById('boss-' + id);
+          const el = document.getElementById('boss-' + boss.name + boss.level);
           el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 100);
       }
     }
-  }, [setSearchQuery, toggleRow]);
+  }, [setSearchQuery, setSelectedBoss]);
 
   const { epics, raids } = useMemo(() => {
     let list = BOSSES;
@@ -76,144 +65,77 @@ export default function RaidBossTab() {
     };
   }, [searchQuery]);
 
-  const toggleExpand = useCallback(
-    (id: string) => {
-      toggleRow(id);
+  const handleCardClick = useCallback(
+    (boss: RaidBoss) => {
+      setSelectedBoss(boss);
+      goal('boss_expand');
     },
-    [toggleRow],
+    [setSelectedBoss],
   );
 
-  const columns = useMemo(
-    () => [
-      columnHelper.accessor('name', {
-        header: 'Босс',
-        enableSorting: false,
-        cell: ({ row, getValue }) => (
-          <div
-            className={styles.clickableCell}
-            onClick={() => {
-              toggleExpand(row.original.name + row.original.level);
-              if (!expanded.has(row.original.name + row.original.level)) {
-                goal('boss_expand');
-              }
-            }}
-          >
-            <span className={styles.bossName}>
-              {expanded.has(row.original.name + row.original.level) ? '▼ ' : '▶ '}
-              {getValue()}
-            </span>
-            <CopyLink
-              getUrl={() =>
-                window.location.origin +
-                import.meta.env.BASE_URL +
-                'raidboss?boss=' +
-                encodeURIComponent(row.original.name)
-              }
-            />
-          </div>
-        ),
-      }),
-      columnHelper.accessor('level', {
-        header: 'Ур.',
-        cell: ({ getValue }) => <span className={styles.lvlBadge}>{getValue()}</span>,
-      }),
-      columnHelper.accessor('respawn', {
-        header: 'Респ',
-        enableSorting: false,
-        cell: ({ row, getValue }) => (
-          <span className={cx(styles.respawnBadge, isEpic(row.original) && styles.respawnFixed)}>{getValue()}</span>
-        ),
-      }),
-      columnHelper.accessor('location', {
-        header: 'Локация',
-        enableSorting: false,
-        cell: ({ getValue }) => getValue(),
-      }),
-    ],
-    [expanded, toggleExpand],
+  const handleShowMap = useCallback(
+    (boss: RaidBoss) => {
+      setSelectedBoss(null);
+      setMapBoss(boss);
+    },
+    [setSelectedBoss, setMapBoss],
   );
 
-  function BossTable({ data, title, icon }: { data: RaidBoss[]; title: string; icon: string }) {
-    const sortState = title.includes('Эпик') ? epicSort : raidSort;
-    const setSortState = title.includes('Эпик') ? setEpicSort : setRaidSort;
+  const handleShowImage = useCallback(
+    (boss: RaidBoss) => {
+      setSelectedBoss(null);
+      setPreviewBoss(boss);
+    },
+    [setSelectedBoss, setPreviewBoss],
+  );
 
-    const table = useReactTable({
-      data,
-      columns,
-      state: { sorting: sortState },
-      onSortingChange: setSortState,
-      getCoreRowModel: getCoreRowModel(),
-      getSortedRowModel: getSortedRowModel(),
-      getRowCanExpand: () => true,
-    });
-
+  function BossCardGrid({ bosses, title, icon }: { bosses: RaidBoss[]; title: string; icon: string }) {
+    if (bosses.length === 0) return null;
     return (
       <Fragment>
         <div className={styles.sectionTitle}>
-          {icon} {title} ({data.length})
+          {icon} {title} ({bosses.length})
         </div>
-        <div className={styles.tableWrap}>
-          <table className={styles.table}>
-            <thead>
-              {table.getHeaderGroups().map((headerGroup) => (
-                <tr key={headerGroup.id}>
-                  {headerGroup.headers.map((header) => {
-                    const widthClass =
-                      header.id === 'name'
-                        ? styles.colName
-                        : header.id === 'level'
-                          ? styles.colLvl
-                          : header.id === 'respawn'
-                            ? styles.colResp
-                            : header.id === 'location'
-                              ? styles.colLoc
-                              : '';
-                    return (
-                      <th
-                        key={header.id}
-                        colSpan={header.colSpan}
-                        className={widthClass}
-                        onClick={header.column.getToggleSortingHandler()}
-                        style={{ cursor: header.column.getCanSort() ? 'pointer' : 'default' }}
-                      >
-                        {flexRender(header.column.columnDef.header, header.getContext())}
-                        {header.column.getCanSort() && (
-                          <span className={styles.sortable}>
-                            {{
-                              asc: ' ▲',
-                              desc: ' ▼',
-                            }[header.column.getIsSorted() as string] ?? ' ⇅'}
-                          </span>
-                        )}
-                      </th>
-                    );
-                  })}
-                </tr>
-              ))}
-            </thead>
-            <tbody>
-              {table.getRowModel().rows.map((row) => (
-                <Fragment key={row.id}>
-                  <tr id={'boss-' + row.original.name + row.original.level}>
-                    {row.getVisibleCells().map((cell) => (
-                      <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
-                    ))}
-                  </tr>
-                  {expanded.has(row.original.name + row.original.level) && (
-                    <tr className={styles.detailRow}>
-                      <td colSpan={columns.length} className={styles.detailCell}>
-                        <BossDetail
-                          boss={row.original}
-                          onShowMap={row.original.coords ? () => setMapBoss(row.original) : undefined}
-                          onShowImage={row.original.image ? () => setPreviewBoss(row.original) : undefined}
-                        />
-                      </td>
-                    </tr>
+        <div className={styles.grid}>
+          {bosses.map((boss) => {
+            const id = boss.name + boss.level;
+            return (
+              <div
+                key={id}
+                id={'boss-' + id}
+                className={cx(styles.card, { [styles.cardEpic]: isEpic(boss) })}
+                onClick={() => handleCardClick(boss)}
+              >
+                <div className={styles.cardImageWrap}>
+                  {boss.image ? (
+                    <img className={styles.cardImage} src={`${BASE}${boss.image}`} alt={boss.name} loading="lazy" />
+                  ) : (
+                    <div className={styles.cardImagePlaceholder}>👹</div>
                   )}
-                </Fragment>
-              ))}
-            </tbody>
-          </table>
+                </div>
+                <div className={styles.cardBody}>
+                  <div className={styles.cardName}>
+                    {boss.name}
+                    <CopyLink
+                      getUrl={() => window.location.origin + BASE + 'raidboss?boss=' + encodeURIComponent(boss.name)}
+                    />
+                  </div>
+                  <div className={styles.cardTags}>
+                    <span className={cx(styles.cardTag, styles.tagLvl)}>Ур. {boss.level}</span>
+                    <span
+                      className={cx(styles.cardTag, {
+                        [styles.tagRespFixed]: isEpic(boss),
+                        [styles.tagResp]: !isEpic(boss),
+                      })}
+                    >
+                      ⏱ {boss.respawn}
+                    </span>
+                    {boss.location && <span className={cx(styles.cardTag, styles.tagLoc)}>📍 {boss.location}</span>}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </Fragment>
     );
@@ -240,15 +162,25 @@ export default function RaidBossTab() {
 
       {epics.length + raids.length > 0 ? (
         searchQuery.trim() ? (
-          <BossTable data={[...epics, ...raids]} title="Результаты поиска" icon="🔍" />
+          <BossCardGrid bosses={[...epics, ...raids]} title="Результаты поиска" icon="🔍" />
         ) : (
           <Fragment>
-            {epics.length > 0 && <BossTable data={epics} title="Эпик боссы" icon="🔥" />}
-            {raids.length > 0 && <BossTable data={raids} title="Рейд-боссы" icon="👹" />}
+            <BossCardGrid bosses={epics} title="Эпик боссы" icon="🔥" />
+            <BossCardGrid bosses={raids} title="Рейд-боссы" icon="👹" />
           </Fragment>
         )
       ) : (
         <EmptyState message="Боссы не найдены" />
+      )}
+
+      {selectedBoss && (
+        <Modal isOpen={!!selectedBoss} onClose={() => setSelectedBoss(null)} title={selectedBoss.name} size="lg">
+          <BossDetail
+            boss={selectedBoss}
+            onShowMap={selectedBoss.coords ? () => handleShowMap(selectedBoss) : undefined}
+            onShowImage={selectedBoss.image ? () => handleShowImage(selectedBoss) : undefined}
+          />
+        </Modal>
       )}
 
       {mapBoss && mapBoss.coords && (
@@ -256,19 +188,11 @@ export default function RaidBossTab() {
       )}
 
       {previewBoss && (
-        <div className={styles.imgPreviewOverlay} onClick={() => setPreviewBoss(null)}>
-          <div className={styles.imgPreviewModal} onClick={(e) => e.stopPropagation()}>
-            <button className={styles.imgPreviewClose} onClick={() => setPreviewBoss(null)}>
-              ✕
-            </button>
-            <img
-              className={styles.imgPreviewImage}
-              src={`${import.meta.env.BASE_URL}${previewBoss.image}`}
-              alt={previewBoss.name}
-            />
-            <div className={styles.imgPreviewName}>{previewBoss.name}</div>
+        <Modal isOpen={!!previewBoss} onClose={() => setPreviewBoss(null)} title={previewBoss.name} size="sm">
+          <div className={styles.imgPreviewBody}>
+            <img className={styles.imgPreviewImage} src={`${BASE}${previewBoss.image}`} alt={previewBoss.name} />
           </div>
-        </div>
+        </Modal>
       )}
     </div>
   );
@@ -293,12 +217,7 @@ function BossDetail({
       <div className={styles.detailHeader}>
         {boss.image && (
           <div className={styles.bossImageWrap} onClick={onShowImage}>
-            <img
-              className={styles.bossImage}
-              src={`${import.meta.env.BASE_URL}${boss.image}`}
-              alt={boss.name}
-              loading="lazy"
-            />
+            <img className={styles.bossImage} src={`${BASE}${boss.image}`} alt={boss.name} loading="lazy" />
           </div>
         )}
         <div className={styles.detailStats}>
@@ -316,8 +235,8 @@ function BossDetail({
                   ['Exp', stats.exp],
                   ['SP', stats.sp],
                 ].map(([label, val]) => (
-                  <div key={label as string} className={styles.statItem}>
-                    <span className={styles.statLabel}>{label as string}</span>
+                  <div key={label} className={styles.statItem}>
+                    <span className={styles.statLabel}>{label}</span>
                     <span className={styles.statValue}>{formatNum(val as string | null)}</span>
                   </div>
                 ))}
