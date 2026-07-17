@@ -407,30 +407,6 @@ a {
   margin-left: 4px;
   color: $color-primary;
   font-weight: 600;
-
-  &:before {
-    content: attr(data-tooltip);
-    visibility: hidden;
-    position: absolute;
-    bottom: 150%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #1a2338;
-    color: #dbe4f0;
-    font-size: 11px;
-    font-weight: 400;
-    white-space: nowrap;
-    padding: 5px 10px;
-    border-radius: 6px;
-    border: 1px solid #24304a;
-    pointer-events: none;
-    z-index: 100;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  }
-
-  &:hover:before {
-    visibility: visible;
-  }
 }
 
 .stat-badge {

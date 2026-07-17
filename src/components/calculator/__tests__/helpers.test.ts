@@ -1,6 +1,7 @@
+import { clamp } from '@shared/NumberInput';
 import { describe, expect, it } from 'vitest';
 
-import { clamp, computeTotal } from '../CalculatorTab';
+import { computeTotal } from '../CalculatorTab';
 
 describe('clamp', () => {
   it('returns val when in range', () => {

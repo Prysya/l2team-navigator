@@ -1,26 +1,38 @@
-import { Fragment, useCallback, useMemo, useRef, useState } from 'react';
+import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import LOCATIONS_ALL_DATA from '@data/LOCATIONS_ALL.json';
 import { RACES } from '@data/races';
+import RECIPE_ENRICHMENT_DATA from '@data/RECIPE_ENRICHMENT.json';
 import CustomSelect from '@shared/CustomSelect';
 import EmptyState from '@shared/EmptyState';
 import FloatingLabel from '@shared/FloatingLabel';
+import NumberInput from '@shared/NumberInput';
 import { formatChance, getPartyText } from '@utils/helpers';
 import cx from 'classnames';
 
+import type { TypeFilter } from '@/stores/locationsStore';
 import { useLocationsStore } from '@/stores/locationsStore';
-import type { LocationEntry, LocationItem, LocationMonster } from '@/types';
+import type { LocationEntry, LocationItem, LocationMonster, RecipeGrade, RecipeType } from '@/types';
 
 import styles from './LocationsTab.module.scss';
 
 const LOCATIONS_ALL = LOCATIONS_ALL_DATA as LocationEntry[];
 
-type TypeFilter = 'all' | 'recipe' | 'spellbook';
+interface RecipeEnrichmentEntry {
+  g: RecipeGrade;
+  t: RecipeType;
+  r: string;
+  u: string;
+}
+
+const RECIPE_ENRICHMENT = RECIPE_ENRICHMENT_DATA as Record<string, RecipeEnrichmentEntry>;
 
 const TYPE_BUTTONS: { key: TypeFilter; label: string }[] = [
   { key: 'all', label: 'Все' },
   { key: 'recipe', label: '📜 Рецепты' },
   { key: 'spellbook', label: '📚 Книги' },
+  { key: 'piece', label: '📦 Куски' },
+  { key: 'resource', label: '🧱 Ресурсы' },
 ];
 
 const TYPE_TOOLTIP: Record<string, string> = {
@@ -28,6 +40,47 @@ const TYPE_TOOLTIP: Record<string, string> = {
   SG: 'Минигруппа (small group)',
   G: 'Полная группа (group)',
 };
+
+const PARTY_OPTIONS = [
+  { value: '', label: 'Все' },
+  { value: 'S', label: 'Соло' },
+  { value: 'SG', label: 'Мини-группа' },
+  { value: 'G', label: 'Пати' },
+];
+
+interface RecipeInfo {
+  grade: RecipeGrade;
+  type: RecipeType;
+  resultName: string;
+  resultUrl: string;
+}
+
+const GRADE_COLORS: Record<string, string> = {
+  NG: '#9e9e9e',
+  D: '#81c784',
+  C: '#ffd54f',
+  B: '#ef5350',
+  A: '#ce93d8',
+};
+
+const GRADE_LABELS: Record<string, string> = {
+  NG: 'NG',
+  D: 'D',
+  C: 'C',
+  B: 'B',
+  A: 'A',
+};
+
+function getRecipeInfo(itemName: string): RecipeInfo | undefined {
+  const entry = RECIPE_ENRICHMENT[itemName];
+  if (!entry) return undefined;
+  return {
+    grade: entry.g,
+    type: entry.t,
+    resultName: entry.r,
+    resultUrl: entry.u,
+  };
+}
 
 function LocationMonsterRow({ m }: { m: LocationMonster }) {
   const drop = formatChance(m.drop_chance);
@@ -44,29 +97,66 @@ function LocationMonsterRow({ m }: { m: LocationMonster }) {
       {m.monster_lvl ? <span className="stat-badge stat-lvl">Lvl {m.monster_lvl}</span> : null}{' '}
       {m.is_boss ? <span className="stat-badge stat-boss">💀 BOSS</span> : null}
       <div className={styles.locChances}>
-        дроп: <span className={'chance ' + drop.cls}>{drop.text}</span>
-        {' | спойл'}: <span className={'chance ' + spoil.cls}>{spoil.text}</span>
+        дроп: <span className={cx('chance', styles.chanceLoc)}>{drop.text}</span>
+        {' | спойл'}: <span className={cx('chance', styles.chanceLoc)}>{spoil.text}</span>
       </div>
     </div>
   );
 }
 
 function LocationItemRow({ item }: { item: LocationItem }) {
-  const totalDrop = item.monsters.reduce((s, m) => s + (m.drop_chance || 0), 0);
-  const totalSpoil = item.monsters.reduce((s, m) => s + (m.spoil_chance || 0), 0);
   const isRecipe = item.item_type === 'recipe';
+  const isPiece = item.item_type === 'piece';
+  const isResource = item.item_type === 'resource';
+
+  const recipeInfo = isRecipe ? getRecipeInfo(item.item_name) : undefined;
+
+  let typeBadgeClass = styles.itemTypeSpellbook;
+  let typeBadgeLabel = 'Книга';
+  if (isRecipe) {
+    typeBadgeClass = styles.itemTypeRecipe;
+    typeBadgeLabel = 'Рецепт';
+  } else if (isPiece) {
+    typeBadgeClass = styles.itemTypePiece;
+    typeBadgeLabel = 'Кусок';
+  } else if (isResource) {
+    typeBadgeClass = styles.itemTypeResource;
+    typeBadgeLabel = 'Ресурс';
+  }
+
   return (
     <div className={styles.locItem}>
       <div className={styles.itemHeader}>
-        <span className={`${styles.itemTypeBadge} ${isRecipe ? styles.itemTypeRecipe : styles.itemTypeSpellbook}`}>
-          {isRecipe ? 'Рецепт' : 'Книга'}
-        </span>
+        <span className={`${styles.itemTypeBadge} ${typeBadgeClass}`}>{typeBadgeLabel}</span>
         {item.item_url ? (
           <a href={item.item_url} target="_blank" rel="noopener noreferrer" className={styles.itemName}>
             {item.item_name}
           </a>
         ) : (
           <span className={styles.itemName}>{item.item_name}</span>
+        )}
+        {recipeInfo && (
+          <span className={styles.recipeGradeBadge} style={{ background: GRADE_COLORS[recipeInfo.grade] || '#9e9e9e' }}>
+            {GRADE_LABELS[recipeInfo.grade] || recipeInfo.grade}
+          </span>
+        )}
+        {recipeInfo && (
+          <span className={styles.recipeResult}>
+            → {recipeInfo.type}
+            {recipeInfo.resultUrl ? (
+              <a
+                href={recipeInfo.resultUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.recipeResultLink}
+              >
+                {' '}
+                {recipeInfo.resultName}
+              </a>
+            ) : (
+              <> {recipeInfo.resultName}</>
+            )}
+          </span>
         )}
       </div>
       {item.classes.length > 0 && (
@@ -82,10 +172,6 @@ function LocationItemRow({ item }: { item: LocationItem }) {
         {item.monsters.map((m, i) => (
           <LocationMonsterRow key={i} m={m} />
         ))}
-      </div>
-      <div className={styles.itemTotal}>
-        дроп: <b>{totalDrop.toFixed(2)}%</b>
-        {' | спойл'}: <b>{totalSpoil.toFixed(2)}%</b>
       </div>
     </div>
   );
@@ -108,9 +194,14 @@ function LocationRow({
   if (typeFilter !== 'all') {
     items = items.filter((i) => i.item_type === typeFilter);
   }
-  if (typeFilter !== 'recipe' && (selectedRace || selectedClass)) {
+  if (
+    typeFilter !== 'recipe' &&
+    typeFilter !== 'piece' &&
+    typeFilter !== 'resource' &&
+    (selectedRace || selectedClass)
+  ) {
     items = items.filter((i) => {
-      if (i.item_type === 'recipe') return true;
+      if (i.item_type === 'recipe' || i.item_type === 'piece' || i.item_type === 'resource') return true;
       return i.classes.some(
         (c) => (!selectedRace || c.race === selectedRace) && (!selectedClass || c.class_name === selectedClass),
       );
@@ -161,10 +252,41 @@ export default function LocationsTab() {
   const setSelectedLocation = useLocationsStore((s) => s.setSelectedLocation);
   const searchQuery = useLocationsStore((s) => s.searchQuery);
   const setSearchQuery = useLocationsStore((s) => s.setSearchQuery);
+  const partyFilter = useLocationsStore((s) => s.partyFilter);
+  const setPartyFilter = useLocationsStore((s) => s.setPartyFilter);
+  const userLevel = useLocationsStore((s) => s.userLevel);
+  const setUserLevel = useLocationsStore((s) => s.setUserLevel);
   const handleTypeChange = useLocationsStore((s) => s.handleTypeChange);
 
   const tableRef = useRef<HTMLDivElement>(null);
   const [tooltip, setTooltip] = useState<{ text: string; top: number; left: number } | null>(null);
+
+  const [piecesData, setPiecesData] = useState<LocationEntry[]>([]);
+  const [piecesLoaded, setPiecesLoaded] = useState(false);
+  const [resourcesData, setResourcesData] = useState<LocationEntry[]>([]);
+  const [resourcesLoaded, setResourcesLoaded] = useState(false);
+
+  useEffect(() => {
+    if ((typeFilter === 'piece' || typeFilter === 'all') && !piecesLoaded) {
+      import('@data/LOCATIONS_PIECES.json')
+        .then((m) => {
+          setPiecesData(m.default as LocationEntry[]);
+          setPiecesLoaded(true);
+        })
+        .catch(() => setPiecesLoaded(true));
+    }
+  }, [typeFilter, piecesLoaded]);
+
+  useEffect(() => {
+    if ((typeFilter === 'resource' || typeFilter === 'all') && !resourcesLoaded) {
+      import('@data/LOCATIONS_RESOURCES.json')
+        .then((m) => {
+          setResourcesData(m.default as LocationEntry[]);
+          setResourcesLoaded(true);
+        })
+        .catch(() => setResourcesLoaded(true));
+    }
+  }, [typeFilter, resourcesLoaded]);
 
   const handleMouseOver = useCallback((e: React.MouseEvent) => {
     const target = (e.target as HTMLElement).closest('[data-tooltip]') as HTMLElement | null;
@@ -175,8 +297,8 @@ export default function LocationsTab() {
     const rect = target.getBoundingClientRect();
     setTooltip({
       text: target.getAttribute('data-tooltip') ?? '',
-      top: rect.top - 8,
-      left: rect.left + rect.width / 2,
+      top: rect.top + rect.height / 2,
+      left: rect.right + 8,
     });
   }, []);
 
@@ -185,16 +307,52 @@ export default function LocationsTab() {
     if (!related) setTooltip(null);
   }, []);
 
+  const activeLocations = useMemo(() => {
+    if (typeFilter === 'piece' && piecesData.length > 0) return piecesData;
+    if (typeFilter === 'resource' && resourcesData.length > 0) return resourcesData;
+    if (typeFilter !== 'all' || piecesData.length === 0) return LOCATIONS_ALL;
+
+    const merged = LOCATIONS_ALL.map((loc) => ({ ...loc, items: [...loc.items] }));
+    const pieceByName = new Map<string, LocationEntry>();
+    for (const pl of piecesData) {
+      pieceByName.set(pl.location_name, pl);
+    }
+    for (const rl of resourcesData) {
+      const existing = pieceByName.get(rl.location_name);
+      if (existing) {
+        for (const item of rl.items) existing.items.push(item);
+      } else {
+        pieceByName.set(rl.location_name, rl);
+      }
+    }
+
+    for (const loc of merged) {
+      const extra = pieceByName.get(loc.location_name);
+      if (extra) {
+        for (const item of extra.items) {
+          loc.items.push(item);
+        }
+        pieceByName.delete(loc.location_name);
+      }
+    }
+
+    for (const extra of pieceByName.values()) {
+      merged.push(extra);
+    }
+
+    return merged;
+  }, [typeFilter, piecesData, resourcesData]);
+
   const cities = useMemo(() => {
     const set = new Set<string>();
-    for (const loc of LOCATIONS_ALL) set.add(loc.main_location_name);
+    for (const loc of activeLocations) set.add(loc.main_location_name);
     return Array.from(set).sort();
-  }, []);
+  }, [activeLocations]);
 
   const locationsForCity = useMemo(() => {
     if (!selectedCity) return [];
-    return LOCATIONS_ALL.filter((loc) => loc.main_location_name === selectedCity);
-  }, [selectedCity]);
+    return activeLocations.filter((loc) => loc.main_location_name === selectedCity);
+  }, [selectedCity, activeLocations]);
 
   const classesForRace = useMemo(() => {
     if (!selectedRace) return [];
@@ -209,14 +367,25 @@ export default function LocationsTab() {
     return Array.from(set).sort();
   }, [selectedRace]);
 
+  const levelNum = useMemo(() => {
+    const n = parseInt(userLevel, 10);
+    return isNaN(n) ? null : n;
+  }, [userLevel]);
+
   const filteredData = useMemo(() => {
-    let list = LOCATIONS_ALL;
+    let list = activeLocations;
 
     if (selectedCity) {
       list = list.filter((loc) => loc.main_location_name === selectedCity);
     }
     if (selectedLocation) {
       list = list.filter((loc) => loc.location_name === selectedLocation);
+    }
+    if (partyFilter) {
+      list = list.filter((loc) => loc.location_types.includes(partyFilter));
+    }
+    if (levelNum !== null) {
+      list = list.filter((loc) => loc.avg_level >= levelNum - 7 && loc.avg_level <= levelNum + 4);
     }
 
     const result: LocationEntry[] = [];
@@ -225,9 +394,14 @@ export default function LocationsTab() {
       if (typeFilter !== 'all') {
         items = items.filter((i) => i.item_type === typeFilter);
       }
-      if (typeFilter !== 'recipe' && (selectedRace || selectedClass)) {
+      if (
+        typeFilter !== 'recipe' &&
+        typeFilter !== 'piece' &&
+        typeFilter !== 'resource' &&
+        (selectedRace || selectedClass)
+      ) {
         items = items.filter((i) => {
-          if (i.item_type === 'recipe') return true;
+          if (i.item_type === 'recipe' || i.item_type === 'piece' || i.item_type === 'resource') return true;
           return i.classes.some(
             (c) => (!selectedRace || c.race === selectedRace) && (!selectedClass || c.class_name === selectedClass),
           );
@@ -242,7 +416,17 @@ export default function LocationsTab() {
       }
     }
     return result;
-  }, [typeFilter, selectedRace, selectedClass, selectedCity, selectedLocation, searchQuery]);
+  }, [
+    typeFilter,
+    selectedRace,
+    selectedClass,
+    selectedCity,
+    selectedLocation,
+    searchQuery,
+    partyFilter,
+    levelNum,
+    activeLocations,
+  ]);
 
   const grouped = useMemo(() => {
     const map: Record<string, LocationEntry[]> = {};
@@ -253,9 +437,31 @@ export default function LocationsTab() {
     return map;
   }, [filteredData]);
 
-  const totalItemCount = useMemo(() => filteredData.reduce((sum, loc) => sum + loc.items.length, 0), [filteredData]);
+  const hideRaceClass = typeFilter !== 'spellbook';
 
-  const isRecipeType = typeFilter === 'recipe';
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const findTimerRef = useRef<number>(0);
+
+  useEffect(() => {
+    setSubmitted(false);
+  }, [typeFilter, selectedCity, selectedLocation, partyFilter, userLevel, searchQuery]);
+
+  useEffect(() => {
+    return () => {
+      if (findTimerRef.current) clearTimeout(findTimerRef.current);
+    };
+  }, []);
+
+  const handleFind = useCallback(() => {
+    setLoading(true);
+    if (findTimerRef.current) clearTimeout(findTimerRef.current);
+    const delay = 500 + Math.random() * 500;
+    findTimerRef.current = setTimeout(() => {
+      setLoading(false);
+      setSubmitted(true);
+    }, delay);
+  }, []);
 
   return (
     <div>
@@ -272,7 +478,7 @@ export default function LocationsTab() {
           ))}
         </div>
 
-        {!isRecipeType && (
+        {!hideRaceClass && (
           <>
             <CustomSelect
               label="Раса"
@@ -301,16 +507,32 @@ export default function LocationsTab() {
             setSelectedCity(v);
             setSelectedLocation('');
           }}
-          options={cities.map((c) => ({ value: c, label: c }))}
+          options={[{ value: '', label: 'Все' }, ...cities.map((c) => ({ value: c, label: c }))]}
         />
 
         <CustomSelect
           label="Локация"
           value={selectedLocation}
           onChange={(v) => setSelectedLocation(v)}
-          options={locationsForCity.map((loc) => ({ value: loc.location_name, label: loc.location_name }))}
+          options={[
+            { value: '', label: 'Все' },
+            ...locationsForCity
+              .map((loc) => ({ value: loc.location_name, label: loc.location_name }))
+              .sort((a, b) => a.label.localeCompare(b.label)),
+          ]}
           disabled={!selectedCity}
         />
+
+        <CustomSelect
+          label="Тип пати"
+          value={partyFilter}
+          onChange={(v) => setPartyFilter(v as '' | 'S' | 'SG' | 'G')}
+          options={PARTY_OPTIONS}
+        />
+
+        <FloatingLabel label="Ваш уровень" value={userLevel}>
+          <NumberInput value={userLevel} onChange={setUserLevel} min={1} max={75} />
+        </FloatingLabel>
 
         <FloatingLabel label="Поиск" value={searchQuery}>
           <input
@@ -321,12 +543,30 @@ export default function LocationsTab() {
           />
         </FloatingLabel>
 
-        <div className={styles.count}>
-          Найдено: <b>{totalItemCount}</b>
-        </div>
+        <button className={styles.findBtn} onClick={handleFind} disabled={loading}>
+          {loading ? 'Поиск…' : 'Найти'}
+        </button>
+
+        {submitted && (
+          <div className={styles.count}>
+            Найдено: <b>{filteredData.length} локаций</b>
+            {levelNum !== null && (
+              <span className={styles.countLevel}>
+                {' '}
+                (Lvl {levelNum - 7}–{levelNum + 4})
+              </span>
+            )}
+          </div>
+        )}
       </div>
 
-      {filteredData.length > 0 ? (
+      {loading ? (
+        <div className={styles.spinnerWrap}>
+          <div className={styles.spinner} />
+        </div>
+      ) : !submitted ? (
+        <EmptyState message="Нажмите «Найти» для поиска" />
+      ) : filteredData.length > 0 ? (
         <div className={styles.tableWrap} ref={tableRef} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
           <table className={styles.table}>
             <thead>
@@ -371,7 +611,7 @@ export default function LocationsTab() {
                   position: 'fixed',
                   top: tooltip.top,
                   left: tooltip.left,
-                  transform: 'translate(-50%, -100%)',
+                  transform: 'translate(0, -50%)',
                   background: '#1a2338',
                   color: '#dbe4f0',
                   fontSize: 11,

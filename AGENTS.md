@@ -67,7 +67,7 @@ Use conventional commits: `type: description` (lowercase, no caps).
 | Store | File |
 |-------|------|
 | `useRaidBossStore` | `src/stores/raidBossStore.ts` |
-| `useLocationsStore` | `src/stores/locationsStore.ts` |
+| `useLocationsStore` | `src/stores/locationsStore.ts` | `typeFilter`, `selectedRace`, `selectedClass`, `selectedCity`, `selectedLocation`, `searchQuery`, `partyFilter`, `userLevel` |
 | `useSkillsStore` | `src/stores/skillsStore.ts` |
 | `useSpellbookStore` | `src/stores/spellbookStore.ts` |
 | `useRecipeStore` | `src/stores/recipeStore.ts` |
@@ -168,9 +168,22 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - Store: `selectedType`, `selectedGrade`, `selectedRecipeId`, `searchQuery`
 
 ### LocationsTab
-- Gradient active buttons for sub-tabs
-- Race, Class, City, Location `CustomSelect` dropdowns
-- Search (`FloatingLabel`)
+- 5 подтабов: Все | 📜 Рецепты | 📚 Книги | 📦 Куски | 🧱 Ресурсы
+- «Все» объединяет данные из LOCATIONS_ALL + PIECES + RESOURCES
+- Раса/Класс селекторы только на табе «Книги»
+- Фильтр типа пати: Solo / Small Group / Group (`CustomSelect`)
+- Фильтр уровня: `NumberInput` (общий shared-компонент) с диапазоном avg_level [-7, +4]
+- Кнопка «Найти» со спиннером (0.5–1с), без поиска — пустой результат
+- Обогащение рецептов: грейд (цветной бейдж) + тип + название результата крафта (из `RECIPE_ENRICHMENT.json`)
+- Данные кусков: `LOCATIONS_PIECES.json` (собирается скриптом `build-locations-pieces.mjs` из RECIPES.json mainPieceMonsters)
+- Данные ресурсов: `LOCATIONS_RESOURCES.json` (собирается скриптом `build-locations-resources.mjs` из Material/Other рецептов)
+- Ленивая загрузка PIECES/RESOURCES: чанки 1.4MB/0.5MB, загружаются при переходе на таб
+- Шансы дропа/спойла: белым цветом, уменьшенный шрифт, без дублирующего футера
+- Тултип S/SG/G: справа от бейджа (portal), CSS-дубликат убран
+- Счётчик «Найдено: N локаций»
+- Селекторы Город/Локация: пункт «Все» + алфавитная сортировка
+- Race, Class, City, Location селекторы через `CustomSelect`
+- Поиск (`FloatingLabel`)
 
 ### RaidBossTab
 - 139 bosses (130 with stats/drops from mw2.wiki, 9 location+respawn only)
