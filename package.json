@@ -17,6 +17,7 @@
     "update-boss-ids": "node scripts/enrich-boss-npcids.mjs",
     "update-item-icons": "node scripts/fetch-item-icons.mjs",
     "update-recipe-icons": "node scripts/fetch-recipe-icons.mjs",
+    "update-item-icons-by-id": "node scripts/fetch-item-icons-by-id.mjs",
     "update-data": "npm run update-skills && npm run update-bosses",
     "version:patch": "npm version patch -m \"chore: bump v%s\"",
     "version:minor": "npm version minor -m \"chore: bump v%s\"",
