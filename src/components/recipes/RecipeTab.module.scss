@@ -225,6 +225,14 @@
   gap: $spacing-lg;
 }
 
+.headerIcon {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: 4px;
+}
+
 .gradeBadge {
   display: inline-block;
   padding: 3px 10px;

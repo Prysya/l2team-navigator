@@ -131,6 +131,10 @@ export interface RaidBoss {
   drops: DropGroup[] | null;
   image?: string;
   coords?: { x: number; y: number };
+  /** Official wiki NPC id (masterwork.wiki/lu4/npc/{npcId}-{slug}). */
+  npcId?: number;
+  /** Url slug for the wiki NPC page, taken from the wiki itself. */
+  slug?: string;
 }
 
 export interface ChanceInfo {

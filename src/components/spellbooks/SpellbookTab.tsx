@@ -5,6 +5,7 @@ import CopyLink from '@shared/CopyLink';
 import CustomSelect from '@shared/CustomSelect';
 import EmptyState from '@shared/EmptyState';
 import FloatingLabel from '@shared/FloatingLabel';
+import ItemIcon from '@shared/ItemIcon';
 import { monsterCells } from '@shared/MonsterCells';
 import {
   createColumnHelper,
@@ -112,6 +113,7 @@ export default function SpellbookTab() {
       const bookContent = (
         <div className="spellbook-name">
           <div className={styles.bookTitle}>
+            <ItemIcon id={sb.item_wiki_id} name={sb.spellbook_name} />
             <a href={sb.spellbook_url} target="_blank" rel="noopener noreferrer">
               {sb.spellbook_name}
             </a>

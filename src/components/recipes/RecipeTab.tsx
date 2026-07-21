@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import RECIPE_ICONS from '@data/RECIPE_ICONS.json';
 import CustomSelect from '@shared/CustomSelect';
 import EmptyState from '@shared/EmptyState';
 import FloatingLabel from '@shared/FloatingLabel';
+import { wikiIconUrl } from '@utils/itemWiki';
 import { goal } from '@utils/metrics';
 import cx from 'classnames';
 
@@ -12,6 +14,9 @@ import type { RecipeComponent, RecipeEntry } from '@/types';
 import MonsterTable from './MonsterTable';
 
 import styles from './RecipeTab.module.scss';
+
+/** recipeId -> { recipe icon, crafted-result icon } (filenames), scraped from the wiki. */
+const RECIPE_ICON_MAP = RECIPE_ICONS as Record<string, { recipe?: string; result?: string }>;
 
 const TYPE_OPTIONS = [
   { value: 'all', label: 'Все типы' },
@@ -401,6 +406,7 @@ export default function RecipeTab() {
           options: grouped[st].map((r) => ({
             value: String(r.recipeId),
             label: r.recipeName,
+            iconUrl: wikiIconUrl(RECIPE_ICON_MAP[r.recipeId]?.result) ?? undefined,
           })),
         }));
 
@@ -412,6 +418,7 @@ export default function RecipeTab() {
       flat: baseRecipes.map((r) => ({
         value: String(r.recipeId),
         label: r.recipeName,
+        iconUrl: wikiIconUrl(RECIPE_ICON_MAP[r.recipeId]?.result) ?? undefined,
       })),
     };
   }, [baseRecipes, selectedType]);
@@ -420,6 +427,8 @@ export default function RecipeTab() {
     if (selectedRecipeId === null) return null;
     return allRecipes.find((r) => r.recipeId === selectedRecipeId) ?? null;
   }, [allRecipes, selectedRecipeId]);
+
+  const recipeHeaderIcon = currentRecipe ? wikiIconUrl(RECIPE_ICON_MAP[currentRecipe.recipeId]?.recipe) : null;
 
   if (!dataLoaded) {
     return <EmptyState message="Загрузка данных..." />;
@@ -520,6 +529,9 @@ export default function RecipeTab() {
         <div className={styles.card}>
           <div className={styles.cardHeader}>
             <div className={styles.cardHeaderLeft}>
+              {recipeHeaderIcon && (
+                <img className={styles.headerIcon} src={recipeHeaderIcon} alt="" draggable={false} />
+              )}
               {currentRecipe.recipeUrl ? (
                 <h3>
                   <a

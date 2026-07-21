@@ -6,6 +6,7 @@ import RECIPE_ENRICHMENT_DATA from '@data/RECIPE_ENRICHMENT.json';
 import CustomSelect from '@shared/CustomSelect';
 import EmptyState from '@shared/EmptyState';
 import FloatingLabel from '@shared/FloatingLabel';
+import ItemIcon from '@shared/ItemIcon';
 import NumberInput from '@shared/NumberInput';
 import { formatChance, getPartyText } from '@utils/helpers';
 import cx from 'classnames';
@@ -128,6 +129,13 @@ function LocationItemRow({ item }: { item: LocationItem }) {
     <div className={styles.locItem}>
       <div className={styles.itemHeader}>
         <span className={`${styles.itemTypeBadge} ${typeBadgeClass}`}>{typeBadgeLabel}</span>
+        {isResource && (
+          <ItemIcon
+            id={Number(item.item_url?.match(/\/item\/(\d+)/)?.[1]) || undefined}
+            name={item.item_name}
+            size={20}
+          />
+        )}
         {item.item_url ? (
           <a href={item.item_url} target="_blank" rel="noopener noreferrer" className={styles.itemName}>
             {item.item_name}

@@ -1,8 +1,10 @@
 import { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
 import RAIDBOSSES from '@data/RAIDBOSSES.json';
-import CopyLink from '@shared/CopyLink';
 import EmptyState from '@shared/EmptyState';
 import FloatingLabel from '@shared/FloatingLabel';
+import ItemIcon from '@shared/ItemIcon';
+import WikiLink from '@shared/WikiLink';
 import WorldMap from '@shared/WorldMap';
 import {
   createColumnHelper,
@@ -12,6 +14,7 @@ import {
   type SortingState,
   useReactTable,
 } from '@tanstack/react-table';
+import { itemWikiUrl } from '@utils/itemWiki';
 import { goal } from '@utils/metrics';
 import cx from 'classnames';
 
@@ -28,6 +31,19 @@ export function formatNum(s: string | null): string {
 }
 
 export const isEpic = (b: RaidBoss) => b.respawn && b.respawn.includes('Фиксированное');
+
+export const WIKI_BASE = 'https://masterwork.wiki/lu4';
+
+/**
+ * Official wiki page for a boss. Uses the NPC deep-link when we know the id,
+ * otherwise falls back to the wiki's NPC search (search_type=1) by name.
+ */
+export function bossWikiUrl(boss: RaidBoss): string {
+  if (boss.npcId && boss.slug) {
+    return `${WIKI_BASE}/npc/${boss.npcId}-${boss.slug}`;
+  }
+  return `${WIKI_BASE}/search/result?Search%5Bquery%5D=${encodeURIComponent(boss.name)}&Search%5Bsearch_type%5D=1`;
+}
 
 const columnHelper = createColumnHelper<RaidBoss>();
 
@@ -102,14 +118,7 @@ export default function RaidBossTab() {
               {expanded.has(row.original.name + row.original.level) ? '▼ ' : '▶ '}
               {getValue()}
             </span>
-            <CopyLink
-              getUrl={() =>
-                window.location.origin +
-                import.meta.env.BASE_URL +
-                'raidboss?boss=' +
-                encodeURIComponent(row.original.name)
-              }
-            />
+            <WikiLink href={bossWikiUrl(row.original)} />
           </div>
         ),
       }),
@@ -255,21 +264,24 @@ export default function RaidBossTab() {
         <WorldMap name={mapBoss.name} x={mapBoss.coords.x} y={mapBoss.coords.y} onClose={() => setMapBoss(null)} />
       )}
 
-      {previewBoss && (
-        <div className={styles.imgPreviewOverlay} onClick={() => setPreviewBoss(null)}>
-          <div className={styles.imgPreviewModal} onClick={(e) => e.stopPropagation()}>
-            <button className={styles.imgPreviewClose} onClick={() => setPreviewBoss(null)}>
-              ✕
-            </button>
-            <img
-              className={styles.imgPreviewImage}
-              src={`${import.meta.env.BASE_URL}${previewBoss.image}`}
-              alt={previewBoss.name}
-            />
-            <div className={styles.imgPreviewName}>{previewBoss.name}</div>
-          </div>
-        </div>
-      )}
+      {previewBoss &&
+        createPortal(
+          // Portal to body: .tab-page's persistent transform would otherwise trap this fixed overlay.
+          <div className={styles.imgPreviewOverlay} onClick={() => setPreviewBoss(null)}>
+            <div className={styles.imgPreviewModal} onClick={(e) => e.stopPropagation()}>
+              <button className={styles.imgPreviewClose} onClick={() => setPreviewBoss(null)}>
+                ✕
+              </button>
+              <img
+                className={styles.imgPreviewImage}
+                src={`${import.meta.env.BASE_URL}${previewBoss.image}`}
+                alt={previewBoss.name}
+              />
+              <div className={styles.imgPreviewName}>{previewBoss.name}</div>
+            </div>
+          </div>,
+          document.body,
+        )}
     </div>
   );
 }
@@ -357,9 +369,10 @@ function BossDetail({
                     {group.items.map((item, ii) => (
                       <tr key={`${gi}-${ii}`}>
                         <td className={styles.dColItem}>
+                          <ItemIcon name={item.name} />
                           <a
                             className={styles.itemLink}
-                            href={`https://mw2.wiki/lu4/search/result?Search%5Bquery%5D=${encodeURIComponent(item.name)}&Search%5Bsearch_type%5D=0`}
+                            href={itemWikiUrl(item.name)}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
