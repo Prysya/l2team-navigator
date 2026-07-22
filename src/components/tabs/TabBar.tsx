@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { useLayoutEffect, useRef } from 'react';
-import TabIcon from '@shared/TabIcon';
+import SectionIcon from '@shared/SectionIcon';
 import cx from 'classnames';
 
 import styles from './TabBar.module.scss';
@@ -35,7 +35,7 @@ const TabBar: FC<TabBarProps> = ({ tabs, activeTab, onTabChange }) => {
           data-tab={tab.key}
           onClick={() => onTabChange(tab.key)}
         >
-          <TabIcon tab={tab.key} className={styles.icon} size={22} />
+          <SectionIcon tab={tab.key} className={styles.icon} size={22} />
           <span className={styles.label}>{tab.label}</span>
         </button>
       ))}

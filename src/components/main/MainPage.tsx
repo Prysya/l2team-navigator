@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
-import TabIcon from '@shared/TabIcon';
+import SectionIcon from '@shared/SectionIcon';
 import { TAB_ACCENT, TAB_NAMES } from '@utils/constants';
 
 import styles from './MainPage.module.scss';
@@ -47,7 +47,7 @@ export default function MainPage() {
             onClick={() => navigate('/' + tab.key)}
           >
             <span className={styles.cardIcon}>
-              <TabIcon tab={tab.key} size={40} />
+              <SectionIcon tab={tab.key} className={styles.cardIconImg} />
             </span>
             <span className={styles.cardLabel}>{tab.label}</span>
           </button>
