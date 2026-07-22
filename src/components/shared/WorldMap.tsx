@@ -35,6 +35,10 @@ export default function WorldMap({ name, x, y, onClose }: WorldMapProps) {
   const dragging = useRef(false);
   const dragLast = useRef({ x: 0, y: 0 });
   const pinchDist = useRef(0);
+  // Pinch-zoom fires touchmove many times per frame; coalesce into one zoomAt
+  // per animation frame so we don't run setScale/setPos hundreds of times a second.
+  const zoomRaf = useRef<number | null>(null);
+  const pendingZoom = useRef<{ factor: number; fx: number; fy: number } | null>(null);
 
   // Center the marker inside the visible viewport once it has been measured.
   useEffect(() => {
@@ -60,6 +64,22 @@ export default function WorldMap({ name, x, y, onClose }: WorldMapProps) {
     setScale(nextScale);
     setPos({ x: fx - (fx - p.x) * ratio, y: fy - (fy - p.y) * ratio });
   }, []);
+
+  // Apply the pinch-zoom accumulated since the last frame. Multiplying the
+  // coalesced factors preserves the total zoom even when frames are dropped.
+  const flushZoom = useCallback(() => {
+    zoomRaf.current = null;
+    const p = pendingZoom.current;
+    pendingZoom.current = null;
+    if (p) zoomAt(p.factor, p.fx, p.fy);
+  }, [zoomAt]);
+
+  useEffect(
+    () => () => {
+      if (zoomRaf.current != null) cancelAnimationFrame(zoomRaf.current);
+    },
+    [],
+  );
 
   const zoomFromCenter = useCallback(
     (factor: number) => {
@@ -117,14 +137,17 @@ export default function WorldMap({ name, x, y, onClose }: WorldMapProps) {
         if (pinchDist.current > 0) {
           const mid = touchMidpoint(e.touches);
           const f = toViewport(mid.x, mid.y);
-          zoomAt(dist / pinchDist.current, f.x, f.y);
+          const factor = dist / pinchDist.current;
+          const prev = pendingZoom.current;
+          pendingZoom.current = { factor: (prev?.factor ?? 1) * factor, fx: f.x, fy: f.y };
+          if (zoomRaf.current == null) zoomRaf.current = requestAnimationFrame(flushZoom);
         }
         pinchDist.current = dist;
       } else if (e.touches.length === 1) {
         panMove(e.touches[0].clientX, e.touches[0].clientY);
       }
     },
-    [panMove, toViewport, zoomAt],
+    [panMove, toViewport, flushZoom],
   );
 
   const onTouchEnd = useCallback(

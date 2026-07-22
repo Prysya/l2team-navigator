@@ -1,14 +1,26 @@
-import { readFileSync, writeFileSync } from 'fs';
+import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 
-const recipes = JSON.parse(readFileSync(resolve(root, 'src/data/RECIPES.json'), 'utf-8'));
-const npcs = JSON.parse(readFileSync(resolve(root, 'tmp/npc_json_with_subtypes.json'), 'utf-8'));
-const locationsAll = JSON.parse(readFileSync(resolve(root, 'src/data/LOCATIONS_ALL.json'), 'utf-8'));
-const locationRefs = JSON.parse(readFileSync(resolve(root, 'tmp/locations.json'), 'utf-8'));
+/** Read + parse a JSON file, failing with a clear message when it is missing. */
+function readJson(relPath, hint) {
+  const abs = resolve(root, relPath);
+  if (!existsSync(abs)) {
+    const suffix = hint ? ` ${hint}` : '';
+    throw new Error(`Required input not found: ${relPath}.${suffix}`);
+  }
+  return JSON.parse(readFileSync(abs, 'utf-8'));
+}
+
+const TMP_HINT = 'It is generated into tmp/ (gitignored) by the NPC scraping step — run that first.';
+
+const recipes = readJson('src/data/RECIPES.json');
+const npcs = readJson('tmp/npc_json_with_subtypes.json', TMP_HINT);
+const locationsAll = readJson('src/data/LOCATIONS_ALL.json');
+const locationRefs = readJson('tmp/locations.json', TMP_HINT);
 
 // --- Location mapping utilities (same as build-locations-pieces.mjs) ---
 
@@ -84,10 +96,14 @@ for (const r of recipes) {
 }
 
 const EXCLUDE_WORDS = ['Recipe', 'Book', 'Scroll'];
+// Whole-word match so a compound name (e.g. "Notebook", "Bookend") isn't
+// falsely excluded by a substring hit. Recipe pieces are still filtered out
+// independently below via pieceNames.
+const EXCLUDE_WORD_RE = new RegExp(`\\b(${EXCLUDE_WORDS.join('|')})\\b`);
 const EXCLUDE_NAMES = new Set(['Soul Ore', 'Spirit Ore', 'Adena']);
 
 function isResourceItem(name) {
-  if (EXCLUDE_WORDS.some((w) => name.includes(w))) return false;
+  if (EXCLUDE_WORD_RE.test(name)) return false;
   if (EXCLUDE_NAMES.has(name)) return false;
   if (pieceNames.has(name)) return false;
   return true;

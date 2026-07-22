@@ -6,15 +6,17 @@ import cx from 'classnames';
 import { useTelegramStore } from '@/stores/telegramStore';
 
 import CalculatorTab from './components/calculator/CalculatorTab';
-import LocationsTab from './components/locations/LocationsTab';
 import MainPage from './components/main/MainPage';
 import QuestsTab from './components/quests/QuestsTab';
-import RaidBossTab from './components/raidboss/RaidBossTab';
 import TabIcon from './components/shared/TabIcon';
-import SpellbookTab from './components/spellbooks/SpellbookTab';
 
 const LazySkillsTab = lazy(() => import('./components/skills/SkillsTab'));
 const LazyRecipeTab = lazy(() => import('./components/recipes/RecipeTab'));
+// Lazy so the shared item-wiki data (~111KB) they pull in via ItemIcon stays
+// out of the initial bundle and only loads when one of these tabs is opened.
+const LazyRaidBossTab = lazy(() => import('./components/raidboss/RaidBossTab'));
+const LazyLocationsTab = lazy(() => import('./components/locations/LocationsTab'));
+const LazySpellbookTab = lazy(() => import('./components/spellbooks/SpellbookTab'));
 import TabBar from './components/tabs/TabBar';
 import { TAB_ACCENT, TAB_NAMES } from './utils/constants';
 
@@ -232,8 +234,22 @@ function AppLayout() {
               </Suspense>
             }
           />
-          <Route path="/spellbooks" element={<SpellbookTab />} />
-          <Route path="/locations" element={<LocationsTab />} />
+          <Route
+            path="/spellbooks"
+            element={
+              <Suspense fallback={<div className="tab-page" />}>
+                <LazySpellbookTab />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/locations"
+            element={
+              <Suspense fallback={<div className="tab-page" />}>
+                <LazyLocationsTab />
+              </Suspense>
+            }
+          />
           <Route
             path="/skills"
             element={
@@ -242,7 +258,14 @@ function AppLayout() {
               </Suspense>
             }
           />
-          <Route path="/raidboss" element={<RaidBossTab />} />
+          <Route
+            path="/raidboss"
+            element={
+              <Suspense fallback={<div className="tab-page" />}>
+                <LazyRaidBossTab />
+              </Suspense>
+            }
+          />
           <Route path="/calculator" element={<CalculatorTab />} />
           <Route path="/quests" element={<QuestsTab />} />
           <Route path="*" element={<MainPage />} />
