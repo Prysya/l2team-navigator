@@ -12,6 +12,11 @@ describe('SectionIcon', () => {
     expect(el.getAttribute('style')).toContain('images/sections/recipes.min.svg');
   });
 
+  it('renders nothing for an unknown tab key', () => {
+    const { container } = render(<SectionIcon tab="unknown" />);
+    expect(container.firstChild).toBeNull();
+  });
+
   it('forwards className', () => {
     const { container } = render(<SectionIcon tab="skills" className="x" />);
     expect((container.firstChild as HTMLElement).classList.contains('x')).toBe(true);

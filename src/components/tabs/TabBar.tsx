@@ -35,7 +35,7 @@ const TabBar: FC<TabBarProps> = ({ tabs, activeTab, onTabChange }) => {
           data-tab={tab.key}
           onClick={() => onTabChange(tab.key)}
         >
-          <SectionIcon tab={tab.key} className={styles.icon} size={22} />
+          <SectionIcon tab={tab.key} className={styles.icon} />
           <span className={styles.label}>{tab.label}</span>
         </button>
       ))}

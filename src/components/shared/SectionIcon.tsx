@@ -1,11 +1,17 @@
+import { TAB_NAMES } from '@utils/constants';
+
 const BASE = import.meta.env.BASE_URL;
 
-// Lineage2-style section icons live in public/images/sections/<tab>.min.svg
-// (SVGO-optimized duplicates of the pristine <tab>.svg originals kept alongside).
-// They are black silhouettes on transparent, so we render each as a CSS mask and
-// paint it with `currentColor` — the icon then inherits the surrounding text color
-// (active-tab accent, muted when inactive, or an explicit color set by the parent).
-// Kept as external static assets (not inlined) so the SVGs stay out of the JS bundle.
+// Sections that ship an icon asset. Rendering an icon for anything else would
+// point the CSS mask at a missing file (a wasted 404), so we bail out instead.
+const SECTION_KEYS = new Set<string>(TAB_NAMES.map((t) => t.key));
+
+// The section icons (one consistent style) live in public/images/sections/<tab>.min.svg,
+// SVGO-optimized from the full-detail source art. They are black silhouettes on
+// transparent, so we render each as a CSS mask and paint it with `currentColor` —
+// the icon then inherits the surrounding text color (active-tab accent, muted when
+// inactive, or an explicit color set by the parent). Kept as external static assets
+// (not inlined) so the SVGs stay out of the JS bundle.
 interface SectionIconProps {
   tab: string;
   /** Square size in px. Omit to let CSS (width/height) control the size. */
@@ -14,6 +20,7 @@ interface SectionIconProps {
 }
 
 export default function SectionIcon({ tab, size, className }: SectionIconProps) {
+  if (!SECTION_KEYS.has(tab)) return null;
   const mask = `url(${BASE}images/sections/${tab}.min.svg)`;
   return (
     <span
