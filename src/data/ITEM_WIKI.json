@@ -1,0 +1,3372 @@
+{
+  "adamantite earring": {
+    "id": 856,
+    "slug": "adamantite-earring",
+    "icon": "accessary_adamantite_earing_i00.png"
+  },
+  "adamantite earring gemstone": {
+    "id": 4049,
+    "slug": "adamantite-earring-gemstone",
+    "icon": "etc_crystal_ball_gold_i00.png"
+  },
+  "adamantite necklace": {
+    "id": 918,
+    "slug": "adamantite-necklace",
+    "icon": "accessary_adamantite_necklace_i00.png"
+  },
+  "adamantite necklace chain": {
+    "id": 4051,
+    "slug": "adamantite-necklace-chain",
+    "icon": "etc_jewel_box_i00.png"
+  },
+  "adamantite ring": {
+    "id": 887,
+    "slug": "adamantite-ring",
+    "icon": "accessary_adamantite_ring_i00.png"
+  },
+  "adamantite ring wire": {
+    "id": 4050,
+    "slug": "adamantite-ring-wire",
+    "icon": "etc_jewel_box_i00.png"
+  },
+  "akat long bow": {
+    "id": 283,
+    "slug": "akat-long-bow",
+    "icon": "weapon_akat_long_bow_i00.png"
+  },
+  "akat longbow shaft": {
+    "id": 2109,
+    "slug": "akat-longbow-shaft",
+    "icon": "etc_branch_gold_i00.png"
+  },
+  "ancient book: divine inspiration (manuscript)": {
+    "id": 8620,
+    "slug": "ancient-book-divine-inspiration-manuscript",
+    "icon": "etc_add_buffslot_i02.png"
+  },
+  "ancient book: divine inspiration (original version)": {
+    "id": 8621,
+    "slug": "ancient-book-divine-inspiration-original-version",
+    "icon": "etc_add_buffslot_i03.png"
+  },
+  "aquastone necklace": {
+    "id": 915,
+    "slug": "aquastone-necklace",
+    "icon": "accessary_aquastone_necklace_i00.png"
+  },
+  "aquastone necklace chain": {
+    "id": 1910,
+    "slug": "aquastone-necklace-chain",
+    "icon": "etc_jewel_box_i00.png"
+  },
+  "aquastone ring": {
+    "id": 883,
+    "slug": "aquastone-ring",
+    "icon": "accessary_aquastone_ring_i00.png"
+  },
+  "aquastone ring wire": {
+    "id": 1909,
+    "slug": "aquastone-ring-wire",
+    "icon": "etc_jewel_box_i00.png"
+  },
+  "art of battle axe blade": {
+    "id": 4117,
+    "slug": "art-of-battle-axe-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "arthro nail blade": {
+    "id": 4111,
+    "slug": "arthro-nail-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "artisan's sword": {
+    "id": 126,
+    "slug": "artisans-sword",
+    "icon": "weapon_artisans_sword_i00.png"
+  },
+  "aspis": {
+    "id": 627,
+    "slug": "aspis",
+    "icon": "shield_aspis_i00.png"
+  },
+  "assault boots": {
+    "id": 1125,
+    "slug": "assault-boots",
+    "icon": "armor_t44_b_i00.png"
+  },
+  "assault boots part": {
+    "id": 1957,
+    "slug": "assault-boots-part",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "atuba hammer": {
+    "id": 187,
+    "slug": "atuba-hammer",
+    "icon": "weapon_atuba_hammer_i00.png"
+  },
+  "atuba hammer head": {
+    "id": 2049,
+    "slug": "atuba-hammer-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "atuba mace": {
+    "id": 190,
+    "slug": "atuba-mace",
+    "icon": "weapon_atuba_mace_i00.png"
+  },
+  "atuba mace head": {
+    "id": 2058,
+    "slug": "atuba-mace-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "avadon breastplate part": {
+    "id": 4064,
+    "slug": "avadon-breastplate-part",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "avadon circlet pattern": {
+    "id": 4072,
+    "slug": "avadon-circlet-pattern",
+    "icon": "etc_letter_red_i00.png"
+  },
+  "avadon gaiters material": {
+    "id": 4065,
+    "slug": "avadon-gaiters-material",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "avadon leather armor lining": {
+    "id": 4068,
+    "slug": "avadon-leather-armor-lining",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "avadon robe fabric": {
+    "id": 4071,
+    "slug": "avadon-robe-fabric",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "avadon shield fragment": {
+    "id": 4439,
+    "slug": "avadon-shield-fragment",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "bagh-nakh": {
+    "id": 258,
+    "slug": "bagh-nakh",
+    "icon": "weapon_baghnakh_i00.png"
+  },
+  "bastard sword": {
+    "id": 69,
+    "slug": "bastard-sword",
+    "icon": "weapon_bastard_sword_i00.png"
+  },
+  "battle axe head": {
+    "id": 2063,
+    "slug": "battle-axe-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "bellion cestus edge": {
+    "id": 4120,
+    "slug": "bellion-cestus-edge",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "berserker blade": {
+    "id": 5286,
+    "slug": "berserker-blade",
+    "icon": "weapon_berserker_blade_i00.png"
+  },
+  "berserker blade edge": {
+    "id": 5530,
+    "slug": "berserker-blade-edge",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "bich'hwa": {
+    "id": 261,
+    "slug": "bichhwa",
+    "icon": "weapon_bichhwa_i00.png"
+  },
+  "bich'hwa edge": {
+    "id": 2039,
+    "slug": "bichhwa-edge",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "big hammer head": {
+    "id": 2061,
+    "slug": "big-hammer-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "black pearl ring": {
+    "id": 880,
+    "slug": "black-pearl-ring",
+    "icon": "accessary_black_pearl_ring_i00.png"
+  },
+  "blade of the wizard's tear": {
+    "id": 8336,
+    "slug": "blade-of-the-wizards-tear",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "blast plate": {
+    "id": 351,
+    "slug": "blast-plate",
+    "icon": "armor_t40_u_i00.png"
+  },
+  "blessed scroll: enchant armor (a-grade)": {
+    "id": 6570,
+    "slug": "blessed-scroll-enchant-armor-a-grade",
+    "icon": "etc_blessed_scrl_of_ench_am_a_i04.png"
+  },
+  "blessed scroll: enchant armor (b-grade)": {
+    "id": 6572,
+    "slug": "blessed-scroll-enchant-armor-b-grade",
+    "icon": "etc_blessed_scrl_of_ench_am_b_i03.png"
+  },
+  "blessed scroll: enchant armor (c-grade)": {
+    "id": 6574,
+    "slug": "blessed-scroll-enchant-armor-c-grade",
+    "icon": "etc_blessed_scrl_of_ench_am_c_i02.png"
+  },
+  "blessed scroll: enchant armor (d-grade)": {
+    "id": 6576,
+    "slug": "blessed-scroll-enchant-armor-d-grade",
+    "icon": "etc_blessed_scrl_of_ench_am_d_i01.png"
+  },
+  "blessed scroll: enchant weapon (a-grade)": {
+    "id": 6569,
+    "slug": "blessed-scroll-enchant-weapon-a-grade",
+    "icon": "etc_blessed_scrl_of_ench_wp_a_i04.png"
+  },
+  "blessed scroll: enchant weapon (b-grade)": {
+    "id": 6571,
+    "slug": "blessed-scroll-enchant-weapon-b-grade",
+    "icon": "etc_blessed_scrl_of_ench_wp_b_i03.png"
+  },
+  "blessed scroll: enchant weapon (c-grade)": {
+    "id": 6573,
+    "slug": "blessed-scroll-enchant-weapon-c-grade",
+    "icon": "etc_blessed_scrl_of_ench_wp_c_i02.png"
+  },
+  "blessed scroll: enchant weapon (d-grade)": {
+    "id": 6575,
+    "slug": "blessed-scroll-enchant-weapon-d-grade",
+    "icon": "etc_blessed_scrl_of_ench_wp_d_i01.png"
+  },
+  "blood tornado edge": {
+    "id": 5539,
+    "slug": "blood-tornado-edge",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "bloody orchid head": {
+    "id": 5536,
+    "slug": "bloody-orchid-head",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "blue buckskin boots": {
+    "id": 1123,
+    "slug": "blue-buckskin-boots",
+    "icon": "armor_t18_b_i00.png"
+  },
+  "blue wolf breastplate part": {
+    "id": 4078,
+    "slug": "blue-wolf-breastplate-part",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "blue wolf gaiters material": {
+    "id": 4080,
+    "slug": "blue-wolf-gaiters-material",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "blue wolf helmet design": {
+    "id": 4088,
+    "slug": "blue-wolf-helmet-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "blue wolf leather armor texture": {
+    "id": 4082,
+    "slug": "blue-wolf-leather-armor-texture",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "blue wolf stockings pattern": {
+    "id": 4086,
+    "slug": "blue-wolf-stockings-pattern",
+    "icon": "etc_letter_red_i00.png"
+  },
+  "blue wolf tunic fabric": {
+    "id": 4084,
+    "slug": "blue-wolf-tunic-fabric",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "body slasher": {
+    "id": 302,
+    "slug": "body-slasher",
+    "icon": "weapon_body_slasher_i00.png"
+  },
+  "body slasher blade": {
+    "id": 2076,
+    "slug": "body-slasher-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "bone staff": {
+    "id": 178,
+    "slug": "bone-staff",
+    "icon": "weapon_apprentices_staff_i00.png"
+  },
+  "bonebreaker": {
+    "id": 159,
+    "slug": "bonebreaker",
+    "icon": "weapon_bonebreaker_i00.png"
+  },
+  "bonebreaker head": {
+    "id": 2048,
+    "slug": "bonebreaker-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "bones head of kaim vanul": {
+    "id": 8340,
+    "slug": "bones-head-of-kaim-vanul",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "boots of knowledge": {
+    "id": 2423,
+    "slug": "boots-of-knowledge",
+    "icon": "armor_t41_b_i00.png"
+  },
+  "boots of power pattern": {
+    "id": 1948,
+    "slug": "boots-of-power-pattern",
+    "icon": "etc_letter_red_i00.png"
+  },
+  "boots of seal": {
+    "id": 2433,
+    "slug": "boots-of-seal",
+    "icon": "armor_t44_b_i00.png"
+  },
+  "boots of seal pattern": {
+    "id": 2941,
+    "slug": "boots-of-seal-pattern",
+    "icon": "etc_letter_red_i00.png"
+  },
+  "bow of peril shaft": {
+    "id": 4121,
+    "slug": "bow-of-peril-shaft",
+    "icon": "etc_branch_gold_i00.png"
+  },
+  "brigandine boots": {
+    "id": 2425,
+    "slug": "brigandine-boots",
+    "icon": "armor_t43_b_i00.png"
+  },
+  "brigandine boots design": {
+    "id": 2924,
+    "slug": "brigandine-boots-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "brigandine breastplate": {
+    "id": 352,
+    "slug": "brigandine-breastplate",
+    "icon": "armor_t43_u_i00.png"
+  },
+  "brigandine breastplate temper": {
+    "id": 1941,
+    "slug": "brigandine-breastplate-temper",
+    "icon": "etc_plate_glay_i00.png"
+  },
+  "brigandine gaiters": {
+    "id": 2378,
+    "slug": "brigandine-gaiters",
+    "icon": "armor_t43_l_i00.png"
+  },
+  "brigandine gaiters material": {
+    "id": 2919,
+    "slug": "brigandine-gaiters-material",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "brigandine gauntlets": {
+    "id": 2449,
+    "slug": "brigandine-gauntlets",
+    "icon": "armor_t43_g_i00.png"
+  },
+  "brigandine gauntlets pattern": {
+    "id": 2927,
+    "slug": "brigandine-gauntlets-pattern",
+    "icon": "etc_letter_red_i00.png"
+  },
+  "brigandine helmet": {
+    "id": 2411,
+    "slug": "brigandine-helmet",
+    "icon": "armor_leather_helmet_i00.png"
+  },
+  "brigandine helmet design": {
+    "id": 2922,
+    "slug": "brigandine-helmet-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "brigandine shield": {
+    "id": 2493,
+    "slug": "brigandine-shield",
+    "icon": "shield_brigandine_shield_i00.png"
+  },
+  "brigandine shield fragment": {
+    "id": 2929,
+    "slug": "brigandine-shield-fragment",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "bronze helmet": {
+    "id": 46,
+    "slug": "bronze-helmet",
+    "icon": "armor_helmet_i00.png"
+  },
+  "caliburs": {
+    "id": 75,
+    "slug": "caliburs",
+    "icon": "weapon_caliburs_i00.png"
+  },
+  "caliburs edge": {
+    "id": 2089,
+    "slug": "caliburs-edge",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "carnage bow stave": {
+    "id": 5535,
+    "slug": "carnage-bow-stave",
+    "icon": "etc_branch_gold_i00.png"
+  },
+  "chain boots": {
+    "id": 2429,
+    "slug": "chain-boots",
+    "icon": "armor_t48_b_i00.png"
+  },
+  "chain boots part": {
+    "id": 2937,
+    "slug": "chain-boots-part",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "chain gaiters": {
+    "id": 381,
+    "slug": "chain-gaiters",
+    "icon": "armor_t48_l_i00.png"
+  },
+  "chain gaiters part": {
+    "id": 1960,
+    "slug": "chain-gaiters-part",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "chain gloves": {
+    "id": 2453,
+    "slug": "chain-gloves",
+    "icon": "armor_t48_g_i00.png"
+  },
+  "chain gloves design": {
+    "id": 2943,
+    "slug": "chain-gloves-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "chain hood": {
+    "id": 2413,
+    "slug": "chain-hood",
+    "icon": "armor_leather_helmet_i00.png"
+  },
+  "chain hood pattern": {
+    "id": 2936,
+    "slug": "chain-hood-pattern",
+    "icon": "etc_letter_red_i00.png"
+  },
+  "chain mail shirt": {
+    "id": 354,
+    "slug": "chain-mail-shirt",
+    "icon": "armor_t48_u_i00.png"
+  },
+  "chain mail shirt material": {
+    "id": 1959,
+    "slug": "chain-mail-shirt-material",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "chain shield": {
+    "id": 2495,
+    "slug": "chain-shield",
+    "icon": "shield_chain_shield_i00.png"
+  },
+  "chain shield fragment": {
+    "id": 2945,
+    "slug": "chain-shield-fragment",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "chakram": {
+    "id": 263,
+    "slug": "chakram",
+    "icon": "weapon_chakram_i00.png"
+  },
+  "chakram edge": {
+    "id": 2073,
+    "slug": "chakram-edge",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "claymore": {
+    "id": 70,
+    "slug": "claymore",
+    "icon": "weapon_claymore_i00.png"
+  },
+  "claymore blade": {
+    "id": 2047,
+    "slug": "claymore-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "club of nature head": {
+    "id": 2104,
+    "slug": "club-of-nature-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "composite armor": {
+    "id": 60,
+    "slug": "composite-armor",
+    "icon": "armor_t61_ul_i00.png"
+  },
+  "composite armor temper": {
+    "id": 1977,
+    "slug": "composite-armor-temper",
+    "icon": "etc_plate_glay_i00.png"
+  },
+  "composite boots": {
+    "id": 64,
+    "slug": "composite-boots",
+    "icon": "armor_t61_b_i00.png"
+  },
+  "composite boots part": {
+    "id": 2956,
+    "slug": "composite-boots-part",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "composite gauntlets": {
+    "id": 608,
+    "slug": "composite-gauntlets",
+    "icon": "armor_t61_g_i00.png"
+  },
+  "composite gauntlets design": {
+    "id": 1981,
+    "slug": "composite-gauntlets-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "composite helmet": {
+    "id": 517,
+    "slug": "composite-helmet",
+    "icon": "armor_leather_helmet_i00.png"
+  },
+  "composite helmet design": {
+    "id": 2957,
+    "slug": "composite-helmet-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "composite shield fragment": {
+    "id": 4055,
+    "slug": "composite-shield-fragment",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "compound scale gaiters": {
+    "id": 378,
+    "slug": "compound-scale-gaiters",
+    "icon": "armor_t20_l_i00.png"
+  },
+  "compound scale mail": {
+    "id": 349,
+    "slug": "compound-scale-mail",
+    "icon": "armor_t20_u_i00.png"
+  },
+  "conjuror's staff": {
+    "id": 184,
+    "slug": "conjurors-staff",
+    "icon": "weapon_conjure_staff_i00.png"
+  },
+  "conjuror's staff head": {
+    "id": 2023,
+    "slug": "conjurors-staff-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "crimson sword": {
+    "id": 127,
+    "slug": "crimson-sword",
+    "icon": "weapon_crimson_sword_i00.png"
+  },
+  "crucifix of blood": {
+    "id": 318,
+    "slug": "crucifix-of-blood",
+    "icon": "weapon_crucifix_of_blood_i00.png"
+  },
+  "crucifix of blood piece": {
+    "id": 2042,
+    "slug": "crucifix-of-blood-piece",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "crystal dagger": {
+    "id": 228,
+    "slug": "crystal-dagger",
+    "icon": "weapon_crystal_dagger_i00.png"
+  },
+  "crystal dagger blade": {
+    "id": 2119,
+    "slug": "crystal-dagger-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "crystal staff head": {
+    "id": 2067,
+    "slug": "crystal-staff-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "crystallized ice bow": {
+    "id": 281,
+    "slug": "crystallized-ice-bow",
+    "icon": "weapon_crystallized_ice_bow_i00.png"
+  },
+  "crystallized ice bow shaft": {
+    "id": 2074,
+    "slug": "crystallized-ice-bow-shaft",
+    "icon": "etc_branch_gold_i00.png"
+  },
+  "cursed dagger": {
+    "id": 226,
+    "slug": "cursed-dagger",
+    "icon": "weapon_cursed_dagger_i00.png"
+  },
+  "cursed dagger blade": {
+    "id": 2070,
+    "slug": "cursed-dagger-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "cursed maingauche": {
+    "id": 1660,
+    "slug": "cursed-maingauche",
+    "icon": "weapon_maingauche_i01.png"
+  },
+  "cursed maingauche edge": {
+    "id": 2044,
+    "slug": "cursed-maingauche-edge",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "cursed stockings": {
+    "id": 465,
+    "slug": "cursed-stockings",
+    "icon": "armor_t14_l_i00.png"
+  },
+  "cursed tunic": {
+    "id": 432,
+    "slug": "cursed-tunic",
+    "icon": "armor_t14_u_i00.png"
+  },
+  "dagger of mana": {
+    "id": 238,
+    "slug": "dagger-of-mana",
+    "icon": "weapon_dagger_of_mana_i00.png"
+  },
+  "dark elven dagger": {
+    "id": 232,
+    "slug": "dark-elven-dagger",
+    "icon": "weapon_darkelven_dagger_i00.png"
+  },
+  "dark elven dagger edge": {
+    "id": 2072,
+    "slug": "dark-elven-dagger-edge",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "dark elven longbow shaft": {
+    "id": 4112,
+    "slug": "dark-elven-longbow-shaft",
+    "icon": "etc_branch_gold_i00.png"
+  },
+  "dark screamer": {
+    "id": 233,
+    "slug": "dark-screamer",
+    "icon": "weapon_dark_screamer_i00.png"
+  },
+  "dark screamer edge": {
+    "id": 2107,
+    "slug": "dark-screamer-edge",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "dark stockings": {
+    "id": 467,
+    "slug": "dark-stockings",
+    "icon": "armor_t16_l_i00.png"
+  },
+  "dark stockings fabric": {
+    "id": 1933,
+    "slug": "dark-stockings-fabric",
+    "icon": "etc_piece_of_cloth_white_i00.png"
+  },
+  "dasparion's staff head": {
+    "id": 5543,
+    "slug": "dasparions-staff-head",
+    "icon": "etc_squares_silver_i00.png"
+  },
+  "deadman's glory stone": {
+    "id": 4116,
+    "slug": "deadmans-glory-stone",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "deadman's staff": {
+    "id": 204,
+    "slug": "deadmans-staff",
+    "icon": "weapon_deadmans_staff_i00.png"
+  },
+  "deadman's staff head": {
+    "id": 2116,
+    "slug": "deadmans-staff-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "delusional blade": {
+    "id": 2090,
+    "slug": "delusional-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "demon's dagger edge": {
+    "id": 4119,
+    "slug": "demons-dagger-edge",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "demon's staff": {
+    "id": 206,
+    "slug": "demons-staff",
+    "icon": "weapon_demons_staff_i00.png"
+  },
+  "demon's staff head": {
+    "id": 2118,
+    "slug": "demons-staff-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "divine boots": {
+    "id": 603,
+    "slug": "divine-boots",
+    "icon": "armor_t67_b_i00.png"
+  },
+  "divine boots fabric": {
+    "id": 2958,
+    "slug": "divine-boots-fabric",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "divine gloves": {
+    "id": 2463,
+    "slug": "divine-gloves",
+    "icon": "armor_t57_g_i00.png"
+  },
+  "divine gloves pattern": {
+    "id": 2964,
+    "slug": "divine-gloves-pattern",
+    "icon": "etc_letter_red_i00.png"
+  },
+  "divine stocking pattern": {
+    "id": 1989,
+    "slug": "divine-stocking-pattern",
+    "icon": "etc_letter_red_i00.png"
+  },
+  "divine stockings": {
+    "id": 473,
+    "slug": "divine-stockings",
+    "icon": "armor_t57_l_i00.png"
+  },
+  "divine tome": {
+    "id": 315,
+    "slug": "divine-tome",
+    "icon": "weapon_divine_tome_i00.png"
+  },
+  "divine tunic": {
+    "id": 442,
+    "slug": "divine-tunic",
+    "icon": "armor_t57_u_i00.png"
+  },
+  "divine tunic fabric": {
+    "id": 1988,
+    "slug": "divine-tunic-fabric",
+    "icon": "etc_piece_of_cloth_white_i00.png"
+  },
+  "doom hammer": {
+    "id": 182,
+    "slug": "doom-hammer",
+    "icon": "weapon_doom_hammer_i00.png"
+  },
+  "doom helmet pattern": {
+    "id": 4089,
+    "slug": "doom-helmet-pattern",
+    "icon": "etc_letter_red_i00.png"
+  },
+  "doom plate armor temper": {
+    "id": 4081,
+    "slug": "doom-plate-armor-temper",
+    "icon": "etc_lump_white_i00.png"
+  },
+  "doom shield fragment": {
+    "id": 4077,
+    "slug": "doom-shield-fragment",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "drake leather armor": {
+    "id": 401,
+    "slug": "drake-leather-armor",
+    "icon": "armor_t21_ul_i00.png"
+  },
+  "drake leather armor texture": {
+    "id": 1987,
+    "slug": "drake-leather-armor-texture",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "drake leather boots": {
+    "id": 2437,
+    "slug": "drake-leather-boots",
+    "icon": "armor_t21_b_i00.png"
+  },
+  "drake leather boots design": {
+    "id": 2960,
+    "slug": "drake-leather-boots-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "drake leather gloves": {
+    "id": 2461,
+    "slug": "drake-leather-gloves",
+    "icon": "armor_t21_g_i00.png"
+  },
+  "drake leather gloves design": {
+    "id": 2962,
+    "slug": "drake-leather-gloves-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "dwarven chain boots": {
+    "id": 2432,
+    "slug": "dwarven-chain-boots",
+    "icon": "armor_t60_b_i00.png"
+  },
+  "dwarven chain boots part": {
+    "id": 2940,
+    "slug": "dwarven-chain-boots-part",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "dwarven chain gaiters": {
+    "id": 382,
+    "slug": "dwarven-chain-gaiters",
+    "icon": "armor_t60_l_i00.png"
+  },
+  "dwarven chain gaiters material": {
+    "id": 1969,
+    "slug": "dwarven-chain-gaiters-material",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "dwarven chain mail shirt": {
+    "id": 355,
+    "slug": "dwarven-chain-mail-shirt",
+    "icon": "armor_t60_u_i00.png"
+  },
+  "dwarven chain mail shirt material": {
+    "id": 1968,
+    "slug": "dwarven-chain-mail-shirt-material",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "dwarven hammer": {
+    "id": 7897,
+    "slug": "dwarven-hammer",
+    "icon": "weapon_dwarven_hammer_i00.png"
+  },
+  "dwarven hammer piece": {
+    "id": 8344,
+    "slug": "dwarven-hammer-piece",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "dwarven pike": {
+    "id": 296,
+    "slug": "dwarven-pike",
+    "icon": "weapon_dwarven_pike_i00.png"
+  },
+  "dwarven scale gaiters": {
+    "id": 379,
+    "slug": "dwarven-scale-gaiters",
+    "icon": "armor_t15_l_i00.png"
+  },
+  "dwarven scale mail": {
+    "id": 350,
+    "slug": "dwarven-scale-mail",
+    "icon": "armor_t15_u_i00.png"
+  },
+  "earring of black ore": {
+    "id": 864,
+    "slug": "earring-of-black-ore",
+    "icon": "accessary_earing_of_black_ore_i00.png"
+  },
+  "earring of black ore piece": {
+    "id": 4052,
+    "slug": "earring-of-black-ore-piece",
+    "icon": "etc_broken_crystal_silver_i00.png"
+  },
+  "earring of seal": {
+    "id": 854,
+    "slug": "earring-of-seal",
+    "icon": "accessary_earing_of_binding_i00.png"
+  },
+  "earring of seal gemstone": {
+    "id": 1914,
+    "slug": "earring-of-seal-gemstone",
+    "icon": "etc_gem_clear_i00.png"
+  },
+  "ecliptic sword": {
+    "id": 7888,
+    "slug": "ecliptic-sword",
+    "icon": "weapon_sword_of_eclipse_i00.png"
+  },
+  "ecliptic sword blade": {
+    "id": 8335,
+    "slug": "ecliptic-sword-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "eldarake": {
+    "id": 631,
+    "slug": "eldarake",
+    "icon": "shield_eldarake_i00.png"
+  },
+  "eldarake temper": {
+    "id": 1964,
+    "slug": "eldarake-temper",
+    "icon": "etc_plate_glay_i00.png"
+  },
+  "elemental bow": {
+    "id": 282,
+    "slug": "elemental-bow",
+    "icon": "weapon_elemental_bow_i00.png"
+  },
+  "elemental bow shaft": {
+    "id": 2085,
+    "slug": "elemental-bow-shaft",
+    "icon": "etc_branch_gold_i00.png"
+  },
+  "elemental sword edge": {
+    "id": 5547,
+    "slug": "elemental-sword-edge",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "elven bow": {
+    "id": 276,
+    "slug": "elven-bow",
+    "icon": "weapon_elven_bow_i00.png"
+  },
+  "elven bow shaft": {
+    "id": 2024,
+    "slug": "elven-bow-shaft",
+    "icon": "etc_branch_gold_i00.png"
+  },
+  "elven earring": {
+    "id": 850,
+    "slug": "elven-earring",
+    "icon": "accessary_elven_earing_i00.png"
+  },
+  "elven earring beads": {
+    "id": 1902,
+    "slug": "elven-earring-beads",
+    "icon": "etc_broken_crystal_silver_i00.png"
+  },
+  "elven long sword": {
+    "id": 2499,
+    "slug": "elven-long-sword",
+    "icon": "weapon_elven_long_sword_i00.png"
+  },
+  "elven long sword blade": {
+    "id": 2967,
+    "slug": "elven-long-sword-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "elven mithril boots": {
+    "id": 2426,
+    "slug": "elven-mithril-boots",
+    "icon": "armor_t51_b_i00.png"
+  },
+  "elven mithril boots design": {
+    "id": 2925,
+    "slug": "elven-mithril-boots-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "elven mithril gloves": {
+    "id": 2450,
+    "slug": "elven-mithril-gloves",
+    "icon": "armor_t51_g_i00.png"
+  },
+  "elven mithril gloves design": {
+    "id": 2928,
+    "slug": "elven-mithril-gloves-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "elven mithril stocking design": {
+    "id": 1945,
+    "slug": "elven-mithril-stocking-design",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "elven mithril stockings": {
+    "id": 470,
+    "slug": "elven-mithril-stockings",
+    "icon": "armor_t51_l_i00.png"
+  },
+  "elven mithril tunic": {
+    "id": 437,
+    "slug": "elven-mithril-tunic",
+    "icon": "armor_t51_u_i00.png"
+  },
+  "elven mithril tunic fabric": {
+    "id": 1944,
+    "slug": "elven-mithril-tunic-fabric",
+    "icon": "etc_piece_of_cloth_white_i00.png"
+  },
+  "elven necklace": {
+    "id": 913,
+    "slug": "elven-necklace",
+    "icon": "accessary_elven_necklace_i00.png"
+  },
+  "elven necklace beads": {
+    "id": 1904,
+    "slug": "elven-necklace-beads",
+    "icon": "etc_broken_crystal_silver_i00.png"
+  },
+  "elven ring": {
+    "id": 881,
+    "slug": "elven-ring",
+    "icon": "accessary_elven_ring_i00.png"
+  },
+  "elven ring piece": {
+    "id": 1903,
+    "slug": "elven-ring-piece",
+    "icon": "etc_jewel_box_i00.png"
+  },
+  "elven stockings": {
+    "id": 466,
+    "slug": "elven-stockings",
+    "icon": "armor_t11_l_i00.png"
+  },
+  "elven sword": {
+    "id": 130,
+    "slug": "elven-sword",
+    "icon": "weapon_elven_sword_i00.png"
+  },
+  "elven tunic": {
+    "id": 433,
+    "slug": "elven-tunic",
+    "icon": "armor_t11_u_i00.png"
+  },
+  "eminence bow": {
+    "id": 286,
+    "slug": "eminence-bow",
+    "icon": "weapon_eminence_bow_i00.png"
+  },
+  "eminence bow shaft": {
+    "id": 2121,
+    "slug": "eminence-bow-shaft",
+    "icon": "etc_branch_gold_i00.png"
+  },
+  "enchanted earring": {
+    "id": 848,
+    "slug": "enchanted-earring",
+    "icon": "accessary_enchanted_earing_i00.png"
+  },
+  "enchanted necklace": {
+    "id": 911,
+    "slug": "enchanted-necklace",
+    "icon": "accessary_enchanted_necklace_i00.png"
+  },
+  "enchanted necklace chain": {
+    "id": 1900,
+    "slug": "enchanted-necklace-chain",
+    "icon": "etc_jewel_box_i00.png"
+  },
+  "enchanted ring": {
+    "id": 879,
+    "slug": "enchanted-ring",
+    "icon": "accessary_enchanted_ring_i00.png"
+  },
+  "evil spirit head": {
+    "id": 4118,
+    "slug": "evil-spirit-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "fisted blade": {
+    "id": 265,
+    "slug": "fisted-blade",
+    "icon": "weapon_fist_blade_i00.png"
+  },
+  "fisted blade piece": {
+    "id": 2108,
+    "slug": "fisted-blade-piece",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "flamberge": {
+    "id": 71,
+    "slug": "flamberge",
+    "icon": "weapon_flamberge_i00.png"
+  },
+  "flamberge blade": {
+    "id": 2059,
+    "slug": "flamberge-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "full plate boots": {
+    "id": 2438,
+    "slug": "full-plate-boots",
+    "icon": "armor_t62_b_i00.png"
+  },
+  "full plate boots part": {
+    "id": 2961,
+    "slug": "full-plate-boots-part",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "full plate gauntlets": {
+    "id": 2462,
+    "slug": "full-plate-gauntlets",
+    "icon": "armor_t62_g_i00.png"
+  },
+  "full plate gauntlets part": {
+    "id": 2963,
+    "slug": "full-plate-gauntlets-part",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "full plate helmet": {
+    "id": 2414,
+    "slug": "full-plate-helmet",
+    "icon": "armor_leather_helmet_i00.png"
+  },
+  "full plate helmet design": {
+    "id": 2959,
+    "slug": "full-plate-helmet-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "full plate shield": {
+    "id": 2497,
+    "slug": "full-plate-shield",
+    "icon": "shield_full_plate_shield_i00.png"
+  },
+  "full plate shield fragment": {
+    "id": 2966,
+    "slug": "full-plate-shield-fragment",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "gastraphetes": {
+    "id": 278,
+    "slug": "gastraphetes",
+    "icon": "weapon_gastraphetes_i00.png"
+  },
+  "gastraphetes shaft": {
+    "id": 2029,
+    "slug": "gastraphetes-shaft",
+    "icon": "etc_branch_gold_i00.png"
+  },
+  "gauntlets": {
+    "id": 63,
+    "slug": "gauntlets",
+    "icon": "armor_t10_g_i00.png"
+  },
+  "ghost staff": {
+    "id": 188,
+    "slug": "ghost-staff",
+    "icon": "weapon_ghost_staff_i00.png"
+  },
+  "ghost staff head": {
+    "id": 2050,
+    "slug": "ghost-staff-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "ghoul's staff": {
+    "id": 205,
+    "slug": "ghouls-staff",
+    "icon": "weapon_ghouls_staff_i00.png"
+  },
+  "ghoul's staff head": {
+    "id": 2117,
+    "slug": "ghouls-staff-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "glaive": {
+    "id": 297,
+    "slug": "glaive",
+    "icon": "weapon_glaive_i00.png"
+  },
+  "glaive edge": {
+    "id": 2055,
+    "slug": "glaive-edge",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "gloves of knowledge": {
+    "id": 2447,
+    "slug": "gloves-of-knowledge",
+    "icon": "armor_t41_g_i00.png"
+  },
+  "goat head staff": {
+    "id": 90,
+    "slug": "goat-head-staff",
+    "icon": "weapon_goathead_staff_i00.png"
+  },
+  "goat head staff head": {
+    "id": 2032,
+    "slug": "goat-head-staff-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "grace dagger": {
+    "id": 231,
+    "slug": "grace-dagger",
+    "icon": "weapon_grace_dagger_i00.png"
+  },
+  "grace dagger edge": {
+    "id": 2106,
+    "slug": "grace-dagger-edge",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "great axe head": {
+    "id": 4113,
+    "slug": "great-axe-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "great pata blade": {
+    "id": 2120,
+    "slug": "great-pata-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "great sword blade": {
+    "id": 4104,
+    "slug": "great-sword-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "greater dye of con <con+1 dex-1>": {
+    "id": 4556,
+    "slug": "greater-dye-of-con-con1-dex-1",
+    "icon": "etc_con_hena_i02.png"
+  },
+  "greater dye of con <con+1 str-1>": {
+    "id": 4555,
+    "slug": "greater-dye-of-con-con1-str-1",
+    "icon": "etc_con_hena_i02.png"
+  },
+  "greater dye of con <con+2 dex-2>": {
+    "id": 4592,
+    "slug": "greater-dye-of-con-con2-dex-2",
+    "icon": "etc_con_hena_i02.png"
+  },
+  "greater dye of con <con+2 str-2>": {
+    "id": 4591,
+    "slug": "greater-dye-of-con-con2-str-2",
+    "icon": "etc_con_hena_i02.png"
+  },
+  "greater dye of con <con+3 dex-3>": {
+    "id": 4604,
+    "slug": "greater-dye-of-con-con3-dex-3",
+    "icon": "etc_con_hena_i02.png"
+  },
+  "greater dye of con <con+3 str-3>": {
+    "id": 4603,
+    "slug": "greater-dye-of-con-con3-str-3",
+    "icon": "etc_con_hena_i02.png"
+  },
+  "greater dye of dex <dex+1 con-1>": {
+    "id": 4558,
+    "slug": "greater-dye-of-dex-dex1-con-1",
+    "icon": "etc_dex_hena_i02.png"
+  },
+  "greater dye of dex <dex+1 str-1>": {
+    "id": 4557,
+    "slug": "greater-dye-of-dex-dex1-str-1",
+    "icon": "etc_dex_hena_i02.png"
+  },
+  "greater dye of dex <dex+2 con-2>": {
+    "id": 4594,
+    "slug": "greater-dye-of-dex-dex2-con-2",
+    "icon": "etc_dex_hena_i02.png"
+  },
+  "greater dye of dex <dex+2 str-2>": {
+    "id": 4593,
+    "slug": "greater-dye-of-dex-dex2-str-2",
+    "icon": "etc_dex_hena_i02.png"
+  },
+  "greater dye of dex <dex+3 con-3>": {
+    "id": 4606,
+    "slug": "greater-dye-of-dex-dex3-con-3",
+    "icon": "etc_dex_hena_i02.png"
+  },
+  "greater dye of dex <dex+3 str-3>": {
+    "id": 4605,
+    "slug": "greater-dye-of-dex-dex3-str-3",
+    "icon": "etc_dex_hena_i02.png"
+  },
+  "greater dye of int <int+1 men-1>": {
+    "id": 4559,
+    "slug": "greater-dye-of-int-int1-men-1",
+    "icon": "etc_int_hena_i02.png"
+  },
+  "greater dye of int <int+1 wit-1>": {
+    "id": 4560,
+    "slug": "greater-dye-of-int-int1-wit-1",
+    "icon": "etc_int_hena_i02.png"
+  },
+  "greater dye of int <int+2 men-2>": {
+    "id": 4595,
+    "slug": "greater-dye-of-int-int2-men-2",
+    "icon": "etc_int_hena_i02.png"
+  },
+  "greater dye of int <int+2 wit-2>": {
+    "id": 4596,
+    "slug": "greater-dye-of-int-int2-wit-2",
+    "icon": "etc_int_hena_i02.png"
+  },
+  "greater dye of int <int+3 men-3>": {
+    "id": 4607,
+    "slug": "greater-dye-of-int-int3-men-3",
+    "icon": "etc_int_hena_i02.png"
+  },
+  "greater dye of int <int+3 wit-3>": {
+    "id": 4608,
+    "slug": "greater-dye-of-int-int3-wit-3",
+    "icon": "etc_int_hena_i02.png"
+  },
+  "greater dye of men <men+1 int-1>": {
+    "id": 4561,
+    "slug": "greater-dye-of-men-men1-int-1",
+    "icon": "etc_men_hena_i02.png"
+  },
+  "greater dye of men <men+1 wit-1>": {
+    "id": 4562,
+    "slug": "greater-dye-of-men-men1-wit-1",
+    "icon": "etc_men_hena_i02.png"
+  },
+  "greater dye of men <men+2 int-2>": {
+    "id": 4597,
+    "slug": "greater-dye-of-men-men2-int-2",
+    "icon": "etc_men_hena_i02.png"
+  },
+  "greater dye of men <men+2 wit-2>": {
+    "id": 4598,
+    "slug": "greater-dye-of-men-men2-wit-2",
+    "icon": "etc_men_hena_i02.png"
+  },
+  "greater dye of men <men+3 int-3>": {
+    "id": 4609,
+    "slug": "greater-dye-of-men-men3-int-3",
+    "icon": "etc_men_hena_i02.png"
+  },
+  "greater dye of men <men+3 wit-3>": {
+    "id": 4610,
+    "slug": "greater-dye-of-men-men3-wit-3",
+    "icon": "etc_men_hena_i02.png"
+  },
+  "greater dye of str <str+1 con-1>": {
+    "id": 4553,
+    "slug": "greater-dye-of-str-str1-con-1",
+    "icon": "etc_str_hena_i02.png"
+  },
+  "greater dye of str <str+1 dex-1>": {
+    "id": 4554,
+    "slug": "greater-dye-of-str-str1-dex-1",
+    "icon": "etc_str_hena_i02.png"
+  },
+  "greater dye of str <str+2 con-2>": {
+    "id": 4589,
+    "slug": "greater-dye-of-str-str2-con-2",
+    "icon": "etc_str_hena_i02.png"
+  },
+  "greater dye of str <str+2 dex-2>": {
+    "id": 4590,
+    "slug": "greater-dye-of-str-str2-dex-2",
+    "icon": "etc_str_hena_i02.png"
+  },
+  "greater dye of str <str+3 con-3>": {
+    "id": 4601,
+    "slug": "greater-dye-of-str-str3-con-3",
+    "icon": "etc_str_hena_i02.png"
+  },
+  "greater dye of str <str+3 dex-3>": {
+    "id": 4602,
+    "slug": "greater-dye-of-str-str3-dex-3",
+    "icon": "etc_str_hena_i02.png"
+  },
+  "greater dye of wit <wit+1 int-1>": {
+    "id": 4563,
+    "slug": "greater-dye-of-wit-wit1-int-1",
+    "icon": "etc_wit_hena_i02.png"
+  },
+  "greater dye of wit <wit+1 men-1>": {
+    "id": 4564,
+    "slug": "greater-dye-of-wit-wit1-men-1",
+    "icon": "etc_wit_hena_i02.png"
+  },
+  "greater dye of wit <wit+2 int-2>": {
+    "id": 4599,
+    "slug": "greater-dye-of-wit-wit2-int-2",
+    "icon": "etc_wit_hena_i02.png"
+  },
+  "greater dye of wit <wit+2 men-2>": {
+    "id": 4600,
+    "slug": "greater-dye-of-wit-wit2-men-2",
+    "icon": "etc_wit_hena_i02.png"
+  },
+  "greater dye of wit <wit+3 int-3>": {
+    "id": 4611,
+    "slug": "greater-dye-of-wit-wit3-int-3",
+    "icon": "etc_wit_hena_i02.png"
+  },
+  "greater dye of wit <wit+3 men-3>": {
+    "id": 4612,
+    "slug": "greater-dye-of-wit-wit3-men-3",
+    "icon": "etc_wit_hena_i02.png"
+  },
+  "guardian sword blade": {
+    "id": 8330,
+    "slug": "guardian-sword-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "halberd edge": {
+    "id": 5542,
+    "slug": "halberd-edge",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "half plate armor": {
+    "id": 353,
+    "slug": "half-plate-armor",
+    "icon": "armor_t46_u_i00.png"
+  },
+  "half plate temper": {
+    "id": 1950,
+    "slug": "half-plate-temper",
+    "icon": "etc_plate_glay_i00.png"
+  },
+  "hammer piece of destroyer": {
+    "id": 8346,
+    "slug": "hammer-piece-of-destroyer",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "hand axe": {
+    "id": 156,
+    "slug": "hand-axe",
+    "icon": "weapon_hand_axe_i00.png"
+  },
+  "heathen's book": {
+    "id": 326,
+    "slug": "heathens-book",
+    "icon": "weapon_heathens_book_i00.png"
+  },
+  "heathen's book page": {
+    "id": 2110,
+    "slug": "heathens-book-page",
+    "icon": "etc_piece_of_paper_white_i00.png"
+  },
+  "heavy bone club": {
+    "id": 172,
+    "slug": "heavy-bone-club",
+    "icon": "weapon_heavy_bone_club_i00.png"
+  },
+  "heavy bone club head": {
+    "id": 2037,
+    "slug": "heavy-bone-club-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "heavy doom axe blade": {
+    "id": 2069,
+    "slug": "heavy-doom-axe-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "heavy doom hammer head": {
+    "id": 2066,
+    "slug": "heavy-doom-hammer-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "heavy sword": {
+    "id": 5285,
+    "slug": "heavy-sword",
+    "icon": "weapon_heavy_sword_i00.png"
+  },
+  "heavy sword edge": {
+    "id": 5531,
+    "slug": "heavy-sword-edge",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "heavy war axe head": {
+    "id": 4105,
+    "slug": "heavy-war-axe-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "hell knife edge": {
+    "id": 4110,
+    "slug": "hell-knife-edge",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "homunkulus's sword": {
+    "id": 84,
+    "slug": "homunkuluss-sword",
+    "icon": "weapon_homunkuluss_sword_i00.png"
+  },
+  "homunkulus's sword blade": {
+    "id": 2092,
+    "slug": "homunkuluss-sword-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "hoplon": {
+    "id": 628,
+    "slug": "hoplon",
+    "icon": "shield_hoplon_i00.png"
+  },
+  "horn of glory": {
+    "id": 325,
+    "slug": "horn-of-glory",
+    "icon": "weapon_horn_of_glory_i00.png"
+  },
+  "horn of glory fragment": {
+    "id": 2088,
+    "slug": "horn-of-glory-fragment",
+    "icon": "etc_claw_i00.png"
+  },
+  "ice storm hammer head": {
+    "id": 8347,
+    "slug": "ice-storm-hammer-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "infernal master blade": {
+    "id": 8331,
+    "slug": "infernal-master-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "iron boots": {
+    "id": 553,
+    "slug": "iron-boots",
+    "icon": "armor_t10_b_i00.png"
+  },
+  "iron boots design": {
+    "id": 1940,
+    "slug": "iron-boots-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "iron plate gaiters": {
+    "id": 376,
+    "slug": "iron-plate-gaiters",
+    "icon": "armor_t12_l_i00.png"
+  },
+  "karmian boots": {
+    "id": 2430,
+    "slug": "karmian-boots",
+    "icon": "armor_t53_b_i00.png"
+  },
+  "karmian boots fabric": {
+    "id": 2938,
+    "slug": "karmian-boots-fabric",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "karmian gloves": {
+    "id": 2454,
+    "slug": "karmian-gloves",
+    "icon": "armor_t53_g_i00.png"
+  },
+  "karmian gloves fabric": {
+    "id": 2944,
+    "slug": "karmian-gloves-fabric",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "karmian stocking design": {
+    "id": 1954,
+    "slug": "karmian-stocking-design",
+    "icon": "etc_letter_red_i00.png"
+  },
+  "karmian stockings": {
+    "id": 471,
+    "slug": "karmian-stockings",
+    "icon": "armor_t53_l_i00.png"
+  },
+  "karmian tunic": {
+    "id": 439,
+    "slug": "karmian-tunic",
+    "icon": "armor_t53_u_i00.png"
+  },
+  "karmian tunic pattern": {
+    "id": 1962,
+    "slug": "karmian-tunic-pattern",
+    "icon": "etc_letter_red_i00.png"
+  },
+  "keshanberk blade": {
+    "id": 4107,
+    "slug": "keshanberk-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "kite shield": {
+    "id": 629,
+    "slug": "kite-shield",
+    "icon": "shield_kite_shield_i00.png"
+  },
+  "kite shield fragment": {
+    "id": 1947,
+    "slug": "kite-shield-fragment",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "knight's sword": {
+    "id": 128,
+    "slug": "knights-sword",
+    "icon": "weapon_knights_sword_i00.png"
+  },
+  "kris edge": {
+    "id": 4109,
+    "slug": "kris-edge",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "kukuri": {
+    "id": 223,
+    "slug": "kukuri",
+    "icon": "weapon_kukuri_i00.png"
+  },
+  "lance blade": {
+    "id": 4115,
+    "slug": "lance-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "leather armor of doom design": {
+    "id": 4083,
+    "slug": "leather-armor-of-doom-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "leather gauntlets": {
+    "id": 605,
+    "slug": "leather-gauntlets",
+    "icon": "armor_t18_g_i00.png"
+  },
+  "light crossbow": {
+    "id": 280,
+    "slug": "light-crossbow",
+    "icon": "weapon_cyclone_bow_i00.png"
+  },
+  "light crossbow shaft": {
+    "id": 2054,
+    "slug": "light-crossbow-shaft",
+    "icon": "etc_branch_gold_i00.png"
+  },
+  "lion skin gaiters": {
+    "id": 414,
+    "slug": "lion-skin-gaiters",
+    "icon": "armor_t18_l_i00.png"
+  },
+  "lion skin shirt": {
+    "id": 392,
+    "slug": "lion-skin-shirt",
+    "icon": "armor_t18_u_i00.png"
+  },
+  "long bow": {
+    "id": 275,
+    "slug": "long-bow",
+    "icon": "weapon_long_bow_i00.png"
+  },
+  "mace of judgment": {
+    "id": 180,
+    "slug": "mace-of-judgment",
+    "icon": "weapon_mace_of_judgment_i00.png"
+  },
+  "mace of judgment head": {
+    "id": 2022,
+    "slug": "mace-of-judgment-head",
+    "icon": "etc_squares_silver_i00.png"
+  },
+  "mace of miracle": {
+    "id": 181,
+    "slug": "mace-of-miracle",
+    "icon": "weapon_mace_of_miracle_i00.png"
+  },
+  "mace of prayer": {
+    "id": 179,
+    "slug": "mace-of-prayer",
+    "icon": "weapon_mace_of_prayer_i00.png"
+  },
+  "mace of underworld": {
+    "id": 202,
+    "slug": "mace-of-underworld",
+    "icon": "weapon_mace_of_underworld_i00.png"
+  },
+  "mace of underworld head": {
+    "id": 2105,
+    "slug": "mace-of-underworld-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "magical ring of queen ant": {
+    "id": 36454,
+    "slug": "magical-ring-of-queen-ant",
+    "icon": "accessory_ring_of_queen_ant_i02.png"
+  },
+  "maingauche": {
+    "id": 224,
+    "slug": "maingauche",
+    "icon": "weapon_maingauche_i00.png"
+  },
+  "maingauche edge": {
+    "id": 2038,
+    "slug": "maingauche-edge",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "manticore skin boot lining": {
+    "id": 2923,
+    "slug": "manticore-skin-boot-lining",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "manticore skin boots": {
+    "id": 2424,
+    "slug": "manticore-skin-boots",
+    "icon": "armor_t42_b_i00.png"
+  },
+  "manticore skin gaiters": {
+    "id": 417,
+    "slug": "manticore-skin-gaiters",
+    "icon": "armor_t42_l_i00.png"
+  },
+  "manticore skin gaiters pattern": {
+    "id": 1943,
+    "slug": "manticore-skin-gaiters-pattern",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "manticore skin gloves": {
+    "id": 2448,
+    "slug": "manticore-skin-gloves",
+    "icon": "armor_t42_g_i00.png"
+  },
+  "manticore skin gloves lining": {
+    "id": 2926,
+    "slug": "manticore-skin-gloves-lining",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "manticore skin shirt": {
+    "id": 395,
+    "slug": "manticore-skin-shirt",
+    "icon": "armor_t42_u_i00.png"
+  },
+  "manticore skin shirt texture": {
+    "id": 1942,
+    "slug": "manticore-skin-shirt-texture",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "mithril banded gaiters": {
+    "id": 415,
+    "slug": "mithril-banded-gaiters",
+    "icon": "armor_t10_l_i00.png"
+  },
+  "mithril banded gaiters material": {
+    "id": 1939,
+    "slug": "mithril-banded-gaiters-material",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "mithril banded mail": {
+    "id": 393,
+    "slug": "mithril-banded-mail",
+    "icon": "armor_t10_u_i00.png"
+  },
+  "mithril banded mail material": {
+    "id": 1938,
+    "slug": "mithril-banded-mail-material",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "mithril breastplate": {
+    "id": 58,
+    "slug": "mithril-breastplate",
+    "icon": "armor_t19_u_i00.png"
+  },
+  "mithril dagger": {
+    "id": 225,
+    "slug": "mithril-dagger",
+    "icon": "weapon_mithril_dagger_i00.png"
+  },
+  "mithril dagger blade": {
+    "id": 2052,
+    "slug": "mithril-dagger-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "mithril gaiters": {
+    "id": 59,
+    "slug": "mithril-gaiters",
+    "icon": "armor_t19_l_i00.png"
+  },
+  "mithril gloves design": {
+    "id": 1949,
+    "slug": "mithril-gloves-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "mithril helmet": {
+    "id": 47,
+    "slug": "mithril-helmet",
+    "icon": "armor_helmet_i00.png"
+  },
+  "mithril plate gloves": {
+    "id": 61,
+    "slug": "mithril-plate-gloves",
+    "icon": "armor_t46_g_i00.png"
+  },
+  "mithril ring": {
+    "id": 882,
+    "slug": "mithril-ring",
+    "icon": "accessary_mithril_ring_i00.png"
+  },
+  "mithril ring wire": {
+    "id": 1906,
+    "slug": "mithril-ring-wire",
+    "icon": "etc_jewel_box_i00.png"
+  },
+  "mithril scale gaiters": {
+    "id": 2377,
+    "slug": "mithril-scale-gaiters",
+    "icon": "armor_t40_l_i00.png"
+  },
+  "mithril scale gaiters material": {
+    "id": 2918,
+    "slug": "mithril-scale-gaiters-material",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "moonstone earring": {
+    "id": 852,
+    "slug": "moonstone-earring",
+    "icon": "accessary_moonstone_earing_i00.png"
+  },
+  "moonstone earring wire": {
+    "id": 1908,
+    "slug": "moonstone-earring-wire",
+    "icon": "etc_jewel_box_i00.png"
+  },
+  "morning star head": {
+    "id": 2031,
+    "slug": "morning-star-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "mystic knife": {
+    "id": 239,
+    "slug": "mystic-knife",
+    "icon": "weapon_mystic_knife_i00.png"
+  },
+  "mystic staff": {
+    "id": 183,
+    "slug": "mystic-staff",
+    "icon": "weapon_mystic_staff_i00.png"
+  },
+  "mystic's stockings": {
+    "id": 468,
+    "slug": "mystics-stockings",
+    "icon": "armor_t17_l_i00.png"
+  },
+  "mystic's tunic": {
+    "id": 435,
+    "slug": "mystics-tunic",
+    "icon": "armor_t17_u_i00.png"
+  },
+  "nassen's earring": {
+    "id": 855,
+    "slug": "nassens-earring",
+    "icon": "accessary_nassens_earing_i00.png"
+  },
+  "nassen's earring gemstone": {
+    "id": 1918,
+    "slug": "nassens-earring-gemstone",
+    "icon": "etc_gem_red_i00.png"
+  },
+  "near forest necklace": {
+    "id": 912,
+    "slug": "near-forest-necklace",
+    "icon": "accessary_near_forest_necklace_i00.png"
+  },
+  "necklace of black ore": {
+    "id": 926,
+    "slug": "necklace-of-black-ore",
+    "icon": "accessary_necklace_of_black_ore_i00.png"
+  },
+  "necklace of black ore beads": {
+    "id": 4054,
+    "slug": "necklace-of-black-ore-beads",
+    "icon": "etc_broken_crystal_silver_i00.png"
+  },
+  "necklace of darkness": {
+    "id": 914,
+    "slug": "necklace-of-darkness",
+    "icon": "accessary_necklace_of_darkness_i00.png"
+  },
+  "necklace of darkness gem": {
+    "id": 1907,
+    "slug": "necklace-of-darkness-gem",
+    "icon": "etc_gem_black_i00.png"
+  },
+  "necklace of mermaid": {
+    "id": 917,
+    "slug": "necklace-of-mermaid",
+    "icon": "accessary_necklace_of_mermaid_i00.png"
+  },
+  "necklace of mermaid teardrop": {
+    "id": 1916,
+    "slug": "necklace-of-mermaid-teardrop",
+    "icon": "etc_reagent_white_i00.png"
+  },
+  "necklace of seal": {
+    "id": 119,
+    "slug": "necklace-of-seal",
+    "icon": "accessary_necklace_of_binding_i00.png"
+  },
+  "necklace of seal chain": {
+    "id": 1920,
+    "slug": "necklace-of-seal-chain",
+    "icon": "etc_jewel_box_i00.png"
+  },
+  "nirvana axe blade": {
+    "id": 2098,
+    "slug": "nirvana-axe-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "noble elven bow": {
+    "id": 285,
+    "slug": "noble-elven-bow",
+    "icon": "weapon_noble_elven_bow_i00.png"
+  },
+  "noble elven bow shaft": {
+    "id": 2086,
+    "slug": "noble-elven-bow-shaft",
+    "icon": "etc_branch_gold_i00.png"
+  },
+  "ogre power gauntlets": {
+    "id": 607,
+    "slug": "ogre-power-gauntlets",
+    "icon": "armor_t45_g_i00.png"
+  },
+  "ogre power gauntlets part": {
+    "id": 1963,
+    "slug": "ogre-power-gauntlets-part",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "omen beast's eye earring": {
+    "id": 851,
+    "slug": "omen-beasts-eye-earring",
+    "icon": "accessary_onyxbeastseye_earing_i00.png"
+  },
+  "omen beast's eye earring gemstone": {
+    "id": 1905,
+    "slug": "omen-beasts-eye-earring-gemstone",
+    "icon": "etc_bead_silver_i00.png"
+  },
+  "orcish glaive": {
+    "id": 298,
+    "slug": "orcish-glaive",
+    "icon": "weapon_orcish_glaive_i00.png"
+  },
+  "orcish glaive blade": {
+    "id": 2075,
+    "slug": "orcish-glaive-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "orcish poleaxe": {
+    "id": 299,
+    "slug": "orcish-poleaxe",
+    "icon": "weapon_orcish_poleaxe_i00.png"
+  },
+  "orcish poleaxe blade": {
+    "id": 2122,
+    "slug": "orcish-poleaxe-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "pa'agrian hammer head": {
+    "id": 2102,
+    "slug": "paagrian-hammer-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "paradia staff head": {
+    "id": 2100,
+    "slug": "paradia-staff-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "pike": {
+    "id": 292,
+    "slug": "pike",
+    "icon": "weapon_pike_i00.png"
+  },
+  "plate boots": {
+    "id": 2428,
+    "slug": "plate-boots",
+    "icon": "armor_t46_b_i00.png"
+  },
+  "plate boots design": {
+    "id": 2932,
+    "slug": "plate-boots-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "plate gaiters": {
+    "id": 380,
+    "slug": "plate-gaiters",
+    "icon": "armor_t46_l_i00.png"
+  },
+  "plate gaiters part": {
+    "id": 1951,
+    "slug": "plate-gaiters-part",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "plate helmet": {
+    "id": 2412,
+    "slug": "plate-helmet",
+    "icon": "armor_leather_helmet_i00.png"
+  },
+  "plate helmet design": {
+    "id": 2930,
+    "slug": "plate-helmet-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "plate leather boots lining": {
+    "id": 2939,
+    "slug": "plate-leather-boots-lining",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "plate shield": {
+    "id": 2494,
+    "slug": "plate-shield",
+    "icon": "shield_plate_shield_i00.png"
+  },
+  "plate shield fragment": {
+    "id": 2934,
+    "slug": "plate-shield-fragment",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "plated leather boots": {
+    "id": 2431,
+    "slug": "plated-leather-boots",
+    "icon": "armor_t47_b_i00.png"
+  },
+  "plated leather gaiters": {
+    "id": 418,
+    "slug": "plated-leather-gaiters",
+    "icon": "armor_t47_l_i00.png"
+  },
+  "plated leather gaiters material": {
+    "id": 1967,
+    "slug": "plated-leather-gaiters-material",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "plated leather shirt": {
+    "id": 398,
+    "slug": "plated-leather-shirt",
+    "icon": "armor_t47_u_i00.png"
+  },
+  "plated leather shirt fragment": {
+    "id": 1966,
+    "slug": "plated-leather-shirt-fragment",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "poniard dagger": {
+    "id": 222,
+    "slug": "poniard-dagger",
+    "icon": "weapon_dirk_i00.png"
+  },
+  "proof of loyalty": {
+    "id": 9910,
+    "slug": "proof-of-loyalty",
+    "icon": "etc_broken_crystal_red_i00.png"
+  },
+  "puma skin gaiters": {
+    "id": 413,
+    "slug": "puma-skin-gaiters",
+    "icon": "armor_t09_l_i00.png"
+  },
+  "puma skin shirt": {
+    "id": 391,
+    "slug": "puma-skin-shirt",
+    "icon": "armor_t09_u_i00.png"
+  },
+  "recipe: blood tornado(60%)": {
+    "id": 5452,
+    "slug": "recipe-blood-tornado60",
+    "icon": "etc_recipe_violet_i00.png"
+  },
+  "recipe: bloody orchid(60%)": {
+    "id": 5446,
+    "slug": "recipe-bloody-orchid60",
+    "icon": "etc_recipe_violet_i00.png"
+  },
+  "recipe: carnage bow(60%)": {
+    "id": 5444,
+    "slug": "recipe-carnage-bow60",
+    "icon": "etc_recipe_violet_i00.png"
+  },
+  "recipe: destroyer hammer (60%)": {
+    "id": 8487,
+    "slug": "recipe-destroyer-hammer-60",
+    "icon": "etc_recipe_violet_i00.png"
+  },
+  "recipe: halberd(60%)": {
+    "id": 5458,
+    "slug": "recipe-halberd60",
+    "icon": "etc_recipe_violet_i00.png"
+  },
+  "recipe: infernal master (60%)": {
+    "id": 8300,
+    "slug": "recipe-infernal-master-60",
+    "icon": "etc_recipe_violet_i00.png"
+  },
+  "recipe: sealed phoenix earring(70%)": {
+    "id": 6331,
+    "slug": "recipe-sealed-phoenix-earring70",
+    "icon": "etc_recipe_violet_i00.png"
+  },
+  "recipe: sealed phoenix necklace(70%)": {
+    "id": 6329,
+    "slug": "recipe-sealed-phoenix-necklace70",
+    "icon": "etc_recipe_violet_i00.png"
+  },
+  "recipe: sealed phoenix ring(70%)": {
+    "id": 6333,
+    "slug": "recipe-sealed-phoenix-ring70",
+    "icon": "etc_recipe_violet_i00.png"
+  },
+  "recipe: spiritual eye (60%)": {
+    "id": 8314,
+    "slug": "recipe-spiritual-eye-60",
+    "icon": "etc_recipe_violet_i00.png"
+  },
+  "reinforced leather boots": {
+    "id": 2422,
+    "slug": "reinforced-leather-boots",
+    "icon": "armor_t13_b_i00.png"
+  },
+  "reinforced leather gaiters": {
+    "id": 416,
+    "slug": "reinforced-leather-gaiters",
+    "icon": "armor_t13_l_i00.png"
+  },
+  "reinforced leather gloves": {
+    "id": 2446,
+    "slug": "reinforced-leather-gloves",
+    "icon": "armor_t13_g_i00.png"
+  },
+  "reinforced leather shirt": {
+    "id": 394,
+    "slug": "reinforced-leather-shirt",
+    "icon": "armor_t13_u_i00.png"
+  },
+  "reinforced long bow": {
+    "id": 279,
+    "slug": "reinforced-long-bow",
+    "icon": "weapon_strengthening_long_bow_i00.png"
+  },
+  "reinforced long bow shaft": {
+    "id": 2040,
+    "slug": "reinforced-long-bow-shaft",
+    "icon": "etc_branch_gold_i00.png"
+  },
+  "reinforced mithril gaiters": {
+    "id": 2387,
+    "slug": "reinforced-mithril-gaiters",
+    "icon": "armor_t47_l_i00.png"
+  },
+  "reinforced mithril gaiters fragment": {
+    "id": 2935,
+    "slug": "reinforced-mithril-gaiters-fragment",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "reinforced mithril gloves": {
+    "id": 2452,
+    "slug": "reinforced-mithril-gloves",
+    "icon": "armor_t47_g_i00.png"
+  },
+  "reinforced mithril gloves design": {
+    "id": 2942,
+    "slug": "reinforced-mithril-gloves-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "reinforced mithril shirt": {
+    "id": 397,
+    "slug": "reinforced-mithril-shirt",
+    "icon": "armor_t47_u_i00.png"
+  },
+  "reinforced mithril shirt fabric": {
+    "id": 1961,
+    "slug": "reinforced-mithril-shirt-fabric",
+    "icon": "etc_piece_of_cloth_white_i00.png"
+  },
+  "rind leather armor": {
+    "id": 399,
+    "slug": "rind-leather-armor",
+    "icon": "armor_t49_u_i00.png"
+  },
+  "rind leather armor design": {
+    "id": 1975,
+    "slug": "rind-leather-armor-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "rind leather gaiters": {
+    "id": 419,
+    "slug": "rind-leather-gaiters",
+    "icon": "armor_t49_l_i00.png"
+  },
+  "rind leather gaiters material": {
+    "id": 1976,
+    "slug": "rind-leather-gaiters-material",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "ring mail breastplate": {
+    "id": 347,
+    "slug": "ring-mail-breastplate",
+    "icon": "armor_t12_u_i00.png"
+  },
+  "ring of ages": {
+    "id": 885,
+    "slug": "ring-of-ages",
+    "icon": "accessary_ring_of_ages_i00.png"
+  },
+  "ring of ages gemstone": {
+    "id": 1915,
+    "slug": "ring-of-ages-gemstone",
+    "icon": "etc_gem_clear_i00.png"
+  },
+  "ring of black ore": {
+    "id": 895,
+    "slug": "ring-of-black-ore",
+    "icon": "accessary_ring_of_black_ore_i00.png"
+  },
+  "ring of black ore gemstone": {
+    "id": 4053,
+    "slug": "ring-of-black-ore-gemstone",
+    "icon": "etc_gem_black_i00.png"
+  },
+  "ring of seal": {
+    "id": 886,
+    "slug": "ring-of-seal",
+    "icon": "accessary_ring_of_binding_i00.png"
+  },
+  "ring of seal gemstone": {
+    "id": 2917,
+    "slug": "ring-of-seal-gemstone",
+    "icon": "etc_bead_silver_i00.png"
+  },
+  "rip gauntlets pattern": {
+    "id": 1946,
+    "slug": "rip-gauntlets-pattern",
+    "icon": "etc_letter_red_i00.png"
+  },
+  "robe of seal": {
+    "id": 440,
+    "slug": "robe-of-seal",
+    "icon": "armor_t44_ul_i00.png"
+  },
+  "robe of seal fabric": {
+    "id": 1970,
+    "slug": "robe-of-seal-fabric",
+    "icon": "etc_piece_of_cloth_white_i00.png"
+  },
+  "saber": {
+    "id": 123,
+    "slug": "saber",
+    "icon": "weapon_saber_i00.png"
+  },
+  "saber blade": {
+    "id": 2017,
+    "slug": "saber-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "sage's blood": {
+    "id": 316,
+    "slug": "sages-blood",
+    "icon": "weapon_blood_of_saints_i00.png"
+  },
+  "sage's rag": {
+    "id": 438,
+    "slug": "sages-rag",
+    "icon": "armor_t44_ul_i00.png"
+  },
+  "sage's rag lining": {
+    "id": 1953,
+    "slug": "sages-rag-lining",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "sage's staff head": {
+    "id": 2103,
+    "slug": "sages-staff-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "sage's worn gloves": {
+    "id": 2451,
+    "slug": "sages-worn-gloves",
+    "icon": "armor_t44_g_i00.png"
+  },
+  "sage's worn gloves lining": {
+    "id": 2933,
+    "slug": "sages-worn-gloves-lining",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "salamander skin boot lining": {
+    "id": 2931,
+    "slug": "salamander-skin-boot-lining",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "salamander skin boots": {
+    "id": 2427,
+    "slug": "salamander-skin-boots",
+    "icon": "armor_t45_b_i00.png"
+  },
+  "salamander skin mail": {
+    "id": 396,
+    "slug": "salamander-skin-mail",
+    "icon": "armor_t45_ul_i00.png"
+  },
+  "salamander skin mail texture": {
+    "id": 1952,
+    "slug": "salamander-skin-mail-texture",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "samurai longsword": {
+    "id": 135,
+    "slug": "samurai-longsword",
+    "icon": "weapon_samurai_longsword_i00.png"
+  },
+  "samurai longsword blade": {
+    "id": 2115,
+    "slug": "samurai-longsword-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "scale gaiters": {
+    "id": 377,
+    "slug": "scale-gaiters",
+    "icon": "armor_t08_l_i00.png"
+  },
+  "scale gaiters fragment": {
+    "id": 1937,
+    "slug": "scale-gaiters-fragment",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "scale mail": {
+    "id": 348,
+    "slug": "scale-mail",
+    "icon": "armor_t08_u_i00.png"
+  },
+  "scale mail fragment": {
+    "id": 1935,
+    "slug": "scale-mail-fragment",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "scallop jamadhr": {
+    "id": 262,
+    "slug": "scallop-jamadhr",
+    "icon": "weapon_scallop_jamadhr_i00.png"
+  },
+  "scallop jamadhr edge": {
+    "id": 2053,
+    "slug": "scallop-jamadhr-edge",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "scalpel": {
+    "id": 167,
+    "slug": "scalpel",
+    "icon": "weapon_scalpel_i00.png"
+  },
+  "scroll: enchant armor (b-grade)": {
+    "id": 948,
+    "slug": "scroll-enchant-armor-b-grade",
+    "icon": "etc_scroll_of_enchant_armor_i03.png"
+  },
+  "scroll: enchant armor (c-grade)": {
+    "id": 952,
+    "slug": "scroll-enchant-armor-c-grade",
+    "icon": "etc_scroll_of_enchant_armor_i02.png"
+  },
+  "scroll: enchant armor (d-grade)": {
+    "id": 956,
+    "slug": "scroll-enchant-armor-d-grade",
+    "icon": "etc_scroll_of_enchant_armor_i01.png"
+  },
+  "scroll: enchant weapon (b-grade)": {
+    "id": 947,
+    "slug": "scroll-enchant-weapon-b-grade",
+    "icon": "etc_scroll_of_enchant_weapon_i03.png"
+  },
+  "scroll: enchant weapon (c-grade)": {
+    "id": 951,
+    "slug": "scroll-enchant-weapon-c-grade",
+    "icon": "etc_scroll_of_enchant_weapon_i02.png"
+  },
+  "scroll: enchant weapon (d-grade)": {
+    "id": 955,
+    "slug": "scroll-enchant-weapon-d-grade",
+    "icon": "etc_scroll_of_enchant_weapon_i01.png"
+  },
+  "scythe": {
+    "id": 96,
+    "slug": "scythe",
+    "icon": "weapon_scythe_i00.png"
+  },
+  "scythe edge": {
+    "id": 2062,
+    "slug": "scythe-edge",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "sealed avadon boots design": {
+    "id": 4098,
+    "slug": "sealed-avadon-boots-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "sealed avadon gloves part": {
+    "id": 4073,
+    "slug": "sealed-avadon-gloves-part",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "sealed blue wolf boots design": {
+    "id": 4090,
+    "slug": "sealed-blue-wolf-boots-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "sealed blue wolf gloves fabric": {
+    "id": 4096,
+    "slug": "sealed-blue-wolf-gloves-fabric",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "sealed dark crystal boots lining": {
+    "id": 5496,
+    "slug": "sealed-dark-crystal-boots-lining",
+    "icon": "etc_piece_of_cloth_black_i00.png"
+  },
+  "sealed dark crystal breastplate pattern": {
+    "id": 5520,
+    "slug": "sealed-dark-crystal-breastplate-pattern",
+    "icon": "etc_letter_red_i00.png"
+  },
+  "sealed dark crystal gaiters pattern": {
+    "id": 5524,
+    "slug": "sealed-dark-crystal-gaiters-pattern",
+    "icon": "etc_letter_red_i00.png"
+  },
+  "sealed dark crystal gloves design": {
+    "id": 5508,
+    "slug": "sealed-dark-crystal-gloves-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "sealed dark crystal helmet design": {
+    "id": 5525,
+    "slug": "sealed-dark-crystal-helmet-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "sealed dark crystal leather armor pattern": {
+    "id": 5478,
+    "slug": "sealed-dark-crystal-leather-armor-pattern",
+    "icon": "etc_letter_red_i00.png"
+  },
+  "sealed dark crystal leggings design": {
+    "id": 5482,
+    "slug": "sealed-dark-crystal-leggings-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "sealed dark crystal robe fabric": {
+    "id": 5486,
+    "slug": "sealed-dark-crystal-robe-fabric",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "sealed dark crystal shield fragment": {
+    "id": 5494,
+    "slug": "sealed-dark-crystal-shield-fragment",
+    "icon": "etc_jewel_box_i00.png"
+  },
+  "sealed doom boots part": {
+    "id": 4099,
+    "slug": "sealed-doom-boots-part",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "sealed doom gloves part": {
+    "id": 4091,
+    "slug": "sealed-doom-gloves-part",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "sealed phoenix earring": {
+    "id": 6324,
+    "slug": "sealed-phoenix-earring",
+    "icon": "accessary_phoenixs_earing_i02.png"
+  },
+  "sealed phoenix earring gemstone": {
+    "id": 6341,
+    "slug": "sealed-phoenix-earring-gemstone",
+    "icon": "etc_gem_blue_i00.png"
+  },
+  "sealed phoenix necklace": {
+    "id": 6323,
+    "slug": "sealed-phoenix-necklace",
+    "icon": "accessary_phoenixs_necklace_i02.png"
+  },
+  "sealed phoenix necklace beads": {
+    "id": 6343,
+    "slug": "sealed-phoenix-necklace-beads",
+    "icon": "etc_broken_crystal_silver_i00.png"
+  },
+  "sealed phoenix ring": {
+    "id": 6325,
+    "slug": "sealed-phoenix-ring",
+    "icon": "accessary_phoenixs_ring_i02.png"
+  },
+  "sealed phoenix ring gemstone": {
+    "id": 6345,
+    "slug": "sealed-phoenix-ring-gemstone",
+    "icon": "etc_gem_blue_i00.png"
+  },
+  "sealed tallum boots lining": {
+    "id": 5497,
+    "slug": "sealed-tallum-boots-lining",
+    "icon": "etc_piece_of_cloth_black_i00.png"
+  },
+  "sealed tallum gloves design": {
+    "id": 5509,
+    "slug": "sealed-tallum-gloves-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "sealed tallum helm design": {
+    "id": 5526,
+    "slug": "sealed-tallum-helm-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "sealed tallum leather armor pattern": {
+    "id": 5479,
+    "slug": "sealed-tallum-leather-armor-pattern",
+    "icon": "etc_letter_red_i00.png"
+  },
+  "sealed tallum plate armor pattern": {
+    "id": 5521,
+    "slug": "sealed-tallum-plate-armor-pattern",
+    "icon": "etc_letter_red_i00.png"
+  },
+  "sealed tallum stockings fabric": {
+    "id": 5489,
+    "slug": "sealed-tallum-stockings-fabric",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "sealed tallum tunic texture": {
+    "id": 5485,
+    "slug": "sealed-tallum-tunic-texture",
+    "icon": "etc_leather_yellow_i00.png"
+  },
+  "sealed zubei's boots design": {
+    "id": 4097,
+    "slug": "sealed-zubeis-boots-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "sealed zubei's gauntlets part": {
+    "id": 4100,
+    "slug": "sealed-zubeis-gauntlets-part",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "shilen knife": {
+    "id": 241,
+    "slug": "shilen-knife",
+    "icon": "weapon_knife_o__silenus_i00.png"
+  },
+  "shilen knife edge": {
+    "id": 2028,
+    "slug": "shilen-knife-edge",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "shining circlet": {
+    "id": 1149,
+    "slug": "shining-circlet",
+    "icon": "armor_circlet_i00.png"
+  },
+  "shining circlet pattern": {
+    "id": 1983,
+    "slug": "shining-circlet-pattern",
+    "icon": "etc_letter_red_i00.png"
+  },
+  "silver axe head": {
+    "id": 2064,
+    "slug": "silver-axe-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "single-edged jamadhr": {
+    "id": 259,
+    "slug": "single-edged-jamadhr",
+    "icon": "weapon_single-edged_jamadhr_i00.png"
+  },
+  "skull breaker": {
+    "id": 169,
+    "slug": "skull-breaker",
+    "icon": "weapon_skull_breaker_i00.png"
+  },
+  "skull breaker head": {
+    "id": 2036,
+    "slug": "skull-breaker-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "skull graver head": {
+    "id": 2065,
+    "slug": "skull-graver-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "soulfire dirk": {
+    "id": 242,
+    "slug": "soulfire-dirk",
+    "icon": "weapon_dagger_of_magicflame_i00.png"
+  },
+  "soulfire dirk blade": {
+    "id": 2084,
+    "slug": "soulfire-dirk-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "spell breaker head": {
+    "id": 8339,
+    "slug": "spell-breaker-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "spellbook: archer's will": {
+    "id": 10553,
+    "slug": "spellbook-archers-will",
+    "icon": "archer_will_book.png"
+  },
+  "spellbook: fighter's will": {
+    "id": 10552,
+    "slug": "spellbook-fighters-will",
+    "icon": "br_spell_books_sword_i00.png"
+  },
+  "spellbook: magician's will": {
+    "id": 14219,
+    "slug": "spellbook-magicians-will",
+    "icon": "br_spell_books_magic_i00.png"
+  },
+  "spiked club": {
+    "id": 157,
+    "slug": "spiked-club",
+    "icon": "weapon_spike_club_i00.png"
+  },
+  "spiked club head": {
+    "id": 2027,
+    "slug": "spiked-club-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "spinebone sword": {
+    "id": 125,
+    "slug": "spinebone-sword",
+    "icon": "weapon_spinebone_sword_i00.png"
+  },
+  "spinebone sword blade": {
+    "id": 2021,
+    "slug": "spinebone-sword-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "spiritual eye piece": {
+    "id": 8341,
+    "slug": "spiritual-eye-piece",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "sprite's staff head": {
+    "id": 4106,
+    "slug": "sprites-staff-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "square shield": {
+    "id": 630,
+    "slug": "square-shield",
+    "icon": "shield_square_shield_i00.png"
+  },
+  "square shield fragment": {
+    "id": 1956,
+    "slug": "square-shield-fragment",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "staff of life": {
+    "id": 189,
+    "slug": "staff-of-life",
+    "icon": "weapon_life_stick_i00.png"
+  },
+  "staff of life shaft": {
+    "id": 2051,
+    "slug": "staff-of-life-shaft",
+    "icon": "etc_branch_gold_i00.png"
+  },
+  "staff of magic": {
+    "id": 186,
+    "slug": "staff-of-magic",
+    "icon": "weapon_staff_of_magicpower_i00.png"
+  },
+  "staff of mana": {
+    "id": 185,
+    "slug": "staff-of-mana",
+    "icon": "weapon_staff_of_mana_i00.png"
+  },
+  "star buster head": {
+    "id": 8348,
+    "slug": "star-buster-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "stick of eternity shaft": {
+    "id": 2099,
+    "slug": "stick-of-eternity-shaft",
+    "icon": "etc_branch_gold_i00.png"
+  },
+  "stick of faith shaft": {
+    "id": 2068,
+    "slug": "stick-of-faith-shaft",
+    "icon": "etc_branch_gold_i00.png"
+  },
+  "stiletto": {
+    "id": 227,
+    "slug": "stiletto",
+    "icon": "weapon_stiletto_i00.png"
+  },
+  "stiletto edge": {
+    "id": 2083,
+    "slug": "stiletto-edge",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "stockings of doom pattern": {
+    "id": 4087,
+    "slug": "stockings-of-doom-pattern",
+    "icon": "etc_letter_red_i00.png"
+  },
+  "stockings of knowledge": {
+    "id": 469,
+    "slug": "stockings-of-knowledge",
+    "icon": "armor_t41_l_i00.png"
+  },
+  "stockings of zubei fabric": {
+    "id": 4070,
+    "slug": "stockings-of-zubei-fabric",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "stormbringer": {
+    "id": 72,
+    "slug": "stormbringer",
+    "icon": "weapon_stormbringer_i00.png"
+  },
+  "stormbringer blade": {
+    "id": 2060,
+    "slug": "stormbringer-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "sword of damascus blade": {
+    "id": 4114,
+    "slug": "sword-of-damascus-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "sword of delusion": {
+    "id": 76,
+    "slug": "sword-of-delusion",
+    "icon": "weapon_sword_of_delusion_i00.png"
+  },
+  "sword of magic": {
+    "id": 83,
+    "slug": "sword-of-magic",
+    "icon": "weapon_sword_of_magic_i00.png"
+  },
+  "sword of nightmare": {
+    "id": 134,
+    "slug": "sword-of-nightmare",
+    "icon": "weapon_sword_of_nightmare_i00.png"
+  },
+  "sword of nightmare blade": {
+    "id": 2095,
+    "slug": "sword-of-nightmare-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "sword of occult": {
+    "id": 144,
+    "slug": "sword-of-occult",
+    "icon": "weapon_sword_of_occult_i00.png"
+  },
+  "sword of revolution blade": {
+    "id": 2034,
+    "slug": "sword-of-revolution-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "sword of valhalla blade": {
+    "id": 4108,
+    "slug": "sword-of-valhalla-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "sword of whispering death": {
+    "id": 145,
+    "slug": "sword-of-whispering-death",
+    "icon": "weapon_deathbreath_sword_i00.png"
+  },
+  "sword of whispering death blade": {
+    "id": 2096,
+    "slug": "sword-of-whispering-death-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "tallum blade edge": {
+    "id": 5548,
+    "slug": "tallum-blade-edge",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "tarbar": {
+    "id": 158,
+    "slug": "tarbar",
+    "icon": "weapon_tarbar_i00.png"
+  },
+  "tarbar head": {
+    "id": 2035,
+    "slug": "tarbar-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "the 1st zaken's earring": {
+    "id": 32614,
+    "slug": "the-1st-zakens-earring",
+    "icon": "accessory_earring_of_zaken_i00.png"
+  },
+  "theca leather armor": {
+    "id": 400,
+    "slug": "theca-leather-armor",
+    "icon": "armor_t63_u_i00.png"
+  },
+  "theca leather armor pattern": {
+    "id": 1984,
+    "slug": "theca-leather-armor-pattern",
+    "icon": "etc_letter_red_i00.png"
+  },
+  "theca leather gaiters": {
+    "id": 420,
+    "slug": "theca-leather-gaiters",
+    "icon": "armor_t63_l_i00.png"
+  },
+  "theca leather gaiters pattern": {
+    "id": 1985,
+    "slug": "theca-leather-gaiters-pattern",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "tiger's eye earring": {
+    "id": 849,
+    "slug": "tigers-eye-earring",
+    "icon": "accessary_tigerseye_earing_i00.png"
+  },
+  "tiger's eye earring stone": {
+    "id": 1901,
+    "slug": "tigers-eye-earring-stone",
+    "icon": "etc_jewel_gold_i00.png"
+  },
+  "tome of blood": {
+    "id": 317,
+    "slug": "tome-of-blood",
+    "icon": "weapon_tome_of_blood_i00.png"
+  },
+  "tome of blood page": {
+    "id": 2030,
+    "slug": "tome-of-blood-page",
+    "icon": "etc_piece_of_paper_gray_i00.png"
+  },
+  "tower shield fragment": {
+    "id": 1978,
+    "slug": "tower-shield-fragment",
+    "icon": "etc_plate_glay_i00.png"
+  },
+  "triple-edged jamadhr": {
+    "id": 260,
+    "slug": "triple-edged-jamadhr",
+    "icon": "weapon_triple-edged_jamadhr_i00.png"
+  },
+  "tsurugi": {
+    "id": 77,
+    "slug": "tsurugi",
+    "icon": "weapon_tsurugi_i00.png"
+  },
+  "tsurugi blade": {
+    "id": 2091,
+    "slug": "tsurugi-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "tunic of doom pattern": {
+    "id": 4085,
+    "slug": "tunic-of-doom-pattern",
+    "icon": "etc_letter_red_i00.png"
+  },
+  "tunic of knowledge": {
+    "id": 436,
+    "slug": "tunic-of-knowledge",
+    "icon": "armor_t41_u_i00.png"
+  },
+  "tunic of zubei fabric": {
+    "id": 4069,
+    "slug": "tunic-of-zubei-fabric",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "two-handed sword": {
+    "id": 124,
+    "slug": "two-handed-sword",
+    "icon": "weapon_two_handed_sword_i00.png"
+  },
+  "two-handed sword edge": {
+    "id": 2026,
+    "slug": "two-handed-sword-edge",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "unidentified art of battle axe": {
+    "id": 32334,
+    "slug": "unidentified-art-of-battle-axe",
+    "icon": "weapon_art_of_battle_axe_i00.png"
+  },
+  "unidentified arthro nail": {
+    "id": 32340,
+    "slug": "unidentified-arthro-nail",
+    "icon": "weapon_arthro_nail_i00.png"
+  },
+  "unidentified avadon breastplate": {
+    "id": 32594,
+    "slug": "unidentified-avadon-breastplate",
+    "icon": "armor_t66_u_i00.png"
+  },
+  "unidentified avadon circlet": {
+    "id": 32364,
+    "slug": "unidentified-avadon-circlet",
+    "icon": "armor_leather_helmet_i00.png"
+  },
+  "unidentified avadon gaiters": {
+    "id": 32353,
+    "slug": "unidentified-avadon-gaiters",
+    "icon": "armor_t66_l_i00.png"
+  },
+  "unidentified avadon leather armor": {
+    "id": 32358,
+    "slug": "unidentified-avadon-leather-armor",
+    "icon": "armor_t67_ul_i00.png"
+  },
+  "unidentified avadon robe": {
+    "id": 32590,
+    "slug": "unidentified-avadon-robe",
+    "icon": "armor_t59_ul_i00.png"
+  },
+  "unidentified avadon shield": {
+    "id": 32591,
+    "slug": "unidentified-avadon-shield",
+    "icon": "shield_avadon_shield_i00.png"
+  },
+  "unidentified bellion cestus": {
+    "id": 32341,
+    "slug": "unidentified-bellion-cestus",
+    "icon": "weapon_bellion_cestus_i00.png"
+  },
+  "unidentified blood tornado": {
+    "id": 32342,
+    "slug": "unidentified-blood-tornado",
+    "icon": "weapon_blood_tornado_i00.png"
+  },
+  "unidentified bloody orchid": {
+    "id": 32337,
+    "slug": "unidentified-bloody-orchid",
+    "icon": "weapon_bloody_orchid_i00.png"
+  },
+  "unidentified blue wolf breastplate": {
+    "id": 32351,
+    "slug": "unidentified-blue-wolf-breastplate",
+    "icon": "armor_t68_u_i00.png"
+  },
+  "unidentified blue wolf gaiters": {
+    "id": 32354,
+    "slug": "unidentified-blue-wolf-gaiters",
+    "icon": "armor_t68_l_i00.png"
+  },
+  "unidentified blue wolf helmet": {
+    "id": 32365,
+    "slug": "unidentified-blue-wolf-helmet",
+    "icon": "armor_leather_helmet_i00.png"
+  },
+  "unidentified blue wolf leather armor": {
+    "id": 32359,
+    "slug": "unidentified-blue-wolf-leather-armor",
+    "icon": "armor_t69_ul_i00.png"
+  },
+  "unidentified blue wolf stockings": {
+    "id": 32362,
+    "slug": "unidentified-blue-wolf-stockings",
+    "icon": "armor_t70_l_i00.png"
+  },
+  "unidentified blue wolf tunic": {
+    "id": 32588,
+    "slug": "unidentified-blue-wolf-tunic",
+    "icon": "armor_t70_u_i00.png"
+  },
+  "unidentified bow of peril": {
+    "id": 32345,
+    "slug": "unidentified-bow-of-peril",
+    "icon": "weapon_hazard_bow_i00.png"
+  },
+  "unidentified carnage bow": {
+    "id": 32346,
+    "slug": "unidentified-carnage-bow",
+    "icon": "weapon_carnium_bow_i00.png"
+  },
+  "unidentified dark elven long bow": {
+    "id": 32344,
+    "slug": "unidentified-dark-elven-long-bow",
+    "icon": "weapon_dark_elven_long_bow_i00.png"
+  },
+  "unidentified dasparion's staff": {
+    "id": 32535,
+    "slug": "unidentified-dasparions-staff",
+    "icon": "weapon_dasparions_staff_i00.png"
+  },
+  "unidentified deadman's glory": {
+    "id": 32333,
+    "slug": "unidentified-deadmans-glory",
+    "icon": "weapon_deadmans_glory_i00.png"
+  },
+  "unidentified demon's dagger": {
+    "id": 32336,
+    "slug": "unidentified-demons-dagger",
+    "icon": "weapon_demons_sword_i00.png"
+  },
+  "unidentified destroyer hammer": {
+    "id": 32437,
+    "slug": "unidentified-destroyer-hammer",
+    "icon": "weapon_hammer_of_destroyer_i00.png"
+  },
+  "unidentified doom helmet": {
+    "id": 32366,
+    "slug": "unidentified-doom-helmet",
+    "icon": "armor_leather_helmet_i00.png"
+  },
+  "unidentified doom plate armor": {
+    "id": 32355,
+    "slug": "unidentified-doom-plate-armor",
+    "icon": "armor_t71_ul_i00.png"
+  },
+  "unidentified doom shield": {
+    "id": 32592,
+    "slug": "unidentified-doom-shield",
+    "icon": "shield_doom_shield_i00.png"
+  },
+  "unidentified elemental sword": {
+    "id": 32330,
+    "slug": "unidentified-elemental-sword",
+    "icon": "weapon_elemental_sword_i00.png"
+  },
+  "unidentified great axe": {
+    "id": 32348,
+    "slug": "unidentified-great-axe",
+    "icon": "weapon_great_axe_i00.png"
+  },
+  "unidentified great sword": {
+    "id": 32321,
+    "slug": "unidentified-great-sword",
+    "icon": "weapon_great_sword_i00.png"
+  },
+  "unidentified guardian sword": {
+    "id": 32430,
+    "slug": "unidentified-guardian-sword",
+    "icon": "weapon_guardians_sword_i00.png"
+  },
+  "unidentified halberd": {
+    "id": 32327,
+    "slug": "unidentified-halberd",
+    "icon": "weapon_halbard_i00.png"
+  },
+  "unidentified heavy war axe": {
+    "id": 32325,
+    "slug": "unidentified-heavy-war-axe",
+    "icon": "weapon_heavy_war_axe_i00.png"
+  },
+  "unidentified hell knife": {
+    "id": 32339,
+    "slug": "unidentified-hell-knife",
+    "icon": "weapon_hell_knife_i00.png"
+  },
+  "unidentified ice storm hammer": {
+    "id": 32438,
+    "slug": "unidentified-ice-storm-hammer",
+    "icon": "weapon_ice_storm_hammer_i00.png"
+  },
+  "unidentified infernal master": {
+    "id": 32431,
+    "slug": "unidentified-infernal-master",
+    "icon": "weapon_inferno_master_i00.png"
+  },
+  "unidentified kaim vanul's bones": {
+    "id": 32434,
+    "slug": "unidentified-kaim-vanuls-bones",
+    "icon": "weapon_bone_of_kaim_vanul_i00.png"
+  },
+  "unidentified keshanberk": {
+    "id": 32328,
+    "slug": "unidentified-keshanberk",
+    "icon": "weapon_kshanberk_i00.png"
+  },
+  "unidentified kris": {
+    "id": 32335,
+    "slug": "unidentified-kris",
+    "icon": "weapon_kris_i00.png"
+  },
+  "unidentified lance": {
+    "id": 32326,
+    "slug": "unidentified-lance",
+    "icon": "weapon_lancia_i00.png"
+  },
+  "unidentified leather armor of doom": {
+    "id": 32360,
+    "slug": "unidentified-leather-armor-of-doom",
+    "icon": "armor_t72_ul_i00.png"
+  },
+  "unidentified meteor shower": {
+    "id": 32368,
+    "slug": "unidentified-meteor-shower",
+    "icon": "weapon_meteor_shower_i00.png"
+  },
+  "unidentified sealed avadon boots": {
+    "id": 32403,
+    "slug": "unidentified-sealed-avadon-boots",
+    "icon": "armor_t66_b_i00.png"
+  },
+  "unidentified sealed avadon gloves": {
+    "id": 32399,
+    "slug": "unidentified-sealed-avadon-gloves",
+    "icon": "armor_t66_g_i00.png"
+  },
+  "unidentified sealed blue wolf boots": {
+    "id": 32404,
+    "slug": "unidentified-sealed-blue-wolf-boots",
+    "icon": "armor_t68_b_i00.png"
+  },
+  "unidentified sealed blue wolf gloves": {
+    "id": 32400,
+    "slug": "unidentified-sealed-blue-wolf-gloves",
+    "icon": "armor_t68_g_i00.png"
+  },
+  "unidentified sealed dark crystal boots": {
+    "id": 32373,
+    "slug": "unidentified-sealed-dark-crystal-boots",
+    "icon": "armor_t74_b_i02.png"
+  },
+  "unidentified sealed dark crystal breastplate": {
+    "id": 32369,
+    "slug": "unidentified-sealed-dark-crystal-breastplate",
+    "icon": "armor_t74_u_i02.png"
+  },
+  "unidentified sealed dark crystal gaiters": {
+    "id": 32370,
+    "slug": "unidentified-sealed-dark-crystal-gaiters",
+    "icon": "armor_t74_l_i02.png"
+  },
+  "unidentified sealed dark crystal gloves": {
+    "id": 32372,
+    "slug": "unidentified-sealed-dark-crystal-gloves",
+    "icon": "armor_t74_g_i02.png"
+  },
+  "unidentified sealed dark crystal helmet": {
+    "id": 32371,
+    "slug": "unidentified-sealed-dark-crystal-helmet",
+    "icon": "armor_helmet_i02.png"
+  },
+  "unidentified sealed dark crystal leather armor": {
+    "id": 32379,
+    "slug": "unidentified-sealed-dark-crystal-leather-armor",
+    "icon": "armor_t75_u_i02.png"
+  },
+  "unidentified sealed dark crystal leggings": {
+    "id": 32380,
+    "slug": "unidentified-sealed-dark-crystal-leggings",
+    "icon": "armor_t75_l_i02.png"
+  },
+  "unidentified sealed dark crystal robe": {
+    "id": 32384,
+    "slug": "unidentified-sealed-dark-crystal-robe",
+    "icon": "armor_t76_ul_i02.png"
+  },
+  "unidentified sealed dark crystal shield": {
+    "id": 32374,
+    "slug": "unidentified-sealed-dark-crystal-shield",
+    "icon": "shield_dark_crystal_shield_i02.png"
+  },
+  "unidentified sealed doom boots": {
+    "id": 32405,
+    "slug": "unidentified-sealed-doom-boots",
+    "icon": "armor_t71_b_i00.png"
+  },
+  "unidentified sealed doom gloves": {
+    "id": 32401,
+    "slug": "unidentified-sealed-doom-gloves",
+    "icon": "armor_t71_g_i00.png"
+  },
+  "unidentified sealed tallum boots": {
+    "id": 32378,
+    "slug": "unidentified-sealed-tallum-boots",
+    "icon": "armor_t77_b_i02.png"
+  },
+  "unidentified sealed tallum gloves": {
+    "id": 32377,
+    "slug": "unidentified-sealed-tallum-gloves",
+    "icon": "armor_t77_g_i02.png"
+  },
+  "unidentified sealed tallum helmet": {
+    "id": 32376,
+    "slug": "unidentified-sealed-tallum-helmet",
+    "icon": "armor_helmet_i02.png"
+  },
+  "unidentified sealed tallum leather armor": {
+    "id": 32381,
+    "slug": "unidentified-sealed-tallum-leather-armor",
+    "icon": "armor_t78_ul_i02.png"
+  },
+  "unidentified sealed tallum plate armor": {
+    "id": 32375,
+    "slug": "unidentified-sealed-tallum-plate-armor",
+    "icon": "armor_t77_ul_i02.png"
+  },
+  "unidentified sealed tallum stockings": {
+    "id": 32383,
+    "slug": "unidentified-sealed-tallum-stockings",
+    "icon": "armor_t79_l_i02.png"
+  },
+  "unidentified sealed tallum tunic": {
+    "id": 32382,
+    "slug": "unidentified-sealed-tallum-tunic",
+    "icon": "armor_t79_u_i02.png"
+  },
+  "unidentified sealed zubei's boots": {
+    "id": 32402,
+    "slug": "unidentified-sealed-zubeis-boots",
+    "icon": "armor_t64_b_i00.png"
+  },
+  "unidentified sealed zubei's gauntlets": {
+    "id": 32398,
+    "slug": "unidentified-sealed-zubeis-gauntlets",
+    "icon": "armor_t64_g_i02.png"
+  },
+  "unidentified spell breaker": {
+    "id": 32433,
+    "slug": "unidentified-spell-breaker",
+    "icon": "weapon_spell_breaker_i00.png"
+  },
+  "unidentified spiritual eye": {
+    "id": 32435,
+    "slug": "unidentified-spiritual-eye",
+    "icon": "weapon_eye_of_soul_i00.png"
+  },
+  "unidentified sprite's staff": {
+    "id": 32533,
+    "slug": "unidentified-sprites-staff",
+    "icon": "weapon_sprites_staff_i00.png"
+  },
+  "unidentified staff of evil spirits": {
+    "id": 32534,
+    "slug": "unidentified-staff-of-evil-spirits",
+    "icon": "weapon_staff_of_evil_sprit_i00.png"
+  },
+  "unidentified star buster": {
+    "id": 32439,
+    "slug": "unidentified-star-buster",
+    "icon": "weapon_star_buster_i00.png"
+  },
+  "unidentified stockings of doom": {
+    "id": 32363,
+    "slug": "unidentified-stockings-of-doom",
+    "icon": "armor_t73_l_i00.png"
+  },
+  "unidentified stockings of zubei": {
+    "id": 32361,
+    "slug": "unidentified-stockings-of-zubei",
+    "icon": "armor_t56_l_i00.png"
+  },
+  "unidentified sword of damascus": {
+    "id": 32322,
+    "slug": "unidentified-sword-of-damascus",
+    "icon": "weapon_sword_of_damascus_i00.png"
+  },
+  "unidentified sword of valhalla": {
+    "id": 32329,
+    "slug": "unidentified-sword-of-valhalla",
+    "icon": "weapon_sword_of_valhalla_i00.png"
+  },
+  "unidentified tallum blade": {
+    "id": 32323,
+    "slug": "unidentified-tallum-blade",
+    "icon": "weapon_tallum_blade_i00.png"
+  },
+  "unidentified tunic of doom": {
+    "id": 32589,
+    "slug": "unidentified-tunic-of-doom",
+    "icon": "armor_t73_u_i00.png"
+  },
+  "unidentified tunic of zubei": {
+    "id": 32587,
+    "slug": "unidentified-tunic-of-zubei",
+    "icon": "armor_t56_u_i00.png"
+  },
+  "unidentified wizard's tear": {
+    "id": 32432,
+    "slug": "unidentified-wizards-tear",
+    "icon": "weapon_tears_of_wizard_i00.png"
+  },
+  "unidentified zubei's breastplate": {
+    "id": 32350,
+    "slug": "unidentified-zubeis-breastplate",
+    "icon": "armor_t64_u_i00.png"
+  },
+  "unidentified zubei's gaiters": {
+    "id": 32352,
+    "slug": "unidentified-zubeis-gaiters",
+    "icon": "armor_t64_l_i00.png"
+  },
+  "unidentified zubei's helmet": {
+    "id": 32595,
+    "slug": "unidentified-zubeis-helmet",
+    "icon": "armor_helmet_i00.png"
+  },
+  "unidentified zubei's leather gaiters": {
+    "id": 32357,
+    "slug": "unidentified-zubeis-leather-gaiters",
+    "icon": "armor_t65_l_i00.png"
+  },
+  "unidentified zubei's leather shirt": {
+    "id": 32356,
+    "slug": "unidentified-zubeis-leather-shirt",
+    "icon": "armor_t65_u_i00.png"
+  },
+  "unidentified zubei's shield": {
+    "id": 32593,
+    "slug": "unidentified-zubeis-shield",
+    "icon": "shield_shrnoens_shield_i00.png"
+  },
+  "war axe blade": {
+    "id": 2097,
+    "slug": "war-axe-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "war hammer": {
+    "id": 293,
+    "slug": "war-hammer",
+    "icon": "weapon_war_hammer_i00.png"
+  },
+  "war pick": {
+    "id": 294,
+    "slug": "war-pick",
+    "icon": "weapon_hammer_in_flames_i00.png"
+  },
+  "war pick head": {
+    "id": 2041,
+    "slug": "war-pick-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "white tunic": {
+    "id": 434,
+    "slug": "white-tunic",
+    "icon": "armor_t16_u_i00.png"
+  },
+  "white tunic pattern": {
+    "id": 1936,
+    "slug": "white-tunic-pattern",
+    "icon": "etc_letter_red_i00.png"
+  },
+  "winged spear": {
+    "id": 93,
+    "slug": "winged-spear",
+    "icon": "weapon_winged_spear_i00.png"
+  },
+  "winged spear blade": {
+    "id": 2033,
+    "slug": "winged-spear-blade",
+    "icon": "etc_sword_body_i00.png"
+  },
+  "yaksa mace": {
+    "id": 2503,
+    "slug": "yaksa-mace",
+    "icon": "weapon_yaksa_mace_i00.png"
+  },
+  "yaksa mace head": {
+    "id": 2969,
+    "slug": "yaksa-mace-head",
+    "icon": "etc_squares_gray_i00.png"
+  },
+  "zubei's breastplate part": {
+    "id": 4056,
+    "slug": "zubeis-breastplate-part",
+    "icon": "etc_plate_silver_i00.png"
+  },
+  "zubei's gaiter material": {
+    "id": 4057,
+    "slug": "zubeis-gaiter-material",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "zubei's helmet design": {
+    "id": 4102,
+    "slug": "zubeis-helmet-design",
+    "icon": "etc_pouch_brown_i00.png"
+  },
+  "zubei's leather gaiter texture": {
+    "id": 4067,
+    "slug": "zubeis-leather-gaiter-texture",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "zubei's leather shirt fabric": {
+    "id": 4066,
+    "slug": "zubeis-leather-shirt-fabric",
+    "icon": "etc_leather_gray_i00.png"
+  },
+  "zubei's shield fragment": {
+    "id": 4101,
+    "slug": "zubeis-shield-fragment",
+    "icon": "etc_plate_silver_i00.png"
+  }
+}

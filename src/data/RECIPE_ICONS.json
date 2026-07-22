@@ -1,0 +1,1714 @@
+{
+  "1666": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "etc_wooden_quiver_i00.png"
+  },
+  "1786": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "weapon_broad_sword_i00.png"
+  },
+  "1787": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "weapon_willow_staff_i00.png"
+  },
+  "1788": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "weapon_bow_i00.png"
+  },
+  "1789": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "weapon_cedar_staff_i00.png"
+  },
+  "1790": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "weapon_dirk_i00.png"
+  },
+  "1791": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "weapon_brandish_i00.png"
+  },
+  "1792": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "weapon_short_spear_i00.png"
+  },
+  "1793": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "weapon_sword_of_watershadow_i00.png"
+  },
+  "1794": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "weapon_short_bow_i00.png"
+  },
+  "1795": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "armor_t05_b_i00.png"
+  },
+  "1796": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "armor_t05_u_i00.png"
+  },
+  "1797": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "armor_t05_l_i00.png"
+  },
+  "1798": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "armor_leather_helmet_i00.png"
+  },
+  "1799": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "armor_t32_g_i00.png"
+  },
+  "1800": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "armor_t33_u_i00.png"
+  },
+  "1801": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "armor_t33_l_i00.png"
+  },
+  "1802": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "accessary_necklace_of_anguish_i00.png"
+  },
+  "1803": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "accessary_necklace_of_wisdom_i00.png"
+  },
+  "1804": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "etc_spirit_bullet_blue_i00.png"
+  },
+  "1805": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "etc_spirit_bullet_green_i00.png"
+  },
+  "1806": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "etc_spirit_bullet_red_i00.png"
+  },
+  "1807": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "etc_spirit_bullet_silver_i00.png"
+  },
+  "1814": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "etc_leather_i00.png"
+  },
+  "1817": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "etc_skein_gray_i00.png"
+  },
+  "1825": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "etc_oriharukon_i00.png"
+  },
+  "2135": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "etc_braided_hemp_i00.png"
+  },
+  "2136": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "etc_oil_pot_black_i00.png"
+  },
+  "2137": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "etc_lump_black_i00.png"
+  },
+  "2138": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "etc_powder_white_i00.png"
+  },
+  "2139": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "etc_mold_i00.png"
+  },
+  "2140": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "etc_pouch_yellow_i00.png"
+  },
+  "2141": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "etc_silver_mold_i00.png"
+  },
+  "2142": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "etc_potion_clear_i00.png"
+  },
+  "2143": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "etc_synthetic_cokes_i00.png"
+  },
+  "2144": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "etc_compound_braid_i00.png"
+  },
+  "2145": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "etc_lump_white_i00.png"
+  },
+  "2146": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "etc_artisans_frame_i00.png"
+  },
+  "2147": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "etc_blacksmiths_frame_i00.png"
+  },
+  "2148": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "etc_crafted_leather_i00.png"
+  },
+  "2149": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "etc_metallic_fiber_i00.png"
+  },
+  "2150": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "accessary_blue_diamond_necklace_i00.png"
+  },
+  "2151": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "accessary_necklace_of_devotion_i00.png"
+  },
+  "2152": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "accessary_enchanted_necklace_i00.png"
+  },
+  "2153": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "accessary_tigerseye_earing_i00.png"
+  },
+  "2154": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "accessary_elven_earing_i00.png"
+  },
+  "2155": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "accessary_elven_ring_i00.png"
+  },
+  "2156": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "accessary_elven_necklace_i00.png"
+  },
+  "2157": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "accessary_onyxbeastseye_earing_i00.png"
+  },
+  "2158": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "accessary_mithril_ring_i00.png"
+  },
+  "2159": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "accessary_necklace_of_darkness_i00.png"
+  },
+  "2160": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "accessary_moonstone_earing_i00.png"
+  },
+  "2161": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "accessary_aquastone_ring_i00.png"
+  },
+  "2162": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "accessary_aquastone_necklace_i00.png"
+  },
+  "2163": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "accessary_earing_of_protection_i00.png"
+  },
+  "2164": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "accessary_ring_of_protection_i00.png"
+  },
+  "2165": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "accessary_necklace_of_protection_i00.png"
+  },
+  "2166": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "accessary_earing_of_binding_i00.png"
+  },
+  "2167": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "accessary_ring_of_ages_i00.png"
+  },
+  "2168": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "accessary_necklace_of_mermaid_i00.png"
+  },
+  "2169": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "accessary_necklace_of_binding_i00.png"
+  },
+  "2170": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "accessary_nassens_earing_i00.png"
+  },
+  "2173": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "armor_t30_u_i00.png"
+  },
+  "2174": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "armor_t30_l_i00.png"
+  },
+  "2175": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "armor_t30_b_i00.png"
+  },
+  "2176": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t09_b_i00.png"
+  },
+  "2177": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_leather_helmet_i00.png"
+  },
+  "2178": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t16_l_i00.png"
+  },
+  "2179": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t09_g_i00.png"
+  },
+  "2180": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t08_u_i00.png"
+  },
+  "2181": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t16_u_i00.png"
+  },
+  "2182": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t08_l_i00.png"
+  },
+  "2183": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t10_u_i00.png"
+  },
+  "2184": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t10_l_i00.png"
+  },
+  "2185": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t10_b_i00.png"
+  },
+  "2186": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t43_u_i00.png"
+  },
+  "2187": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t42_u_i00.png"
+  },
+  "2188": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t42_l_i00.png"
+  },
+  "2189": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t51_u_i00.png"
+  },
+  "2190": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t51_l_i00.png"
+  },
+  "2191": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t40_g_i00.png"
+  },
+  "2192": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "shield_kite_shield_i00.png"
+  },
+  "2193": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t40_b_i00.png"
+  },
+  "2194": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t46_g_i00.png"
+  },
+  "2195": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t46_u_i00.png"
+  },
+  "2196": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t46_l_i00.png"
+  },
+  "2197": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t45_ul_i00.png"
+  },
+  "2198": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t44_ul_i00.png"
+  },
+  "2199": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t53_l_i00.png"
+  },
+  "2201": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "shield_square_shield_i00.png"
+  },
+  "2202": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t44_b_i00.png"
+  },
+  "2203": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t42_b_i00.png"
+  },
+  "2204": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t48_u_i00.png"
+  },
+  "2205": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t48_l_i00.png"
+  },
+  "2206": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t47_u_i00.png"
+  },
+  "2207": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t53_u_i00.png"
+  },
+  "2208": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t45_g_i00.png"
+  },
+  "2209": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "shield_eldarake_i00.png"
+  },
+  "2211": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t47_u_i00.png"
+  },
+  "2212": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t47_l_i00.png"
+  },
+  "2213": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t60_u_i00.png"
+  },
+  "2214": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t60_l_i00.png"
+  },
+  "2215": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t44_ul_i00.png"
+  },
+  "2216": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_helmet_i00.png"
+  },
+  "2217": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "shield_knight_shield_i00.png"
+  },
+  "2219": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t57_b_i00.png"
+  },
+  "2220": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t49_u_i00.png"
+  },
+  "2221": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t49_l_i00.png"
+  },
+  "2222": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t61_ul_i00.png"
+  },
+  "2223": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "shield_tower_shield_i00.png"
+  },
+  "2224": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t54_u_i00.png"
+  },
+  "2225": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t54_l_i00.png"
+  },
+  "2226": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t61_g_i00.png"
+  },
+  "2228": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_circlet_i00.png"
+  },
+  "2229": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t63_u_i00.png"
+  },
+  "2230": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t63_l_i00.png"
+  },
+  "2231": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t62_ul_i00.png"
+  },
+  "2232": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t21_ul_i00.png"
+  },
+  "2233": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t57_u_i00.png"
+  },
+  "2234": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t57_l_i00.png"
+  },
+  "2250": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "etc_bone_quiver_i00.png"
+  },
+  "2251": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "etc_fine_steel_quiver_i00.png"
+  },
+  "2252": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "weapon_iron_hammer_i00.png"
+  },
+  "2253": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "weapon_sword_breaker_i00.png"
+  },
+  "2254": {
+    "recipe": "etc_recipe_white_i00.png",
+    "result": "weapon_composition_bow_i00.png"
+  },
+  "2255": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_saber_i00.png"
+  },
+  "2256": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_assassin_knife_i00.png"
+  },
+  "2257": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_trident_i00.png"
+  },
+  "2258": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_temptation_of_abyss_i00.png"
+  },
+  "2259": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_spinebone_sword_i00.png"
+  },
+  "2260": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_mace_of_judgment_i00.png"
+  },
+  "2261": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_conjure_staff_i00.png"
+  },
+  "2262": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_elven_bow_i00.png"
+  },
+  "2263": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_dwarven_trident_i00.png"
+  },
+  "2264": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_two_handed_sword_i00.png"
+  },
+  "2265": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_spike_club_i00.png"
+  },
+  "2266": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_knife_o__silenus_i00.png"
+  },
+  "2267": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_gastraphetes_i00.png"
+  },
+  "2268": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_tome_of_blood_i00.png"
+  },
+  "2269": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_morning_star_i00.png"
+  },
+  "2270": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_goathead_staff_i00.png"
+  },
+  "2271": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_winged_spear_i00.png"
+  },
+  "2272": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_sword_of_revolution_i00.png"
+  },
+  "2273": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_tarbar_i00.png"
+  },
+  "2274": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_skull_breaker_i00.png"
+  },
+  "2275": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_heavy_bone_club_i00.png"
+  },
+  "2276": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_maingauche_i00.png"
+  },
+  "2277": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_bichhwa_i00.png"
+  },
+  "2278": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_strengthening_long_bow_i00.png"
+  },
+  "2279": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_hammer_in_flames_i00.png"
+  },
+  "2280": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_crucifix_of_blood_i00.png"
+  },
+  "2282": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_maingauche_i01.png"
+  },
+  "2284": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_demon_fangs_i00.png"
+  },
+  "2285": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_claymore_i00.png"
+  },
+  "2286": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_bonebreaker_i00.png"
+  },
+  "2287": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_atuba_hammer_i00.png"
+  },
+  "2288": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_ghost_staff_i00.png"
+  },
+  "2289": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_life_stick_i00.png"
+  },
+  "2290": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_mithril_dagger_i00.png"
+  },
+  "2291": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_scallop_jamadhr_i00.png"
+  },
+  "2292": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_cyclone_bow_i00.png"
+  },
+  "2293": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_glaive_i00.png"
+  },
+  "2296": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_atuba_mace_i00.png"
+  },
+  "2297": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_flamberge_i00.png"
+  },
+  "2298": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_stormbringer_i00.png"
+  },
+  "2299": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_big_hammer_i00.png"
+  },
+  "2300": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_scythe_i00.png"
+  },
+  "2301": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_battle_axe_i00.png"
+  },
+  "2302": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_war_pick_i00.png"
+  },
+  "2303": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_skull_graver_i00.png"
+  },
+  "2304": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_heavy_doom_hammer_i00.png"
+  },
+  "2305": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_crystal_staff_i00.png"
+  },
+  "2306": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_stick_of_faith_i00.png"
+  },
+  "2307": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_heavy_doom_axe_i00.png"
+  },
+  "2308": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_cursed_dagger_i00.png"
+  },
+  "2310": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_darkelven_dagger_i00.png"
+  },
+  "2311": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_chakram_i00.png"
+  },
+  "2312": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_crystallized_ice_bow_i00.png"
+  },
+  "2313": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_orcish_glaive_i00.png"
+  },
+  "2314": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_body_slasher_i00.png"
+  },
+  "2315": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_shamshir_i00.png"
+  },
+  "2316": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_katana_i00.png"
+  },
+  "2317": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_bech_de_corbin_i00.png"
+  },
+  "2318": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_spirits_sword_i00.png"
+  },
+  "2319": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_raid_sword_i00.png"
+  },
+  "2320": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_cursed_staff_i00.png"
+  },
+  "2321": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_stiletto_i00.png"
+  },
+  "2322": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_dagger_of_magicflame_i00.png"
+  },
+  "2323": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_elemental_bow_i00.png"
+  },
+  "2324": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_noble_elven_bow_i00.png"
+  },
+  "2326": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_horn_of_glory_i00.png"
+  },
+  "2327": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_caliburs_i00.png"
+  },
+  "2328": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_sword_of_delusion_i00.png"
+  },
+  "2329": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_tsurugi_i00.png"
+  },
+  "2330": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_homunkuluss_sword_i00.png"
+  },
+  "2331": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_poleaxe_i00.png"
+  },
+  "2332": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_sword_of_limit_i00.png"
+  },
+  "2333": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_sword_of_nightmare_i00.png"
+  },
+  "2334": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_deathbreath_sword_i00.png"
+  },
+  "2335": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_war_axe_i00.png"
+  },
+  "2336": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_nirvana_axe_i00.png"
+  },
+  "2337": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_stick_of_eternity_i00.png"
+  },
+  "2338": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_paradia_staff_i00.png"
+  },
+  "2339": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_inferno_staff_i00.png"
+  },
+  "2340": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_paagrio_hammer_i00.png"
+  },
+  "2341": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_sages_staff_i00.png"
+  },
+  "2342": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_club_of_nature_i00.png"
+  },
+  "2343": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_mace_of_underworld_i00.png"
+  },
+  "2344": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_grace_dagger_i00.png"
+  },
+  "2345": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_dark_screamer_i00.png"
+  },
+  "2346": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_fist_blade_i00.png"
+  },
+  "2347": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_akat_long_bow_i00.png"
+  },
+  "2348": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_heathens_book_i00.png"
+  },
+  "2350": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_paagrio_axe_i00.png"
+  },
+  "2351": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_scorpion_i00.png"
+  },
+  "2352": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_widow_maker_i00.png"
+  },
+  "2353": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_samurai_longsword_i00.png"
+  },
+  "2354": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_deadmans_staff_i00.png"
+  },
+  "2355": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_ghouls_staff_i00.png"
+  },
+  "2356": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_demons_staff_i00.png"
+  },
+  "2357": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_crystal_dagger_i00.png"
+  },
+  "2358": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_great_pata_i00.png"
+  },
+  "2359": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_eminence_bow_i00.png"
+  },
+  "2360": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_orcish_poleaxe_i00.png"
+  },
+  "2970": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "accessary_ring_of_binding_i00.png"
+  },
+  "2971": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t40_l_i00.png"
+  },
+  "2972": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t43_l_i00.png"
+  },
+  "2975": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_leather_helmet_i00.png"
+  },
+  "2976": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t42_b_i00.png"
+  },
+  "2977": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t43_b_i00.png"
+  },
+  "2978": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t51_b_i00.png"
+  },
+  "2979": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t42_g_i00.png"
+  },
+  "2980": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t43_g_i00.png"
+  },
+  "2981": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t51_g_i00.png"
+  },
+  "2982": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "shield_brigandine_shield_i00.png"
+  },
+  "2983": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_leather_helmet_i00.png"
+  },
+  "2984": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t45_b_i00.png"
+  },
+  "2985": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t46_b_i00.png"
+  },
+  "2986": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "armor_t44_g_i00.png"
+  },
+  "2987": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "shield_plate_shield_i00.png"
+  },
+  "2988": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t47_l_i00.png"
+  },
+  "2989": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_leather_helmet_i00.png"
+  },
+  "2990": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t48_b_i00.png"
+  },
+  "2991": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t53_b_i00.png"
+  },
+  "2992": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t47_b_i00.png"
+  },
+  "2993": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t60_b_i00.png"
+  },
+  "2994": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t44_b_i00.png"
+  },
+  "2995": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t47_g_i00.png"
+  },
+  "2996": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t48_g_i00.png"
+  },
+  "2997": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t53_g_i00.png"
+  },
+  "2998": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "shield_chain_shield_i00.png"
+  },
+  "2999": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t47_g_i00.png"
+  },
+  "3000": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "shield_dwarven_chain_shield_i00.png"
+  },
+  "3001": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t49_b_i00.png"
+  },
+  "3002": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t60_g_i00.png"
+  },
+  "3003": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t44_g_i00.png"
+  },
+  "3004": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t49_g_i00.png"
+  },
+  "3005": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t54_b_i00.png"
+  },
+  "3006": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t54_g_i00.png"
+  },
+  "3007": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t63_b_i00.png"
+  },
+  "3008": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t63_g_i00.png"
+  },
+  "3009": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t61_b_i00.png"
+  },
+  "3010": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_leather_helmet_i00.png"
+  },
+  "3011": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t67_b_i00.png"
+  },
+  "3012": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_leather_helmet_i00.png"
+  },
+  "3013": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t21_b_i00.png"
+  },
+  "3014": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t62_b_i00.png"
+  },
+  "3015": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t21_g_i00.png"
+  },
+  "3016": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t62_g_i00.png"
+  },
+  "3017": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "armor_t57_g_i00.png"
+  },
+  "3019": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "shield_full_plate_shield_i00.png"
+  },
+  "3020": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_elven_long_sword_i00.png"
+  },
+  "3021": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_dwarven_warhammer_i00.png"
+  },
+  "3022": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_yaksa_mace_i00.png"
+  },
+  "3032": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "etc_spell_shot_blue_i00.png"
+  },
+  "3033": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "etc_spell_shot_green_i00.png"
+  },
+  "3034": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "etc_spell_shot_red_i00.png"
+  },
+  "3035": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "etc_spell_shot_silver_i00.png"
+  },
+  "3953": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "etc_spell_shot_blue_i01.png"
+  },
+  "3954": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "etc_spell_shot_green_i01.png"
+  },
+  "3955": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "etc_spell_shot_red_i01.png"
+  },
+  "3956": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "etc_spell_shot_silver_i01.png"
+  },
+  "4122": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "etc_lump_yellow_i00.png"
+  },
+  "4123": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "etc_lump_dark_gray_i00.png"
+  },
+  "4124": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "etc_mold_i00.png"
+  },
+  "4125": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "etc_silver_mold_i00.png"
+  },
+  "4132": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "shield_composite_shield_i00.png"
+  },
+  "4180": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "etc_silver_quiver_i00.png"
+  },
+  "4440": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_knuckle_dust_i00.png"
+  },
+  "4936": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "shield_avadon_shield_i00.png"
+  },
+  "4937": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "accessary_adamantite_earing_i00.png"
+  },
+  "4938": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "accessary_adamantite_ring_i00.png"
+  },
+  "4939": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "accessary_adamantite_necklace_i00.png"
+  },
+  "4940": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t64_u_i00.png"
+  },
+  "4941": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t64_l_i00.png"
+  },
+  "4944": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t66_u_i00.png"
+  },
+  "4945": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t66_l_i00.png"
+  },
+  "4946": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t65_u_i00.png"
+  },
+  "4947": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t65_l_i00.png"
+  },
+  "4948": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t67_ul_i00.png"
+  },
+  "4949": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t56_u_i00.png"
+  },
+  "4950": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t56_l_i00.png"
+  },
+  "4951": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t59_ul_i00.png"
+  },
+  "4952": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_leather_helmet_i00.png"
+  },
+  "4953": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t66_g_i02.png"
+  },
+  "4958": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t64_b_i02.png"
+  },
+  "4959": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t66_b_i02.png"
+  },
+  "4960": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t64_g_i02.png"
+  },
+  "4961": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "shield_shrnoens_shield_i00.png"
+  },
+  "4962": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_helmet_i00.png"
+  },
+  "4963": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "weapon_great_sword_i00.png"
+  },
+  "4964": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "weapon_heavy_war_axe_i00.png"
+  },
+  "4965": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "weapon_sprites_staff_i00.png"
+  },
+  "4966": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "weapon_kshanberk_i00.png"
+  },
+  "4967": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "weapon_sword_of_valhalla_i00.png"
+  },
+  "4968": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "weapon_kris_i00.png"
+  },
+  "4969": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "weapon_hell_knife_i00.png"
+  },
+  "4970": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "weapon_arthro_nail_i00.png"
+  },
+  "4971": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "weapon_dark_elven_long_bow_i00.png"
+  },
+  "4972": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "weapon_great_axe_i00.png"
+  },
+  "4973": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "accessary_earing_of_black_ore_i00.png"
+  },
+  "4974": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "accessary_ring_of_black_ore_i00.png"
+  },
+  "4975": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "accessary_necklace_of_black_ore_i00.png"
+  },
+  "4980": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "shield_doom_shield_i00.png"
+  },
+  "4981": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t68_u_i00.png"
+  },
+  "4982": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t68_l_i00.png"
+  },
+  "4983": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t71_ul_i00.png"
+  },
+  "4984": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t69_ul_i00.png"
+  },
+  "4985": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t72_ul_i00.png"
+  },
+  "4986": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t70_u_i00.png"
+  },
+  "4987": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t73_u_i00.png"
+  },
+  "4988": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t70_l_i00.png"
+  },
+  "4989": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t73_l_i00.png"
+  },
+  "4990": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_leather_helmet_i00.png"
+  },
+  "4991": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_leather_helmet_i00.png"
+  },
+  "4992": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t68_b_i02.png"
+  },
+  "4993": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t71_g_i02.png"
+  },
+  "4998": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t68_g_i02.png"
+  },
+  "4999": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "armor_t71_b_i02.png"
+  },
+  "5000": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "weapon_sword_of_damascus_i00.png"
+  },
+  "5001": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "weapon_lancia_i00.png"
+  },
+  "5002": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "weapon_deadmans_glory_i00.png"
+  },
+  "5003": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "weapon_art_of_battle_axe_i00.png"
+  },
+  "5004": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "weapon_staff_of_evil_sprit_i00.png"
+  },
+  "5005": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "weapon_demons_sword_i00.png"
+  },
+  "5006": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "weapon_bellion_cestus_i00.png"
+  },
+  "5007": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "weapon_hazard_bow_i00.png"
+  },
+  "5230": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "etc_mithril_quiver_i00.png"
+  },
+  "5231": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "etc_plate_blue_i00.png"
+  },
+  "5332": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_t75_u_i02.png"
+  },
+  "5334": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_t78_ul_i02.png"
+  },
+  "5336": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_t81_ul_i02.png"
+  },
+  "5338": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_t84_ul_i02.png"
+  },
+  "5340": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_t75_l_i02.png"
+  },
+  "5346": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_t79_u_i02.png"
+  },
+  "5348": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_t76_ul_i02.png"
+  },
+  "5350": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_t82_ul_i02.png"
+  },
+  "5352": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_t85_ul_i02.png"
+  },
+  "5354": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_t79_l_i02.png"
+  },
+  "5364": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "shield_dark_crystal_shield_i02.png"
+  },
+  "5366": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "shield_shield_of_nightmare_i02.png"
+  },
+  "5368": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_t74_b_i02.png"
+  },
+  "5370": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_t77_b_i02.png"
+  },
+  "5380": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_t80_b_i02.png"
+  },
+  "5382": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_t83_b_i02.png"
+  },
+  "5392": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_t74_g_i02.png"
+  },
+  "5394": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_t77_g_i02.png"
+  },
+  "5404": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_t80_g_i02.png"
+  },
+  "5406": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_t83_g_i02.png"
+  },
+  "5416": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_t74_u_i02.png"
+  },
+  "5418": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_t77_ul_i02.png"
+  },
+  "5420": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_t80_ul_i02.png"
+  },
+  "5422": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_t83_ul_i02.png"
+  },
+  "5424": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_t74_l_i02.png"
+  },
+  "5426": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_helmet_i02.png"
+  },
+  "5428": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_helmet_i02.png"
+  },
+  "5430": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_leather_helmet_i02.png"
+  },
+  "5432": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "armor_leather_helmet_i02.png"
+  },
+  "5434": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "weapon_dragon_slayer_i00.png"
+  },
+  "5436": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_berserker_blade_i00.png"
+  },
+  "5437": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_heavy_sword_i00.png"
+  },
+  "5438": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "weapon_meteor_shower_i00.png"
+  },
+  "5440": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "weapon_elysian_i00.png"
+  },
+  "5442": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "weapon_soul_bow_i00.png"
+  },
+  "5444": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "weapon_carnium_bow_i00.png"
+  },
+  "5446": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "weapon_bloody_orchid_i00.png"
+  },
+  "5448": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "weapon_soul_separator_i00.png"
+  },
+  "5450": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "weapon_dragon_grinder_i00.png"
+  },
+  "5452": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "weapon_blood_tornado_i00.png"
+  },
+  "5456": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "weapon_tallum_glaive_i00.png"
+  },
+  "5458": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "weapon_halbard_i00.png"
+  },
+  "5460": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "weapon_dasparions_staff_i00.png"
+  },
+  "5462": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "weapon_worldtrees_branch_i00.png"
+  },
+  "5464": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "weapon_dark_legions_edge_i00.png"
+  },
+  "5466": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "weapon_sword_of_miracle_i00.png"
+  },
+  "5468": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "weapon_elemental_sword_i00.png"
+  },
+  "5470": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "weapon_tallum_blade_i00.png"
+  },
+  "5472": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "etc_skein_gray_i00.png"
+  },
+  "5473": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "etc_squares_wood_i00.png"
+  },
+  "6329": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "accessary_phoenixs_necklace_i02.png"
+  },
+  "6331": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "accessary_phoenixs_earing_i02.png"
+  },
+  "6333": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "accessary_phoenixs_ring_i02.png"
+  },
+  "6335": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "accessary_inferno_necklace_i02.png"
+  },
+  "6337": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "accessary_inferno_earing_i02.png"
+  },
+  "6339": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "accessary_inferno_ring_i02.png"
+  },
+  "8294": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_iron_sword_i00.png"
+  },
+  "8295": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_giants_sword_i00.png"
+  },
+  "8296": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_sword_of_paagrio_i00.png"
+  },
+  "8298": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "weapon_guardians_sword_i00.png"
+  },
+  "8300": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "weapon_inferno_master_i00.png"
+  },
+  "8301": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_sword_of_priest_i00.png"
+  },
+  "8302": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_sword_of_magic_fog_i00.png"
+  },
+  "8303": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_mystery_sword_i00.png"
+  },
+  "8304": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_sword_of_eclipse_i00.png"
+  },
+  "8306": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "weapon_tears_of_wizard_i00.png"
+  },
+  "8307": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_mace_of_priest_i00.png"
+  },
+  "8308": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_eclipse_axe_i00.png"
+  },
+  "8310": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "weapon_spell_breaker_i00.png"
+  },
+  "8312": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "weapon_bone_of_kaim_vanul_i00.png"
+  },
+  "8314": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "weapon_eye_of_soul_i00.png"
+  },
+  "8316": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "weapon_dragon_flame_head_i00.png"
+  },
+  "8317": {
+    "recipe": "etc_recipe_blue_i00.png",
+    "result": "weapon_giants_hammer_i00.png"
+  },
+  "8318": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_dwarven_hammer_i00.png"
+  },
+  "8319": {
+    "recipe": "etc_recipe_yellow_i00.png",
+    "result": "weapon_horn_of_karik_i00.png"
+  },
+  "8322": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "weapon_ice_storm_hammer_i00.png"
+  },
+  "8324": {
+    "recipe": "etc_recipe_red_i00.png",
+    "result": "weapon_star_buster_i00.png"
+  },
+  "8326": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "weapon_doom_crusher_i00.png"
+  },
+  "8487": {
+    "recipe": "etc_recipe_violet_i00.png",
+    "result": "weapon_hammer_of_destroyer_i00.png"
+  }
+}

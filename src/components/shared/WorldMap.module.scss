@@ -54,6 +54,12 @@
 .viewport {
   overflow: hidden;
   position: relative;
+  touch-action: none;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
 }
 
 .canvas {

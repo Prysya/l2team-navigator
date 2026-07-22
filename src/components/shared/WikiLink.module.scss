@@ -1,0 +1,30 @@
+@use "../../styles/variables" as *;
+
+.wikiBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.15s;
+  flex-shrink: 0;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
+
+.wikiIcon {
+  width: 13px;
+  height: 13px;
+  color: $color-primary;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+
+  .wikiBtn:hover & {
+    opacity: 1;
+  }
+}

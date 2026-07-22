@@ -1145,7 +1145,9 @@
     "coords": {
       "x": 2573.99,
       "y": 1363.71
-    }
+    },
+    "npcId": 25263,
+    "slug": "kernons-faithful-servant-kelone"
   },
   {
     "name": "Demon's Agent Falston",
@@ -1393,7 +1395,9 @@
     "coords": {
       "x": 2743.1,
       "y": 1516.48
-    }
+    },
+    "npcId": 25322,
+    "slug": "demons-agent-falston"
   },
   {
     "name": "Last Titan Utenus",
@@ -1641,7 +1645,9 @@
     "coords": {
       "x": 2739.53,
       "y": 1845.46
-    }
+    },
+    "npcId": 25470,
+    "slug": "last-titan-utenus"
   },
   {
     "name": "Zaken",
@@ -1649,7 +1655,9 @@
     "stats": null,
     "respawn": "Фиксированное",
     "location": "Остров Дьявола: В начале",
-    "drops": null
+    "drops": null,
+    "npcId": 29022,
+    "slug": "zaken"
   },
   {
     "name": "Enmity Ghost Ramdal",
@@ -1879,7 +1887,9 @@
     "coords": {
       "x": 2319.44,
       "y": 1601.06
-    }
+    },
+    "npcId": 25444,
+    "slug": "enmity-ghost-ramdal"
   },
   {
     "name": "Erdrath, Earth Spirit",
@@ -1903,7 +1913,9 @@
     "coords": {
       "x": 1495.41,
       "y": 2626.75
-    }
+    },
+    "npcId": 34143,
+    "slug": "erdrath-earth-spirit"
   },
   {
     "name": "Fierce Tiger King Angel",
@@ -2169,7 +2181,9 @@
     "coords": {
       "x": 2644.01,
       "y": 1984.16
-    }
+    },
+    "npcId": 25125,
+    "slug": "fierce-tiger-king-angel"
   },
   {
     "name": "Gargoyle Lord Tiphon",
@@ -2399,7 +2413,9 @@
     "coords": {
       "x": 2639.86,
       "y": 1361.06
-    }
+    },
+    "npcId": 25255,
+    "slug": "gargoyle-lord-tiphon"
   },
   {
     "name": "Hekaton Prime",
@@ -2629,7 +2645,9 @@
     "coords": {
       "x": 2763.49,
       "y": 1819.5
-    }
+    },
+    "npcId": 25140,
+    "slug": "hekaton-prime"
   },
   {
     "name": "Kaldrak, Fire Spirit",
@@ -2653,7 +2671,9 @@
     "coords": {
       "x": 1455.42,
       "y": 2514.96
-    }
+    },
+    "npcId": 34141,
+    "slug": "kaldrak-fire-spirit"
   },
   {
     "name": "Naerith, Water Spirit",
@@ -2677,7 +2697,9 @@
     "coords": {
       "x": 2283.62,
       "y": 2594
-    }
+    },
+    "npcId": 34142,
+    "slug": "naerith-water-spirit"
   },
   {
     "name": "Rahha",
@@ -2925,7 +2947,9 @@
     "coords": {
       "x": 2359.6,
       "y": 1643.31
-    }
+    },
+    "npcId": 25051,
+    "slug": "rahha"
   },
   {
     "name": "Shilen's Priest Hisilrome",
@@ -3155,7 +3179,9 @@
     "coords": {
       "x": 2691.34,
       "y": 1528.08
-    }
+    },
+    "npcId": 25478,
+    "slug": "shilens-priest-hisilrome"
   },
   {
     "name": "Zephrath, Wind Spirit",
@@ -3179,7 +3205,9 @@
     "coords": {
       "x": 1166.14,
       "y": 2005.3
-    }
+    },
+    "npcId": 34144,
+    "slug": "zephrath-wind-spirit"
   },
   {
     "name": "Ancient Drake",
@@ -3445,7 +3473,9 @@
     "coords": {
       "x": 2357.93,
       "y": 2131.11
-    }
+    },
+    "npcId": 25234,
+    "slug": "ancient-drake"
   },
   {
     "name": "Core",
@@ -4215,7 +4245,9 @@
     "coords": {
       "x": 1780.15,
       "y": 2117.34
-    }
+    },
+    "npcId": 29006,
+    "slug": "core"
   },
   {
     "name": "Ghost of the Well Lidia",
@@ -4499,7 +4531,9 @@
     "coords": {
       "x": 2662.37,
       "y": 1437.53
-    }
+    },
+    "npcId": 25106,
+    "slug": "ghost-of-the-well-lidia"
   },
   {
     "name": "Giant Marpanak",
@@ -4729,7 +4763,9 @@
     "coords": {
       "x": 2775.49,
       "y": 1807.85
-    }
+    },
+    "npcId": 25162,
+    "slug": "giant-marpanak"
   },
   {
     "name": "Gorgolos",
@@ -4959,7 +4995,9 @@
     "coords": {
       "x": 2732.03,
       "y": 1849.34
-    }
+    },
+    "npcId": 25467,
+    "slug": "gorgolos"
   },
   {
     "name": "Orfen",
@@ -5729,7 +5767,9 @@
     "coords": {
       "x": 1990.87,
       "y": 1600.12
-    }
+    },
+    "npcId": 29014,
+    "slug": "orfen"
   },
   {
     "name": "Queen Ant",
@@ -6510,7 +6550,9 @@
     "coords": {
       "x": 1557.91,
       "y": 2527.95
-    }
+    },
+    "npcId": 29001,
+    "slug": "queen-ant"
   },
   {
     "name": "Abyss Brukunt",
@@ -6758,7 +6800,9 @@
     "coords": {
       "x": 2555.71,
       "y": 1984.49
-    }
+    },
+    "npcId": 25238,
+    "slug": "abyss-brukunt"
   },
   {
     "name": "Demon Kuri",
@@ -7024,7 +7068,9 @@
     "coords": {
       "x": 2400.23,
       "y": 1666.89
-    }
+    },
+    "npcId": 25182,
+    "slug": "demon-kuri"
   },
   {
     "name": "Eva's Guardian Millenu",
@@ -7254,7 +7300,9 @@
     "coords": {
       "x": 2702.81,
       "y": 1584.5
-    }
+    },
+    "npcId": 25032,
+    "slug": "evas-guardian-millenu"
   },
   {
     "name": "Guardian of the Statue of Giant Karum",
@@ -7520,7 +7568,9 @@
     "coords": {
       "x": 2713.01,
       "y": 1797.67
-    }
+    },
+    "npcId": 25179,
+    "slug": "guardian-of-the-statue-of-giant-karum"
   },
   {
     "name": "Roaring Lord Kastor",
@@ -7768,7 +7818,9 @@
     "coords": {
       "x": 2268.42,
       "y": 1481.58
-    }
+    },
+    "npcId": 25226,
+    "slug": "roaring-lord-kastor"
   },
   {
     "name": "Taik High Prefect Arak",
@@ -8016,7 +8068,9 @@
     "coords": {
       "x": 2642.11,
       "y": 1743.06
-    }
+    },
+    "npcId": 25256,
+    "slug": "taik-high-prefect-arak"
   },
   {
     "name": "Fairy Queen Timiniel",
@@ -8163,7 +8217,9 @@
     "coords": {
       "x": 2321.16,
       "y": 1767.86
-    }
+    },
+    "npcId": 25423,
+    "slug": "fairy-queen-timiniel"
   },
   {
     "name": "Lord Ishka",
@@ -8310,7 +8366,9 @@
     "coords": {
       "x": 2330.1,
       "y": 2136.09
-    }
+    },
+    "npcId": 25407,
+    "slug": "lord-ishka"
   },
   {
     "name": "The 3rd Underwater Guardian",
@@ -8457,7 +8515,9 @@
     "coords": {
       "x": 2113.82,
       "y": 2890.56
-    }
+    },
+    "npcId": 25016,
+    "slug": "the-3rd-underwater-guardian"
   },
   {
     "name": "Soulless Wild Boar",
@@ -8628,7 +8688,9 @@
     "coords": {
       "x": 2614.51,
       "y": 2032.2
-    }
+    },
+    "npcId": 25089,
+    "slug": "soulless-wild-boar"
   },
   {
     "name": "Timak Seer Ragoth",
@@ -8811,7 +8873,9 @@
     "coords": {
       "x": 2056.38,
       "y": 1766.06
-    }
+    },
+    "npcId": 25230,
+    "slug": "timak-seer-ragoth"
   },
   {
     "name": "Carnamakos",
@@ -8946,7 +9010,9 @@
     "coords": {
       "x": 1814.46,
       "y": 2177.14
-    }
+    },
+    "npcId": 25273,
+    "slug": "carnamakos"
   },
   {
     "name": "Harit Guardian Garangky",
@@ -9093,7 +9159,9 @@
     "coords": {
       "x": 2619.01,
       "y": 1887.69
-    }
+    },
+    "npcId": 25463,
+    "slug": "harit-guardian-garangky"
   },
   {
     "name": "Refugee Applicant Leo",
@@ -9216,7 +9284,9 @@
     "coords": {
       "x": 2167.57,
       "y": 1455.67
-    }
+    },
+    "npcId": 25122,
+    "slug": "refugee-applicant-leo"
   },
   {
     "name": "Bandit Leader Barda",
@@ -9404,7 +9474,9 @@
     "coords": {
       "x": 2267.86,
       "y": 1407.07
-    }
+    },
+    "npcId": 25434,
+    "slug": "bandit-leader-barda"
   },
   {
     "name": "Beleth's Seer, Sephia",
@@ -9428,7 +9500,9 @@
     "coords": {
       "x": 2387.5,
       "y": 2081.86
-    }
+    },
+    "npcId": 25137,
+    "slug": "beleths-seer-sephia"
   },
   {
     "name": "Black Lily",
@@ -9604,7 +9678,9 @@
     "coords": {
       "x": 2202.52,
       "y": 2152.93
-    }
+    },
+    "npcId": 25176,
+    "slug": "black-lily"
   },
   {
     "name": "Enchanted Forest Watcher Ruell",
@@ -9780,7 +9856,9 @@
     "coords": {
       "x": 2389.6,
       "y": 1785.05
-    }
+    },
+    "npcId": 25070,
+    "slug": "enchanted-forest-watcher-ruell"
   },
   {
     "name": "Eva's Spirit Niniel",
@@ -9968,7 +10046,9 @@
     "coords": {
       "x": 2144.67,
       "y": 2925.11
-    }
+    },
+    "npcId": 25493,
+    "slug": "evas-spirit-niniel"
   },
   {
     "name": "Furious Thieles",
@@ -10132,7 +10212,9 @@
     "coords": {
       "x": 2324.49,
       "y": 1801.31
-    }
+    },
+    "npcId": 25010,
+    "slug": "furious-thieles"
   },
   {
     "name": "Harit Hero Tamash",
@@ -10320,7 +10402,9 @@
     "coords": {
       "x": 2617.6,
       "y": 2000.32
-    }
+    },
+    "npcId": 25241,
+    "slug": "harit-hero-tamash"
   },
   {
     "name": "Sorcerer Isirr",
@@ -10671,7 +10755,9 @@
     "coords": {
       "x": 2447.49,
       "y": 2036.18
-    }
+    },
+    "npcId": 25103,
+    "slug": "sorcerer-isirr"
   },
   {
     "name": "Zaken's Butcher Krantz",
@@ -10859,7 +10945,9 @@
     "coords": {
       "x": 1917.62,
       "y": 2677.69
-    }
+    },
+    "npcId": 25259,
+    "slug": "zakens-butcher-krantz"
   },
   {
     "name": "Paniel the Unicorn",
@@ -11059,7 +11147,9 @@
     "coords": {
       "x": 2386.55,
       "y": 1746.36
-    }
+    },
+    "npcId": 25159,
+    "slug": "paniel-the-unicorn"
   },
   {
     "name": "Atraiban",
@@ -11247,7 +11337,9 @@
     "coords": {
       "x": 1995.61,
       "y": 2666.89
-    }
+    },
+    "npcId": 25029,
+    "slug": "atraiban"
   },
   {
     "name": "Magus Kenishee",
@@ -11423,7 +11515,9 @@
     "coords": {
       "x": 1981.55,
       "y": 2662.74
-    }
+    },
+    "npcId": 25481,
+    "slug": "magus-kenishee"
   },
   {
     "name": "Captain of Red Flag Shaka",
@@ -11599,7 +11693,9 @@
     "coords": {
       "x": 2216.9,
       "y": 1371.49
-    }
+    },
+    "npcId": 25067,
+    "slug": "captain-of-red-flag-shaka"
   },
   {
     "name": "Fafurion's Envoy Pingolpin",
@@ -11775,7 +11871,9 @@
     "coords": {
       "x": 2179.47,
       "y": 2960.9
-    }
+    },
+    "npcId": 25496,
+    "slug": "fafurions-envoy-pingolpin"
   },
   {
     "name": "Deadman Ereve",
@@ -11939,7 +12037,9 @@
     "coords": {
       "x": 2529.93,
       "y": 1884.29
-    }
+    },
+    "npcId": 25460,
+    "slug": "deadman-ereve"
   },
   {
     "name": "Carnage Lord Gato",
@@ -12127,7 +12227,9 @@
     "coords": {
       "x": 2106.13,
       "y": 1449.4
-    }
+    },
+    "npcId": 25131,
+    "slug": "carnage-lord-gato"
   },
   {
     "name": "Cursed Clara",
@@ -12291,7 +12393,9 @@
     "coords": {
       "x": 2187.79,
       "y": 2099.54
-    }
+    },
+    "npcId": 25217,
+    "slug": "cursed-clara"
   },
   {
     "name": "Messenger of Fairy Queen Berun",
@@ -12479,7 +12583,9 @@
     "coords": {
       "x": 2368.28,
       "y": 1864.03
-    }
+    },
+    "npcId": 25119,
+    "slug": "messenger-of-fairy-queen-berun"
   },
   {
     "name": "Zaken's Chief Mate Tillion",
@@ -12667,7 +12773,9 @@
     "coords": {
       "x": 1923.4,
       "y": 2747.11
-    }
+    },
+    "npcId": 25484,
+    "slug": "zakens-chief-mate-tillion"
   },
   {
     "name": "Ketra Commander Atis",
@@ -12807,7 +12915,9 @@
     "coords": {
       "x": 2204.78,
       "y": 1547.28
-    }
+    },
+    "npcId": 25026,
+    "slug": "ketra-commander-atis"
   },
   {
     "name": "Mirror of Oblivion",
@@ -12941,7 +13051,9 @@
     "coords": {
       "x": 2434.96,
       "y": 1993.96
-    }
+    },
+    "npcId": 25456,
+    "slug": "mirror-of-oblivion"
   },
   {
     "name": "King Tarlk",
@@ -13093,7 +13205,9 @@
     "coords": {
       "x": 2115.99,
       "y": 1532.88
-    }
+    },
+    "npcId": 25158,
+    "slug": "king-tarlk"
   },
   {
     "name": "Orfen's Handmaiden",
@@ -13240,7 +13354,9 @@
     "coords": {
       "x": 1917.28,
       "y": 1638.26
-    }
+    },
+    "npcId": 25420,
+    "slug": "orfens-handmaiden"
   },
   {
     "name": "Necrosentinel Royal Guard",
@@ -13416,7 +13532,9 @@
     "coords": {
       "x": 2142.51,
       "y": 2141.75
-    }
+    },
+    "npcId": 25412,
+    "slug": "necrosentinel-royal-guard"
   },
   {
     "name": "Archon Suscepter",
@@ -13640,7 +13758,9 @@
     "coords": {
       "x": 1764.46,
       "y": 2173.76
-    }
+    },
+    "npcId": 25395,
+    "slug": "archon-suscepter"
   },
   {
     "name": "Beacon of Blue Sky",
@@ -13763,7 +13883,9 @@
     "coords": {
       "x": 2284.42,
       "y": 2452.98
-    }
+    },
+    "npcId": 25057,
+    "slug": "beacon-of-blue-sky"
   },
   {
     "name": "Evil Spirit Cyrion",
@@ -13897,7 +14019,9 @@
     "coords": {
       "x": 2309.71,
       "y": 1970.68
-    }
+    },
+    "npcId": 25441,
+    "slug": "evil-spirit-cyrion"
   },
   {
     "name": "Fafurion's Henchman Istary",
@@ -14043,7 +14167,9 @@
     "coords": {
       "x": 2395.67,
       "y": 2487.66
-    }
+    },
+    "npcId": 25498,
+    "slug": "fafurions-henchman-istary"
   },
   {
     "name": "Iron Giant Totem",
@@ -14249,7 +14375,9 @@
     "coords": {
       "x": 2206,
       "y": 1612.25
-    }
+    },
+    "npcId": 25260,
+    "slug": "iron-giant-totem"
   },
   {
     "name": "Shacram",
@@ -14383,7 +14511,9 @@
     "coords": {
       "x": 2322.6,
       "y": 1978.07
-    }
+    },
+    "npcId": 25102,
+    "slug": "shacram"
   },
   {
     "name": "Tiger King Karuta",
@@ -14494,7 +14624,9 @@
     "coords": {
       "x": 2108.49,
       "y": 2128.6
-    }
+    },
+    "npcId": 25173,
+    "slug": "tiger-king-karuta"
   },
   {
     "name": "Timak Orc Gosmos",
@@ -14610,7 +14742,9 @@
     "coords": {
       "x": 2060.1,
       "y": 1864.92
-    }
+    },
+    "npcId": 25437,
+    "slug": "timak-orc-gosmos"
   },
   {
     "name": "Dread Avenger Kraven",
@@ -14840,7 +14974,9 @@
     "coords": {
       "x": 2033,
       "y": 1548.13
-    }
+    },
+    "npcId": 25418,
+    "slug": "dread-avenger-kraven"
   },
   {
     "name": "Flamestone Golem",
@@ -14939,7 +15075,9 @@
     "coords": {
       "x": 2130.47,
       "y": 1606.43
-    }
+    },
+    "npcId": 25431,
+    "slug": "flamestone-golem"
   },
   {
     "name": "Rotting Tree Repiro",
@@ -15115,7 +15253,9 @@
     "coords": {
       "x": 2042.25,
       "y": 1592.91
-    }
+    },
+    "npcId": 25099,
+    "slug": "rotting-tree-repiro"
   },
   {
     "name": "Thief Kelbar",
@@ -15219,7 +15359,9 @@
     "coords": {
       "x": 2284.52,
       "y": 2021.77
-    }
+    },
+    "npcId": 25438,
+    "slug": "thief-kelbar"
   },
   {
     "name": "Timak Orc Chief Ranger",
@@ -15336,7 +15478,9 @@
     "coords": {
       "x": 2058.31,
       "y": 1882.59
-    }
+    },
+    "npcId": 25085,
+    "slug": "timak-orc-chief-ranger"
   },
   {
     "name": "Crazy Mechanic Golem",
@@ -15447,7 +15591,9 @@
     "coords": {
       "x": 2192.98,
       "y": 1594.81
-    }
+    },
+    "npcId": 25088,
+    "slug": "crazy-mechanic-golem"
   },
   {
     "name": "Earth Protector Panathen",
@@ -15529,7 +15675,9 @@
     "coords": {
       "x": 2391.25,
       "y": 2577.1
-    }
+    },
+    "npcId": 25192,
+    "slug": "earth-protector-panathen"
   },
   {
     "name": "Retreat Spider Cletu",
@@ -15658,7 +15806,9 @@
     "coords": {
       "x": 2381.8,
       "y": 1928.29
-    }
+    },
+    "npcId": 25007,
+    "slug": "retreat-spider-cletu"
   },
   {
     "name": "Fafurion's Page Sika",
@@ -15775,7 +15925,9 @@
     "coords": {
       "x": 2313.14,
       "y": 2688.5
-    }
+    },
+    "npcId": 25214,
+    "slug": "fafurions-page-sika"
   },
   {
     "name": "Gwindorr",
@@ -15880,7 +16032,9 @@
     "coords": {
       "x": 2168.89,
       "y": 2727.36
-    }
+    },
+    "npcId": 25490,
+    "slug": "gwindorr"
   },
   {
     "name": "Icarus Sample 1",
@@ -16075,7 +16229,9 @@
     "coords": {
       "x": 2210.55,
       "y": 2618.61
-    }
+    },
+    "npcId": 25115,
+    "slug": "icarus-sample-1"
   },
   {
     "name": "Leto Chief Talkin",
@@ -16204,7 +16360,9 @@
     "coords": {
       "x": 2174.11,
       "y": 1931.69
-    }
+    },
+    "npcId": 25134,
+    "slug": "leto-chief-talkin"
   },
   {
     "name": "Nakondas",
@@ -16333,7 +16491,9 @@
     "coords": {
       "x": 2405.39,
       "y": 2284.45
-    }
+    },
+    "npcId": 25415,
+    "slug": "nakondas"
   },
   {
     "name": "Road Scavenger Leader",
@@ -16456,7 +16616,9 @@
     "coords": {
       "x": 2087.02,
       "y": 2210.9
-    }
+    },
+    "npcId": 25410,
+    "slug": "road-scavenger-leader"
   },
   {
     "name": "Shaman King Selu",
@@ -16578,7 +16740,9 @@
     "coords": {
       "x": 2095.29,
       "y": 1880.14
-    }
+    },
+    "npcId": 25155,
+    "slug": "shaman-king-selu"
   },
   {
     "name": "Water Couatle Ateka",
@@ -16666,7 +16830,9 @@
     "coords": {
       "x": 2096.89,
       "y": 2640.79
-    }
+    },
+    "npcId": 25208,
+    "slug": "water-couatle-ateka"
   },
   {
     "name": "Water Spirit Lian",
@@ -16933,7 +17099,9 @@
     "coords": {
       "x": 2148.24,
       "y": 2537.38
-    }
+    },
+    "npcId": 25487,
+    "slug": "water-spirit-lian"
   },
   {
     "name": "Wizard of Storm Teruk",
@@ -17151,7 +17319,9 @@
     "coords": {
       "x": 2202.66,
       "y": 1981.48
-    }
+    },
+    "npcId": 25064,
+    "slug": "wizard-of-storm-teruk"
   },
   {
     "name": "Leader of Cat Gang",
@@ -17268,7 +17438,9 @@
     "coords": {
       "x": 2180.31,
       "y": 2296.61
-    }
+    },
+    "npcId": 25082,
+    "slug": "leader-of-cat-gang"
   },
   {
     "name": "Nellis' Vengeful Spirit",
@@ -17481,7 +17653,9 @@
     "coords": {
       "x": 2751.77,
       "y": 261.11
-    }
+    },
+    "npcId": 25504,
+    "slug": "nellis-vengeful-spirit"
   },
   {
     "name": "Lizardmen Leader Hellion",
@@ -17593,7 +17767,9 @@
     "coords": {
       "x": 1827.5,
       "y": 2192.71
-    }
+    },
+    "npcId": 25170,
+    "slug": "lizardmen-leader-hellion"
   },
   {
     "name": "Premo Prime",
@@ -17710,7 +17886,9 @@
     "coords": {
       "x": 2255.18,
       "y": 2634.17
-    }
+    },
+    "npcId": 25394,
+    "slug": "premo-prime"
   },
   {
     "name": "Rayito the Looter",
@@ -17823,7 +18001,9 @@
     "coords": {
       "x": 1801.2,
       "y": 905.94
-    }
+    },
+    "npcId": 25506,
+    "slug": "rayito-the-looter"
   },
   {
     "name": "Evil Spirit Tempest",
@@ -17964,7 +18144,9 @@
     "coords": {
       "x": 1985.18,
       "y": 2315.92
-    }
+    },
+    "npcId": 25385,
+    "slug": "evil-spirit-tempest"
   },
   {
     "name": "Sebek",
@@ -18069,7 +18251,9 @@
     "coords": {
       "x": 2111.98,
       "y": 2593.68
-    }
+    },
+    "npcId": 25211,
+    "slug": "sebek"
   },
   {
     "name": "Beleth's Eye",
@@ -18174,7 +18358,9 @@
     "coords": {
       "x": 1708.25,
       "y": 2569.8
-    }
+    },
+    "npcId": 25398,
+    "slug": "beleths-eye"
   },
   {
     "name": "Chertuba of Great Soul",
@@ -18279,7 +18465,9 @@
     "coords": {
       "x": 1165.82,
       "y": 2159.28
-    }
+    },
+    "npcId": 25063,
+    "slug": "chertuba-of-great-soul"
   },
   {
     "name": "Flame Lord Shadar",
@@ -18383,7 +18571,9 @@
     "coords": {
       "x": 1927.38,
       "y": 2202.94
-    }
+    },
+    "npcId": 25152,
+    "slug": "flame-lord-shadar"
   },
   {
     "name": "Gargoyle Lord Sirocco",
@@ -18483,7 +18673,9 @@
     "coords": {
       "x": 1589.1,
       "y": 2543.21
-    }
+    },
+    "npcId": 25354,
+    "slug": "gargoyle-lord-sirocco"
   },
   {
     "name": "Guilotine, Warden of the Execution Grounds",
@@ -18507,7 +18699,9 @@
     "coords": {
       "x": 1967.47,
       "y": 2331.18
-    }
+    },
+    "npcId": 25118,
+    "slug": "guilotine-warden-of-the-execution-grounds"
   },
   {
     "name": "Red Eye Captain Trakia",
@@ -18583,7 +18777,9 @@
     "coords": {
       "x": 1906.41,
       "y": 2078.38
-    }
+    },
+    "npcId": 25388,
+    "slug": "red-eye-captain-trakia"
   },
   {
     "name": "Remmel",
@@ -18707,7 +18903,9 @@
     "coords": {
       "x": 1739.46,
       "y": 2218.89
-    }
+    },
+    "npcId": 25041,
+    "slug": "remmel"
   },
   {
     "name": "Sejarr's Servitor",
@@ -18946,7 +19144,9 @@
     "coords": {
       "x": 2378.14,
       "y": 2256.27
-    }
+    },
+    "npcId": 25098,
+    "slug": "sejarrs-servitor"
   },
   {
     "name": "Soul Collector Acheron",
@@ -19093,7 +19293,9 @@
     "coords": {
       "x": 1919.71,
       "y": 2369.63
-    }
+    },
+    "npcId": 25223,
+    "slug": "soul-collector-acheron"
   },
   {
     "name": "Tasaba Patriarch Hellena",
@@ -19216,7 +19418,9 @@
     "coords": {
       "x": 2177.98,
       "y": 2441.92
-    }
+    },
+    "npcId": 25185,
+    "slug": "tasaba-patriarch-hellena"
   },
   {
     "name": "Cronos's Servitor Mumu",
@@ -19297,7 +19501,9 @@
     "coords": {
       "x": 2068.01,
       "y": 2649.73
-    }
+    },
+    "npcId": 25189,
+    "slug": "cronoss-servitor-mumu"
   },
   {
     "name": "Stakato Queen Zyrnna",
@@ -19385,7 +19591,9 @@
     "coords": {
       "x": 1833.56,
       "y": 2077.31
-    }
+    },
+    "npcId": 25023,
+    "slug": "stakato-queen-zyrnna"
   },
   {
     "name": "Corsair Captain Kylon",
@@ -19502,7 +19710,9 @@
     "coords": {
       "x": 1883.66,
       "y": 2583.08
-    }
+    },
+    "npcId": 25404,
+    "slug": "corsair-captain-kylon"
   },
   {
     "name": "Nurka's Messenger",
@@ -19643,7 +19853,9 @@
     "coords": {
       "x": 1937.74,
       "y": 2183.98
-    }
+    },
+    "npcId": 25391,
+    "slug": "nurkas-messenger"
   },
   {
     "name": "Vuku Grand Seer Gharmash",
@@ -19748,7 +19960,9 @@
     "coords": {
       "x": 1779.84,
       "y": 2514.06
-    }
+    },
+    "npcId": 25128,
+    "slug": "vuku-grand-seer-gharmash"
   },
   {
     "name": "Captain of Queen's Royal Guards",
@@ -19876,7 +20090,9 @@
     "coords": {
       "x": 1848.88,
       "y": 2107.66
-    }
+    },
+    "npcId": 25392,
+    "slug": "captain-of-queens-royal-guards"
   },
   {
     "name": "Skyla",
@@ -19981,7 +20197,9 @@
     "coords": {
       "x": 2345.6,
       "y": 2083.63
-    }
+    },
+    "npcId": 25401,
+    "slug": "skyla"
   },
   {
     "name": "Apepi",
@@ -20157,7 +20375,9 @@
     "coords": {
       "x": 2177.75,
       "y": 2497.83
-    }
+    },
+    "npcId": 25188,
+    "slug": "apepi"
   },
   {
     "name": "Beleth's Agent, Meana",
@@ -20181,7 +20401,9 @@
     "coords": {
       "x": 2336.6,
       "y": 2289.9
-    }
+    },
+    "npcId": 25112,
+    "slug": "beleths-agent-meana"
   },
   {
     "name": "Cat's Eye Bandit",
@@ -20279,7 +20501,9 @@
     "coords": {
       "x": 1983.92,
       "y": 2082
-    }
+    },
+    "npcId": 25079,
+    "slug": "cats-eye-bandit"
   },
   {
     "name": "Giant Wasteland Basilisk",
@@ -20395,7 +20619,9 @@
     "coords": {
       "x": 1584.84,
       "y": 2490.08
-    }
+    },
+    "npcId": 25352,
+    "slug": "giant-wasteland-basilisk"
   },
   {
     "name": "Ragraman",
@@ -20583,7 +20809,9 @@
     "coords": {
       "x": 1371.99,
       "y": 2464.27
-    }
+    },
+    "npcId": 25169,
+    "slug": "ragraman"
   },
   {
     "name": "Turek Mercenary Captain",
@@ -20700,7 +20928,9 @@
     "coords": {
       "x": 1148.36,
       "y": 2068.32
-    }
+    },
+    "npcId": 25004,
+    "slug": "turek-mercenary-captain"
   },
   {
     "name": "Elf Renoa",
@@ -20885,7 +21115,9 @@
     "coords": {
       "x": 1466.45,
       "y": 2621.32
-    }
+    },
+    "npcId": 25095,
+    "slug": "elf-renoa"
   },
   {
     "name": "Partisan Leader Talakin",
@@ -21002,7 +21234,9 @@
     "coords": {
       "x": 1957.93,
       "y": 2225.16
-    }
+    },
+    "npcId": 25272,
+    "slug": "partisan-leader-talakin"
   },
   {
     "name": "Tirak",
@@ -21119,7 +21353,9 @@
     "coords": {
       "x": 1355.9,
       "y": 2554.41
-    }
+    },
+    "npcId": 25038,
+    "slug": "tirak"
   },
   {
     "name": "Patriarch Kuroboros",
@@ -21195,7 +21431,9 @@
     "coords": {
       "x": 1328.75,
       "y": 2578.21
-    }
+    },
+    "npcId": 25365,
+    "slug": "patriarch-kuroboros"
   },
   {
     "name": "Tiger Hornet",
@@ -21307,7 +21545,9 @@
     "coords": {
       "x": 1844.2,
       "y": 2515.34
-    }
+    },
+    "npcId": 25360,
+    "slug": "tiger-hornet"
   },
   {
     "name": "Betrayer of Urutu Freki",
@@ -21388,7 +21628,9 @@
     "coords": {
       "x": 1578.01,
       "y": 929.83
-    }
+    },
+    "npcId": 25426,
+    "slug": "betrayer-of-urutu-freki"
   },
   {
     "name": "Ikuntai",
@@ -21482,7 +21724,9 @@
     "coords": {
       "x": 1556.96,
       "y": 2361.12
-    }
+    },
+    "npcId": 25166,
+    "slug": "ikuntai"
   },
   {
     "name": "Mammon Collector Talos",
@@ -21605,7 +21849,9 @@
     "coords": {
       "x": 2652.44,
       "y": 288.58
-    }
+    },
+    "npcId": 25429,
+    "slug": "mammon-collector-talos"
   },
   {
     "name": "Pan Dryad",
@@ -21716,7 +21962,9 @@
     "coords": {
       "x": 1721.54,
       "y": 2459.25
-    }
+    },
+    "npcId": 25019,
+    "slug": "pan-dryad"
   },
   {
     "name": "Princess Molrang",
@@ -21822,7 +22070,9 @@
     "coords": {
       "x": 1335.14,
       "y": 2221.47
-    }
+    },
+    "npcId": 25076,
+    "slug": "princess-molrang"
   },
   {
     "name": "Soul Scavenger",
@@ -21922,7 +22172,9 @@
     "coords": {
       "x": 1421.73,
       "y": 2130.17
-    }
+    },
+    "npcId": 25369,
+    "slug": "soul-scavenger"
   },
   {
     "name": "Zombie Lord Crowl",
@@ -22027,7 +22279,9 @@
     "coords": {
       "x": 1608.51,
       "y": 2282.79
-    }
+    },
+    "npcId": 25149,
+    "slug": "zombie-lord-crowl"
   },
   {
     "name": "Unrequited Kael",
@@ -22115,7 +22369,9 @@
     "coords": {
       "x": 1338.6,
       "y": 2565.65
-    }
+    },
+    "npcId": 25060,
+    "slug": "unrequited-kael"
   },
   {
     "name": "Greyclaw Kutus",
@@ -22238,7 +22494,9 @@
     "coords": {
       "x": 1372.29,
       "y": 2330.09
-    }
+    },
+    "npcId": 25001,
+    "slug": "greyclaw-kutus"
   },
   {
     "name": "Kuroboros' Priest",
@@ -22331,7 +22589,9 @@
     "coords": {
       "x": 1327.79,
       "y": 2516.53
-    }
+    },
+    "npcId": 25366,
+    "slug": "kuroboros-priest"
   },
   {
     "name": "Tracker Leader Sharuk",
@@ -22502,7 +22762,9 @@
     "coords": {
       "x": 1364.8,
       "y": 2557.95
-    }
+    },
+    "npcId": 25362,
+    "slug": "tracker-leader-sharuk"
   },
   {
     "name": "Kaysha Herald of Icarus",
@@ -22578,7 +22840,9 @@
     "coords": {
       "x": 1412.14,
       "y": 1793.79
-    }
+    },
+    "npcId": 25380,
+    "slug": "kaysha-herald-of-icarus"
   },
   {
     "name": "Malex Herald of Dagoniel",
@@ -22660,7 +22924,9 @@
     "coords": {
       "x": 1734.58,
       "y": 1936.89
-    }
+    },
+    "npcId": 25373,
+    "slug": "malex-herald-of-dagoniel"
   },
   {
     "name": "Serpent Demon Bifrons",
@@ -22765,7 +23031,9 @@
     "coords": {
       "x": 1602.61,
       "y": 2709.89
-    }
+    },
+    "npcId": 25146,
+    "slug": "serpent-demon-bifrons"
   },
   {
     "name": "Sukar Wererat Chief",
@@ -22841,7 +23109,9 @@
     "coords": {
       "x": 1660.5,
       "y": 2139.4
-    }
+    },
+    "npcId": 25357,
+    "slug": "sukar-wererat-chief"
   },
   {
     "name": "Discarded Guardian",
@@ -22935,7 +23205,9 @@
     "coords": {
       "x": 1951.2,
       "y": 2877.11
-    }
+    },
+    "npcId": 25372,
+    "slug": "discarded-guardian"
   },
   {
     "name": "Madness Beast",
@@ -23011,7 +23283,9 @@
     "coords": {
       "x": 1375.08,
       "y": 1978.46
-    }
+    },
+    "npcId": 25378,
+    "slug": "madness-beast"
   },
   {
     "name": "Zombie Lord Ferkel",
@@ -23105,6 +23379,8 @@
     "coords": {
       "x": 1807.25,
       "y": 1956.41
-    }
+    },
+    "npcId": 25375,
+    "slug": "zombie-lord-ferkel"
   }
 ]

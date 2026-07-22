@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 import styles from './WorldMap.module.scss';
 
@@ -11,50 +12,157 @@ interface WorldMapProps {
   onClose: () => void;
 }
 
-export default function WorldMap({ name, x, y, onClose }: WorldMapProps) {
-  const [scale, setScale] = useState(1.1);
-  const [pos, setPos] = useState({ x: 0, y: 0 });
-  const dragging = useRef(false);
-  const dragStart = useRef({ x: 0, y: 0 });
-  const dragPos = useRef({ x: 0, y: 0 });
+const INITIAL_SCALE = 1.1;
+const MIN_SCALE = 0.15;
+const MAX_SCALE = 3;
+const clampScale = (s: number) => Math.min(MAX_SCALE, Math.max(MIN_SCALE, s));
 
+const touchDistance = (t: React.TouchList) => Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY);
+const touchMidpoint = (t: React.TouchList) => ({
+  x: (t[0].clientX + t[1].clientX) / 2,
+  y: (t[0].clientY + t[1].clientY) / 2,
+});
+
+export default function WorldMap({ name, x, y, onClose }: WorldMapProps) {
+  const [scale, setScale] = useState(INITIAL_SCALE);
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const viewportRef = useRef<HTMLDivElement>(null);
+  // Mirror latest state so zoom/pan math never reads a stale closure value.
+  const scaleRef = useRef(scale);
+  scaleRef.current = scale;
+  const posRef = useRef(pos);
+  posRef.current = pos;
+  const dragging = useRef(false);
+  const dragLast = useRef({ x: 0, y: 0 });
+  const pinchDist = useRef(0);
+  // Pinch-zoom fires touchmove many times per frame; coalesce into one zoomAt
+  // per animation frame so we don't run setScale/setPos hundreds of times a second.
+  const zoomRaf = useRef<number | null>(null);
+  const pendingZoom = useRef<{ factor: number; fx: number; fy: number } | null>(null);
+
+  // Center the marker inside the visible viewport once it has been measured.
   useEffect(() => {
-    const vw = window.innerWidth * 0.9;
-    const vh = window.innerHeight * 0.9;
-    const s = 1.1;
-    const cx = vw / 2 - x * s;
-    const cy = vh / 2 - y * s;
-    setPos({ x: cx, y: cy });
+    const vp = viewportRef.current;
+    const vw = vp ? vp.clientWidth : window.innerWidth * 0.9;
+    const vh = vp ? vp.clientHeight : window.innerHeight * 0.9;
+    setPos({ x: vw / 2 - x * INITIAL_SCALE, y: vh / 2 - y * INITIAL_SCALE });
   }, [x, y]);
 
-  const onWheel = useCallback((e: React.WheelEvent) => {
-    e.preventDefault();
-    const delta = e.deltaY > 0 ? 0.9 : 1.1;
-    setScale((prev) => Math.min(3, Math.max(0.15, prev * delta)));
+  // Convert a client (screen) point into viewport-local coordinates.
+  const toViewport = useCallback((clientX: number, clientY: number) => {
+    const rect = viewportRef.current?.getBoundingClientRect();
+    return rect ? { x: clientX - rect.left, y: clientY - rect.top } : { x: clientX, y: clientY };
   }, []);
 
-  const onMouseDown = useCallback(
-    (e: React.MouseEvent) => {
-      dragging.current = true;
-      dragStart.current = { x: e.clientX, y: e.clientY };
-      dragPos.current = { ...pos };
+  // Zoom by `factor` keeping the focal point (fx, fy, in viewport coords) fixed on screen.
+  const zoomAt = useCallback((factor: number, fx: number, fy: number) => {
+    const prevScale = scaleRef.current;
+    const nextScale = clampScale(prevScale * factor);
+    if (nextScale === prevScale) return;
+    const ratio = nextScale / prevScale;
+    const p = posRef.current;
+    setScale(nextScale);
+    setPos({ x: fx - (fx - p.x) * ratio, y: fy - (fy - p.y) * ratio });
+  }, []);
+
+  // Apply the pinch-zoom accumulated since the last frame. Multiplying the
+  // coalesced factors preserves the total zoom even when frames are dropped.
+  const flushZoom = useCallback(() => {
+    zoomRaf.current = null;
+    const p = pendingZoom.current;
+    pendingZoom.current = null;
+    if (p) zoomAt(p.factor, p.fx, p.fy);
+  }, [zoomAt]);
+
+  useEffect(
+    () => () => {
+      if (zoomRaf.current != null) cancelAnimationFrame(zoomRaf.current);
     },
-    [pos],
+    [],
   );
 
-  const onMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!dragging.current) return;
-    setPos({
-      x: dragPos.current.x + (e.clientX - dragStart.current.x),
-      y: dragPos.current.y + (e.clientY - dragStart.current.y),
-    });
+  const zoomFromCenter = useCallback(
+    (factor: number) => {
+      const vp = viewportRef.current;
+      zoomAt(factor, vp ? vp.clientWidth / 2 : 0, vp ? vp.clientHeight / 2 : 0);
+    },
+    [zoomAt],
+  );
+
+  const onWheel = useCallback(
+    (e: React.WheelEvent) => {
+      e.preventDefault();
+      const f = toViewport(e.clientX, e.clientY);
+      zoomAt(e.deltaY > 0 ? 0.9 : 1.1, f.x, f.y);
+    },
+    [toViewport, zoomAt],
+  );
+
+  const panStart = useCallback((cx: number, cy: number) => {
+    dragging.current = true;
+    dragLast.current = { x: cx, y: cy };
   }, []);
 
+  const panMove = useCallback((cx: number, cy: number) => {
+    if (!dragging.current) return;
+    const dx = cx - dragLast.current.x;
+    const dy = cy - dragLast.current.y;
+    dragLast.current = { x: cx, y: cy };
+    const p = posRef.current;
+    setPos({ x: p.x + dx, y: p.y + dy });
+  }, []);
+
+  const onMouseDown = useCallback((e: React.MouseEvent) => panStart(e.clientX, e.clientY), [panStart]);
+  const onMouseMove = useCallback((e: React.MouseEvent) => panMove(e.clientX, e.clientY), [panMove]);
   const onMouseUp = useCallback(() => {
     dragging.current = false;
   }, []);
 
-  return (
+  const onTouchStart = useCallback(
+    (e: React.TouchEvent) => {
+      if (e.touches.length === 2) {
+        dragging.current = false;
+        pinchDist.current = touchDistance(e.touches);
+      } else if (e.touches.length === 1) {
+        panStart(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    },
+    [panStart],
+  );
+
+  const onTouchMove = useCallback(
+    (e: React.TouchEvent) => {
+      if (e.touches.length === 2) {
+        const dist = touchDistance(e.touches);
+        if (pinchDist.current > 0) {
+          const mid = touchMidpoint(e.touches);
+          const f = toViewport(mid.x, mid.y);
+          const factor = dist / pinchDist.current;
+          const prev = pendingZoom.current;
+          pendingZoom.current = { factor: (prev?.factor ?? 1) * factor, fx: f.x, fy: f.y };
+          if (zoomRaf.current == null) zoomRaf.current = requestAnimationFrame(flushZoom);
+        }
+        pinchDist.current = dist;
+      } else if (e.touches.length === 1) {
+        panMove(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    },
+    [panMove, toViewport, flushZoom],
+  );
+
+  const onTouchEnd = useCallback(
+    (e: React.TouchEvent) => {
+      pinchDist.current = 0;
+      if (e.touches.length === 0) dragging.current = false;
+      else if (e.touches.length === 1) panStart(e.touches[0].clientX, e.touches[0].clientY);
+    },
+    [panStart],
+  );
+
+  // Rendered through a portal to document.body: an ancestor .tab-page keeps a
+  // persistent transform (page-entry animation, fill-mode: both), which would
+  // otherwise trap position:fixed and push this modal off-screen.
+  return createPortal(
     <div className={styles.overlay} onMouseUp={onMouseUp} onMouseLeave={onMouseUp}>
       <div className={styles.modal}>
         <div className={styles.header}>
@@ -64,7 +172,16 @@ export default function WorldMap({ name, x, y, onClose }: WorldMapProps) {
           </button>
         </div>
 
-        <div className={styles.viewport} onWheel={onWheel} onMouseDown={onMouseDown} onMouseMove={onMouseMove}>
+        <div
+          ref={viewportRef}
+          className={styles.viewport}
+          onWheel={onWheel}
+          onMouseDown={onMouseDown}
+          onMouseMove={onMouseMove}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        >
           <div
             className={styles.canvas}
             style={{
@@ -82,15 +199,16 @@ export default function WorldMap({ name, x, y, onClose }: WorldMapProps) {
         </div>
 
         <div className={styles.footer}>
-          <button onClick={() => setScale((s) => Math.min(3, s * 1.3))} className={styles.zoomBtn}>
+          <button onClick={() => zoomFromCenter(1.3)} className={styles.zoomBtn}>
             +
           </button>
           <span className={styles.zoomValue}>{Math.round(scale * 100)}%</span>
-          <button onClick={() => setScale((s) => Math.max(0.15, s / 1.3))} className={styles.zoomBtn}>
+          <button onClick={() => zoomFromCenter(1 / 1.3)} className={styles.zoomBtn}>
             −
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

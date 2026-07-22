@@ -6,6 +6,8 @@ import styles from './CustomSelect.module.scss';
 export interface SelectOption {
   value: string;
   label: string;
+  /** Optional icon shown after the label (e.g. crafted item icon). */
+  iconUrl?: string;
 }
 
 interface SelectGroup {
@@ -57,6 +59,24 @@ export default function CustomSelect({
     [onChange],
   );
 
+  const renderOption = (opt: SelectOption) => (
+    <>
+      <span className={styles.optionLabel}>{opt.label}</span>
+      {opt.iconUrl && (
+        <img
+          className={styles.optionIcon}
+          src={opt.iconUrl}
+          alt=""
+          loading="lazy"
+          draggable={false}
+          onError={(e) => {
+            e.currentTarget.style.display = 'none';
+          }}
+        />
+      )}
+    </>
+  );
+
   return (
     <div
       ref={wrapperRef}
@@ -96,7 +116,7 @@ export default function CustomSelect({
                       onClick={() => handleSelect(opt.value)}
                       data-testid={`select-option-${opt.value}`}
                     >
-                      {opt.label}
+                      {renderOption(opt)}
                     </div>
                   ))}
                 </div>
@@ -108,7 +128,7 @@ export default function CustomSelect({
                   onClick={() => handleSelect(opt.value)}
                   data-testid={`select-option-${opt.value}`}
                 >
-                  {opt.label}
+                  {renderOption(opt)}
                 </div>
               ))}
         </div>

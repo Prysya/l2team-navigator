@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import TabIcon from '@shared/TabIcon';
 import { TAB_ACCENT, TAB_NAMES } from '@utils/constants';
@@ -53,18 +54,21 @@ export default function MainPage() {
         ))}
       </div>
 
-      {easter && (
-        <div className={styles.overlay} onClick={() => setEaster(false)}>
-          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-            <div className={styles.modalContent}>
-              <span className={styles.eggText}>Саша Ролекс Пес</span>
+      {easter &&
+        createPortal(
+          // Portal to body: .tab-page's persistent transform would otherwise trap this fixed overlay.
+          <div className={styles.overlay} onClick={() => setEaster(false)}>
+            <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+              <div className={styles.modalContent}>
+                <span className={styles.eggText}>Саша Ролекс Пес</span>
+              </div>
+              <button className={styles.closeBtn} onClick={() => setEaster(false)}>
+                ✕
+              </button>
             </div>
-            <button className={styles.closeBtn} onClick={() => setEaster(false)}>
-              ✕
-            </button>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body,
+        )}
     </div>
   );
 }
