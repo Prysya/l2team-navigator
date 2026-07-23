@@ -8,7 +8,7 @@ import { useTelegramStore } from '@/stores/telegramStore';
 import CalculatorTab from './components/calculator/CalculatorTab';
 import MainPage from './components/main/MainPage';
 import QuestsTab from './components/quests/QuestsTab';
-import TabIcon from './components/shared/TabIcon';
+import SectionIcon from './components/shared/SectionIcon';
 
 const LazySkillsTab = lazy(() => import('./components/skills/SkillsTab'));
 const LazyRecipeTab = lazy(() => import('./components/recipes/RecipeTab'));
@@ -181,7 +181,7 @@ function AppLayout() {
                 style={{ '--burger-accent': TAB_ACCENT[tab.key] } as React.CSSProperties}
                 onClick={() => handleTabChange(tab.key)}
               >
-                <TabIcon tab={tab.key} size={20} />
+                <SectionIcon tab={tab.key} size={20} />
                 <span className="burger-item-label">{tab.label}</span>
               </button>
             ))}
