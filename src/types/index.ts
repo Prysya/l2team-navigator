@@ -75,6 +75,8 @@ export interface LocationItem {
   item_name: string;
   item_url: string | null;
   item_type: 'recipe' | 'spellbook' | 'piece' | 'resource';
+  recipe_type?: string;
+  recipe_grade?: string;
   classes: { race: string; class_name: string; class_url: string; lvl: number }[];
   monsters: LocationMonster[];
 }
