@@ -6,15 +6,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 
 const recipes = JSON.parse(readFileSync(resolve(root, 'src/data/RECIPES.json'), 'utf-8'));
-const locationsAll = JSON.parse(readFileSync(resolve(root, 'src/data/LOCATIONS_ALL.json'), 'utf-8'));
 const locationRefs = JSON.parse(readFileSync(resolve(root, 'tmp/locations.json'), 'utf-8'));
-
-function normalizeName(name) {
-  return name
-    .replace(/[\u2018\u2019\u0060\u00B4\u201A\u201B]/g, "'")
-    .replace(/[\u201C\u201D]/g, '"')
-    .trim();
-}
 
 const ruToEng = new Map();
 const cityIdToName = new Map();
@@ -28,22 +20,21 @@ for (const ref of locationRefs) {
   }
 }
 
-const locationsAllMap = new Map();
-for (const loc of locationsAll) {
-  locationsAllMap.set(normalizeName(loc.location_name), loc);
+function normalizeName(name) {
+  return name
+    .replace(/[\u2018\u2019\u0060\u00B4\u201A\u201B]/g, "'")
+    .replace(/[\u201C\u201D]/g, '"')
+    .trim();
 }
 
 function translateName(ruName) {
   const direct = ruToEng.get(ruName);
   if (direct) return direct;
-
   if (ruName === 'Кайнак') return 'Cave of Trials';
   if (ruName === 'Школа Полномочий') return 'Skyshadow Meadow';
-
   for (const [ru, eng] of ruToEng) {
     if (normalizeName(ru) === normalizeName(ruName)) return eng;
   }
-
   return ruName;
 }
 
@@ -58,10 +49,8 @@ function getCityForRuName(ruName) {
       }
     }
   }
-
   if (ruName === 'Кайнак') return 'Orc Village';
   if (ruName === 'Школа Полномочий') return 'Oren';
-
   return null;
 }
 
@@ -76,38 +65,28 @@ function getLocationTypes(ruName) {
   return [];
 }
 
-const pieceMap = {};
+const locationMap = {};
 
 for (const recipe of recipes) {
-  if (!recipe.mainPieceMonsters || recipe.mainPieceMonsters.length === 0) continue;
-  if (recipe.recipeType === 'Material' || recipe.recipeType === 'Other') continue;
+  if (!recipe.monsters || recipe.monsters.length === 0) continue;
 
-  const pieceName = recipe.requiredItems[0]?.name;
-  if (!pieceName) continue;
-
-  const pieceItemId = recipe.requiredItems[0]?.itemId;
-
-  for (const monster of recipe.mainPieceMonsters) {
+  for (const monster of recipe.monsters) {
     for (const loc of monster.locations || []) {
       const ruName = loc.location_name;
       if (!ruName) continue;
 
       const enName = normalizeName(translateName(ruName));
 
-      if (!pieceMap[enName]) {
+      if (!locationMap[enName]) {
         let city = getCityForRuName(ruName);
-        if (!city) {
-          const locData = locationsAllMap.get(enName);
-          city = locData?.main_location_name || 'Unknown';
-        }
+        if (!city) city = 'Unknown';
 
         const types = getLocationTypes(ruName);
-        const locData = locationsAllMap.get(enName);
 
-        pieceMap[enName] = {
+        locationMap[enName] = {
           location_name: enName,
           main_location_name: city,
-          location_types: types.length > 0 ? types : (locData?.location_types || []),
+          location_types: types,
           avg_level: 0,
           has_spoil: false,
           has_boss: false,
@@ -116,18 +95,23 @@ for (const recipe of recipes) {
         };
       }
 
-      const entry = pieceMap[enName];
-      const itemKey = pieceName;
+      const entry = locationMap[enName];
+      const itemKey = recipe.recipeName;
 
       if (!entry.items[itemKey]) {
-        const slug = pieceName
+        const slug = recipe.recipeName
           .toLowerCase()
           .replace(/\s+/g, '-')
           .replace(/[^a-z0-9-]/g, '');
+        const itemIdMatch = recipe.recipeUrl?.match(/\/item\/(\d+)/);
+        const itemUrl = itemIdMatch
+          ? `https://masterwork.wiki/lu4/item/${itemIdMatch[1]}-${slug}`
+          : recipe.recipeUrl || null;
+
         entry.items[itemKey] = {
-          item_name: pieceName,
-          item_url: pieceItemId ? `https://masterwork.wiki/lu4/item/${pieceItemId}-${slug}` : null,
-          item_type: 'piece',
+          item_name: recipe.recipeName,
+          item_url: itemUrl,
+          item_type: 'recipe',
           recipe_type: recipe.recipeType,
           recipe_grade: recipe.resultGrade,
           classes: [],
@@ -159,11 +143,13 @@ for (const recipe of recipes) {
 
 const result = [];
 
-for (const key of Object.keys(pieceMap).sort()) {
-  const entry = pieceMap[key];
+for (const key of Object.keys(locationMap).sort()) {
+  const entry = locationMap[key];
 
   if (entry.monsterLevels.length > 0) {
-    entry.avg_level = +(entry.monsterLevels.reduce((a, b) => a + b, 0) / entry.monsterLevels.length).toFixed(1);
+    entry.avg_level = +(
+      entry.monsterLevels.reduce((a, b) => a + b, 0) / entry.monsterLevels.length
+    ).toFixed(1);
   }
   delete entry.monsterLevels;
 
@@ -177,19 +163,24 @@ for (const key of Object.keys(pieceMap).sort()) {
   }
 }
 
-const outPath = resolve(root, 'src/data/LOCATIONS_PIECES.json');
+const outPath = resolve(root, 'src/data/LOCATIONS_RECIPES_FULL.json');
 writeFileSync(outPath, JSON.stringify(result));
 
 let totalItems = 0;
 let unknownCount = 0;
 const byCity = {};
+const byType = {};
 for (const loc of result) {
   totalItems += loc.items.length;
   if (loc.main_location_name === 'Unknown') unknownCount++;
   byCity[loc.main_location_name] = (byCity[loc.main_location_name] || 0) + 1;
+  for (const item of loc.items) {
+    if (item.recipe_type) byType[item.recipe_type] = (byType[item.recipe_type] || 0) + 1;
+  }
 }
 console.log(`Written ${result.length} locations with ${totalItems} items to ${outPath}`);
 console.log(`Unknown cities: ${unknownCount}/${result.length}`);
+console.log('By type:', byType);
 for (const [city, count] of Object.entries(byCity).sort()) {
   console.log(`  ${city}: ${count}`);
 }

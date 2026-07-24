@@ -28,10 +28,16 @@ interface RecipeEnrichmentEntry {
 
 const RECIPE_ENRICHMENT = RECIPE_ENRICHMENT_DATA as Record<string, RecipeEnrichmentEntry>;
 
-const TYPE_BUTTONS: { key: TypeFilter; label: string }[] = [
+const TYPE_BUTTONS: { key: TypeFilter | 'divider'; label: string }[] = [
   { key: 'all', label: 'Все' },
-  { key: 'recipe', label: '📜 Рецепты' },
+  { key: 'divider', label: '' },
   { key: 'spellbook', label: '📚 Книги' },
+  { key: 'divider', label: '' },
+  { key: 'recipe', label: '📜 Рецепты' },
+  { key: 'recipe_weapon', label: '⚔️ Рец. Оружия' },
+  { key: 'recipe_armor', label: '🛡️ Рец. Брони' },
+  { key: 'recipe_accessory', label: '💍 Рец. Бижи' },
+  { key: 'divider', label: '' },
   { key: 'piece', label: '📦 Куски' },
   { key: 'resource', label: '🧱 Ресурсы' },
 ];
@@ -48,6 +54,23 @@ const PARTY_OPTIONS = [
   { value: 'SG', label: 'Мини-группа' },
   { value: 'G', label: 'Пати' },
 ];
+
+const GRADE_OPTIONS = [
+  { value: '', label: 'Все' },
+  { value: 'NG', label: 'NG' },
+  { value: 'D', label: 'D' },
+  { value: 'C', label: 'C' },
+  { value: 'B', label: 'B' },
+  { value: 'A', label: 'A' },
+];
+
+const RECIPE_SUBTABS: TypeFilter[] = ['recipe_weapon', 'recipe_armor', 'recipe_accessory'];
+
+const RECIPE_TYPE_MAP: Record<string, RecipeType> = {
+  recipe_weapon: 'Weapon',
+  recipe_armor: 'Armor',
+  recipe_accessory: 'Accessory',
+};
 
 interface RecipeInfo {
   grade: RecipeGrade;
@@ -81,6 +104,20 @@ function getRecipeInfo(itemName: string): RecipeInfo | undefined {
     resultName: entry.r,
     resultUrl: entry.u,
   };
+}
+
+function getItemTypeAndGrade(item: LocationItem): { type: string; grade: string } | null {
+  if (item.item_type === 'recipe') {
+    if (item.recipe_type && item.recipe_grade) {
+      return { type: item.recipe_type, grade: item.recipe_grade };
+    }
+    const info = getRecipeInfo(item.item_name);
+    return info ? { type: info.type, grade: info.grade } : null;
+  }
+  if (item.item_type === 'piece' && item.recipe_grade) {
+    return { type: item.recipe_type || '', grade: item.recipe_grade };
+  }
+  return null;
 }
 
 function LocationMonsterRow({ m }: { m: LocationMonster }) {
@@ -194,14 +231,26 @@ function LocationRow({
   selectedRace: string;
   selectedClass: string;
 }) {
+  const recipeGrade = useLocationsStore((s) => s.recipeGrade);
   const partyInfo = getPartyText(loc.location_types, loc.has_boss);
 
   let items = loc.items;
-  if (typeFilter !== 'all') {
+  if (typeFilter !== 'all' && !RECIPE_SUBTABS.includes(typeFilter)) {
     items = items.filter((i) => i.item_type === typeFilter);
+  }
+  if (RECIPE_SUBTABS.includes(typeFilter)) {
+    const targetType = RECIPE_TYPE_MAP[typeFilter];
+    items = items.filter((i) => {
+      const info = getItemTypeAndGrade(i);
+      return info && info.type === targetType;
+    });
+  }
+  if (recipeGrade && (typeFilter === 'piece' || RECIPE_SUBTABS.includes(typeFilter))) {
+    items = items.filter((i) => getItemTypeAndGrade(i)?.grade === recipeGrade);
   }
   if (
     typeFilter !== 'recipe' &&
+    !RECIPE_SUBTABS.includes(typeFilter) &&
     typeFilter !== 'piece' &&
     typeFilter !== 'resource' &&
     (selectedRace || selectedClass)
@@ -263,9 +312,25 @@ export default function LocationsTab() {
   const userLevel = useLocationsStore((s) => s.userLevel);
   const setUserLevel = useLocationsStore((s) => s.setUserLevel);
   const handleTypeChange = useLocationsStore((s) => s.handleTypeChange);
+  const recipeGrade = useLocationsStore((s) => s.recipeGrade);
+  const setRecipeGrade = useLocationsStore((s) => s.setRecipeGrade);
 
   const tableRef = useRef<HTMLDivElement>(null);
   const [tooltip, setTooltip] = useState<{ text: string; top: number; left: number } | null>(null);
+
+  const [fullRecipesData, setFullRecipesData] = useState<LocationEntry[]>([]);
+  const [fullRecipesLoaded, setFullRecipesLoaded] = useState(false);
+
+  useEffect(() => {
+    if (RECIPE_SUBTABS.includes(typeFilter) && !fullRecipesLoaded) {
+      import('@data/LOCATIONS_RECIPES_FULL.json')
+        .then((m) => {
+          setFullRecipesData(m.default as LocationEntry[]);
+          setFullRecipesLoaded(true);
+        })
+        .catch(() => setFullRecipesLoaded(true));
+    }
+  }, [typeFilter, fullRecipesLoaded]);
 
   const [piecesData, setPiecesData] = useState<LocationEntry[]>([]);
   const [piecesLoaded, setPiecesLoaded] = useState(false);
@@ -314,6 +379,10 @@ export default function LocationsTab() {
   }, []);
 
   const activeLocations = useMemo(() => {
+    if (RECIPE_SUBTABS.includes(typeFilter)) {
+      if (fullRecipesData.length > 0) return fullRecipesData;
+      return LOCATIONS_ALL;
+    }
     if (typeFilter === 'piece' && piecesData.length > 0) return piecesData;
     if (typeFilter === 'resource' && resourcesData.length > 0) return resourcesData;
     if (typeFilter !== 'all' || piecesData.length === 0) return LOCATIONS_ALL;
@@ -347,7 +416,7 @@ export default function LocationsTab() {
     }
 
     return merged;
-  }, [typeFilter, piecesData, resourcesData]);
+  }, [typeFilter, fullRecipesData, piecesData, resourcesData]);
 
   const cities = useMemo(() => {
     const set = new Set<string>();
@@ -373,12 +442,28 @@ export default function LocationsTab() {
     return Array.from(set).sort();
   }, [selectedRace]);
 
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const findTimerRef = useRef<number>(0);
+
+  useEffect(() => {
+    setSubmitted(false);
+  }, [typeFilter, recipeGrade, selectedCity, selectedLocation, partyFilter, userLevel, searchQuery]);
+
+  useEffect(() => {
+    return () => {
+      if (findTimerRef.current) clearTimeout(findTimerRef.current);
+    };
+  }, []);
+
   const levelNum = useMemo(() => {
     const n = parseInt(userLevel, 10);
     return isNaN(n) ? null : n;
   }, [userLevel]);
 
   const filteredData = useMemo(() => {
+    if (!submitted) return [];
+
     let list = activeLocations;
 
     if (selectedCity) {
@@ -397,11 +482,22 @@ export default function LocationsTab() {
     const result: LocationEntry[] = [];
     for (const loc of list) {
       let items = loc.items;
-      if (typeFilter !== 'all') {
+      if (typeFilter !== 'all' && !RECIPE_SUBTABS.includes(typeFilter)) {
         items = items.filter((i) => i.item_type === typeFilter);
+      }
+      if (RECIPE_SUBTABS.includes(typeFilter)) {
+        const targetType = RECIPE_TYPE_MAP[typeFilter];
+        items = items.filter((i) => {
+          const info = getItemTypeAndGrade(i);
+          return info && info.type === targetType;
+        });
+      }
+      if (recipeGrade && (typeFilter === 'piece' || RECIPE_SUBTABS.includes(typeFilter))) {
+        items = items.filter((i) => getItemTypeAndGrade(i)?.grade === recipeGrade);
       }
       if (
         typeFilter !== 'recipe' &&
+        !RECIPE_SUBTABS.includes(typeFilter) &&
         typeFilter !== 'piece' &&
         typeFilter !== 'resource' &&
         (selectedRace || selectedClass)
@@ -423,7 +519,9 @@ export default function LocationsTab() {
     }
     return result;
   }, [
+    submitted,
     typeFilter,
+    recipeGrade,
     selectedRace,
     selectedClass,
     selectedCity,
@@ -445,20 +543,6 @@ export default function LocationsTab() {
 
   const hideRaceClass = typeFilter !== 'spellbook';
 
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const findTimerRef = useRef<number>(0);
-
-  useEffect(() => {
-    setSubmitted(false);
-  }, [typeFilter, selectedCity, selectedLocation, partyFilter, userLevel, searchQuery]);
-
-  useEffect(() => {
-    return () => {
-      if (findTimerRef.current) clearTimeout(findTimerRef.current);
-    };
-  }, []);
-
   const handleFind = useCallback(() => {
     setLoading(true);
     if (findTimerRef.current) clearTimeout(findTimerRef.current);
@@ -473,15 +557,24 @@ export default function LocationsTab() {
     <div>
       <div className={styles.controls}>
         <div className={styles.typeSwitcher}>
-          {TYPE_BUTTONS.map((btn) => (
-            <button
-              key={btn.key}
-              className={cx(styles.typeBtn, typeFilter === btn.key && styles.typeBtnActive)}
-              onClick={() => handleTypeChange(btn.key)}
-            >
-              {btn.label}
-            </button>
-          ))}
+          {TYPE_BUTTONS.map((btn, i) =>
+            btn.key === 'divider' ? (
+              <div key={`div-${i}`} className={styles.typeDivider} />
+            ) : (
+              <button
+                key={btn.key}
+                className={cx(styles.typeBtn, typeFilter === btn.key && styles.typeBtnActive)}
+                onClick={() => {
+                  if (findTimerRef.current) clearTimeout(findTimerRef.current);
+                  setSubmitted(false);
+                  setLoading(false);
+                  handleTypeChange(btn.key as TypeFilter);
+                }}
+              >
+                {btn.label}
+              </button>
+            ),
+          )}
         </div>
 
         {!hideRaceClass && (
@@ -535,6 +628,10 @@ export default function LocationsTab() {
           onChange={(v) => setPartyFilter(v as '' | 'S' | 'SG' | 'G')}
           options={PARTY_OPTIONS}
         />
+
+        {(RECIPE_SUBTABS.includes(typeFilter) || typeFilter === 'piece') && (
+          <CustomSelect label="Грейд" value={recipeGrade} onChange={setRecipeGrade} options={GRADE_OPTIONS} />
+        )}
 
         <FloatingLabel label="Ваш уровень" value={userLevel}>
           <NumberInput value={userLevel} onChange={setUserLevel} min={1} max={75} />

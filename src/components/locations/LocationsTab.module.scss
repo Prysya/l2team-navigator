@@ -64,6 +64,13 @@
   box-shadow: $shadow-primary-sm;
 }
 
+.typeDivider {
+  width: 1px;
+  background: $color-border;
+  margin: 4px 6px;
+  align-self: stretch;
+}
+
 .field {
   display: flex;
   align-items: center;
