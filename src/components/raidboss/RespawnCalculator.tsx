@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import Toast from '@shared/Toast';
 import { formatRespawnLabel, formatRespawnRange, parseRespawn } from '@utils/respawn';
-import { sendMessageToBot } from '@utils/telegramApi';
+import { sendBossText } from '@utils/telegramApi';
 
 import type { RaidBoss } from '@/types';
 
@@ -69,7 +69,7 @@ export default function RespawnCalculator({ boss, onClose }: Props) {
 
   const handleSendToBot = async () => {
     setToast('Отправка…');
-    const res = await sendMessageToBot(resultText);
+    const res = await sendBossText(resultText);
     setToast(res.ok ? 'Отправлено боту' : `Ошибка: ${res.error || 'неизвестная'}`);
   };
 
