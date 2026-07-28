@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import Toast from '@shared/Toast';
 import { formatRespawnLabel, formatRespawnRange, parseRespawn } from '@utils/respawn';
+import { isActualTelegram } from '@utils/telegram';
 import { sendBossText } from '@utils/telegramApi';
 
 import type { RaidBoss } from '@/types';
@@ -100,7 +101,7 @@ export default function RespawnCalculator({ boss, onClose }: Props) {
               <button className={styles.copyBtn} onClick={handleCopy}>
                 📋 Копировать
               </button>
-              {adminId && (
+              {adminId && isActualTelegram() && (
                 <button className={styles.copyBtn} onClick={handleSendToBot}>
                   📤 Отправить боту
                 </button>

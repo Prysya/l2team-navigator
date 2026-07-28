@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, useLocation, useNavigate, useSearchParams
 import BOSS_ID_MAP from '@data/BOSS_ID_MAP.json';
 import DebugModal from '@shared/DebugModal';
 import { hit, setTelegramUser } from '@utils/metrics';
+import { isActualTelegram } from '@utils/telegram';
 import cx from 'classnames';
 
 import { useTelegramStore } from '@/stores/telegramStore';
@@ -78,7 +79,7 @@ function AppLayout() {
         iddqsRef.current = '';
         const adminId = import.meta.env.VITE_ADMIN_ID;
         const uid = useTelegramStore.getState().user?.id;
-        if (adminId && uid && String(uid) === adminId) {
+        if (adminId && uid && String(uid) === adminId && isActualTelegram()) {
           setDebugOpen(true);
         }
       }
@@ -102,7 +103,7 @@ function AppLayout() {
       setTelegramUser(store.user, store.platform || '');
       useTelegramStore.getState().checkClanMembership();
       const adminId = import.meta.env.VITE_ADMIN_ID;
-      if (adminId && String(store.user.id) === adminId) {
+      if (adminId && String(store.user.id) === adminId && isActualTelegram()) {
         setDebugOpen(true);
       }
     }
