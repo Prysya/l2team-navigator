@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import { BrowserRouter, Route, Routes, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import BOSS_ID_MAP from '@data/BOSS_ID_MAP.json';
+import DebugModal from '@shared/DebugModal';
 import { hit, setTelegramUser } from '@utils/metrics';
 import cx from 'classnames';
 
@@ -39,6 +40,7 @@ function AppLayout() {
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [debugOpen, setDebugOpen] = useState(false);
 
   const activeTab = useMemo(() => {
     const tab = location.pathname.split('/')[1] || '';
@@ -81,6 +83,10 @@ function AppLayout() {
     if (store.user) {
       setTelegramUser(store.user, store.platform || '');
       useTelegramStore.getState().checkClanMembership();
+      const adminId = import.meta.env.VITE_ADMIN_ID;
+      if (adminId && String(store.user.id) === adminId) {
+        setDebugOpen(true);
+      }
     }
 
     const hashParams = new URLSearchParams(hash.split('?')[1] || hash);
@@ -304,6 +310,8 @@ function AppLayout() {
           </p>
         </div>
       </footer>
+
+      {debugOpen && <DebugModal onClose={() => setDebugOpen(false)} />}
     </div>
   );
 }
