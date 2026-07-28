@@ -4,10 +4,10 @@ export const KUSTO_QUESTS: Quest[] = [
   {
     lvl: 40,
     name: 'Relic Exploration',
-    desc: 'Шаг 1 (обязательный)',
+    desc: 'Шаг 1 — начало цепочки',
     reward: '145k Exp, 14.5k SP, 13.7k Adena',
     npc: 'Kusto — Head Blacksmith',
-    location: 'Giran',
+    location: 'Giran, Blacksmith',
     npcId: 30512,
     steps: [
       'Поговорить с Kusto (Giran, Blacksmith)',
@@ -20,7 +20,7 @@ export const KUSTO_QUESTS: Quest[] = [
   {
     lvl: 40,
     name: "Nikola's Cooperation",
-    desc: 'Шаг 2 (на выбор 1 из 2)',
+    desc: 'Шаг 2 — путь A',
     reward: "145k Exp, 14.5k SP, 13.7k Adena + Loraine's Certificate",
     npc: 'Nikola — Maestro',
     location: 'Cruma Marshlands',
@@ -38,7 +38,7 @@ export const KUSTO_QUESTS: Quest[] = [
   {
     lvl: 40,
     name: 'Art of Persuasion',
-    desc: 'Шаг 2 (на выбор 1 из 2)',
+    desc: 'Шаг 2 — путь B',
     reward: "145k Exp, 14.5k SP, 13.7k Adena + Loraine's Certificate",
     npc: 'Nikola — Maestro',
     location: 'Cruma Marshlands',
@@ -56,7 +56,7 @@ export const KUSTO_QUESTS: Quest[] = [
   {
     lvl: 41,
     name: "Nikola's Heart",
-    desc: 'Шаг 3 (на выбор 1 из 3)',
+    desc: "Шаг 3 — путь A (после Nikola's Cooperation)",
     reward: '150k Exp, 15k SP, 14k Adena',
     npc: 'Lorain — Researcher',
     location: 'Cruma Tower Entrance',
@@ -70,7 +70,7 @@ export const KUSTO_QUESTS: Quest[] = [
   {
     lvl: 41,
     name: 'Seal Removal',
-    desc: 'Шаг 3 (на выбор 1 из 3)',
+    desc: "Шаг 3 — кросс-путь (удалить Loraine's Certificate)",
     reward: '150k Exp, 15k SP, 14k Adena',
     npc: 'Lorain — Researcher',
     location: 'Cruma Tower Entrance',
@@ -85,7 +85,7 @@ export const KUSTO_QUESTS: Quest[] = [
   {
     lvl: 41,
     name: 'Contract Execution',
-    desc: 'Шаг 3 (на выбор 1 из 3)',
+    desc: 'Шаг 3 — путь B (после Art of Persuasion)',
     reward: '175k Exp, 17.5k SP, 20k Adena',
     npc: 'Lorain — Researcher',
     location: 'Cruma Tower Entrance',
@@ -100,10 +100,10 @@ export const KUSTO_QUESTS: Quest[] = [
   {
     lvl: 42,
     name: 'Lost Dream',
-    desc: 'Шаг 4 (финал, путь A)',
+    desc: 'Шаг 4 — финал пути A',
     reward: '150k Exp, 15k SP, 14k Adena',
     npc: 'Kusto — Head Blacksmith',
-    location: 'Giran',
+    location: 'Giran, Blacksmith',
     npcId: 30512,
     steps: [
       'Поговорить с Kusto (Giran, Blacksmith)',
@@ -117,10 +117,10 @@ export const KUSTO_QUESTS: Quest[] = [
   {
     lvl: 42,
     name: 'Vain Conclusion',
-    desc: 'Шаг 4 (финал, кросс-путь)',
+    desc: 'Шаг 4 — финал кросс-пути',
     reward: '150k Exp, 15k SP, 14k Adena',
     npc: 'Dorothy — Locksmith',
-    location: 'Heine',
+    location: 'Heine, док слева от храма',
     npcId: 30074,
     steps: [
       'Поговорить с Dorothy (Heine, док слева от храма)',
@@ -133,10 +133,10 @@ export const KUSTO_QUESTS: Quest[] = [
   {
     lvl: 42,
     name: 'Contract Completion',
-    desc: 'Шаг 4 (финал, путь B)',
+    desc: 'Шаг 4 — финал пути B',
     reward: '150k Exp, 15k SP, 14k Adena',
     npc: 'Luka — Blueprint Seller',
-    location: 'Oren',
+    location: 'Oren, Blacksmith',
     npcId: 30087,
     steps: [
       'Поговорить с Luka (Oren, Blacksmith)',
