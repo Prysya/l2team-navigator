@@ -89,6 +89,10 @@
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   margin-bottom: $spacing-2xl;
+
+  @include mobile {
+    overflow: hidden;
+  }
 }
 
 .table {
@@ -140,13 +144,29 @@
   width: 30%;
 }
 .colLvl {
-  width: 65px;
+  width: 12%;
+  min-width: 50px;
 }
 .colResp {
   width: 18%;
 }
 .colLoc {
-  width: 44%;
+  width: 40%;
+}
+
+@include mobile {
+  .colName {
+    width: 40%;
+  }
+  .colLvl {
+    width: 15%;
+  }
+  .colResp {
+    width: 22%;
+  }
+  .colLoc {
+    width: 23%;
+  }
 }
 
 .sortable {
