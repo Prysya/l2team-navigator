@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import { BrowserRouter, Route, Routes, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import BOSS_ID_MAP from '@data/BOSS_ID_MAP.json';
 import { hit, setTelegramUser } from '@utils/metrics';
 import cx from 'classnames';
 
@@ -84,7 +85,9 @@ function AppLayout() {
 
     const hashParams = new URLSearchParams(hash.split('?')[1] || hash);
     const startParam = hashParams.get('tgWebAppStartParam');
-    const bossName = startParam?.startsWith('boss_') ? decodeURIComponent(startParam.slice(5)) : null;
+    const safeId = startParam?.startsWith('boss_') ? startParam.slice(5) : null;
+    const bossMatch = safeId ? (BOSS_ID_MAP as { id: string; name: string }[]).find((e) => e.id === safeId) : null;
+    const bossName = bossMatch?.name || null;
 
     const clean = hash
       .split('&')

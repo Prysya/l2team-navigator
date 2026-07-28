@@ -41,8 +41,11 @@ export default function RespawnCalculator({ boss, onClose }: Props) {
     const maxHours = respawnWindow.base + respawnWindow.variance;
     const minDate = new Date(kill.getTime() + minHours * 3600000);
     const maxDate = new Date(kill.getTime() + maxHours * 3600000);
-    const bossId = encodeURIComponent(boss.name);
-    const botUrl = `${BOT_LINK}?startapp=boss_${bossId}`;
+    const bossId = boss.name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '');
+    const botUrl = `${BOT_LINK}?start=boss_${bossId}`;
     const text = `Босс ${boss.name} (${botUrl}) — окно респа: ${formatMSK(minDate)} — ${formatMSK(maxDate)} (МСК)`;
     setResultText(text);
   };
