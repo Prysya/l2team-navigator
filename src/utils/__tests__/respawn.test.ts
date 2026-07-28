@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { formatMSK, formatRespawnLabel, parseRespawn } from '../respawn';
+import { formatMSK, formatRespawnLabel, formatRespawnRange, parseRespawn } from '../respawn';
 
 describe('parseRespawn', () => {
   it('returns null for empty string', () => {
@@ -60,5 +60,19 @@ describe('formatMSK', () => {
     const result = formatMSK(date);
     expect(result).toMatch(/\d{2}\.\d{2}\.\d{4}, \d{2}:\d{2}/);
     expect(result).toContain('15.07.2024');
+  });
+});
+
+describe('formatRespawnRange', () => {
+  it('omits date for second time when same day', () => {
+    const min = new Date('2024-07-15T20:35:00+03:00');
+    const max = new Date('2024-07-15T23:45:00+03:00');
+    expect(formatRespawnRange(min, max)).toBe('15.07.2024 20:35 — 23:45');
+  });
+
+  it('shows both dates when crossing midnight', () => {
+    const min = new Date('2024-07-15T20:35:00+03:00');
+    const max = new Date('2024-07-16T00:35:00+03:00');
+    expect(formatRespawnRange(min, max)).toBe('15.07.2024 20:35 — 16.07.2024 00:35');
   });
 });

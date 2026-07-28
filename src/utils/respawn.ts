@@ -30,3 +30,14 @@ const MSK_FORMATTER = new Intl.DateTimeFormat('ru-RU', {
 export function formatMSK(date: Date): string {
   return MSK_FORMATTER.format(date);
 }
+
+export function formatRespawnRange(minDate: Date, maxDate: Date): string {
+  const minStr = MSK_FORMATTER.format(minDate);
+  const maxStr = MSK_FORMATTER.format(maxDate);
+  const [minDay, minTime] = minStr.split(', ');
+  const [maxDay, maxTime] = maxStr.split(', ');
+  if (minDay === maxDay) {
+    return `${minDay} ${minTime} — ${maxTime}`;
+  }
+  return `${minDay} ${minTime} — ${maxDay} ${maxTime}`;
+}

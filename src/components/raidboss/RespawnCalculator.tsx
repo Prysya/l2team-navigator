@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import Toast from '@shared/Toast';
-import { formatMSK, formatRespawnLabel, parseRespawn } from '@utils/respawn';
+import { formatRespawnLabel, formatRespawnRange, parseRespawn } from '@utils/respawn';
 
 import type { RaidBoss } from '@/types';
 
@@ -46,7 +46,7 @@ export default function RespawnCalculator({ boss, onClose }: Props) {
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '');
     const botUrl = `${BOT_LINK}?startapp=boss_${bossId}`;
-    const text = `Босс ${boss.name} (${botUrl}) — окно респа: ${formatMSK(minDate)} — ${formatMSK(maxDate)} (МСК)`;
+    const text = `Босс ${boss.name} (${botUrl}) — окно респа: ${formatRespawnRange(minDate, maxDate)} (МСК)`;
     setResultText(text);
   };
 
