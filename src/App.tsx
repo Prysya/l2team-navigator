@@ -89,15 +89,15 @@ function AppLayout() {
     const bossMatch = safeId ? (BOSS_ID_MAP as { id: string; name: string }[]).find((e) => e.id === safeId) : null;
     const bossName = bossMatch?.name || null;
 
-    const clean = hash
-      .split('&')
-      .filter((part) => !/^#?tgWebApp\w*=/.test(part))
-      .join('&')
-      .replace(/^&/, '#');
-    window.history.replaceState(null, '', window.location.pathname + clean);
-
     if (bossName) {
-      navigate(`/raidboss?boss=${encodeURIComponent(bossName)}`);
+      navigate(`/raidboss?boss=${encodeURIComponent(bossName)}`, { replace: true });
+    } else {
+      const clean = hash
+        .split('&')
+        .filter((part) => !/^#?tgWebApp\w*=/.test(part))
+        .join('&')
+        .replace(/^&/, '#');
+      window.history.replaceState(null, '', window.location.pathname + clean);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
