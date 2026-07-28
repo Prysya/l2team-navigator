@@ -244,7 +244,32 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - Результат: `src/data/QUEST_DATA.json`
 - Используется в `QuestsTab.tsx` как fallback для `QUEST_STEPS`, `QUEST_DETAILS`, `NPC_COORDS`
 - Цепочка палач храма: посты 54–62 (добавлены в `QUESTS.posts`)
+- Цепочка Кусто: посты 87–95, данные в `src/data/quests/kustoQuests.ts`
 - `enrichQuest()` проверяет: хардкод-мапы → поле квеста → `QUEST_DATA.json`
+
+### Quest Data Files (`src/data/quests/`)
+
+| Файл                      | Описание                                                  |
+| ------------------------- | --------------------------------------------------------- |
+| `questsByRace.ts`         | Расовые квесты по расам                                   |
+| `sharedQuests.ts`         | Общие квесты                                              |
+| `templeExecutorQuests.ts` | Цепочка палача храма (9 квестов)                          |
+| `kustoQuests.ts`          | Цепочка Кусто (9 квестов с шагами и изображениями)        |
+| `professionRaces.ts`      | Маппинг профессий к их квестам Path of... + 3 in 1...     |
+| `questDetails.ts`         | NPC, локации, уровни для квестов                          |
+| `questIds.ts`             | Маппинг имён квестов → ID на mw2.wiki                     |
+| `questSteps.ts`           | Текстовые шаги прохождения                                |
+| `npcCoords.ts`            | Координаты NPC на карте мира                              |
+| `QUEST_IMAGES.json`       | Маппинг квестов к изображениям (59 квестов, 621 скриншот) |
+
+### URL на mw2.wiki
+
+Логика `isPostQuest(name, id)`:
+
+- `id` 87–95 → `/lu4/posts/post/{id}` (Kusto)
+- имя начинается с `Path of ` или `3 in ` → `/lu4/posts/post/{id}` (профессии)
+- `Trial of Geomancer` → `/lu4/posts/post/{id}`
+- всё остальное → `/lu4/quest/{id}`
 
 **Запуск:** `node scripts/parse-quests.mjs`
 
@@ -254,6 +279,7 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - Фильтрует S-grade и deprecated предметы, объединяет рецепты с NPC-дропом/спойлом
 - Распределяет Etc-рецепты по подтипам: Soulshot/Elixir/Material/Other
 - Определяет категорию для брони по `item_parameter` (Helmet/Gloves/Boots/Shield/HairAccessory)
+- `fetch-quest-images.mjs` — скачивает скриншоты прохождения квестов с mw2.wiki (59 квестов, 621 изображение)
 
 ## Analytics
 
