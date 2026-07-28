@@ -111,7 +111,14 @@ function AppLayout() {
     const bossName = bossMatch?.name || null;
 
     if (bossName) {
-      navigate(`/raidboss?boss=${encodeURIComponent(bossName)}`, { replace: true });
+      navigate(
+        {
+          pathname: '/raidboss',
+          search: `?boss=${encodeURIComponent(bossName)}`,
+          hash: window.location.hash.replace(/^#?/, ''),
+        },
+        { replace: true },
+      );
     } else {
       const clean = hash
         .split('&')
