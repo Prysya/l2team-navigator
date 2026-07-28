@@ -79,6 +79,7 @@ function AppLayout() {
     const store = useTelegramStore.getState();
     if (store.user) {
       setTelegramUser(store.user, store.platform || '');
+      useTelegramStore.getState().checkClanMembership();
     }
 
     const hashParams = new URLSearchParams(hash.split('?')[1] || hash);
