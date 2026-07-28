@@ -276,7 +276,7 @@ export default function QuestsTab() {
                 onChange={(v) => setSelectedClass(v)}
                 options={
                   PROFESSION_RACES.find((r) => r.race === profRace)
-                    ?.classes.filter((c) => (profType === 'first' ? !!c.quest1 : !!(c.quest2 || c.quest3in1)))
+                    ?.classes.filter((c) => (profType === 'first' ? !c.quest3in1 : !!c.quest3in1))
                     .map((c) => ({ value: c.name, label: c.name })) ?? []
                 }
               />
