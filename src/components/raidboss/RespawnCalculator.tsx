@@ -5,6 +5,7 @@ import { formatRespawnLabel, formatRespawnRange, parseRespawn } from '@utils/res
 import { isActualTelegram } from '@utils/telegram';
 import { sendBossText } from '@utils/telegramApi';
 
+import { useTelegramStore } from '@/stores/telegramStore';
 import type { RaidBoss } from '@/types';
 
 import styles from './RespawnCalculator.module.scss';
@@ -71,7 +72,12 @@ export default function RespawnCalculator({ boss, onClose }: Props) {
   const handleSendToBot = async () => {
     setToast('Отправка…');
     const res = await sendBossText(resultText);
-    setToast(res.ok ? 'Отправлено боту' : `Ошибка: ${res.error || 'неизвестная'}`);
+    if (res.ok) {
+      setToast('Отправлено боту');
+    } else {
+      setToast(`Ошибка: ${res.error || 'неизвестная'}`);
+      useTelegramStore.getState().setSendBossError(res.error || 'Unknown error');
+    }
   };
 
   return createPortal(

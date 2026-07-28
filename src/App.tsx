@@ -92,6 +92,14 @@ function AppLayout() {
     hit(location.pathname + location.search + location.hash);
   }, [location]);
 
+  const sendBossError = useTelegramStore((s) => s.sendBossError);
+  useEffect(() => {
+    if (sendBossError && isActualTelegram()) {
+      setDebugOpen(true);
+      useTelegramStore.getState().setSendBossError(null);
+    }
+  }, [sendBossError]);
+
   useEffect(() => {
     const hash = window.location.hash;
     if (!hash.includes('tgWebAppData')) return;
