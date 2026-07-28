@@ -30,6 +30,12 @@ type QuestDataEntry = {
   steps: string[];
 };
 
+function isPostQuest(name: string, id: number): boolean {
+  return (
+    (id >= 87 && id <= 95) || name.startsWith('Path of ') || name.startsWith('3 in ') || name === 'Trial of Geomancer'
+  );
+}
+
 export function detectRewardTag(reward: string): RewardTag {
   const r = reward.toLowerCase();
   const hasWeapon =
@@ -346,7 +352,7 @@ export default function QuestsTab() {
                             <span className={styles.detailQuestName}>{eq.name}</span>
                             {eq.questId && eq.questId > 0 && (
                               <a
-                                href={`https://mw2.wiki/lu4/${eq.questId >= 87 ? 'posts/post' : 'quest'}/${eq.questId}`}
+                                href={`https://mw2.wiki/lu4/${isPostQuest(eq.name, eq.questId) ? 'posts/post' : 'quest'}/${eq.questId}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className={styles.wikiLink}
@@ -424,7 +430,7 @@ export default function QuestsTab() {
                                 <div className={styles.stepItem}>
                                   Полное описание прохождения на{' '}
                                   <a
-                                    href={`https://mw2.wiki/lu4/${eq.questId >= 87 ? 'posts/post' : 'quest'}/${eq.questId}`}
+                                    href={`https://mw2.wiki/lu4/${isPostQuest(eq.name, eq.questId) ? 'posts/post' : 'quest'}/${eq.questId}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className={styles.wikiLinkInline}
