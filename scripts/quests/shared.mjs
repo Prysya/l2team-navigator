@@ -41,12 +41,15 @@ export async function tryFetch(url) {
 }
 
 export function extractImages(html) {
+  // Only extract images from the #article-content div (quest walkthrough)
+  const content = html.match(/<div id="article-content">[\s\S]*?<\/div>\s*<\/div>/i);
+  if (!content) return [];
   const imgs = [];
   const regex = /<figure[^>]*>[\s\S]*?<img[^>]*src="(\/(?:upload|file)\/[^"]+\.(?:jpg|png))"[^>]*>[\s\S]*?<\/figure>/gi;
-  for (const [, src] of html.matchAll(regex)) {
+  for (const [, src] of content[0].matchAll(regex)) {
     imgs.push(src);
   }
-  return [...new Set(imgs)].slice(0, 5); // max 5 images per quest
+  return [...new Set(imgs)];
 }
 
 export async function download(url, filePath) {

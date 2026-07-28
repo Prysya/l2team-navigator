@@ -1,130 +1,4 @@
 {
-  "Path of the Warrior": [
-    "path-of-the-warrior-1.jpg",
-    "path-of-the-warrior-2.jpg",
-    "path-of-the-warrior-3.jpg",
-    "path-of-the-warrior-4.jpg",
-    "path-of-the-warrior-5.jpg"
-  ],
-  "Path of the Human Knight": [
-    "path-of-the-human-knight-1.jpg",
-    "path-of-the-human-knight-2.jpg",
-    "path-of-the-human-knight-3.jpg",
-    "path-of-the-human-knight-4.jpg",
-    "path-of-the-human-knight-5.jpg"
-  ],
-  "Path of the Rogue": [
-    "path-of-the-rogue-1.jpg",
-    "path-of-the-rogue-2.jpg",
-    "path-of-the-rogue-3.jpg",
-    "path-of-the-rogue-4.jpg",
-    "path-of-the-rogue-5.jpg"
-  ],
-  "Path of the Human Wizard": [
-    "path-of-the-human-wizard-1.jpg",
-    "path-of-the-human-wizard-2.jpg",
-    "path-of-the-human-wizard-3.jpg",
-    "path-of-the-human-wizard-4.jpg",
-    "path-of-the-human-wizard-5.jpg"
-  ],
-  "Path of the Cleric": [
-    "path-of-the-cleric-1.jpg",
-    "path-of-the-cleric-2.jpg",
-    "path-of-the-cleric-3.jpg",
-    "path-of-the-cleric-4.jpg",
-    "path-of-the-cleric-5.jpg"
-  ],
-  "Path of the Elven Knight": [
-    "path-of-the-elven-knight-1.jpg",
-    "path-of-the-elven-knight-2.jpg",
-    "path-of-the-elven-knight-3.jpg",
-    "path-of-the-elven-knight-4.jpg",
-    "path-of-the-elven-knight-5.jpg"
-  ],
-  "Path of the Elven Scout": [
-    "path-of-the-elven-scout-1.jpg",
-    "path-of-the-elven-scout-2.jpg",
-    "path-of-the-elven-scout-3.jpg",
-    "path-of-the-elven-scout-4.jpg",
-    "path-of-the-elven-scout-5.jpg"
-  ],
-  "Path of the Elven Wizard": [
-    "path-of-the-elven-wizard-1.jpg",
-    "path-of-the-elven-wizard-2.jpg",
-    "path-of-the-elven-wizard-3.jpg",
-    "path-of-the-elven-wizard-4.jpg",
-    "path-of-the-elven-wizard-5.jpg"
-  ],
-  "Path of the Elven Oracle": [
-    "path-of-the-elven-oracle-1.jpg",
-    "path-of-the-elven-oracle-2.jpg",
-    "path-of-the-elven-oracle-3.jpg",
-    "path-of-the-elven-oracle-4.jpg",
-    "path-of-the-elven-oracle-5.jpg"
-  ],
-  "Path of the Palus Knight": [
-    "path-of-the-palus-knight-1.jpg",
-    "path-of-the-palus-knight-2.jpg",
-    "path-of-the-palus-knight-3.jpg",
-    "path-of-the-palus-knight-4.jpg",
-    "path-of-the-palus-knight-5.jpg"
-  ],
-  "Path of the Assassin": [
-    "path-of-the-assassin-1.jpg",
-    "path-of-the-assassin-2.jpg",
-    "path-of-the-assassin-3.jpg",
-    "path-of-the-assassin-4.jpg",
-    "path-of-the-assassin-5.jpg"
-  ],
-  "Path of the Dark Wizard": [
-    "path-of-the-dark-wizard-1.jpg",
-    "path-of-the-dark-wizard-2.jpg",
-    "path-of-the-dark-wizard-3.jpg",
-    "path-of-the-dark-wizard-4.jpg",
-    "path-of-the-dark-wizard-5.jpg"
-  ],
-  "Path of the Shillien Oracle": [
-    "path-of-the-shillien-oracle-1.jpg",
-    "path-of-the-shillien-oracle-2.jpg",
-    "path-of-the-shillien-oracle-3.jpg",
-    "path-of-the-shillien-oracle-4.jpg",
-    "path-of-the-shillien-oracle-5.jpg"
-  ],
-  "Path of the Orc Raider": [
-    "path-of-the-orc-raider-1.jpg",
-    "path-of-the-orc-raider-2.jpg",
-    "path-of-the-orc-raider-3.jpg",
-    "path-of-the-orc-raider-4.jpg",
-    "path-of-the-orc-raider-5.jpg"
-  ],
-  "Path of the Orc Monk": [
-    "path-of-the-orc-monk-1.jpg",
-    "path-of-the-orc-monk-2.jpg",
-    "path-of-the-orc-monk-3.jpg",
-    "path-of-the-orc-monk-4.jpg",
-    "path-of-the-orc-monk-5.jpg"
-  ],
-  "Path of the Orc Shaman": [
-    "path-of-the-orc-shaman-1.jpg",
-    "path-of-the-orc-shaman-2.jpg",
-    "path-of-the-orc-shaman-3.jpg",
-    "path-of-the-orc-shaman-4.jpg",
-    "path-of-the-orc-shaman-5.jpg"
-  ],
-  "Path of the Scavenger": [
-    "path-of-the-scavenger-1.jpg",
-    "path-of-the-scavenger-2.jpg",
-    "path-of-the-scavenger-3.jpg",
-    "path-of-the-scavenger-4.jpg",
-    "path-of-the-scavenger-5.jpg"
-  ],
-  "Path of the Artisan": [
-    "path-of-the-artisan-1.jpg",
-    "path-of-the-artisan-2.jpg",
-    "path-of-the-artisan-3.jpg",
-    "path-of-the-artisan-4.jpg",
-    "path-of-the-artisan-5.jpg"
-  ],
   "Trial of Geomancer": [
     "trial-of-geomancer-1.jpg",
     "trial-of-geomancer-2.jpg",
@@ -165,5 +39,179 @@
     "contract-completion-2.jpg",
     "contract-completion-3.jpg",
     "contract-completion-4.jpg"
+  ],
+  "Path of the Warrior": [
+    "path-of-the-warrior-1.jpg",
+    "path-of-the-warrior-2.jpg",
+    "path-of-the-warrior-3.jpg",
+    "path-of-the-warrior-4.jpg",
+    "path-of-the-warrior-5.jpg",
+    "path-of-the-warrior-6.jpg"
+  ],
+  "Path of the Human Knight": [
+    "path-of-the-human-knight-1.jpg",
+    "path-of-the-human-knight-2.jpg",
+    "path-of-the-human-knight-3.jpg",
+    "path-of-the-human-knight-4.jpg",
+    "path-of-the-human-knight-5.jpg",
+    "path-of-the-human-knight-6.jpg",
+    "path-of-the-human-knight-7.jpg",
+    "path-of-the-human-knight-8.jpg",
+    "path-of-the-human-knight-9.jpg"
+  ],
+  "Path of the Rogue": [
+    "path-of-the-rogue-1.jpg",
+    "path-of-the-rogue-2.jpg",
+    "path-of-the-rogue-3.jpg",
+    "path-of-the-rogue-4.jpg",
+    "path-of-the-rogue-5.jpg"
+  ],
+  "Path of the Human Wizard": [
+    "path-of-the-human-wizard-1.jpg",
+    "path-of-the-human-wizard-2.jpg",
+    "path-of-the-human-wizard-3.jpg",
+    "path-of-the-human-wizard-4.jpg",
+    "path-of-the-human-wizard-5.jpg",
+    "path-of-the-human-wizard-6.jpg",
+    "path-of-the-human-wizard-7.jpg",
+    "path-of-the-human-wizard-8.jpg",
+    "path-of-the-human-wizard-9.jpg",
+    "path-of-the-human-wizard-10.jpg"
+  ],
+  "Path of the Cleric": [
+    "path-of-the-cleric-1.jpg",
+    "path-of-the-cleric-2.jpg",
+    "path-of-the-cleric-3.jpg",
+    "path-of-the-cleric-4.jpg",
+    "path-of-the-cleric-5.jpg",
+    "path-of-the-cleric-6.jpg",
+    "path-of-the-cleric-7.jpg",
+    "path-of-the-cleric-8.jpg"
+  ],
+  "Path of the Elven Knight": [
+    "path-of-the-elven-knight-1.jpg",
+    "path-of-the-elven-knight-2.jpg",
+    "path-of-the-elven-knight-3.jpg",
+    "path-of-the-elven-knight-4.jpg",
+    "path-of-the-elven-knight-5.jpg"
+  ],
+  "Path of the Elven Scout": [
+    "path-of-the-elven-scout-1.jpg",
+    "path-of-the-elven-scout-2.jpg",
+    "path-of-the-elven-scout-3.jpg",
+    "path-of-the-elven-scout-4.jpg",
+    "path-of-the-elven-scout-5.jpg",
+    "path-of-the-elven-scout-6.jpg"
+  ],
+  "Path of the Elven Wizard": [
+    "path-of-the-elven-wizard-1.jpg",
+    "path-of-the-elven-wizard-2.jpg",
+    "path-of-the-elven-wizard-3.jpg",
+    "path-of-the-elven-wizard-4.jpg",
+    "path-of-the-elven-wizard-5.jpg",
+    "path-of-the-elven-wizard-6.jpg",
+    "path-of-the-elven-wizard-7.jpg",
+    "path-of-the-elven-wizard-8.jpg"
+  ],
+  "Path of the Elven Oracle": [
+    "path-of-the-elven-oracle-1.jpg",
+    "path-of-the-elven-oracle-2.jpg",
+    "path-of-the-elven-oracle-3.jpg",
+    "path-of-the-elven-oracle-4.jpg",
+    "path-of-the-elven-oracle-5.jpg",
+    "path-of-the-elven-oracle-6.jpg"
+  ],
+  "Path of the Palus Knight": [
+    "path-of-the-palus-knight-1.jpg",
+    "path-of-the-palus-knight-2.jpg",
+    "path-of-the-palus-knight-3.jpg",
+    "path-of-the-palus-knight-4.jpg",
+    "path-of-the-palus-knight-5.jpg",
+    "path-of-the-palus-knight-6.jpg"
+  ],
+  "Path of the Assassin": [
+    "path-of-the-assassin-1.jpg",
+    "path-of-the-assassin-2.jpg",
+    "path-of-the-assassin-3.jpg",
+    "path-of-the-assassin-4.jpg",
+    "path-of-the-assassin-5.jpg",
+    "path-of-the-assassin-6.jpg"
+  ],
+  "Path of the Dark Wizard": [
+    "path-of-the-dark-wizard-1.jpg",
+    "path-of-the-dark-wizard-2.jpg",
+    "path-of-the-dark-wizard-3.jpg",
+    "path-of-the-dark-wizard-4.jpg",
+    "path-of-the-dark-wizard-5.jpg",
+    "path-of-the-dark-wizard-6.jpg",
+    "path-of-the-dark-wizard-7.jpg",
+    "path-of-the-dark-wizard-8.jpg"
+  ],
+  "Path of the Shillien Oracle": [
+    "path-of-the-shillien-oracle-1.jpg",
+    "path-of-the-shillien-oracle-2.jpg",
+    "path-of-the-shillien-oracle-3.jpg",
+    "path-of-the-shillien-oracle-4.jpg",
+    "path-of-the-shillien-oracle-5.jpg",
+    "path-of-the-shillien-oracle-6.jpg"
+  ],
+  "Path of the Orc Raider": [
+    "path-of-the-orc-raider-1.jpg",
+    "path-of-the-orc-raider-2.jpg",
+    "path-of-the-orc-raider-3.jpg",
+    "path-of-the-orc-raider-4.jpg",
+    "path-of-the-orc-raider-5.jpg",
+    "path-of-the-orc-raider-6.jpg"
+  ],
+  "Path of the Orc Monk": [
+    "path-of-the-orc-monk-1.jpg",
+    "path-of-the-orc-monk-2.jpg",
+    "path-of-the-orc-monk-3.jpg",
+    "path-of-the-orc-monk-4.jpg",
+    "path-of-the-orc-monk-5.jpg",
+    "path-of-the-orc-monk-6.jpg",
+    "path-of-the-orc-monk-7.jpg",
+    "path-of-the-orc-monk-8.jpg",
+    "path-of-the-orc-monk-9.jpg",
+    "path-of-the-orc-monk-10.jpg",
+    "path-of-the-orc-monk-11.jpg",
+    "path-of-the-orc-monk-12.jpg"
+  ],
+  "Path of the Orc Shaman": [
+    "path-of-the-orc-shaman-1.jpg",
+    "path-of-the-orc-shaman-2.jpg",
+    "path-of-the-orc-shaman-3.jpg",
+    "path-of-the-orc-shaman-4.jpg",
+    "path-of-the-orc-shaman-5.jpg",
+    "path-of-the-orc-shaman-6.jpg",
+    "path-of-the-orc-shaman-7.jpg",
+    "path-of-the-orc-shaman-8.jpg",
+    "path-of-the-orc-shaman-9.jpg",
+    "path-of-the-orc-shaman-10.jpg",
+    "path-of-the-orc-shaman-11.jpg"
+  ],
+  "Path of the Scavenger": [
+    "path-of-the-scavenger-1.jpg",
+    "path-of-the-scavenger-2.jpg",
+    "path-of-the-scavenger-3.jpg",
+    "path-of-the-scavenger-4.jpg",
+    "path-of-the-scavenger-5.jpg",
+    "path-of-the-scavenger-6.jpg",
+    "path-of-the-scavenger-7.jpg",
+    "path-of-the-scavenger-8.jpg",
+    "path-of-the-scavenger-9.jpg",
+    "path-of-the-scavenger-10.jpg",
+    "path-of-the-scavenger-11.jpg",
+    "path-of-the-scavenger-12.jpg",
+    "path-of-the-scavenger-13.jpg",
+    "path-of-the-scavenger-14.jpg"
+  ],
+  "Path of the Artisan": [
+    "path-of-the-artisan-1.jpg",
+    "path-of-the-artisan-2.jpg",
+    "path-of-the-artisan-3.jpg",
+    "path-of-the-artisan-4.jpg",
+    "path-of-the-artisan-5.jpg",
+    "path-of-the-artisan-6.jpg"
   ]
 }

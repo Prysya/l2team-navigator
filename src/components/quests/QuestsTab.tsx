@@ -31,7 +31,7 @@ type QuestDataEntry = {
 };
 
 function isPostQuest(name: string, id: number): boolean {
-  return (id >= 87 && id <= 95) || (id >= 445 && name.startsWith('Path of ')) || name.startsWith('3 in ');
+  return name.startsWith('Path of ') || name.startsWith('3 in ') || (id >= 87 && id <= 95);
 }
 
 export function detectRewardTag(reward: string): RewardTag {

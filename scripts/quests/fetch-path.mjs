@@ -8,8 +8,7 @@ const imgs = loadQuestImages();
 const dir = imgDir();
 
 for (const [name, id] of pathQuests) {
-  const isPost = id >= 445;
-  const url = isPost ? `https://mw2.wiki/lu4/posts/post/${id}` : `https://mw2.wiki/lu4/quest/${id}`;
+  const url = `https://mw2.wiki/lu4/posts/post/${id}`;
   process.stdout.write(`Path: ${name} (${id})... `);
   const html = await tryFetch(url);
   if (!html) { console.log('no page'); continue; }
@@ -28,7 +27,7 @@ for (const [name, id] of pathQuests) {
     files.push(fn);
   }
   imgs[name] = files;
-  console.log(`${files.length} imgs [${isPost ? 'post' : 'quest'}]`);
+  console.log(`${files.length} imgs`);
 }
 
 saveQuestImages(imgs);
