@@ -49,7 +49,8 @@ export const useTelegramStore = create<TelegramStore>((set, get) => ({
   clanCheckLoading: false,
   clanCheckError: null,
   initFromHash(hash: string) {
-    const params = new URLSearchParams(hash.split('?')[1] || hash);
+    const clean = hash.replace(/^[#?]/, '');
+    const params = new URLSearchParams(clean);
     const rawData = params.get('tgWebAppData');
     if (!rawData) return;
 
