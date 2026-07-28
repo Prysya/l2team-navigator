@@ -16,7 +16,7 @@ export const KUSTO_QUESTS: Quest[] = [
       'Вернуться к Lorain и получить Relic Exploration',
       'Вернуться к Kusto',
     ],
-    images: ['relic-exploration-1.jpg', 'relic-exploration-2.jpg', 'relic-exploration-3.jpg'],
+    images: ['lost-dream-1.jpg', 'lost-dream-4.jpg', 'nikola-s-heart-2.jpg'],
   },
   {
     lvl: 40,
@@ -35,12 +35,7 @@ export const KUSTO_QUESTS: Quest[] = [
       'Собрать Broken Metal Pieces и отдать Lorain',
       'Вернуться к Nikola',
     ],
-    images: [
-      'nikola-s-cooperation-1.jpg',
-      'nikola-s-cooperation-2.jpg',
-      'nikola-s-cooperation-3.jpg',
-      'nikola-s-cooperation-4.jpg',
-    ],
+    images: ['nikola-s-heart-2.jpg', 'lost-dream-4.jpg', 'art-of-persuasion-3.jpg', 'art-of-persuasion-4.jpg'],
   },
   {
     lvl: 40,
@@ -59,12 +54,7 @@ export const KUSTO_QUESTS: Quest[] = [
       'Собрать Broken Metal Pieces и отдать Lorain',
       'Вернуться к Nikola',
     ],
-    images: [
-      'art-of-persuasion-1.jpg',
-      'art-of-persuasion-2.jpg',
-      'art-of-persuasion-3.jpg',
-      'art-of-persuasion-4.jpg',
-    ],
+    images: ['nikola-s-heart-2.jpg', 'lost-dream-4.jpg', 'art-of-persuasion-3.jpg', 'art-of-persuasion-4.jpg'],
   },
   {
     lvl: 41,
@@ -79,7 +69,7 @@ export const KUSTO_QUESTS: Quest[] = [
       'Поговорить с Nikola (Cruma Marshlands)',
       'Вернуться к Kusto (Giran, Blacksmith)',
     ],
-    images: ['nikola-s-heart-1.jpg', 'nikola-s-heart-2.jpg', 'nikola-s-heart-3.jpg'],
+    images: ['lost-dream-4.jpg', 'nikola-s-heart-2.jpg', 'seal-removal-1.jpg'],
   },
   {
     lvl: 41,
@@ -95,7 +85,7 @@ export const KUSTO_QUESTS: Quest[] = [
       'Поговорить с Nikola (Cruma Marshlands)',
       'Поговорить с Dorothy — Locksmith (Heine, док слева от храма)',
     ],
-    images: ['seal-removal-1.jpg', 'seal-removal-2.jpg', 'seal-removal-3.jpg'],
+    images: ['seal-removal-1.jpg', 'lost-dream-4.jpg', 'seal-removal-3.jpg'],
   },
   {
     lvl: 41,
@@ -111,7 +101,7 @@ export const KUSTO_QUESTS: Quest[] = [
       'Фармить Leto Lizardman (Plains of the Lizardmen, Oren) до получения дропа',
       'Отдать дроп Luka — Blueprint Seller (Oren, Blacksmith)',
     ],
-    images: ['contract-execution-1.jpg', 'contract-execution-2.jpg', 'contract-execution-3.jpg'],
+    images: ['lost-dream-4.jpg', 'nikola-s-heart-2.jpg', 'lost-dream-1.jpg'],
   },
   {
     lvl: 42,
@@ -129,7 +119,7 @@ export const KUSTO_QUESTS: Quest[] = [
       'Поговорить с Nikola (Cruma Marshlands)',
       'Вернуться к Kusto',
     ],
-    images: ['lost-dream-1.jpg', 'lost-dream-2.jpg', 'lost-dream-3.jpg', 'lost-dream-4.jpg', 'lost-dream-5.jpg'],
+    images: ['lost-dream-1.jpg', 'lost-dream-2.jpg', 'lost-dream-1.jpg', 'lost-dream-4.jpg', 'lost-dream-5.jpg'],
   },
   {
     lvl: 42,
@@ -146,7 +136,7 @@ export const KUSTO_QUESTS: Quest[] = [
       'Поговорить с Lorain (Cruma Tower, вход)',
       'Вернуться к Kusto (Giran, Blacksmith)',
     ],
-    images: ['vain-conclusion-1.jpg', 'vain-conclusion-2.jpg', 'vain-conclusion-3.jpg', 'vain-conclusion-4.jpg'],
+    images: ['lost-dream-4.jpg', 'nikola-s-heart-2.jpg', 'vain-conclusion-3.jpg', 'vain-conclusion-4.jpg'],
   },
   {
     lvl: 42,
@@ -163,6 +153,6 @@ export const KUSTO_QUESTS: Quest[] = [
       'Поговорить с Lorain (Cruma Tower, вход)',
       'Вернуться к Kusto (Giran, Blacksmith)',
     ],
-    images: ['contract-completion-1.jpg', 'contract-completion-2.jpg', 'contract-completion-3.jpg'],
+    images: ['vain-conclusion-4.jpg', 'lost-dream-4.jpg', 'seal-removal-3.jpg'],
   },
 ];
