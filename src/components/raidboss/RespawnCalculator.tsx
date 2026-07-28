@@ -107,7 +107,7 @@ export default function RespawnCalculator({ boss, onClose }: Props) {
               <button className={styles.copyBtn} onClick={handleCopy}>
                 📋 Копировать
               </button>
-              {adminId && isActualTelegram() && (
+              {adminId && (import.meta.env.DEV || isActualTelegram()) && (
                 <button className={styles.copyBtn} onClick={handleSendToBot}>
                   📤 Отправить боту
                 </button>

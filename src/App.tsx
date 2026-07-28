@@ -78,8 +78,8 @@ function AppLayout() {
       if (iddqsRef.current === 'iddqs') {
         iddqsRef.current = '';
         const adminId = import.meta.env.VITE_ADMIN_ID;
-        const uid = useTelegramStore.getState().user?.id;
-        if (adminId && uid && String(uid) === adminId && isActualTelegram()) {
+        if (!adminId) return;
+        if (import.meta.env.DEV || (useTelegramStore.getState().user?.id && isActualTelegram())) {
           setDebugOpen(true);
         }
       }
@@ -94,7 +94,7 @@ function AppLayout() {
 
   const sendBossError = useTelegramStore((s) => s.sendBossError);
   useEffect(() => {
-    if (sendBossError && isActualTelegram()) {
+    if (sendBossError && (import.meta.env.DEV || isActualTelegram())) {
       setDebugOpen(true);
       useTelegramStore.getState().setSendBossError(null);
     }
