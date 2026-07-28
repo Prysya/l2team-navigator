@@ -10,7 +10,7 @@ const dir = imgDir();
 const others = Object.entries(ids).filter(([name]) => name === 'Trial of Geomancer');
 
 for (const [name, id] of others) {
-  const url = `https://mw2.wiki/lu4/posts/post/${id}`;
+  const url = `https://mw2.wiki/lu4/quest/${id}`;
   process.stdout.write(`Other: ${name}... `);
   const html = await tryFetch(url);
   if (!html) { console.log('no page'); continue; }

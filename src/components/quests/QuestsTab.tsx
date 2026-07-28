@@ -153,7 +153,7 @@ export default function QuestsTab() {
       if (category === 'temple' || category === 'kusto') return 0;
       return a.lvl - b.lvl || a.name.localeCompare(b.name);
     });
-  }, [category, categoryData, profRace, selectedClass]);
+  }, [category, categoryData, profRace, selectedClass, profType]);
 
   const hasNotes = useMemo(() => filtered.some((q) => q.note), [filtered]);
 
