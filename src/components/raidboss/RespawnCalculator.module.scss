@@ -134,3 +134,9 @@
     background: var(--color-primary-alpha-10);
   }
 }
+
+.btnRow {
+  display: flex;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+}
