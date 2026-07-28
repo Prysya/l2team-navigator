@@ -46,7 +46,7 @@ export default function RespawnCalculator({ boss, onClose }: Props) {
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '');
     const botUrl = `${BOT_LINK}?startapp=boss_${bossId}`;
-    const text = `Босс ${boss.name} (${botUrl}) — окно респа: ${formatRespawnRange(minDate, maxDate)} (МСК)`;
+    const text = `Босс ${boss.name} (${botUrl} ) — окно респа: ${formatRespawnRange(minDate, maxDate)} (МСК)`;
     setResultText(text);
   };
 
