@@ -246,6 +246,7 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - Цепочка палач храма: посты 54–62 (добавлены в `QUESTS.posts`)
 - Цепочка Кусто: посты 87–95, данные в `src/data/quests/kustoQuests.ts`
 - `enrichQuest()` проверяет: хардкод-мапы → поле квеста → `QUEST_DATA.json`
+- `isPostQuest(name, id)` — определяет формат URL: `/lu4/posts/post/` для Path of..., 3 in 1..., Kusto (87-95); `/lu4/quest/` для остальных
 
 ### Quest Data Files (`src/data/quests/`)
 
@@ -266,12 +267,26 @@ Use conventional commits: `type: description` (lowercase, no caps).
 
 Логика `isPostQuest(name, id)`:
 
+- `name.startsWith('Path of ')` → `/lu4/posts/post/{id}`
+- `name.startsWith('3 in ')` → `/lu4/posts/post/{id}`
 - `id` 87–95 → `/lu4/posts/post/{id}` (Kusto)
-- имя начинается с `Path of ` или `3 in ` → `/lu4/posts/post/{id}` (профессии)
-- `Trial of Geomancer` → `/lu4/posts/post/{id}`
 - всё остальное → `/lu4/quest/{id}`
 
 **Запуск:** `node scripts/parse-quests.mjs`
+
+### Quest Images
+
+Изображения скачиваются отдельными скриптами по категориям (`scripts/quests/`):
+
+| Скрипт            | Категория                | Формат URL                       |
+| ----------------- | ------------------------ | -------------------------------- |
+| `fetch-kusto.mjs` | Цепочка Кусто (87-95)    | `/lu4/posts/post/`               |
+| `fetch-path.mjs`  | Path of... (1 профессия) | `/lu4/posts/post/`               |
+| `fetch-three.mjs` | 3 in 1 (2 профессия)     | только вывод ID, без изображений |
+| `fetch-other.mjs` | Остальные (Trial of...)  | `/lu4/quest/`                    |
+
+`extractImages(html)` — парсит только `#article-content` (шаги прохождения).  
+Результат сохраняется в `src/data/quests/QUEST_IMAGES.json`.
 
 ## Scripts (`scripts/`)
 
