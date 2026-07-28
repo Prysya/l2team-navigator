@@ -16,6 +16,13 @@ export default function DebugModal({ onClose }: Props) {
   const store = useTelegramStore.getState();
   const [toast, setToast] = useState('');
 
+  const error = store.sendBossError;
+
+  const handleClose = () => {
+    useTelegramStore.getState().setSendBossError(null);
+    onClose();
+  };
+
   const info = useMemo(() => {
     const hash = window.location.hash;
     const cleanHash = hash.replace(/^[#?]/, '');
@@ -68,14 +75,19 @@ export default function DebugModal({ onClose }: Props) {
   };
 
   return createPortal(
-    <div className={styles.overlay} onClick={onClose}>
+    <div className={styles.overlay} onClick={handleClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <div className={styles.header}>
           <span className={styles.title}>🐛 Debug Info</span>
-          <button className={styles.closeBtn} onClick={onClose}>
+          <button className={styles.closeBtn} onClick={handleClose}>
             ✕
           </button>
         </div>
+        {error && (
+          <div className={styles.errorBanner}>
+            <strong>⚠️ Ошибка отправки:</strong> {error}
+          </div>
+        )}
         <pre className={styles.content}>{info}</pre>
         <button className={styles.copyBtn} onClick={handleCopy}>
           📋 Копировать

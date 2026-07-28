@@ -31,9 +31,7 @@ type QuestDataEntry = {
 };
 
 function isPostQuest(name: string, id: number): boolean {
-  return (
-    (id >= 87 && id <= 95) || name.startsWith('Path of ') || name.startsWith('3 in ') || name === 'Trial of Geomancer'
-  );
+  return name.startsWith('Path of ') || name.startsWith('3 in ') || (id >= 87 && id <= 95);
 }
 
 export function detectRewardTag(reward: string): RewardTag {
@@ -140,21 +138,22 @@ export default function QuestsTab() {
       const classInfo = raceData.classes.find((c) => c.name === selectedClass);
       if (!classInfo) return [];
       quests = [];
-      if (classInfo.quest1) {
+      if (profType === 'first' && classInfo.quest1) {
         quests.push({ lvl: 18, name: classInfo.quest1, desc: 'Первая профессия', reward: '' });
       }
-      if (classInfo.quest2) {
-        quests.push({ lvl: 18, name: classInfo.quest2, desc: 'Вторая профессия', reward: '' });
-      }
-      if (classInfo.quest3in1) {
-        quests.push({ lvl: 35, name: classInfo.quest3in1, desc: '3 in 1 профессия', reward: '' });
+      if (profType === 'second') {
+        if (classInfo.quest2) {
+          quests.push({ lvl: 18, name: classInfo.quest2, desc: 'Вторая профессия', reward: '' });
+        } else if (classInfo.quest3in1) {
+          quests.push({ lvl: 35, name: classInfo.quest3in1, desc: '3 in 1 профессия', reward: '' });
+        }
       }
     }
     return quests.map(enrichQuest).sort((a, b) => {
       if (category === 'temple' || category === 'kusto') return 0;
       return a.lvl - b.lvl || a.name.localeCompare(b.name);
     });
-  }, [category, categoryData, profRace, selectedClass]);
+  }, [category, categoryData, profRace, selectedClass, profType]);
 
   const hasNotes = useMemo(() => filtered.some((q) => q.note), [filtered]);
 
@@ -275,7 +274,7 @@ export default function QuestsTab() {
                 onChange={(v) => setSelectedClass(v)}
                 options={
                   PROFESSION_RACES.find((r) => r.race === profRace)
-                    ?.classes.filter((c) => (profType === 'second' ? c.quest3in1 : !c.quest3in1))
+                    ?.classes.filter((c) => (profType === 'first' ? !c.quest3in1 : !!c.quest3in1))
                     .map((c) => ({ value: c.name, label: c.name })) ?? []
                 }
               />

@@ -96,7 +96,6 @@ function AppLayout() {
   useEffect(() => {
     if (sendBossError && (import.meta.env.DEV || isActualTelegram())) {
       setDebugOpen(true);
-      useTelegramStore.getState().setSendBossError(null);
     }
   }, [sendBossError]);
 
