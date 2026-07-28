@@ -103,9 +103,7 @@ function AppLayout() {
       }
     }
 
-    const cleanHash = hash.replace(/^[#?]/, '');
-    const hashParams = new URLSearchParams(cleanHash);
-    const startParam = hashParams.get('tgWebAppStartParam');
+    const startParam = useTelegramStore.getState().rawStartParam;
     const safeId = startParam?.startsWith('boss_') ? startParam.slice(5) : null;
     const bossMatch = safeId ? (BOSS_ID_MAP as { id: string; name: string }[]).find((e) => e.id === safeId) : null;
     const bossName = bossMatch?.name || null;
