@@ -136,7 +136,10 @@ export default function QuestsTab() {
         quests.push({ lvl: 35, name: classInfo.quest3in1, desc: '3 in 1 профессия', reward: '' });
       }
     }
-    return quests.map(enrichQuest).sort((a, b) => a.lvl - b.lvl || a.name.localeCompare(b.name));
+    return quests.map(enrichQuest).sort((a, b) => {
+      if (category === 'temple') return 0;
+      return a.lvl - b.lvl || a.name.localeCompare(b.name);
+    });
   }, [category, categoryData, profRace, selectedClass]);
 
   const hasNotes = useMemo(() => filtered.some((q) => q.note), [filtered]);
