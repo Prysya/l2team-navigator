@@ -129,7 +129,7 @@ export const KUSTO_QUESTS: Quest[] = [
       'Поговорить с Nikola (Cruma Marshlands)',
       'Вернуться к Kusto',
     ],
-    images: ['lost-dream-1.jpg', 'lost-dream-2.jpg', 'lost-dream-4.jpg', 'lost-dream-5.jpg'],
+    images: ['lost-dream-1.jpg', 'lost-dream-2.jpg', 'lost-dream-3.jpg', 'lost-dream-4.jpg', 'lost-dream-5.jpg'],
   },
   {
     lvl: 42,

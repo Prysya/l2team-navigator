@@ -103,7 +103,10 @@ export const useTelegramStore = create<TelegramStore>((set, get) => ({
   },
   async checkClanMembership() {
     const { user } = get();
-    if (!user) return;
+    if (!user) {
+      set({ clanCheckLoading: false });
+      return;
+    }
 
     set({ clanCheckLoading: true, clanCheckError: null });
 

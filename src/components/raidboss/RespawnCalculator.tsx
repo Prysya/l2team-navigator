@@ -71,12 +71,18 @@ export default function RespawnCalculator({ boss, onClose }: Props) {
 
   const handleSendToBot = async () => {
     setToast('Отправка…');
-    const res = await sendBossText(resultText);
-    if (res.ok) {
-      setToast('Отправлено боту');
-    } else {
-      setToast(`Ошибка: ${res.error || 'неизвестная'}`);
-      useTelegramStore.getState().setSendBossError(res.error || 'Unknown error');
+    try {
+      const res = await sendBossText(resultText);
+      if (res.ok) {
+        setToast('Отправлено боту');
+      } else {
+        setToast(`Ошибка: ${res.error || 'неизвестная'}`);
+        useTelegramStore.getState().setSendBossError(res.error || 'Unknown error');
+      }
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : 'Network error';
+      setToast(`Ошибка: ${msg}`);
+      useTelegramStore.getState().setSendBossError(msg);
     }
   };
 

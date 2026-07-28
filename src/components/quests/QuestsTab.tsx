@@ -399,7 +399,7 @@ export default function QuestsTab() {
                           )}
                           {eq.images && eq.images.length > 0 && (
                             <div className={styles.npcSection}>
-                              <div className={styles.npcSectionTitle}>📍 Ключевые НПС</div>
+                              <div className={styles.npcSectionTitle}>👤 Ключевые НПС</div>
                               <div className={styles.questImages}>
                                 {eq.images.map((img, i) => (
                                   <div
