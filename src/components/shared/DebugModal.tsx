@@ -40,6 +40,7 @@ export default function DebugModal({ onClose }: Props) {
         BASE_URL: import.meta.env.BASE_URL,
         VITE_TELEGRAM_API_URL: import.meta.env.VITE_TELEGRAM_API_URL,
         VITE_ADMIN_ID: import.meta.env.VITE_ADMIN_ID,
+        VITE_TELEGRAM_API_TOKEN: import.meta.env.VITE_TELEGRAM_API_TOKEN ? '***' : undefined,
       },
     };
 
