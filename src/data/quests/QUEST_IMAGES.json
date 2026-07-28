@@ -1,5 +1,12 @@
 {
-  "Path of the Warrior": ["path-of-the-warrior-1.png", "path-of-the-warrior-2.png"],
+  "Path of the Warrior": [
+    "path-of-the-warrior-1.jpg",
+    "path-of-the-warrior-2.jpg",
+    "path-of-the-warrior-3.jpg",
+    "path-of-the-warrior-4.jpg",
+    "path-of-the-warrior-5.jpg",
+    "path-of-the-warrior-6.jpg"
+  ],
   "Path of the Human Knight": [
     "path-of-the-human-knight-1.jpg",
     "path-of-the-human-knight-2.jpg",
@@ -28,7 +35,14 @@
     "path-of-the-human-wizard-7.jpg",
     "path-of-the-human-wizard-8.jpg",
     "path-of-the-human-wizard-9.jpg",
-    "path-of-the-human-wizard-10.jpg"
+    "path-of-the-human-wizard-10.jpg",
+    "path-of-the-human-wizard-11.jpg",
+    "path-of-the-human-wizard-12.jpg",
+    "path-of-the-human-wizard-13.jpg",
+    "path-of-the-human-wizard-14.jpg",
+    "path-of-the-human-wizard-15.jpg",
+    "path-of-the-human-wizard-16.jpg",
+    "path-of-the-human-wizard-17.jpg"
   ],
   "Path of the Cleric": [
     "path-of-the-cleric-1.jpg",
@@ -38,14 +52,31 @@
     "path-of-the-cleric-5.jpg",
     "path-of-the-cleric-6.jpg",
     "path-of-the-cleric-7.jpg",
-    "path-of-the-cleric-8.jpg"
+    "path-of-the-cleric-8.jpg",
+    "path-of-the-cleric-9.jpg",
+    "path-of-the-cleric-10.jpg",
+    "path-of-the-cleric-11.jpg",
+    "path-of-the-cleric-12.jpg",
+    "path-of-the-cleric-13.jpg",
+    "path-of-the-cleric-14.jpg",
+    "path-of-the-cleric-15.jpg"
   ],
   "Path of the Elven Knight": [
     "path-of-the-elven-knight-1.jpg",
     "path-of-the-elven-knight-2.jpg",
     "path-of-the-elven-knight-3.jpg",
     "path-of-the-elven-knight-4.jpg",
-    "path-of-the-elven-knight-5.jpg"
+    "path-of-the-elven-knight-5.jpg",
+    "path-of-the-elven-knight-6.jpg",
+    "path-of-the-elven-knight-7.jpg",
+    "path-of-the-elven-knight-8.jpg",
+    "path-of-the-elven-knight-9.jpg",
+    "path-of-the-elven-knight-10.jpg",
+    "path-of-the-elven-knight-11.jpg",
+    "path-of-the-elven-knight-12.jpg",
+    "path-of-the-elven-knight-13.jpg",
+    "path-of-the-elven-knight-14.jpg",
+    "path-of-the-elven-knight-15.jpg"
   ],
   "Path of the Elven Scout": [
     "path-of-the-elven-scout-1.jpg",
@@ -53,7 +84,17 @@
     "path-of-the-elven-scout-3.jpg",
     "path-of-the-elven-scout-4.jpg",
     "path-of-the-elven-scout-5.jpg",
-    "path-of-the-elven-scout-6.jpg"
+    "path-of-the-elven-scout-6.jpg",
+    "path-of-the-elven-scout-7.jpg",
+    "path-of-the-elven-scout-9.jpg",
+    "path-of-the-elven-scout-10.jpg",
+    "path-of-the-elven-scout-11.jpg",
+    "path-of-the-elven-scout-12.jpg",
+    "path-of-the-elven-scout-13.jpg",
+    "path-of-the-elven-scout-14.jpg",
+    "path-of-the-elven-scout-15.jpg",
+    "path-of-the-elven-scout-16.jpg",
+    "path-of-the-elven-scout-17.jpg"
   ],
   "Path of the Elven Wizard": [
     "path-of-the-elven-wizard-1.jpg",
@@ -63,7 +104,16 @@
     "path-of-the-elven-wizard-5.jpg",
     "path-of-the-elven-wizard-6.jpg",
     "path-of-the-elven-wizard-7.jpg",
-    "path-of-the-elven-wizard-8.jpg"
+    "path-of-the-elven-wizard-8.jpg",
+    "path-of-the-elven-wizard-9.jpg",
+    "path-of-the-elven-wizard-10.jpg",
+    "path-of-the-elven-wizard-11.jpg",
+    "path-of-the-elven-wizard-12.jpg",
+    "path-of-the-elven-wizard-13.jpg",
+    "path-of-the-elven-wizard-14.jpg",
+    "path-of-the-elven-wizard-15.jpg",
+    "path-of-the-elven-wizard-16.jpg",
+    "path-of-the-elven-wizard-17.jpg"
   ],
   "Path of the Elven Oracle": [
     "path-of-the-elven-oracle-1.jpg",
@@ -71,7 +121,16 @@
     "path-of-the-elven-oracle-3.jpg",
     "path-of-the-elven-oracle-4.jpg",
     "path-of-the-elven-oracle-5.jpg",
-    "path-of-the-elven-oracle-6.jpg"
+    "path-of-the-elven-oracle-6.jpg",
+    "path-of-the-elven-oracle-7.jpg",
+    "path-of-the-elven-oracle-8.jpg",
+    "path-of-the-elven-oracle-9.jpg",
+    "path-of-the-elven-oracle-10.jpg",
+    "path-of-the-elven-oracle-11.jpg",
+    "path-of-the-elven-oracle-12.jpg",
+    "path-of-the-elven-oracle-13.jpg",
+    "path-of-the-elven-oracle-14.jpg",
+    "path-of-the-elven-oracle-15.jpg"
   ],
   "Path of the Palus Knight": [
     "path-of-the-palus-knight-1.jpg",
@@ -79,7 +138,16 @@
     "path-of-the-palus-knight-3.jpg",
     "path-of-the-palus-knight-4.jpg",
     "path-of-the-palus-knight-5.jpg",
-    "path-of-the-palus-knight-6.jpg"
+    "path-of-the-palus-knight-6.jpg",
+    "path-of-the-palus-knight-7.jpg",
+    "path-of-the-palus-knight-8.jpg",
+    "path-of-the-palus-knight-9.jpg",
+    "path-of-the-palus-knight-10.jpg",
+    "path-of-the-palus-knight-11.jpg",
+    "path-of-the-palus-knight-12.jpg",
+    "path-of-the-palus-knight-13.jpg",
+    "path-of-the-palus-knight-14.jpg",
+    "path-of-the-palus-knight-15.jpg"
   ],
   "Path of the Assassin": [
     "path-of-the-assassin-1.jpg",
@@ -87,7 +155,16 @@
     "path-of-the-assassin-3.jpg",
     "path-of-the-assassin-4.jpg",
     "path-of-the-assassin-5.jpg",
-    "path-of-the-assassin-6.jpg"
+    "path-of-the-assassin-6.jpg",
+    "path-of-the-assassin-7.jpg",
+    "path-of-the-assassin-9.jpg",
+    "path-of-the-assassin-10.jpg",
+    "path-of-the-assassin-11.jpg",
+    "path-of-the-assassin-12.jpg",
+    "path-of-the-assassin-13.jpg",
+    "path-of-the-assassin-14.jpg",
+    "path-of-the-assassin-15.jpg",
+    "path-of-the-assassin-16.jpg"
   ],
   "Path of the Dark Wizard": [
     "path-of-the-dark-wizard-1.jpg",
@@ -97,7 +174,15 @@
     "path-of-the-dark-wizard-5.jpg",
     "path-of-the-dark-wizard-6.jpg",
     "path-of-the-dark-wizard-7.jpg",
-    "path-of-the-dark-wizard-8.jpg"
+    "path-of-the-dark-wizard-8.jpg",
+    "path-of-the-dark-wizard-9.jpg",
+    "path-of-the-dark-wizard-10.jpg",
+    "path-of-the-dark-wizard-11.jpg",
+    "path-of-the-dark-wizard-12.jpg",
+    "path-of-the-dark-wizard-13.jpg",
+    "path-of-the-dark-wizard-14.jpg",
+    "path-of-the-dark-wizard-15.jpg",
+    "path-of-the-dark-wizard-16.jpg"
   ],
   "Path of the Shillien Oracle": [
     "path-of-the-shillien-oracle-1.jpg",
@@ -105,7 +190,17 @@
     "path-of-the-shillien-oracle-3.jpg",
     "path-of-the-shillien-oracle-4.jpg",
     "path-of-the-shillien-oracle-5.jpg",
-    "path-of-the-shillien-oracle-6.jpg"
+    "path-of-the-shillien-oracle-6.jpg",
+    "path-of-the-shillien-oracle-7.jpg",
+    "path-of-the-shillien-oracle-8.jpg",
+    "path-of-the-shillien-oracle-9.jpg",
+    "path-of-the-shillien-oracle-10.jpg",
+    "path-of-the-shillien-oracle-11.jpg",
+    "path-of-the-shillien-oracle-12.jpg",
+    "path-of-the-shillien-oracle-13.jpg",
+    "path-of-the-shillien-oracle-14.jpg",
+    "path-of-the-shillien-oracle-15.jpg",
+    "path-of-the-shillien-oracle-16.jpg"
   ],
   "Path of the Orc Raider": [
     "path-of-the-orc-raider-1.jpg",
@@ -113,7 +208,17 @@
     "path-of-the-orc-raider-3.jpg",
     "path-of-the-orc-raider-4.jpg",
     "path-of-the-orc-raider-5.jpg",
-    "path-of-the-orc-raider-6.jpg"
+    "path-of-the-orc-raider-6.jpg",
+    "path-of-the-orc-raider-7.jpg",
+    "path-of-the-orc-raider-8.jpg",
+    "path-of-the-orc-raider-9.jpg",
+    "path-of-the-orc-raider-10.jpg",
+    "path-of-the-orc-raider-11.jpg",
+    "path-of-the-orc-raider-12.jpg",
+    "path-of-the-orc-raider-13.jpg",
+    "path-of-the-orc-raider-14.jpg",
+    "path-of-the-orc-raider-15.jpg",
+    "path-of-the-orc-raider-16.jpg"
   ],
   "Path of the Orc Monk": [
     "path-of-the-orc-monk-1.jpg",
@@ -127,7 +232,12 @@
     "path-of-the-orc-monk-9.jpg",
     "path-of-the-orc-monk-10.jpg",
     "path-of-the-orc-monk-11.jpg",
-    "path-of-the-orc-monk-12.jpg"
+    "path-of-the-orc-monk-12.jpg",
+    "path-of-the-orc-monk-13.jpg",
+    "path-of-the-orc-monk-14.jpg",
+    "path-of-the-orc-monk-15.jpg",
+    "path-of-the-orc-monk-16.jpg",
+    "path-of-the-orc-monk-17.jpg"
   ],
   "Path of the Orc Shaman": [
     "path-of-the-orc-shaman-1.jpg",
@@ -140,7 +250,13 @@
     "path-of-the-orc-shaman-8.jpg",
     "path-of-the-orc-shaman-9.jpg",
     "path-of-the-orc-shaman-10.jpg",
-    "path-of-the-orc-shaman-11.jpg"
+    "path-of-the-orc-shaman-11.jpg",
+    "path-of-the-orc-shaman-12.jpg",
+    "path-of-the-orc-shaman-13.jpg",
+    "path-of-the-orc-shaman-14.jpg",
+    "path-of-the-orc-shaman-15.jpg",
+    "path-of-the-orc-shaman-16.jpg",
+    "path-of-the-orc-shaman-17.jpg"
   ],
   "Path of the Scavenger": [
     "path-of-the-scavenger-1.jpg",
@@ -156,7 +272,10 @@
     "path-of-the-scavenger-11.jpg",
     "path-of-the-scavenger-12.jpg",
     "path-of-the-scavenger-13.jpg",
-    "path-of-the-scavenger-14.jpg"
+    "path-of-the-scavenger-14.jpg",
+    "path-of-the-scavenger-15.jpg",
+    "path-of-the-scavenger-16.jpg",
+    "path-of-the-scavenger-17.jpg"
   ],
   "Path of the Artisan": [
     "path-of-the-artisan-1.jpg",
@@ -164,7 +283,16 @@
     "path-of-the-artisan-3.jpg",
     "path-of-the-artisan-4.jpg",
     "path-of-the-artisan-5.jpg",
-    "path-of-the-artisan-6.jpg"
+    "path-of-the-artisan-6.jpg",
+    "path-of-the-artisan-7.jpg",
+    "path-of-the-artisan-8.jpg",
+    "path-of-the-artisan-9.jpg",
+    "path-of-the-artisan-10.jpg",
+    "path-of-the-artisan-11.jpg",
+    "path-of-the-artisan-12.jpg",
+    "path-of-the-artisan-13.jpg",
+    "path-of-the-artisan-14.jpg",
+    "path-of-the-artisan-15.jpg"
   ],
   "Trial of Geomancer": [
     "trial-of-geomancer-1.jpg",
@@ -178,7 +306,159 @@
     "trial-of-geomancer-9.jpg",
     "trial-of-geomancer-10.jpg"
   ],
-  "3 in 1 Gladiator": ["3-in-1-gladiator-1.jpg"],
+  "3 in 1 Gladiator": [
+    "3-in-1-gladiator-1.png",
+    "3-in-1-gladiator-2.png",
+    "3-in-1-gladiator-3.png",
+    "3-in-1-gladiator-4.png",
+    "3-in-1-gladiator-5.png",
+    "3-in-1-gladiator-6.png",
+    "3-in-1-gladiator-7.png",
+    "3-in-1-gladiator-8.png",
+    "3-in-1-gladiator-9.png",
+    "3-in-1-gladiator-10.png",
+    "3-in-1-gladiator-11.png",
+    "3-in-1-gladiator-12.png"
+  ],
+  "3 in 1 Warlord": [
+    "3-in-1-warlord-1.png",
+    "3-in-1-warlord-2.png",
+    "3-in-1-warlord-3.png",
+    "3-in-1-warlord-4.png",
+    "3-in-1-warlord-5.png",
+    "3-in-1-warlord-6.png",
+    "3-in-1-warlord-7.png",
+    "3-in-1-warlord-8.png",
+    "3-in-1-warlord-9.png",
+    "3-in-1-warlord-10.png",
+    "3-in-1-warlord-11.png"
+  ],
+  "3 in 1 Paladin": [
+    "3-in-1-paladin-1.png",
+    "3-in-1-paladin-2.png",
+    "3-in-1-paladin-3.png",
+    "3-in-1-paladin-4.png",
+    "3-in-1-paladin-5.png",
+    "3-in-1-paladin-6.png",
+    "3-in-1-paladin-7.png",
+    "3-in-1-paladin-8.png",
+    "3-in-1-paladin-9.png",
+    "3-in-1-paladin-10.png",
+    "3-in-1-paladin-11.png"
+  ],
+  "3 in 1 Dark Avenger": [
+    "3-in-1-dark-avenger-1.png",
+    "3-in-1-dark-avenger-2.png",
+    "3-in-1-dark-avenger-3.png",
+    "3-in-1-dark-avenger-4.png",
+    "3-in-1-dark-avenger-5.png",
+    "3-in-1-dark-avenger-6.png",
+    "3-in-1-dark-avenger-7.png",
+    "3-in-1-dark-avenger-8.png",
+    "3-in-1-dark-avenger-9.png",
+    "3-in-1-dark-avenger-10.png",
+    "3-in-1-dark-avenger-11.png",
+    "3-in-1-dark-avenger-12.png",
+    "3-in-1-dark-avenger-13.png",
+    "3-in-1-dark-avenger-14.png"
+  ],
+  "3 in 1 Treasure Hunter": [
+    "3-in-1-treasure-hunter-1.png",
+    "3-in-1-treasure-hunter-2.png",
+    "3-in-1-treasure-hunter-3.png",
+    "3-in-1-treasure-hunter-4.png",
+    "3-in-1-treasure-hunter-5.png",
+    "3-in-1-treasure-hunter-6.png",
+    "3-in-1-treasure-hunter-7.png",
+    "3-in-1-treasure-hunter-8.png",
+    "3-in-1-treasure-hunter-9.png",
+    "3-in-1-treasure-hunter-10.png"
+  ],
+  "3 in 1 Hawkeye": [
+    "3-in-1-hawkeye-1.png",
+    "3-in-1-hawkeye-2.png",
+    "3-in-1-hawkeye-3.png",
+    "3-in-1-hawkeye-4.png",
+    "3-in-1-hawkeye-5.png",
+    "3-in-1-hawkeye-6.png",
+    "3-in-1-hawkeye-7.png",
+    "3-in-1-hawkeye-8.png",
+    "3-in-1-hawkeye-9.png",
+    "3-in-1-hawkeye-10.png",
+    "3-in-1-hawkeye-11.png",
+    "3-in-1-hawkeye-12.png"
+  ],
+  "3 in 1 Sorcerer": [
+    "3-in-1-sorcerer-1.png",
+    "3-in-1-sorcerer-2.png",
+    "3-in-1-sorcerer-3.png",
+    "3-in-1-sorcerer-4.png",
+    "3-in-1-sorcerer-5.png",
+    "3-in-1-sorcerer-6.png",
+    "3-in-1-sorcerer-7.png",
+    "3-in-1-sorcerer-8.png",
+    "3-in-1-sorcerer-9.png",
+    "3-in-1-sorcerer-10.png",
+    "3-in-1-sorcerer-11.png",
+    "3-in-1-sorcerer-12.png",
+    "3-in-1-sorcerer-13.png"
+  ],
+  "3 in 1 Necromancer": [
+    "3-in-1-necromancer-1.png",
+    "3-in-1-necromancer-2.png",
+    "3-in-1-necromancer-3.png",
+    "3-in-1-necromancer-4.png",
+    "3-in-1-necromancer-5.png",
+    "3-in-1-necromancer-6.png",
+    "3-in-1-necromancer-7.png",
+    "3-in-1-necromancer-8.png",
+    "3-in-1-necromancer-9.png",
+    "3-in-1-necromancer-10.png",
+    "3-in-1-necromancer-11.png",
+    "3-in-1-necromancer-12.png",
+    "3-in-1-necromancer-13.png"
+  ],
+  "3 in 1 Warlock": [
+    "3-in-1-warlock-1.png",
+    "3-in-1-warlock-2.png",
+    "3-in-1-warlock-3.png",
+    "3-in-1-warlock-4.png",
+    "3-in-1-warlock-5.png",
+    "3-in-1-warlock-6.png",
+    "3-in-1-warlock-7.png",
+    "3-in-1-warlock-8.png",
+    "3-in-1-warlock-9.png",
+    "3-in-1-warlock-10.png",
+    "3-in-1-warlock-11.png",
+    "3-in-1-warlock-12.png",
+    "3-in-1-warlock-13.png"
+  ],
+  "3 in 1 Bishop": [
+    "3-in-1-bishop-1.png",
+    "3-in-1-bishop-2.png",
+    "3-in-1-bishop-3.png",
+    "3-in-1-bishop-4.png",
+    "3-in-1-bishop-5.png",
+    "3-in-1-bishop-6.png",
+    "3-in-1-bishop-7.png",
+    "3-in-1-bishop-8.png",
+    "3-in-1-bishop-9.png",
+    "3-in-1-bishop-10.png",
+    "3-in-1-bishop-11.png"
+  ],
+  "3 in 1 Prophet": [
+    "3-in-1-prophet-1.png",
+    "3-in-1-prophet-2.png",
+    "3-in-1-prophet-3.png",
+    "3-in-1-prophet-4.png",
+    "3-in-1-prophet-5.png",
+    "3-in-1-prophet-6.png",
+    "3-in-1-prophet-7.png",
+    "3-in-1-prophet-8.png",
+    "3-in-1-prophet-9.png",
+    "3-in-1-prophet-10.png",
+    "3-in-1-prophet-11.png"
+  ],
   "3 in 1 Temple Knight": [
     "3-in-1-temple-knight-1.png",
     "3-in-1-temple-knight-2.png",
@@ -200,6 +480,17 @@
     "3-in-1-swordsinger-8.png",
     "3-in-1-swordsinger-9.png",
     "3-in-1-swordsinger-10.png"
+  ],
+  "3 in 1 Plains Walker": [
+    "3-in-1-plains-walker-1.png",
+    "3-in-1-plains-walker-2.png",
+    "3-in-1-plains-walker-3.png",
+    "3-in-1-plains-walker-4.png",
+    "3-in-1-plains-walker-5.png",
+    "3-in-1-plains-walker-6.png",
+    "3-in-1-plains-walker-7.png",
+    "3-in-1-plains-walker-8.png",
+    "3-in-1-plains-walker-9.png"
   ],
   "3 in 1 Silver Ranger": [
     "3-in-1-silver-ranger-1.png",
@@ -225,6 +516,19 @@
     "3-in-1-spellsinger-11.png",
     "3-in-1-spellsinger-12.png"
   ],
+  "3 in 1 Elemental Summoner": [
+    "3-in-1-elemental-summoner-1.png",
+    "3-in-1-elemental-summoner-2.png",
+    "3-in-1-elemental-summoner-3.png",
+    "3-in-1-elemental-summoner-4.png",
+    "3-in-1-elemental-summoner-5.png",
+    "3-in-1-elemental-summoner-6.png",
+    "3-in-1-elemental-summoner-7.png",
+    "3-in-1-elemental-summoner-8.png",
+    "3-in-1-elemental-summoner-9.png",
+    "3-in-1-elemental-summoner-10.png",
+    "3-in-1-elemental-summoner-11.png"
+  ],
   "3 in 1 Elven Elder": [
     "3-in-1-elven-elder-1.png",
     "3-in-1-elven-elder-2.png",
@@ -236,6 +540,27 @@
     "3-in-1-elven-elder-8.png",
     "3-in-1-elven-elder-9.png",
     "3-in-1-elven-elder-10.png"
+  ],
+  "3 in 1 Shillien Knight": [
+    "3-in-1-shillien-knight-1.png",
+    "3-in-1-shillien-knight-2.png",
+    "3-in-1-shillien-knight-3.png",
+    "3-in-1-shillien-knight-4.png",
+    "3-in-1-shillien-knight-5.png",
+    "3-in-1-shillien-knight-6.png",
+    "3-in-1-shillien-knight-7.png",
+    "3-in-1-shillien-knight-8.png"
+  ],
+  "3 in 1 Bladedancer": [
+    "3-in-1-bladedancer-1.png",
+    "3-in-1-bladedancer-2.png",
+    "3-in-1-bladedancer-3.png",
+    "3-in-1-bladedancer-4.png",
+    "3-in-1-bladedancer-5.png",
+    "3-in-1-bladedancer-6.png",
+    "3-in-1-bladedancer-7.png",
+    "3-in-1-bladedancer-8.png",
+    "3-in-1-bladedancer-9.png"
   ],
   "3 in 1 Abyss Walker": [
     "3-in-1-abyss-walker-1.png",
@@ -277,6 +602,22 @@
     "3-in-1-spellhowler-13.png",
     "3-in-1-spellhowler-14.png"
   ],
+  "3 in 1 Phantom Summoner": [
+    "3-in-1-phantom-summoner-1.png",
+    "3-in-1-phantom-summoner-2.png",
+    "3-in-1-phantom-summoner-3.png",
+    "3-in-1-phantom-summoner-4.png",
+    "3-in-1-phantom-summoner-5.png",
+    "3-in-1-phantom-summoner-6.png",
+    "3-in-1-phantom-summoner-7.png",
+    "3-in-1-phantom-summoner-8.png",
+    "3-in-1-phantom-summoner-9.png",
+    "3-in-1-phantom-summoner-10.png",
+    "3-in-1-phantom-summoner-11.png",
+    "3-in-1-phantom-summoner-12.png",
+    "3-in-1-phantom-summoner-13.png",
+    "3-in-1-phantom-summoner-14.png"
+  ],
   "3 in 1 Shillien Elder": [
     "3-in-1-shillien-elder-1.png",
     "3-in-1-shillien-elder-2.png",
@@ -298,6 +639,25 @@
     "3-in-1-destroyer-4.png",
     "3-in-1-destroyer-5.png"
   ],
+  "3 in 1 Tyrant": [
+    "3-in-1-tyrant-1.png",
+    "3-in-1-tyrant-2.png",
+    "3-in-1-tyrant-3.png",
+    "3-in-1-tyrant-4.png",
+    "3-in-1-tyrant-5.png",
+    "3-in-1-tyrant-6.png",
+    "3-in-1-tyrant-7.png"
+  ],
+  "3 in 1 Overlord": [
+    "3-in-1-overlord-1.png",
+    "3-in-1-overlord-2.png",
+    "3-in-1-overlord-3.png",
+    "3-in-1-overlord-4.png",
+    "3-in-1-overlord-5.png",
+    "3-in-1-overlord-6.png",
+    "3-in-1-overlord-7.png",
+    "3-in-1-overlord-8.png"
+  ],
   "3 in 1 Warcryer": [
     "3-in-1-warcryer-1.png",
     "3-in-1-warcryer-2.png",
@@ -309,124 +669,51 @@
     "3-in-1-warcryer-8.png",
     "3-in-1-warcryer-9.png"
   ],
-  "Relic Exploration": [
-    "relic-exploration-1.jpg",
-    "relic-exploration-2.jpg",
-    "relic-exploration-3.jpg",
-    "relic-exploration-4.jpg",
-    "relic-exploration-5.jpg",
-    "relic-exploration-6.jpg",
-    "relic-exploration-7.jpg",
-    "relic-exploration-8.jpg",
-    "relic-exploration-9.jpg",
-    "relic-exploration-10.jpg",
-    "relic-exploration-11.jpg",
-    "relic-exploration-12.jpg",
-    "relic-exploration-13.jpg",
-    "relic-exploration-14.jpg",
-    "relic-exploration-15.jpg",
-    "relic-exploration-16.jpg"
+  "3 in 1 Bounty Hunter": [
+    "3-in-1-bounty-hunter-1.png",
+    "3-in-1-bounty-hunter-2.png",
+    "3-in-1-bounty-hunter-3.png",
+    "3-in-1-bounty-hunter-4.png",
+    "3-in-1-bounty-hunter-5.png",
+    "3-in-1-bounty-hunter-6.png",
+    "3-in-1-bounty-hunter-7.png",
+    "3-in-1-bounty-hunter-8.png"
+  ],
+  "3 in 1 Warsmith": [
+    "3-in-1-warsmith-1.png",
+    "3-in-1-warsmith-2.png",
+    "3-in-1-warsmith-3.png",
+    "3-in-1-warsmith-4.png",
+    "3-in-1-warsmith-5.png",
+    "3-in-1-warsmith-6.png"
+  ],
+  "Relic Exploration": ["relic-exploration-1.jpg", "relic-exploration-2.jpg", "relic-exploration-3.jpg"],
+  "Nikola's Cooperation": [
+    "nikola-s-cooperation-1.jpg",
+    "nikola-s-cooperation-2.jpg",
+    "nikola-s-cooperation-3.jpg",
+    "nikola-s-cooperation-4.jpg"
   ],
   "Art of Persuasion": [
     "art-of-persuasion-1.jpg",
     "art-of-persuasion-2.jpg",
     "art-of-persuasion-3.jpg",
-    "art-of-persuasion-4.jpg",
-    "art-of-persuasion-5.jpg",
-    "art-of-persuasion-6.jpg",
-    "art-of-persuasion-7.jpg",
-    "art-of-persuasion-8.jpg",
-    "art-of-persuasion-9.jpg",
-    "art-of-persuasion-10.jpg",
-    "art-of-persuasion-11.jpg",
-    "art-of-persuasion-12.jpg",
-    "art-of-persuasion-13.jpg",
-    "art-of-persuasion-14.jpg",
-    "art-of-persuasion-15.jpg"
+    "art-of-persuasion-4.jpg"
   ],
-  "Seal Removal": [
-    "seal-removal-1.jpg",
-    "seal-removal-2.jpg",
-    "seal-removal-3.jpg",
-    "seal-removal-4.jpg",
-    "seal-removal-5.jpg",
-    "seal-removal-6.jpg",
-    "seal-removal-7.jpg",
-    "seal-removal-9.jpg",
-    "seal-removal-10.jpg",
-    "seal-removal-11.jpg",
-    "seal-removal-12.jpg",
-    "seal-removal-13.jpg",
-    "seal-removal-14.jpg",
-    "seal-removal-15.jpg",
-    "seal-removal-16.jpg"
-  ],
-  "Contract Execution": [
-    "contract-execution-1.jpg",
-    "contract-execution-2.jpg",
-    "contract-execution-3.jpg",
-    "contract-execution-4.jpg",
-    "contract-execution-5.jpg",
-    "contract-execution-6.jpg",
-    "contract-execution-7.jpg",
-    "contract-execution-8.jpg",
-    "contract-execution-9.jpg",
-    "contract-execution-10.jpg",
-    "contract-execution-11.jpg",
-    "contract-execution-12.jpg",
-    "contract-execution-13.jpg",
-    "contract-execution-14.jpg",
-    "contract-execution-15.jpg"
-  ],
-  "Lost Dream": [
-    "lost-dream-1.jpg",
-    "lost-dream-2.jpg",
-    "lost-dream-3.jpg",
-    "lost-dream-4.jpg",
-    "lost-dream-5.jpg",
-    "lost-dream-6.jpg",
-    "lost-dream-7.jpg",
-    "lost-dream-8.jpg",
-    "lost-dream-9.jpg",
-    "lost-dream-10.jpg",
-    "lost-dream-11.jpg",
-    "lost-dream-12.jpg",
-    "lost-dream-13.jpg",
-    "lost-dream-14.jpg",
-    "lost-dream-15.jpg"
-  ],
+  "Nikola's Heart": ["nikola-s-heart-1.jpg", "nikola-s-heart-2.jpg", "nikola-s-heart-3.jpg"],
+  "Seal Removal": ["seal-removal-1.jpg", "seal-removal-2.jpg", "seal-removal-3.jpg", "seal-removal-4.jpg"],
+  "Contract Execution": ["contract-execution-1.jpg", "contract-execution-2.jpg", "contract-execution-3.jpg"],
+  "Lost Dream": ["lost-dream-1.jpg", "lost-dream-2.jpg", "lost-dream-3.jpg", "lost-dream-4.jpg"],
   "Vain Conclusion": [
     "vain-conclusion-1.jpg",
     "vain-conclusion-2.jpg",
     "vain-conclusion-3.jpg",
-    "vain-conclusion-4.jpg",
-    "vain-conclusion-5.jpg",
-    "vain-conclusion-6.jpg",
-    "vain-conclusion-7.jpg",
-    "vain-conclusion-8.jpg",
-    "vain-conclusion-9.jpg",
-    "vain-conclusion-10.jpg",
-    "vain-conclusion-11.jpg",
-    "vain-conclusion-12.jpg",
-    "vain-conclusion-13.jpg",
-    "vain-conclusion-14.jpg",
-    "vain-conclusion-15.jpg"
+    "vain-conclusion-4.jpg"
   ],
   "Contract Completion": [
     "contract-completion-1.jpg",
     "contract-completion-2.jpg",
     "contract-completion-3.jpg",
-    "contract-completion-4.jpg",
-    "contract-completion-5.jpg",
-    "contract-completion-6.jpg",
-    "contract-completion-7.jpg",
-    "contract-completion-8.jpg",
-    "contract-completion-9.jpg",
-    "contract-completion-10.jpg",
-    "contract-completion-11.jpg",
-    "contract-completion-12.jpg",
-    "contract-completion-13.jpg",
-    "contract-completion-14.jpg",
-    "contract-completion-15.jpg"
+    "contract-completion-4.jpg"
   ]
 }

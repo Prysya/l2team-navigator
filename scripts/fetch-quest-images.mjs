@@ -7,12 +7,17 @@ const root = resolve(__dirname, '..');
 
 const txt = readFileSync(resolve(root, 'src/data/quests/questIds.ts'), 'utf-8');
 const nameToId = {};
-for (const [, name, id] of txt.matchAll(/'([^']+)':\s*(\d+)/g)) {
-  nameToId[name] = parseInt(id, 10);
+for (const line of txt.split('\n')) {
+  const m = line.match(/^\s*(['\"])(.+?)\1\s*:\s*(\d+)/);
+  if (m) nameToId[m[2]] = parseInt(m[3], 10);
 }
 
 function slug(n) {
   return n.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+function isPostType(name, id) {
+  return (id >= 87 && id <= 95) || name.startsWith('Path of ') || name.startsWith('3 in ') || name === 'Trial of Geomancer';
 }
 
 async function tryFetch(url) {
@@ -51,9 +56,13 @@ for (let i = 0; i < entries.length; i++) {
 
   process.stdout.write(`[${i + 1}/${entries.length}] ${name}... `);
 
-  let html = await tryFetch(questUrl);
-  let source = 'quest';
-  if (!html) { html = await tryFetch(postUrl); source = 'post'; }
+  const postFirst = isPostType(name, id);
+  const primaryUrl = postFirst ? postUrl : questUrl;
+  const secondaryUrl = postFirst ? questUrl : postUrl;
+
+  let html = await tryFetch(primaryUrl);
+  let source = postFirst ? 'post' : 'quest';
+  if (!html) { html = await tryFetch(secondaryUrl); source = source === 'post' ? 'quest' : 'post'; }
   if (!html) { console.log('no page'); continue; }
 
   const urls = extract(html);
