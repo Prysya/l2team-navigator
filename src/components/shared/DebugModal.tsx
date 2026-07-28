@@ -16,41 +16,34 @@ export default function DebugModal({ onClose }: Props) {
 
   const info = useMemo(() => {
     const hash = window.location.hash;
-    const hashParams = new URLSearchParams(hash.split('?')[1] || hash);
+    const cleanHash = hash.replace(/^[#?]/, '');
+    const hashParams = new URLSearchParams(cleanHash);
+    const searchParams = new URLSearchParams(window.location.search);
 
-    const lines: string[] = [];
-    lines.push('=== System Info ===');
-    lines.push(`URL: ${window.location.href}`);
-    lines.push(`Hash: ${hash}`);
-    lines.push(`User Agent: ${navigator.userAgent}`);
-    lines.push('');
-    lines.push('=== Telegram Store ===');
-    lines.push(
-      JSON.stringify(
-        {
-          isTelegram: store.isTelegram,
-          platform: store.platform,
-          user: store.user,
-          themeParams: store.themeParams,
-          clanCheckResult: store.clanCheckResult,
-          clanCheckLoading: store.clanCheckLoading,
-          clanCheckError: store.clanCheckError,
-        },
-        null,
-        2,
-      ),
-    );
-    lines.push('');
-    lines.push('=== Hash Params ===');
-    for (const [k, v] of hashParams.entries()) {
-      lines.push(`${k}: ${v}`);
-    }
-    lines.push('');
-    lines.push('=== App State ===');
-    lines.push(`BASE_URL: ${import.meta.env.BASE_URL}`);
-    lines.push(`VITE_TELEGRAM_API_URL: ${import.meta.env.VITE_TELEGRAM_API_URL}`);
+    const data: Record<string, unknown> = {
+      url: window.location.href,
+      hash,
+      search: window.location.search,
+      userAgent: navigator.userAgent,
+      searchParams: Object.fromEntries(searchParams.entries()),
+      hashParams: Object.fromEntries(hashParams.entries()),
+      telegramStore: {
+        isTelegram: store.isTelegram,
+        platform: store.platform,
+        user: store.user,
+        themeParams: store.themeParams,
+        clanCheckResult: store.clanCheckResult,
+        clanCheckLoading: store.clanCheckLoading,
+        clanCheckError: store.clanCheckError,
+      },
+      env: {
+        BASE_URL: import.meta.env.BASE_URL,
+        VITE_TELEGRAM_API_URL: import.meta.env.VITE_TELEGRAM_API_URL,
+        VITE_ADMIN_ID: import.meta.env.VITE_ADMIN_ID,
+      },
+    };
 
-    return lines.join('\n');
+    return JSON.stringify(data, null, 2);
   }, [store]);
 
   const handleCopy = async () => {

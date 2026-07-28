@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { BrowserRouter, Route, Routes, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import BOSS_ID_MAP from '@data/BOSS_ID_MAP.json';
 import DebugModal from '@shared/DebugModal';
@@ -41,6 +41,7 @@ function AppLayout() {
   const [searchParams] = useSearchParams();
   const [menuOpen, setMenuOpen] = useState(false);
   const [debugOpen, setDebugOpen] = useState(false);
+  const iddqsRef = useRef('');
 
   const activeTab = useMemo(() => {
     const tab = location.pathname.split('/')[1] || '';
@@ -70,6 +71,19 @@ function AppLayout() {
   }, []);
 
   useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      iddqsRef.current += e.key.toLowerCase();
+      if (iddqsRef.current.length > 5) iddqsRef.current = iddqsRef.current.slice(-5);
+      if (iddqsRef.current === 'iddqs') {
+        setDebugOpen(true);
+        iddqsRef.current = '';
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, []);
+
+  useEffect(() => {
     hit(location.pathname + location.search + location.hash);
   }, [location]);
 
@@ -89,7 +103,8 @@ function AppLayout() {
       }
     }
 
-    const hashParams = new URLSearchParams(hash.split('?')[1] || hash);
+    const cleanHash = hash.replace(/^[#?]/, '');
+    const hashParams = new URLSearchParams(cleanHash);
     const startParam = hashParams.get('tgWebAppStartParam');
     const safeId = startParam?.startsWith('boss_') ? startParam.slice(5) : null;
     const bossMatch = safeId ? (BOSS_ID_MAP as { id: string; name: string }[]).find((e) => e.id === safeId) : null;
