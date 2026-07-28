@@ -7,7 +7,7 @@ import type { RaidBoss } from '@/types';
 
 import styles from './RespawnCalculator.module.scss';
 
-const BOT_LINK = 'https://t.me/l2team_navigator_bot';
+const BOT_LINK = 'tg://resolve?domain=l2team_navigator_bot';
 
 interface Props {
   boss: RaidBoss;
