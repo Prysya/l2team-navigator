@@ -263,7 +263,19 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - Все вызовы через `src/utils/metrics.ts`: `hit(path)` / `goal(name)`
 - В футере — уведомление о сборе анонимной статистики (152-ФЗ)
 - Пользователи Telegram Mini App: детекция через URL-параметр `tgWebAppData`, данные сохраняются в `useTelegramStore`
+- Telegram deep link: `https://t.me/l2team_navigator_bot?startapp=boss_{safeId}` → `tgWebAppStartParam` → навигация к боссу
+- Safe ID босса: `name.toLowerCase().replace(/[^a-z0-9]+/g, '-')` — маппинг в `src/data/BOSS_ID_MAP.json`
+- Проверка членства в клане: POST `/api/check-user` с id + username при старте Mini App
 - CopyLink не показывается пользователям Telegram
+
+### Environment Variables
+
+| Var                       | Назначение                                         |
+| ------------------------- | -------------------------------------------------- |
+| `VITE_TELEGRAM_API_URL`   | URL бота для проверки членства в клане             |
+| `VITE_TELEGRAM_API_TOKEN` | Токен авторизации для API бота                     |
+| `VITE_ADMIN_ID`           | Telegram ID администратора (открывает Debug Modal) |
+
 - `setTelegramUser(user, platform)` — отправляет ID, платформу и премиум-статус в метрику
 
 ## Lazy Loading
