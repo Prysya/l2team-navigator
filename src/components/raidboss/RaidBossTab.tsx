@@ -16,10 +16,13 @@ import {
 } from '@tanstack/react-table';
 import { itemWikiUrl } from '@utils/itemWiki';
 import { goal } from '@utils/metrics';
+import { parseRespawn } from '@utils/respawn';
 import cx from 'classnames';
 
 import { useRaidBossStore } from '@/stores/raidBossStore';
 import type { RaidBoss } from '@/types';
+
+import RespawnCalculator from './RespawnCalculator';
 
 import styles from './RaidBossTab.module.scss';
 
@@ -52,10 +55,12 @@ export default function RaidBossTab() {
   const expanded = useRaidBossStore((s) => s.expanded);
   const mapBoss = useRaidBossStore((s) => s.mapBoss);
   const previewBoss = useRaidBossStore((s) => s.previewBoss);
+  const calculatorBoss = useRaidBossStore((s) => s.calculatorBoss);
   const setSearchQuery = useRaidBossStore((s) => s.setSearchQuery);
   const toggleRow = useRaidBossStore((s) => s.toggleRow);
   const setMapBoss = useRaidBossStore((s) => s.setMapBoss);
   const setPreviewBoss = useRaidBossStore((s) => s.setPreviewBoss);
+  const setCalculatorBoss = useRaidBossStore((s) => s.setCalculatorBoss);
 
   const [epicSort, setEpicSort] = useState<SortingState>([{ id: 'level', desc: false }]);
   const [raidSort, setRaidSort] = useState<SortingState>([{ id: 'level', desc: false }]);
@@ -215,6 +220,9 @@ export default function RaidBossTab() {
                           boss={row.original}
                           onShowMap={row.original.coords ? () => setMapBoss(row.original) : undefined}
                           onShowImage={row.original.image ? () => setPreviewBoss(row.original) : undefined}
+                          onCalcRespawn={
+                            parseRespawn(row.original.respawn) ? () => setCalculatorBoss(row.original) : undefined
+                          }
                         />
                       </td>
                     </tr>
@@ -282,6 +290,8 @@ export default function RaidBossTab() {
           </div>,
           document.body,
         )}
+
+      {calculatorBoss && <RespawnCalculator boss={calculatorBoss} onClose={() => setCalculatorBoss(null)} />}
     </div>
   );
 }
@@ -290,10 +300,12 @@ function BossDetail({
   boss,
   onShowMap,
   onShowImage,
+  onCalcRespawn,
 }: {
   boss: RaidBoss;
   onShowMap?: () => void;
   onShowImage?: () => void;
+  onCalcRespawn?: () => void;
 }) {
   const stats = boss.stats;
   const hasStats = stats?.hp || false;
@@ -336,10 +348,19 @@ function BossDetail({
               </div>
             </>
           )}
-          {boss.coords && onShowMap && (
-            <button className={styles.mapBtn} onClick={onShowMap}>
-              📍 Показать на карте
-            </button>
+          {((boss.coords && onShowMap) || onCalcRespawn) && (
+            <div className={styles.mapBtnGroup}>
+              {boss.coords && onShowMap && (
+                <button className={styles.mapBtn} onClick={onShowMap}>
+                  📍 Показать на карте
+                </button>
+              )}
+              {onCalcRespawn && (
+                <button className={styles.mapBtn} onClick={onCalcRespawn}>
+                  🕐 Указать время респа
+                </button>
+              )}
+            </div>
           )}
         </div>
       </div>

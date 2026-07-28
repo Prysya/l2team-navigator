@@ -81,12 +81,21 @@ function AppLayout() {
       setTelegramUser(store.user, store.platform || '');
     }
 
+    const hashParams = new URLSearchParams(hash.split('?')[1] || hash);
+    const startParam = hashParams.get('tgWebAppStartParam');
+    const bossName = startParam?.startsWith('boss_') ? decodeURIComponent(startParam.slice(5)) : null;
+
     const clean = hash
       .split('&')
       .filter((part) => !/^#?tgWebApp\w*=/.test(part))
       .join('&')
       .replace(/^&/, '#');
     window.history.replaceState(null, '', window.location.pathname + clean);
+
+    if (bossName) {
+      navigate(`/raidboss?boss=${encodeURIComponent(bossName)}`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleTabChange = (key: string) => {

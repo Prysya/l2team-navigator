@@ -1,0 +1,27 @@
+@use "../../styles/variables" as *;
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: $color-surface;
+  color: $color-text;
+  padding: 10px 20px;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+  font-size: $font-size-base;
+  font-weight: 500;
+  z-index: 99999;
+  opacity: 0;
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+  pointer-events: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
