@@ -1,5 +1,7 @@
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import { BrowserRouter, Route, Routes, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import BOSS_ID_MAP from '@data/BOSS_ID_MAP.json';
+import DebugModal from '@shared/DebugModal';
 import { hit, setTelegramUser } from '@utils/metrics';
 import cx from 'classnames';
 
@@ -38,6 +40,7 @@ function AppLayout() {
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [debugOpen, setDebugOpen] = useState(false);
 
   const activeTab = useMemo(() => {
     const tab = location.pathname.split('/')[1] || '';
@@ -79,21 +82,28 @@ function AppLayout() {
     const store = useTelegramStore.getState();
     if (store.user) {
       setTelegramUser(store.user, store.platform || '');
+      useTelegramStore.getState().checkClanMembership();
+      const adminId = import.meta.env.VITE_ADMIN_ID;
+      if (adminId && String(store.user.id) === adminId) {
+        setDebugOpen(true);
+      }
     }
 
     const hashParams = new URLSearchParams(hash.split('?')[1] || hash);
     const startParam = hashParams.get('tgWebAppStartParam');
-    const bossName = startParam?.startsWith('boss_') ? decodeURIComponent(startParam.slice(5)) : null;
-
-    const clean = hash
-      .split('&')
-      .filter((part) => !/^#?tgWebApp\w*=/.test(part))
-      .join('&')
-      .replace(/^&/, '#');
-    window.history.replaceState(null, '', window.location.pathname + clean);
+    const safeId = startParam?.startsWith('boss_') ? startParam.slice(5) : null;
+    const bossMatch = safeId ? (BOSS_ID_MAP as { id: string; name: string }[]).find((e) => e.id === safeId) : null;
+    const bossName = bossMatch?.name || null;
 
     if (bossName) {
-      navigate(`/raidboss?boss=${encodeURIComponent(bossName)}`);
+      navigate(`/raidboss?boss=${encodeURIComponent(bossName)}`, { replace: true });
+    } else {
+      const clean = hash
+        .split('&')
+        .filter((part) => !/^#?tgWebApp\w*=/.test(part))
+        .join('&')
+        .replace(/^&/, '#');
+      window.history.replaceState(null, '', window.location.pathname + clean);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -300,6 +310,8 @@ function AppLayout() {
           </p>
         </div>
       </footer>
+
+      {debugOpen && <DebugModal onClose={() => setDebugOpen(false)} />}
     </div>
   );
 }

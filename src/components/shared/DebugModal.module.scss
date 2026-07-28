@@ -1,0 +1,83 @@
+@use "../../styles/variables" as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  width: 92vw;
+  max-width: 700px;
+  max-height: 85vh;
+  background: #0b0f1a;
+  border: 1px solid $color-border;
+  border-radius: $radius-xl;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-lg;
+  border-bottom: 1px solid $color-border;
+}
+
+.title {
+  font-size: $font-size-lg;
+  font-weight: 700;
+  color: $color-primary;
+}
+
+.closeBtn {
+  width: 28px;
+  height: 28px;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  background: transparent;
+  color: $color-text-muted;
+  font-size: $font-size-lg;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    color: #fff;
+    border-color: $color-text;
+  }
+}
+
+.content {
+  flex: 1;
+  overflow: auto;
+  padding: $spacing-lg;
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.5;
+  color: $color-text;
+  white-space: pre-wrap;
+  word-break: break-all;
+  user-select: all;
+}
+
+.copyBtn {
+  margin: 0 $spacing-lg $spacing-lg;
+  padding: 8px 16px;
+  border: 1px solid $color-primary;
+  border-radius: $radius-lg;
+  background: transparent;
+  color: $color-primary;
+  font-size: $font-size-base;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--color-primary-alpha-10);
+  }
+}

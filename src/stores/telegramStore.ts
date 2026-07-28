@@ -1,3 +1,4 @@
+import { checkClanMembership as apiCheckClan } from '@utils/telegramApi';
 import { create } from 'zustand';
 
 /**
@@ -32,14 +33,21 @@ interface TelegramStore {
   platform: string | null;
   themeParams: Record<string, string> | null;
   user: TeleUser | null;
+  clanCheckResult: boolean | null;
+  clanCheckLoading: boolean;
+  clanCheckError: string | null;
   initFromHash: (hash: string) => void;
+  checkClanMembership: () => void;
 }
 
-export const useTelegramStore = create<TelegramStore>((set) => ({
+export const useTelegramStore = create<TelegramStore>((set, get) => ({
   isTelegram: false,
   platform: null,
   themeParams: null,
   user: null,
+  clanCheckResult: null,
+  clanCheckLoading: false,
+  clanCheckError: null,
   initFromHash(hash: string) {
     const params = new URLSearchParams(hash.split('?')[1] || hash);
     const rawData = params.get('tgWebAppData');
@@ -78,6 +86,23 @@ export const useTelegramStore = create<TelegramStore>((set) => ({
       });
     } catch {
       // некорректный JSON в user — не Telegram
+    }
+  },
+  async checkClanMembership() {
+    const { user } = get();
+    if (!user) return;
+
+    set({ clanCheckLoading: true, clanCheckError: null });
+
+    try {
+      const res = await apiCheckClan(user.id, user.username || null);
+      set({ clanCheckResult: res.isL2teamUser, clanCheckLoading: false });
+    } catch (e) {
+      set({
+        clanCheckResult: false,
+        clanCheckLoading: false,
+        clanCheckError: e instanceof Error ? e.message : 'Unknown error',
+      });
     }
   },
 }));
