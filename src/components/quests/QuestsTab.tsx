@@ -1,5 +1,6 @@
 import { Fragment, useMemo } from 'react';
 import QUEST_DATA from '@data/QUEST_DATA.json';
+import { KUSTO_QUESTS } from '@data/quests/kustoQuests';
 import { NPC_COORDS } from '@data/quests/npcCoords';
 import { PROFESSION_RACES } from '@data/quests/professionRaces';
 import { QUEST_DETAILS } from '@data/quests/questDetails';
@@ -81,12 +82,13 @@ const RACES = [
 ] as const;
 type Race = (typeof RACES)[number];
 
-type QuestCategory = 'racial' | 'profession' | 'temple';
+type QuestCategory = 'racial' | 'profession' | 'temple' | 'kusto';
 
 const CATEGORIES: { key: QuestCategory; label: string }[] = [
   { key: 'racial', label: 'Расовые квесты' },
   { key: 'profession', label: 'Профессии' },
   { key: 'temple', label: 'Цепочка палач храма' },
+  { key: 'kusto', label: 'Цепочка Кусто' },
 ];
 
 type ProfType = 'first' | 'second';
@@ -115,6 +117,7 @@ export default function QuestsTab() {
       return [...raceQuests, ...SHARED_QUESTS];
     }
     if (category === 'temple') return TEMPLE_EXECUTOR_QUESTS;
+    if (category === 'kusto') return KUSTO_QUESTS;
     return [];
   }, [category, selectedRace]);
 
@@ -137,7 +140,7 @@ export default function QuestsTab() {
       }
     }
     return quests.map(enrichQuest).sort((a, b) => {
-      if (category === 'temple') return 0;
+      if (category === 'temple' || category === 'kusto') return 0;
       return a.lvl - b.lvl || a.name.localeCompare(b.name);
     });
   }, [category, categoryData, profRace, selectedClass]);
@@ -276,6 +279,25 @@ export default function QuestsTab() {
           <span className={styles.legendItem}>
             <span className={styles.tagSoulshot}>🔥</span>
           </span>
+        </div>
+      )}
+
+      {category === 'kusto' && (
+        <div className={styles.kustoNotice}>
+          <strong>⚠️ Обрати внимание!</strong>
+          <p>Персонажи 45 уровня и старше не получат в награду EXP и SP.</p>
+          <div className={styles.kustoRewardsTitle}>Список наград за прохождение полной цепочки четырёх квестов:</div>
+          <div className={styles.kustoRewards}>
+            <div>
+              Exp: <strong>590 000 / 615 000</strong>
+            </div>
+            <div>
+              SP: <strong>59 000 / 61 500</strong>
+            </div>
+            <div>
+              Adena: <strong>55 400 / 61 400</strong>
+            </div>
+          </div>
         </div>
       )}
 

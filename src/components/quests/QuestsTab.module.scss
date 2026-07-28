@@ -383,6 +383,38 @@
   flex-wrap: wrap;
 }
 
+.kustoNotice {
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  border: 1px solid $color-accent-green;
+  border-radius: $radius-lg;
+  background: rgba(126, 231, 135, 0.06);
+  color: $color-text;
+  font-size: $font-size-base;
+  line-height: 1.6;
+
+  strong {
+    color: $color-accent-green;
+    font-weight: 700;
+  }
+  p {
+    margin: $spacing-xs 0 0;
+  }
+}
+
+.kustoRewardsTitle {
+  margin-top: $spacing-sm;
+  font-weight: 600;
+}
+
+.kustoRewards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-sm;
+  margin-top: $spacing-xs;
+  font-size: $font-size-sm;
+}
+
 .legendTitle {
   font-size: $font-size-sm;
   font-weight: 700;
