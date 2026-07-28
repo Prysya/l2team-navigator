@@ -2,7 +2,10 @@ import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import Toast from '@shared/Toast';
 import { formatRespawnLabel, formatRespawnRange, parseRespawn } from '@utils/respawn';
+import { isActualTelegram } from '@utils/telegram';
+import { sendBossText } from '@utils/telegramApi';
 
+import { useTelegramStore } from '@/stores/telegramStore';
 import type { RaidBoss } from '@/types';
 
 import styles from './RespawnCalculator.module.scss';
@@ -32,6 +35,8 @@ export default function RespawnCalculator({ boss, onClose }: Props) {
   const respawnWindow = parseRespawn(boss.respawn);
 
   if (!respawnWindow) return null;
+
+  const adminId = import.meta.env.VITE_ADMIN_ID;
 
   const handleCalculate = () => {
     if (!killTime) return;
@@ -64,6 +69,23 @@ export default function RespawnCalculator({ boss, onClose }: Props) {
     setToast('Текст скопирован');
   };
 
+  const handleSendToBot = async () => {
+    setToast('Отправка…');
+    try {
+      const res = await sendBossText(resultText);
+      if (res.ok) {
+        setToast('Отправлено боту');
+      } else {
+        setToast(`Ошибка: ${res.error || 'неизвестная'}`);
+        useTelegramStore.getState().setSendBossError(res.error || 'Unknown error');
+      }
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : 'Network error';
+      setToast(`Ошибка: ${msg}`);
+      useTelegramStore.getState().setSendBossError(msg);
+    }
+  };
+
   return createPortal(
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
@@ -87,9 +109,16 @@ export default function RespawnCalculator({ boss, onClose }: Props) {
         {resultText && (
           <div className={styles.result}>
             <div className={styles.resultText}>{resultText}</div>
-            <button className={styles.copyBtn} onClick={handleCopy}>
-              📋 Копировать
-            </button>
+            <div className={styles.btnRow}>
+              <button className={styles.copyBtn} onClick={handleCopy}>
+                📋 Копировать
+              </button>
+              {adminId && (import.meta.env.DEV || isActualTelegram()) && (
+                <button className={styles.copyBtn} onClick={handleSendToBot}>
+                  📤 Отправить боту
+                </button>
+              )}
+            </div>
           </div>
         )}
       </div>

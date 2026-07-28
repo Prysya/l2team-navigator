@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 type Race = 'Human Mage' | 'Human Fighter' | 'Elf' | 'Dark Elf' | 'Orc Fighter' | 'Orc Shaman' | 'Dwarf' | 'Dwarf Mage';
-type QuestCategory = 'racial' | 'profession' | 'temple';
+type QuestCategory = 'racial' | 'profession' | 'temple' | 'kusto';
 type ProfType = 'first' | 'second';
 
 interface QuestStore {

@@ -1,7 +1,10 @@
-import { Fragment, useMemo } from 'react';
+import { Fragment, useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
 import QUEST_DATA from '@data/QUEST_DATA.json';
+import { KUSTO_QUESTS } from '@data/quests/kustoQuests';
 import { NPC_COORDS } from '@data/quests/npcCoords';
 import { PROFESSION_RACES } from '@data/quests/professionRaces';
+import QUEST_IMAGES from '@data/quests/QUEST_IMAGES.json';
 import { QUEST_DETAILS } from '@data/quests/questDetails';
 import { QUEST_IDS } from '@data/quests/questIds';
 import { QUESTS_BY_RACE } from '@data/quests/questsByRace';
@@ -27,6 +30,12 @@ type QuestDataEntry = {
   steps: string[];
 };
 
+function isPostQuest(name: string, id: number): boolean {
+  return (
+    (id >= 87 && id <= 95) || name.startsWith('Path of ') || name.startsWith('3 in ') || name === 'Trial of Geomancer'
+  );
+}
+
 export function detectRewardTag(reward: string): RewardTag {
   const r = reward.toLowerCase();
   const hasWeapon =
@@ -50,6 +59,7 @@ export function enrichQuest(q: Quest): Quest & {
   steps: string[];
   coords: { x: number; y: number } | null;
   rewardTag: RewardTag;
+  images: string[];
 } {
   const details = QUEST_DETAILS[q.name];
   const parsed = (QUEST_DATA as Record<string, QuestDataEntry>)[q.name];
@@ -66,6 +76,7 @@ export function enrichQuest(q: Quest): Quest & {
     steps: QUEST_STEPS[q.name] ?? parsed?.steps ?? q.steps ?? [],
     coords: NPC_COORDS[npcId] ?? parsedCoords,
     rewardTag: detectRewardTag(q.reward),
+    images: q.images ?? (QUEST_IMAGES as Record<string, string[]>)[q.name] ?? [],
   };
 }
 
@@ -81,12 +92,13 @@ const RACES = [
 ] as const;
 type Race = (typeof RACES)[number];
 
-type QuestCategory = 'racial' | 'profession' | 'temple';
+type QuestCategory = 'racial' | 'profession' | 'temple' | 'kusto';
 
 const CATEGORIES: { key: QuestCategory; label: string }[] = [
   { key: 'racial', label: 'Расовые квесты' },
   { key: 'profession', label: 'Профессии' },
   { key: 'temple', label: 'Цепочка палач храма' },
+  { key: 'kusto', label: 'Цепочка Кусто' },
 ];
 
 type ProfType = 'first' | 'second';
@@ -94,6 +106,7 @@ type ProfType = 'first' | 'second';
 const columnHelper = createColumnHelper<Quest>();
 
 export default function QuestsTab() {
+  const [previewImg, setPreviewImg] = useState<string | null>(null);
   const category = useQuestStore((s) => s.category);
   const setCategory = useQuestStore((s) => s.setCategory);
   const selectedRace = useQuestStore((s) => s.selectedRace);
@@ -115,6 +128,7 @@ export default function QuestsTab() {
       return [...raceQuests, ...SHARED_QUESTS];
     }
     if (category === 'temple') return TEMPLE_EXECUTOR_QUESTS;
+    if (category === 'kusto') return KUSTO_QUESTS;
     return [];
   }, [category, selectedRace]);
 
@@ -136,7 +150,10 @@ export default function QuestsTab() {
         quests.push({ lvl: 35, name: classInfo.quest3in1, desc: '3 in 1 профессия', reward: '' });
       }
     }
-    return quests.map(enrichQuest).sort((a, b) => a.lvl - b.lvl || a.name.localeCompare(b.name));
+    return quests.map(enrichQuest).sort((a, b) => {
+      if (category === 'temple' || category === 'kusto') return 0;
+      return a.lvl - b.lvl || a.name.localeCompare(b.name);
+    });
   }, [category, categoryData, profRace, selectedClass]);
 
   const hasNotes = useMemo(() => filtered.some((q) => q.note), [filtered]);
@@ -276,6 +293,25 @@ export default function QuestsTab() {
         </div>
       )}
 
+      {category === 'kusto' && (
+        <div className={styles.kustoNotice}>
+          <strong>⚠️ Обрати внимание!</strong>
+          <p>Персонажи 45 уровня и старше не получат в награду EXP и SP.</p>
+          <div className={styles.kustoRewardsTitle}>Список наград за прохождение полной цепочки четырёх квестов:</div>
+          <div className={styles.kustoRewards}>
+            <div>
+              Exp: <strong>590 000 / 615 000</strong>
+            </div>
+            <div>
+              SP: <strong>59 000 / 61 500</strong>
+            </div>
+            <div>
+              Adena: <strong>55 400 / 61 400</strong>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className={styles.tableWrap}>
         <table className={styles.table}>
           <thead>
@@ -316,7 +352,7 @@ export default function QuestsTab() {
                             <span className={styles.detailQuestName}>{eq.name}</span>
                             {eq.questId && eq.questId > 0 && (
                               <a
-                                href={`https://mw2.wiki/lu4/quest/${eq.questId}`}
+                                href={`https://mw2.wiki/lu4/${isPostQuest(eq.name, eq.questId) ? 'posts/post' : 'quest'}/${eq.questId}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className={styles.wikiLink}
@@ -361,6 +397,26 @@ export default function QuestsTab() {
                               📍 Показать на карте
                             </button>
                           )}
+                          {eq.images && eq.images.length > 0 && (
+                            <div className={styles.npcSection}>
+                              <div className={styles.npcSectionTitle}>👤 Ключевые НПС</div>
+                              <div className={styles.questImages}>
+                                {eq.images.map((img, i) => (
+                                  <div
+                                    key={i}
+                                    className={styles.questImageLink}
+                                    onClick={() => setPreviewImg(`${import.meta.env.BASE_URL}images/quests/${img}`)}
+                                  >
+                                    <img
+                                      src={`${import.meta.env.BASE_URL}images/quests/${img}`}
+                                      alt={`${eq.name} NPC ${i + 1}`}
+                                      className={styles.questImage}
+                                    />
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
                           {(eq.steps && eq.steps.length > 0) || (eq.questId && eq.questId > 0) ? (
                             <div className={styles.stepsSection}>
                               <div className={styles.stepsTitle}>📋 Прохождение</div>
@@ -374,7 +430,7 @@ export default function QuestsTab() {
                                 <div className={styles.stepItem}>
                                   Полное описание прохождения на{' '}
                                   <a
-                                    href={`https://mw2.wiki/lu4/quest/${eq.questId}`}
+                                    href={`https://mw2.wiki/lu4/${isPostQuest(eq.name, eq.questId) ? 'posts/post' : 'quest'}/${eq.questId}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className={styles.wikiLinkInline}
@@ -397,6 +453,19 @@ export default function QuestsTab() {
       </div>
 
       {mapNpc && <WorldMap name={mapNpc.name} x={mapNpc.x} y={mapNpc.y} onClose={() => setMapNpc(null)} />}
+
+      {previewImg &&
+        createPortal(
+          <div className={styles.imgPreviewOverlay} onClick={() => setPreviewImg(null)}>
+            <div className={styles.imgPreviewModal} onClick={(e) => e.stopPropagation()}>
+              <button className={styles.imgPreviewClose} onClick={() => setPreviewImg(null)}>
+                ✕
+              </button>
+              <img src={previewImg} alt="NPC preview" className={styles.imgPreviewImage} />
+            </div>
+          </div>,
+          document.body,
+        )}
     </div>
   );
 }

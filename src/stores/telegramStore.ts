@@ -38,8 +38,10 @@ interface TelegramStore {
   clanCheckError: string | null;
   rawHash: string;
   rawStartParam: string;
+  sendBossError: string | null;
   initFromHash: (hash: string) => void;
   checkClanMembership: () => void;
+  setSendBossError: (err: string | null) => void;
 }
 
 export const useTelegramStore = create<TelegramStore>((set, get) => ({
@@ -52,6 +54,7 @@ export const useTelegramStore = create<TelegramStore>((set, get) => ({
   clanCheckError: null,
   rawHash: '',
   rawStartParam: '',
+  sendBossError: null,
   initFromHash(hash: string) {
     const clean = hash.replace(/^[#?]/, '');
     const params = new URLSearchParams(clean);
@@ -100,7 +103,10 @@ export const useTelegramStore = create<TelegramStore>((set, get) => ({
   },
   async checkClanMembership() {
     const { user } = get();
-    if (!user) return;
+    if (!user) {
+      set({ clanCheckLoading: false });
+      return;
+    }
 
     set({ clanCheckLoading: true, clanCheckError: null });
 
@@ -114,5 +120,8 @@ export const useTelegramStore = create<TelegramStore>((set, get) => ({
         clanCheckError: e instanceof Error ? e.message : 'Unknown error',
       });
     }
+  },
+  setSendBossError(err) {
+    set({ sendBossError: err });
   },
 }));

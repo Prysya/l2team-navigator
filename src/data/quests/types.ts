@@ -13,5 +13,6 @@ export interface Quest {
   startLvl?: number;
   endLvl?: number;
   steps?: string[];
+  images?: string[];
   rewardTag?: RewardTag;
 }

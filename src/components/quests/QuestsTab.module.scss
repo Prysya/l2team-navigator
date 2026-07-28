@@ -383,6 +383,38 @@
   flex-wrap: wrap;
 }
 
+.kustoNotice {
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  border: 1px solid $color-accent-green;
+  border-radius: $radius-lg;
+  background: rgba(126, 231, 135, 0.06);
+  color: $color-text;
+  font-size: $font-size-base;
+  line-height: 1.6;
+
+  strong {
+    color: $color-accent-green;
+    font-weight: 700;
+  }
+  p {
+    margin: $spacing-xs 0 0;
+  }
+}
+
+.kustoRewardsTitle {
+  margin-top: $spacing-sm;
+  font-weight: 600;
+}
+
+.kustoRewards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-sm;
+  margin-top: $spacing-xs;
+  font-size: $font-size-sm;
+}
+
 .legendTitle {
   font-size: $font-size-sm;
   font-weight: 700;
@@ -421,4 +453,94 @@
 .tagBoth {
   color: #f59e0b;
   font-size: 14px;
+}
+
+.questImages {
+  display: flex;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+  margin-bottom: $spacing-lg;
+}
+
+.questImageLink {
+  display: block;
+  width: 200px;
+  flex-shrink: 0;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  transition: border-color 0.15s;
+
+  &:hover {
+    border-color: $color-primary;
+  }
+}
+
+.questImage {
+  display: block;
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.npcSection {
+  margin-top: $spacing-lg;
+  padding-top: $spacing-lg;
+  border-top: 1px solid $color-border;
+}
+
+.npcSectionTitle {
+  font-size: $font-size-base;
+  font-weight: 700;
+  color: $color-primary;
+  margin-bottom: $spacing-sm;
+}
+
+.imgPreviewOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imgPreviewModal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imgPreviewClose {
+  position: absolute;
+  top: -36px;
+  right: -36px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid $color-border;
+  background: #0b0f1a;
+  color: $color-text;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10001;
+
+  &:hover {
+    background: $color-surface-hover;
+    color: $color-primary;
+    border-color: $color-primary;
+  }
+}
+
+.imgPreviewImage {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: $radius-lg;
+  border: 2px solid $color-border;
+  object-fit: contain;
 }

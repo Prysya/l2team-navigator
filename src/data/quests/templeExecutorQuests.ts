@@ -4,7 +4,7 @@ export const TEMPLE_EXECUTOR_QUESTS: Quest[] = [
   {
     lvl: 35,
     name: 'Temple Missionary',
-    desc: 'Цепочка палач храма, часть 1',
+    desc: 'Часть 1',
     reward: '253k Exp, 25k SP, 20k aden, банки, эликсиры',
     npc: 'Glyvka Priestess',
     location: 'Dion, Храм',
@@ -13,7 +13,7 @@ export const TEMPLE_EXECUTOR_QUESTS: Quest[] = [
   {
     lvl: 35,
     name: 'Temple Executor',
-    desc: 'Цепочка палач храма, часть 2',
+    desc: 'Часть 2',
     reward: '253k Exp, 25k SP, 23.7k aden, банки',
     npc: 'Shegfield Priest',
     location: 'Dion, Храм',
@@ -22,7 +22,7 @@ export const TEMPLE_EXECUTOR_QUESTS: Quest[] = [
   {
     lvl: 35,
     name: 'Temple Champion — 1',
-    desc: 'Цепочка палач храма, часть 3',
+    desc: 'Часть 3',
     reward: '316k Exp, 31k SP, 31.5k aden, соски D, CP Potion',
     npc: 'Sylvain High Priest',
     location: 'Dion, Храм',
@@ -31,7 +31,7 @@ export const TEMPLE_EXECUTOR_QUESTS: Quest[] = [
   {
     lvl: 36,
     name: 'Temple Champion — 2',
-    desc: 'Цепочка палач храма, часть 4',
+    desc: 'Часть 4',
     reward: '352k Exp, 35k SP, 36k aden, эликсиры',
     npc: 'Sylvain High Priest',
     location: 'Dion → Giran',
@@ -40,7 +40,7 @@ export const TEMPLE_EXECUTOR_QUESTS: Quest[] = [
   {
     lvl: 37,
     name: 'Shadow Fox — 1',
-    desc: 'Цепочка палач храма, часть 5',
+    desc: 'Часть 5',
     reward: '313k Exp, 31k SP, 26k aden, банки',
     npc: 'Mia Warehouse Keeper',
     location: 'Hein, Склад',
@@ -49,7 +49,7 @@ export const TEMPLE_EXECUTOR_QUESTS: Quest[] = [
   {
     lvl: 37,
     name: 'Shadow Fox — 2',
-    desc: 'Цепочка палач храма, часть 6',
+    desc: 'Часть 6',
     reward: '313k Exp, 31k SP, 26k aden, банки',
     npc: 'Kluck Warehouse Keeper',
     location: 'Hein, Склад',
@@ -58,7 +58,7 @@ export const TEMPLE_EXECUTOR_QUESTS: Quest[] = [
   {
     lvl: 37,
     name: 'Shadow Fox — 3',
-    desc: 'Цепочка палач храма, часть 7',
+    desc: 'Часть 7',
     reward: '313k Exp, 31k SP, 26k aden, соски D, CP Potion',
     npc: 'Natools Warehouse Chief',
     location: 'Hein, Склад',
@@ -67,7 +67,7 @@ export const TEMPLE_EXECUTOR_QUESTS: Quest[] = [
   {
     lvl: 38,
     name: 'Fallen Angel — Request of Dawn',
-    desc: 'Цепочка палач храма, на выбор (Dawn)',
+    desc: 'Финал — Dawn',
     reward: '592k Exp, 59k SP, 58.5k aden, соски D, CP, ресы',
     npc: 'Natools Warehouse Chief',
     location: 'Hein, Склад',
@@ -76,7 +76,7 @@ export const TEMPLE_EXECUTOR_QUESTS: Quest[] = [
   {
     lvl: 38,
     name: 'Fallen Angel — Request of Dusk',
-    desc: 'Цепочка палач храма, на выбор (Dusk)',
+    desc: 'Финал — Dusk',
     reward: '435k Exp, 43k SP, 41k aden, CP, ресы',
     npc: 'Natools Warehouse Chief',
     location: 'Hein, Склад',

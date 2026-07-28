@@ -6,6 +6,12 @@ export interface CheckUserResponse {
   error?: string;
 }
 
+export interface SendBossResponse {
+  ok: boolean;
+  message_id?: number;
+  error?: string;
+}
+
 export async function checkClanMembership(id: number, username: string | null): Promise<CheckUserResponse> {
   if (!API_URL || !API_TOKEN) {
     return { isL2teamUser: false, error: 'API not configured' };
@@ -21,4 +27,21 @@ export async function checkClanMembership(id: number, username: string | null): 
   });
 
   return res.json() as Promise<CheckUserResponse>;
+}
+
+export async function sendBossText(text: string): Promise<SendBossResponse> {
+  if (!API_URL || !API_TOKEN) {
+    return { ok: false, error: 'API not configured' };
+  }
+
+  const res = await fetch(`${API_URL}/api/send-boss`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${API_TOKEN}`,
+    },
+    body: JSON.stringify({ text }),
+  });
+
+  return res.json() as Promise<SendBossResponse>;
 }
