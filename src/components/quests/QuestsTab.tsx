@@ -4,6 +4,7 @@ import QUEST_DATA from '@data/QUEST_DATA.json';
 import { KUSTO_QUESTS } from '@data/quests/kustoQuests';
 import { NPC_COORDS } from '@data/quests/npcCoords';
 import { PROFESSION_RACES } from '@data/quests/professionRaces';
+import QUEST_IMAGES from '@data/quests/QUEST_IMAGES.json';
 import { QUEST_DETAILS } from '@data/quests/questDetails';
 import { QUEST_IDS } from '@data/quests/questIds';
 import { QUESTS_BY_RACE } from '@data/quests/questsByRace';
@@ -52,6 +53,7 @@ export function enrichQuest(q: Quest): Quest & {
   steps: string[];
   coords: { x: number; y: number } | null;
   rewardTag: RewardTag;
+  images: string[];
 } {
   const details = QUEST_DETAILS[q.name];
   const parsed = (QUEST_DATA as Record<string, QuestDataEntry>)[q.name];
@@ -68,6 +70,7 @@ export function enrichQuest(q: Quest): Quest & {
     steps: QUEST_STEPS[q.name] ?? parsed?.steps ?? q.steps ?? [],
     coords: NPC_COORDS[npcId] ?? parsedCoords,
     rewardTag: detectRewardTag(q.reward),
+    images: q.images ?? (QUEST_IMAGES as Record<string, string[]>)[q.name] ?? [],
   };
 }
 
