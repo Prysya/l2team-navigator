@@ -341,7 +341,7 @@ export default function QuestsTab() {
                             <span className={styles.detailQuestName}>{eq.name}</span>
                             {eq.questId && eq.questId > 0 && (
                               <a
-                                href={`https://mw2.wiki/lu4/quest/${eq.questId}`}
+                                href={`https://mw2.wiki/lu4/${eq.questId >= 87 ? 'posts/post' : 'quest'}/${eq.questId}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className={styles.wikiLink}
@@ -386,6 +386,25 @@ export default function QuestsTab() {
                               📍 Показать на карте
                             </button>
                           )}
+                          {eq.images && eq.images.length > 0 && (
+                            <div className={styles.questImages}>
+                              {eq.images.map((img, i) => (
+                                <a
+                                  key={i}
+                                  href={`${import.meta.env.BASE_URL}images/quests/${img}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className={styles.questImageLink}
+                                >
+                                  <img
+                                    src={`${import.meta.env.BASE_URL}images/quests/${img}`}
+                                    alt={`${eq.name} шаг ${i + 1}`}
+                                    className={styles.questImage}
+                                  />
+                                </a>
+                              ))}
+                            </div>
+                          )}
                           {(eq.steps && eq.steps.length > 0) || (eq.questId && eq.questId > 0) ? (
                             <div className={styles.stepsSection}>
                               <div className={styles.stepsTitle}>📋 Прохождение</div>
@@ -399,7 +418,7 @@ export default function QuestsTab() {
                                 <div className={styles.stepItem}>
                                   Полное описание прохождения на{' '}
                                   <a
-                                    href={`https://mw2.wiki/lu4/quest/${eq.questId}`}
+                                    href={`https://mw2.wiki/lu4/${eq.questId >= 87 ? 'posts/post' : 'quest'}/${eq.questId}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className={styles.wikiLinkInline}
