@@ -75,8 +75,12 @@ function AppLayout() {
       iddqsRef.current += e.key.toLowerCase();
       if (iddqsRef.current.length > 5) iddqsRef.current = iddqsRef.current.slice(-5);
       if (iddqsRef.current === 'iddqs') {
-        setDebugOpen(true);
         iddqsRef.current = '';
+        const adminId = import.meta.env.VITE_ADMIN_ID;
+        const uid = useTelegramStore.getState().user?.id;
+        if (adminId && uid && String(uid) === adminId) {
+          setDebugOpen(true);
+        }
       }
     };
     window.addEventListener('keydown', handler);
@@ -103,9 +107,7 @@ function AppLayout() {
       }
     }
 
-    const cleanHash = hash.replace(/^[#?]/, '');
-    const hashParams = new URLSearchParams(cleanHash);
-    const startParam = hashParams.get('tgWebAppStartParam');
+    const startParam = useTelegramStore.getState().rawStartParam;
     const safeId = startParam?.startsWith('boss_') ? startParam.slice(5) : null;
     const bossMatch = safeId ? (BOSS_ID_MAP as { id: string; name: string }[]).find((e) => e.id === safeId) : null;
     const bossName = bossMatch?.name || null;

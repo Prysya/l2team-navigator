@@ -56,7 +56,7 @@ export const useTelegramStore = create<TelegramStore>((set, get) => ({
     const clean = hash.replace(/^[#?]/, '');
     const params = new URLSearchParams(clean);
 
-    set({ rawHash: hash, rawStartParam: params.get('tgWebAppStartParam') || '' });
+    set({ rawHash: hash, rawStartParam: '' });
 
     const rawData = params.get('tgWebAppData');
     if (!rawData) return;
@@ -64,6 +64,8 @@ export const useTelegramStore = create<TelegramStore>((set, get) => ({
     const tgParams = new URLSearchParams(rawData);
     const userStr = tgParams.get('user');
     if (!userStr) return;
+
+    set({ rawStartParam: tgParams.get('start_param') || '' });
 
     try {
       const user = JSON.parse(decodeURIComponent(userStr));
