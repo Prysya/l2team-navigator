@@ -1,4 +1,5 @@
-import { Fragment, useMemo } from 'react';
+import { Fragment, useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
 import QUEST_DATA from '@data/QUEST_DATA.json';
 import { KUSTO_QUESTS } from '@data/quests/kustoQuests';
 import { NPC_COORDS } from '@data/quests/npcCoords';
@@ -96,6 +97,7 @@ type ProfType = 'first' | 'second';
 const columnHelper = createColumnHelper<Quest>();
 
 export default function QuestsTab() {
+  const [previewImg, setPreviewImg] = useState<string | null>(null);
   const category = useQuestStore((s) => s.category);
   const setCategory = useQuestStore((s) => s.setCategory);
   const selectedRace = useQuestStore((s) => s.selectedRace);
@@ -387,22 +389,23 @@ export default function QuestsTab() {
                             </button>
                           )}
                           {eq.images && eq.images.length > 0 && (
-                            <div className={styles.questImages}>
-                              {eq.images.map((img, i) => (
-                                <a
-                                  key={i}
-                                  href={`${import.meta.env.BASE_URL}images/quests/${img}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className={styles.questImageLink}
-                                >
-                                  <img
-                                    src={`${import.meta.env.BASE_URL}images/quests/${img}`}
-                                    alt={`${eq.name} шаг ${i + 1}`}
-                                    className={styles.questImage}
-                                  />
-                                </a>
-                              ))}
+                            <div className={styles.npcSection}>
+                              <div className={styles.npcSectionTitle}>📍 Ключевые НПС</div>
+                              <div className={styles.questImages}>
+                                {eq.images.map((img, i) => (
+                                  <div
+                                    key={i}
+                                    className={styles.questImageLink}
+                                    onClick={() => setPreviewImg(`${import.meta.env.BASE_URL}images/quests/${img}`)}
+                                  >
+                                    <img
+                                      src={`${import.meta.env.BASE_URL}images/quests/${img}`}
+                                      alt={`${eq.name} NPC ${i + 1}`}
+                                      className={styles.questImage}
+                                    />
+                                  </div>
+                                ))}
+                              </div>
                             </div>
                           )}
                           {(eq.steps && eq.steps.length > 0) || (eq.questId && eq.questId > 0) ? (
@@ -441,6 +444,19 @@ export default function QuestsTab() {
       </div>
 
       {mapNpc && <WorldMap name={mapNpc.name} x={mapNpc.x} y={mapNpc.y} onClose={() => setMapNpc(null)} />}
+
+      {previewImg &&
+        createPortal(
+          <div className={styles.imgPreviewOverlay} onClick={() => setPreviewImg(null)}>
+            <div className={styles.imgPreviewModal} onClick={(e) => e.stopPropagation()}>
+              <button className={styles.imgPreviewClose} onClick={() => setPreviewImg(null)}>
+                ✕
+              </button>
+              <img src={previewImg} alt="NPC preview" className={styles.imgPreviewImage} />
+            </div>
+          </div>,
+          document.body,
+        )}
     </div>
   );
 }
