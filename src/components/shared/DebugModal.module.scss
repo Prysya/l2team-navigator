@@ -67,6 +67,22 @@
   user-select: all;
 }
 
+.errorBanner {
+  margin: 0 $spacing-lg $spacing-lg;
+  padding: $spacing-md;
+  border: 1px solid #ff453a;
+  border-radius: $radius-lg;
+  background: rgba(255, 69, 58, 0.08);
+  color: #ff453a;
+  font-size: $font-size-base;
+  line-height: 1.5;
+
+  strong {
+    color: #ff453a;
+    font-weight: 700;
+  }
+}
+
 .copyBtn {
   margin: 0 $spacing-lg $spacing-lg;
   padding: 8px 16px;
