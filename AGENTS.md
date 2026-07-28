@@ -3,15 +3,17 @@
 ## Git Workflow
 
 ### Branch Naming
-| Prefix | Usage |
-|--------|-------|
-| `feature/*` | New features, redesigns, enhancements |
-| `fix/*` | Bug fixes |
-| `ci/*` | CI/CD, workflows, tooling config |
-| `refactor/*` | Code refactoring, no functional changes |
-| `chore/*` | Dependencies, version bumps, housekeeping |
+
+| Prefix       | Usage                                     |
+| ------------ | ----------------------------------------- |
+| `feature/*`  | New features, redesigns, enhancements     |
+| `fix/*`      | Bug fixes                                 |
+| `ci/*`       | CI/CD, workflows, tooling config          |
+| `refactor/*` | Code refactoring, no functional changes   |
+| `chore/*`    | Dependencies, version bumps, housekeeping |
 
 ### Rules for AI Agent
+
 - **Always ask permission** before committing, pushing, or creating PRs
 - Always create a branch from `main` for new work
 - PR target: `main`
@@ -20,21 +22,25 @@
 - **All new features must be covered by tests** — unit (Vitest) for pure functions and stores, component tests for UI, E2E (Playwright) for critical user flows
 
 ### Commit Messages
+
 Use conventional commits: `type: description` (lowercase, no caps).
-| Type | When |
-|------|------|
-| `feat:` | New feature |
-| `fix:` | Bug fix |
-| `chore:` | Housekeeping, deps, version |
-| `ci:` | CI/CD, workflows |
-| `refactor:` | Code restructuring |
-| `docs:` | Documentation only |
-| `style:` | Styling, formatting (no logic change) |
+
+| Type        | When                                  |
+| ----------- | ------------------------------------- |
+| `feat:`     | New feature                           |
+| `fix:`      | Bug fix                               |
+| `chore:`    | Housekeeping, deps, version           |
+| `ci:`       | CI/CD, workflows                      |
+| `refactor:` | Code restructuring                    |
+| `docs:`     | Documentation only                    |
+| `style:`    | Styling, formatting (no logic change) |
 
 ### Code Style
+
 - **No Unicode escapes** — пишем обычный русский текст (`'дроп'`), не `'\u0434\u0440\u043E\u043F'`
 
 ## Stack
+
 - Vite 5 + React 18 + TypeScript (strict, no `any`) + SCSS Modules + normalize.css
 - No CRA, no external UI library
 - Static data in `src/data/*.json` (no runtime API calls)
@@ -47,6 +53,7 @@ Use conventional commits: `type: description` (lowercase, no caps).
 ## Code Quality
 
 ### ESLint
+
 - `simple-import-sort` — сортировка импортов (react → external → `@/` → relative → `.scss`)
 - `unused-imports` — автоудаление неиспользуемых импортов
 - `consistent-type-imports` — `import type` для типов
@@ -56,6 +63,7 @@ Use conventional commits: `type: description` (lowercase, no caps).
 Команды: `npm run lint`, `npm run lint:fix`
 
 ### Prettier
+
 - 120 символов, single quotes, trailing commas
 - `.prettierrc` + `.prettierignore`
 - `eslint-config-prettier` для избежания конфликтов
@@ -63,18 +71,21 @@ Use conventional commits: `type: description` (lowercase, no caps).
 Команды: `npm run format`, `npm run format:check`
 
 ### Zustand Stores
+
 Все табы используют Zustand для состояния:
-| Store | File |
-|-------|------|
-| `useRaidBossStore` | `src/stores/raidBossStore.ts` |
+
+| Store               | File                           |
+| ------------------- | ------------------------------ |
+| `useRaidBossStore`  | `src/stores/raidBossStore.ts`  |
 | `useLocationsStore` | `src/stores/locationsStore.ts` | `typeFilter`, `selectedRace`, `selectedClass`, `selectedCity`, `selectedLocation`, `searchQuery`, `partyFilter`, `userLevel` |
-| `useSkillsStore` | `src/stores/skillsStore.ts` |
+| `useSkillsStore`    | `src/stores/skillsStore.ts`    |
 | `useSpellbookStore` | `src/stores/spellbookStore.ts` |
-| `useRecipeStore` | `src/stores/recipeStore.ts` |
-| `useQuestStore` | `src/stores/questStore.ts` |
-| `useTelegramStore` | `src/stores/telegramStore.ts` |
+| `useRecipeStore`    | `src/stores/recipeStore.ts`    |
+| `useQuestStore`     | `src/stores/questStore.ts`     |
+| `useTelegramStore`  | `src/stores/telegramStore.ts`  |
 
 ## Theme
+
 - Dark gaming-themed UI
 - `$color-primary: #38bdf8` (sky blue), `$color-border: #24304a` (neutral navy)
 - All SCSS variables defined in `src/styles/_variables.scss`
@@ -83,23 +94,25 @@ Use conventional commits: `type: description` (lowercase, no caps).
 ## Routes (react-router-dom in App.tsx)
 
 ### Main Page
-| Route | Component | File |
-|-------|-----------|------|
-| `/` | MainPage | `src/components/main/MainPage.tsx` |
+
+| Route | Component | File                               |
+| ----- | --------- | ---------------------------------- |
+| `/`   | MainPage  | `src/components/main/MainPage.tsx` |
 
 Главная страница-разводка: сетка карточек с иконками разделов. TabBar скрыт.
 Пасхалка: ввод `iddqd` открывает модалку «Саша Ролекс Пес».
 
 ### Tab Pages
-| Route | Component | File |
-|-------|-----------|------|
-| `/recipes` | RecipeTab | `src/components/recipes/RecipeTab.tsx` |
-| `/spellbooks` | SpellbookTab | `src/components/spellbooks/SpellbookTab.tsx` |
-| `/locations` | LocationsTab | `src/components/locations/LocationsTab.tsx` |
-| `/skills` | SkillsTab | `src/components/skills/SkillsTab.tsx` |
-| `/raidboss` | RaidBossTab | `src/components/raidboss/RaidBossTab.tsx` |
+
+| Route         | Component     | File                                          |
+| ------------- | ------------- | --------------------------------------------- |
+| `/recipes`    | RecipeTab     | `src/components/recipes/RecipeTab.tsx`        |
+| `/spellbooks` | SpellbookTab  | `src/components/spellbooks/SpellbookTab.tsx`  |
+| `/locations`  | LocationsTab  | `src/components/locations/LocationsTab.tsx`   |
+| `/skills`     | SkillsTab     | `src/components/skills/SkillsTab.tsx`         |
+| `/raidboss`   | RaidBossTab   | `src/components/raidboss/RaidBossTab.tsx`     |
 | `/calculator` | CalculatorTab | `src/components/calculator/CalculatorTab.tsx` |
-| `/quests` | QuestsTab | `src/components/quests/QuestsTab.tsx` |
+| `/quests`     | QuestsTab     | `src/components/quests/QuestsTab.tsx`         |
 
 - Valid tabs constant in `src/utils/constants.ts` (`TAB_NAMES`, `VALID_TABS`)
 - TabBar component renders tab navigation; shown only when `activeTab` is set (hidden on `/`)
@@ -108,12 +121,14 @@ Use conventional commits: `type: description` (lowercase, no caps).
 ## Shared Components
 
 ### FloatingLabel (`src/components/shared/FloatingLabel.tsx`)
+
 - Material UI-style floating label for inputs and selects
 - Label sits inside the field as placeholder, floats to top on focus/value
 - Uses `:focus-within` + `.hasValue` class for CSS-only floating
 - Accepts: `label`, `value`, `children`
 
 ### CustomSelect (`src/components/shared/CustomSelect.tsx`)
+
 - Replaces all native `<select>` elements across all tabs
 - Custom dropdown with floating label, click-outside-to-close
 - Supports flat `options` array and grouped `groups` (for optgroup-style data)
@@ -125,6 +140,7 @@ Use conventional commits: `type: description` (lowercase, no caps).
 ## Features by Tab
 
 ### SkillsTab
+
 - EN/RU language toggle (radio buttons) at top of controls bar
 - Race + class `CustomSelect` dropdowns; labels localize based on language
 - EN_CLASS_NAMES map (51 classes), RU_CLASS_NAMES map (28 entries), CLASS_RACE_MAP
@@ -134,7 +150,9 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - Skill stats rendered as separate bordered pills
 - Numbers in skill descriptions highlighted with `$color-accent-orange`
 - "Где выбить книгу" button in skill cards — navigates to spellbooks tab with `?sbRace=&sbQ=` URL params
+
 ## SkillsTab
+
 - EN/RU language toggle (radio buttons) at top of controls bar
 - Race + class `CustomSelect` dropdowns; labels localize based on language
 - EN_CLASS_NAMES map (51 classes), RU_CLASS_NAMES map (28 entries), CLASS_RACE_MAP
@@ -150,6 +168,7 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - CopyLink per skill card: `#skills?race=&class=&skill=`
 
 ### SpellbookTab
+
 - Race + Profession `CustomSelect` filters + skill name search (`FloatingLabel`)
 - Pre-fills from `?sbRace=` / `?sbQ=` URL params on mount (reads from hash)
 - Table with class tags (localized via RU_CLASS_NAMES), level, drop chance, mob name, description
@@ -157,6 +176,7 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - CopyLink next to book title: `#spellbooks?sbRace=&sbQ=`
 
 ### RecipeTab
+
 - Type `CustomSelect` (All / Weapon / Armor / Accessory / Soulshot / Material / Elixir / Other) + Grade `CustomSelect` (NG/D/C/B/A)
 - Recipe `CustomSelect` filtered by type + grade + search; grouping by subtype for Armor (Heavy/Light/Robe/Helmet/Gloves/Boots/Shields/HairAccessory), Weapon (Sword/Blunt/Dagger/Bow/Polearm/Fist/Misc), Accessory (Earring/Ring/Necklace)
 - Grade selector hidden for Material/Other types; NG hidden for Soulshot type
@@ -168,6 +188,7 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - Store: `selectedType`, `selectedGrade`, `selectedRecipeId`, `searchQuery`
 
 ### LocationsTab
+
 - 5 подтабов: Все | 📜 Рецепты | 📚 Книги | 📦 Куски | 🧱 Ресурсы
 - «Все» объединяет данные из LOCATIONS_ALL + PIECES + RESOURCES
 - Раса/Класс селекторы только на табе «Книги»
@@ -186,6 +207,7 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - Поиск (`FloatingLabel`)
 
 ### RaidBossTab
+
 - 139 bosses (130 with stats/drops from mw2.wiki, 9 location+respawn only)
 - Two sections: Epic (fixed respawn: Core, Orfen, Queen Ant, Zaken) + Regular
 - Boss search (`FloatingLabel`), filters by name and location
@@ -204,6 +226,7 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - Data source: `src/data/RAIDBOSSES.json` (530KB, untracked in git)
 
 ## Data Files (all in `src/data/`)
+
 - `SKILLS.json` — 2145 skills
 - `SPELLBOOKS.json` — spellbook drop data
 - `RAIDBOSSES.json` — 139 bosses (untracked, ~530KB)
@@ -214,6 +237,7 @@ Use conventional commits: `type: description` (lowercase, no caps).
 ## Quest Data (`scripts/parse-quests.mjs`)
 
 Парсер извлекает данные квестов с mw2.wiki:
+
 - HTTP/2, `Accept-Language: en`, случайная задержка 1.5-3с
 - 4 параллельных запроса (Semaphore)
 - Извлекает: полные шаги, NPC ID, имя NPC, координаты на карте
@@ -225,12 +249,14 @@ Use conventional commits: `type: description` (lowercase, no caps).
 **Запуск:** `node scripts/parse-quests.mjs`
 
 ## Scripts (`scripts/`)
+
 - `build-recipes.mjs` — собирает `src/data/RECIPES.json` из `tmp/recipe_json.json`, `tmp/items.json`, `tmp/npc_json_with_subtypes.json`
 - Фильтрует S-grade и deprecated предметы, объединяет рецепты с NPC-дропом/спойлом
 - Распределяет Etc-рецепты по подтипам: Soulshot/Elixir/Material/Other
 - Определяет категорию для брони по `item_parameter` (Helmet/Gloves/Boots/Shield/HairAccessory)
 
 ## Analytics
+
 - Яндекс.Метрика (ID: 110798252) добавлена в `index.html`
 - Отслеживание просмотров страниц: `useEffect` в `AppLayout()` шлёт `hit(location)`
 - Отслеживание целей: `goal('goal_name')` — выбор рецепта, раскрытие босса
@@ -241,61 +267,66 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - `setTelegramUser(user, platform)` — отправляет ID, платформу и премиум-статус в метрику
 
 ## Lazy Loading
+
 - SkillsTab — ленивый через `React.lazy(() => import(...))` (SKILLS.json 3.6 MB)
 - RecipeTab — ленивый через `React.lazy()`, данные RECIPES.json загружаются динамическим `import()` внутри компонента (отдельные чанки)
 - При использовании динамического import данных — обязателен loading state через `dataLoaded`
 
 ## SEO
+
 - `llms.txt` в `public/llms.txt` — описание сайта для LLM и поисковиков
-**Добавить квест:** дополнить словари `QUESTS.quest` или `QUESTS.posts` в скрипте
+  **Добавить квест:** дополнить словари `QUESTS.quest` или `QUESTS.posts` в скрипте
 
 ### Known mw2.wiki Issues (для всех парсеров)
 
-| # | Проблема | Решение |
-|---|---|---|
-| 1 | Cloudflare защита | `httpx.AsyncClient(http2=True)` |
-| 2 | Пагинация | `seen_ids: Set[int]` + `stale_count` |
-| 3 | Склеенный grade в названии | `clean_item_name(name, grade)` |
-| 4 | Неправильный ID секции | Использовать `#contained` и `#capsule` явно |
-| 5 | CSS селекторы классов | Использовать атрибутные селекторы: `[class*="text-center"]` |
-| 6 | Русские ключи в таблицах | Нормализация через `normalize_enchant_key()` |
-| 7 | Флаг is_rare | Проверка `<Rare Item Effect>` в описании |
-| 8 | Первая страница уже в base_soup | Оптимизация `first_page_soup` |
-| 9 | Yii2 роутинг | Формат `"Search[item_type]": "5"` |
-| 10 | Длинные описания | Сохранять HTML как есть, парсить связи отдельно |
-| 11 | URL префиксы | Универсальный regex `r'/item/(\d+)-'` |
-| 12 | Числа с пробелами | Функции `safe_int()` / `safe_float()` |
-| 13 | Вложенный HTML в таблицах | `find_all(..., recursive=True)` |
-| 14 | Кнопки локаций | Парсить: выпадающее меню И прямую ссылку |
-| 15 | Флаги в `item-name__additional` | Парсить флаги ДО вызова `decompose()` |
-| 16 | Язык | `cookies={"language": "en"}` + `Accept-Language` |
-| 17 | 404 на пагинации | Считать 404 как "конец пагинации" |
-| 18 | "Массовые" предметы (Adena) | Пропускать через `SKIP_PAGINATION_ITEM_IDS` |
-| 19 | Soul crystals триггер | Использовать английский триггер `'soul crystal'` |
-| 20 | Set parts триггер | Использовать английский триггер `'set'` |
-| 21 | Дробный `data-initial-amount` | `safe_amount()` с fallback |
-| 22 | ID поста ≠ ID квеста | Resolve через HTTP для извлечения `quest_wiki_id` |
-| 23 | Разный порядок колонок | Динамический поиск ячейки по наличию ссылки |
-| 24 | Аккордеоны в наградах | Развернуть в текст с `[Heading]` |
-| 25 | `find_parent` возвращает None | Переключиться на `soup.select('div.stat_line')` |
-| 26 | `_load_existing_items` = None | Добавить явный `return [], set()` |
-| 27 | Дублирование HTTP в Enricher | Оптимизация `first_page_html` |
-| 28 | Race condition с headers | Передавать User-Agent явно в КАЖДОМ запросе |
-| 29 | Цвета в таблицах | Извлекать `style` или вложенный `<span>` |
+| #   | Проблема                        | Решение                                                     |
+| --- | ------------------------------- | ----------------------------------------------------------- |
+| 1   | Cloudflare защита               | `httpx.AsyncClient(http2=True)`                             |
+| 2   | Пагинация                       | `seen_ids: Set[int]` + `stale_count`                        |
+| 3   | Склеенный grade в названии      | `clean_item_name(name, grade)`                              |
+| 4   | Неправильный ID секции          | Использовать `#contained` и `#capsule` явно                 |
+| 5   | CSS селекторы классов           | Использовать атрибутные селекторы: `[class*="text-center"]` |
+| 6   | Русские ключи в таблицах        | Нормализация через `normalize_enchant_key()`                |
+| 7   | Флаг is_rare                    | Проверка `<Rare Item Effect>` в описании                    |
+| 8   | Первая страница уже в base_soup | Оптимизация `first_page_soup`                               |
+| 9   | Yii2 роутинг                    | Формат `"Search[item_type]": "5"`                           |
+| 10  | Длинные описания                | Сохранять HTML как есть, парсить связи отдельно             |
+| 11  | URL префиксы                    | Универсальный regex `r'/item/(\d+)-'`                       |
+| 12  | Числа с пробелами               | Функции `safe_int()` / `safe_float()`                       |
+| 13  | Вложенный HTML в таблицах       | `find_all(..., recursive=True)`                             |
+| 14  | Кнопки локаций                  | Парсить: выпадающее меню И прямую ссылку                    |
+| 15  | Флаги в `item-name__additional` | Парсить флаги ДО вызова `decompose()`                       |
+| 16  | Язык                            | `cookies={"language": "en"}` + `Accept-Language`            |
+| 17  | 404 на пагинации                | Считать 404 как "конец пагинации"                           |
+| 18  | "Массовые" предметы (Adena)     | Пропускать через `SKIP_PAGINATION_ITEM_IDS`                 |
+| 19  | Soul crystals триггер           | Использовать английский триггер `'soul crystal'`            |
+| 20  | Set parts триггер               | Использовать английский триггер `'set'`                     |
+| 21  | Дробный `data-initial-amount`   | `safe_amount()` с fallback                                  |
+| 22  | ID поста ≠ ID квеста            | Resolve через HTTP для извлечения `quest_wiki_id`           |
+| 23  | Разный порядок колонок          | Динамический поиск ячейки по наличию ссылки                 |
+| 24  | Аккордеоны в наградах           | Развернуть в текст с `[Heading]`                            |
+| 25  | `find_parent` возвращает None   | Переключиться на `soup.select('div.stat_line')`             |
+| 26  | `_load_existing_items` = None   | Добавить явный `return [], set()`                           |
+| 27  | Дублирование HTTP в Enricher    | Оптимизация `first_page_html`                               |
+| 28  | Race condition с headers        | Передавать User-Agent явно в КАЖДОМ запросе                 |
+| 29  | Цвета в таблицах                | Извлекать `style` или вложенный `<span>`                    |
 
 **Параметры:**
+
 - `STAGES_CONFIG` — конфигурация для batch-обработки
 - `asyncio.Semaphore(4)` — лимит параллельных запросов
 - `random.uniform(1.5, 3.0)` — человеческая задержка
 - `httpx.AsyncClient(http2=True, follow_redirects=True, cookies={"language": "en"})` — HTTP/2 + английский язык
 
 ## Scripts (`scripts/`)
+
 - `fetch-skills.mjs` — fetches skill data from lu4db API
 - `fetch-raidbosses.mjs` — intended for raid boss data (blocked: lu4db is SPA, requires JS rendering)
 - `parse-wiki-bosses.mjs` — parses mw2.wiki article + lu4db HTML to build RAIDBOSSES.json
 - `fetch-mw2-bosses.mjs` — parses mw2.wiki raid boss article, downloads boss images to `/public/images/bosses/`, fetches map coords from spawn page, adds `image`/`coords` fields to `RAIDBOSSES.json`
 
 ## Build & Deploy
+
 - `npm run dev` — Vite dev server
 - `npm run build` — `tsc -b && vite build`
 - `npm run deploy` — `gh-pages -d dist` (pushes to `gh-pages` branch)
@@ -304,12 +335,14 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - Auto-tag при merge в main (формирует vX.Y.Z тэг)
 
 ## Data Notes
+
 - `RAIDBOSSES.json` now has `image` and `coords` fields (added by `fetch-mw2-bosses.mjs`)
 - Boss images are in `/public/images/bosses/` — accessible at `/l2team-navigator/images/bosses/` after deploy
 - `coords` are pixel positions on the 3004×3004 world map (`x` = left, `y` = top)
 - 2 bosses (Korim, Zaken) are missing images/coords — they exist in lu4db data but not in the mw2.wiki article
 
 ## Key Design Decisions
+
 - Language toggle is a full-width row inside controls bar (`flex-basis: 100%`), not floating
 - Spellbook linking via URL search params (`?sbRace=&sbQ=`) not lifted state — enables bookmarking
 - Boss detail panels are `<tr><td colSpan={4}>` inside `<tbody>` (valid DOM, not separate divs)
@@ -326,6 +359,7 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - Profession quest steps are parsed from mw2.wiki articles via node.js
 
 ## Known Constraints
+
 - fetch-raidbosses.mjs cannot extract from lu4db directly (SPA requires JS rendering)
 - Item thumbnails not available — no item ID in drop data
 - `RAIDBOSSES.json` is large (530KB) and git-ignored
@@ -333,15 +367,18 @@ Use conventional commits: `type: description` (lowercase, no caps).
 ## Future: World Map for Raid Bosses
 
 ### Approach (L2J Datapack)
+
 If adding an interactive map to RaidBossTab, use data from **L2J DataPack** (open-source, XML spawn files with x/y/z coordinates).
 
 ### Sources
+
 - [L2J DataPack on GitHub](https://github.com/L2J/L2J_DataPack) — `data/spawns/Npcs/` contains XML with `x`, `y`, `z` attributes for every NPC
 - Map image from mw2.wiki: `/assets/679b2c82/images/map.jpg` (3004×3004px)
 - Map image from lu4db: `/media/site/maps/world-map.jpg` (3004×3004px)
 - lu4db itself can't be scraped programmatically (SPA, no API, no prerendered data)
 
 ### Current Map Feature
+
 - ✅ Draggable (mouse drag + touch support)
 - ✅ Zoom (wheel + +/- buttons in footer), initial zoom 110%
 - ✅ Boss marker positioned at pixel coords
@@ -352,14 +389,16 @@ If adding an interactive map to RaidBossTab, use data from **L2J DataPack** (ope
 - Served at `import.meta.env.BASE_URL + maps/world-map.jpg`
 
 ### Planned
+
 - Show all boss markers on one map view
 - L2J DataPack integration for coordinate conversion
 - Boss filter/search on the map
 
 ## Skills
 
-| Skill | Description |
-|-------|-------------|
-| `vitest` | Vitest testing patterns — unit tests, component tests, store tests, project conventions |
-| `scss-modules` | SCSS Modules: переменные темы, нейминг, миксины, отзывчивый дизайн |
-| `react-router` | React Router v6: навигация, query params, CopyLink, lazy-loading |
+| Skill          | Description                                                                                  |
+| -------------- | -------------------------------------------------------------------------------------------- |
+| `vitest`       | Vitest testing patterns — unit tests, component tests, store tests, project conventions      |
+| `scss-modules` | SCSS Modules: переменные темы, нейминг, миксины, отзывчивый дизайн                           |
+| `react-router` | React Router v6: навигация, query params, CopyLink, lazy-loading                             |
+| `pr-message`   | Единый формат PR-описаний на русском языке (Summary, Changes, Checklist, CHANGELOG, Version) |

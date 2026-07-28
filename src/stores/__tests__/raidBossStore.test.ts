@@ -12,6 +12,7 @@ beforeEach(() => {
     raidSortAsc: true,
     mapBoss: null,
     previewBoss: null,
+    calculatorBoss: null,
   });
 });
 
