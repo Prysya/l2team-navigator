@@ -38,6 +38,8 @@ export default function DebugModal({ onClose }: Props) {
         clanCheckResult: store.clanCheckResult,
         clanCheckLoading: store.clanCheckLoading,
         clanCheckError: store.clanCheckError,
+        rawHash: store.rawHash,
+        rawStartParam: store.rawStartParam,
       },
       env: {
         BASE_URL: import.meta.env.BASE_URL,

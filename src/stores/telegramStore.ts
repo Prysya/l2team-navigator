@@ -36,6 +36,8 @@ interface TelegramStore {
   clanCheckResult: boolean | null;
   clanCheckLoading: boolean;
   clanCheckError: string | null;
+  rawHash: string;
+  rawStartParam: string;
   initFromHash: (hash: string) => void;
   checkClanMembership: () => void;
 }
@@ -48,9 +50,14 @@ export const useTelegramStore = create<TelegramStore>((set, get) => ({
   clanCheckResult: null,
   clanCheckLoading: false,
   clanCheckError: null,
+  rawHash: '',
+  rawStartParam: '',
   initFromHash(hash: string) {
     const clean = hash.replace(/^[#?]/, '');
     const params = new URLSearchParams(clean);
+
+    set({ rawHash: hash, rawStartParam: params.get('tgWebAppStartParam') || '' });
+
     const rawData = params.get('tgWebAppData');
     if (!rawData) return;
 
