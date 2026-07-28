@@ -31,9 +31,7 @@ type QuestDataEntry = {
 };
 
 function isPostQuest(name: string, id: number): boolean {
-  return (
-    (id >= 87 && id <= 95) || name.startsWith('Path of ') || name.startsWith('3 in ') || name === 'Trial of Geomancer'
-  );
+  return (id >= 87 && id <= 95) || (id >= 445 && name.startsWith('Path of ')) || name.startsWith('3 in ');
 }
 
 export function detectRewardTag(reward: string): RewardTag {

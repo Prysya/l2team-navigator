@@ -86,6 +86,9 @@ export const QUEST_IDS: Record<string, number> = {
   '3 in 1 Bounty Hunter': 319,
   '3 in 1 Warsmith': 320,
 
+  // Missing 3 in 1 quests
+  '3 in 1 Terramancer': 321,
+
   // Kusto quest chain (post IDs)
   'Relic Exploration': 87,
   "Nikola's Cooperation": 88,
