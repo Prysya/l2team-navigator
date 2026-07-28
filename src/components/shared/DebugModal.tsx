@@ -4,6 +4,8 @@ import Toast from '@shared/Toast';
 
 import { useTelegramStore } from '@/stores/telegramStore';
 
+import pkg from '../../../package.json';
+
 import styles from './DebugModal.module.scss';
 
 interface Props {
@@ -21,6 +23,7 @@ export default function DebugModal({ onClose }: Props) {
     const searchParams = new URLSearchParams(window.location.search);
 
     const data: Record<string, unknown> = {
+      version: pkg.version,
       url: window.location.href,
       hash,
       search: window.location.search,
