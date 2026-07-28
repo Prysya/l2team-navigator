@@ -40,6 +40,10 @@ jobs:
 
       - name: Type check & Build
         run: npm run build
+        env:
+          VITE_TELEGRAM_API_URL: ${{ secrets.VITE_TELEGRAM_API_URL }}
+          VITE_TELEGRAM_API_TOKEN: ${{ secrets.VITE_TELEGRAM_API_TOKEN }}
+          VITE_ADMIN_ID: ${{ secrets.VITE_ADMIN_ID }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
