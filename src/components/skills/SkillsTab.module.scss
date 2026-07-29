@@ -198,23 +198,6 @@
   color: $color-text-muted;
 }
 
-.skillDesc {
-  font-size: $font-size-sm;
-  line-height: 1.6;
-  color: $color-text-muted;
-  margin-top: $spacing-xs;
-  white-space: pre-wrap;
-}
-
-.skillTrait,
-.skillAttr {
-  display: inline-block;
-  font-size: $font-size-sm;
-  color: $color-accent-orange;
-  margin-top: 2px;
-  margin-right: $spacing-sm;
-}
-
 .skillStats {
   display: flex;
   gap: $spacing-sm;

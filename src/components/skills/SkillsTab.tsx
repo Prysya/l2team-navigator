@@ -2,7 +2,6 @@ import { useEffect, useMemo } from 'react';
 import { RACES } from '@data/races';
 import skillsData from '@data/SKILLS.json';
 import spellbooksData from '@data/SPELLBOOKS.json';
-import CopyLink from '@shared/CopyLink';
 import CustomSelect from '@shared/CustomSelect';
 import EmptyState from '@shared/EmptyState';
 import FloatingLabel from '@shared/FloatingLabel';
@@ -169,9 +168,10 @@ export function cleanStatText(text: string): string {
 
 export function compressLevels(
   levels: ClassSkill['levels'],
-): { levels: string; changes: string[]; description?: string; rowspan: number }[] {
+): { levels: string; changes: string[]; description?: string; rowspan: number; showSkillLv: boolean }[] {
   if (!levels.length) return [];
-  const groups: { levels: string; changes: string[]; description?: string; rowspan: number }[] = [];
+  const groups: { levels: string; changes: string[]; description?: string; rowspan: number; showSkillLv: boolean }[] =
+    [];
   let i = 0;
   while (i < levels.length) {
     const cur = levels[i];
@@ -183,18 +183,18 @@ export function compressLevels(
       j++;
     }
     const lvls = levels.slice(i, j);
-    const lvlStr = lvls.map((l) => l.classLevel).join(', ');
-    groups.push({ levels: lvlStr, changes: cur.changes, description: cur.description, rowspan: 1 });
+    const showSkillLv = lvls.some((l) => !l.classLevel);
+    const lvlStr = showSkillLv ? lvls.map((l) => l.skillLevel).join(', ') : lvls.map((l) => l.classLevel).join(', ');
+    groups.push({ levels: lvlStr, changes: cur.changes, description: cur.description, rowspan: 1, showSkillLv });
     i = j;
   }
   return groups;
 }
 
-export function getStatIcon(label: string): string {
-  if (label === 'MP') return '💧';
-  if (label === 'КД' || label === 'CD') return '⏱';
-  if (label === 'Длит.') return '⏳';
-  return '';
+function parseRange(castRange: string): { range: string; maxRange?: string } {
+  const m = castRange.match(/^(\d+)\s*\((\d+)\)/);
+  if (m) return { range: m[1], maxRange: m[2] };
+  return { range: castRange.replace(/\s*\(.*/, '').trim() };
 }
 
 function skillImageUrl(url: string): string {
@@ -332,21 +332,7 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
                   />
                 )}
                 <div className={styles.skillInfo}>
-                  <div className={styles.skillName}>
-                    {skill.name}
-                    <CopyLink
-                      getUrl={() =>
-                        window.location.origin +
-                        import.meta.env.BASE_URL +
-                        'skills?race=' +
-                        encodeURIComponent(selectedRace) +
-                        '&class=' +
-                        encodeURIComponent(selectedClass) +
-                        '&skill=' +
-                        encodeURIComponent(skill.name)
-                      }
-                    />
-                  </div>
+                  <div className={styles.skillName}>{skill.name}</div>
                   <div className={styles.skillMeta}>
                     <span
                       className={cx({
@@ -362,9 +348,6 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
                       <span className={styles.skillLvl}>С {skill.firstClassLevel} lvl</span>
                     )}
                   </div>
-                  {skill.trait && <div className={styles.skillTrait}>Трейт: {skill.trait}</div>}
-                  {skill.attribute && <div className={styles.skillAttr}>Атрибут: {skill.attribute}</div>}
-                  {skill.description && <div className={styles.skillDesc}>{highlightNumbers(skill.description)}</div>}
                   <div className={styles.skillStats}>
                     {skill.mpConsume && (
                       <span className={styles.skillStat}>
@@ -373,24 +356,43 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
                     )}
                     {skill.reuseTime && (
                       <span className={styles.skillStat}>
-                        ⏱ КД: <b>{skill.reuseTime}</b>
+                        🕐 КД: <b>{skill.reuseTime}</b>
                       </span>
                     )}
-                    {skill.castRange && (
+                    {skill.castRange &&
+                      (() => {
+                        const { range, maxRange } = parseRange(skill.castRange);
+                        return (
+                          <span className={styles.skillStat}>
+                            🎯 Дальн.: <b>{range}</b>
+                            {maxRange && (
+                              <>
+                                {' '}
+                                (
+                                <b title="Максимальная дистанция. При превышении произношение будет отменено.">
+                                  {maxRange}
+                                </b>
+                                )
+                              </>
+                            )}
+                          </span>
+                        );
+                      })()}
+                    {skill.trait && (
                       <span className={styles.skillStat}>
-                        🎯 Дальн.: <b>{skill.castRange}</b>
+                        ⚔️ Trait: <b>{skill.trait}</b>
+                      </span>
+                    )}
+                    {skill.attribute && (
+                      <span className={styles.skillStat}>
+                        Attr: <b>{skill.attribute.replace(/\s+\d+.*/, '')}</b>
                       </span>
                     )}
                     {skill.stats
-                      .filter((st) => !skill.mpConsume && st.label === 'MP')
-                      .concat(
-                        skill.stats.filter((st) => !skill.reuseTime && st.label === 'КД'),
-                        skill.stats.filter((st) => !skill.castRange && st.label === 'Дальн.'),
-                        skill.stats.filter((st) => !['MP', 'КД', 'Дальн.', 'HP'].includes(st.label)),
-                      )
+                      .filter((st) => !['MP', 'КД', 'Дальн.', 'HP'].includes(st.label))
                       .map((st, i) => (
                         <span key={i} className={styles.skillStat}>
-                          {getStatIcon(st.label)} {st.label}: <b>{cleanStatText(st.text)}</b>
+                          {st.label}: <b>{cleanStatText(st.text)}</b>
                         </span>
                       ))}
                   </div>
@@ -416,7 +418,7 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
                   <table className={styles.levelTable}>
                     <thead>
                       <tr>
-                        <th>Ур. персонажа</th>
+                        <th>{skill.levels.some((l) => !l.classLevel) ? 'Ур. скилла' : 'Ур. персонажа'}</th>
                         <th>Описание</th>
                       </tr>
                     </thead>
