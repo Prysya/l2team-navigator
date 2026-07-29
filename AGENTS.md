@@ -319,6 +319,16 @@ Use conventional commits: `type: description` (lowercase, no caps).
 
 - `setTelegramUser(user, platform)` — отправляет ID, платформу и премиум-статус в метрику
 
+### Telegram API (`telegramApi.ts`)
+
+- Использует **axios instance** с `baseURL` из `VITE_TELEGRAM_API_URL`, `Authorization: Bearer` токеном и таймаутом 15s
+- Все ошибки форматируются через `fmtAxiosError()`:
+  - HTTP ошибки: `"HTTP {status}: {body}"`
+  - Сетевые ошибки: `"Network error: {message}"`
+  - Остальные: `err.message`
+- Две функции: `checkClanMembership(id, username)` и `sendBossText(text)`
+- `telegramStore.isAdmin` — вычисляется один раз при `initFromHash` по совпадению `user.id` с `VITE_ADMIN_ID`
+
 ## Lazy Loading
 
 - SkillsTab — ленивый через `React.lazy(() => import(...))` (SKILLS.json 3.6 MB)

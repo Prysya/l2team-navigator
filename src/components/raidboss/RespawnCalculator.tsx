@@ -31,12 +31,11 @@ export default function RespawnCalculator({ boss, onClose }: Props) {
   const [killTime, setKillTime] = useState(nowString);
   const [resultText, setResultText] = useState('');
   const [toast, setToast] = useState('');
+  const isAdmin = useTelegramStore((s) => s.isAdmin);
 
   const respawnWindow = parseRespawn(boss.respawn);
 
   if (!respawnWindow) return null;
-
-  const adminId = import.meta.env.VITE_ADMIN_ID;
 
   const handleCalculate = () => {
     if (!killTime) return;
@@ -113,7 +112,7 @@ export default function RespawnCalculator({ boss, onClose }: Props) {
               <button className={styles.copyBtn} onClick={handleCopy}>
                 📋 Копировать
               </button>
-              {adminId && (import.meta.env.DEV || isActualTelegram()) && (
+              {(import.meta.env.DEV || isAdmin) && isActualTelegram() && (
                 <button className={styles.copyBtn} onClick={handleSendToBot}>
                   📤 Отправить боту
                 </button>
