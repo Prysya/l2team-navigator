@@ -24,17 +24,25 @@ function fmtAxiosError(err: unknown): string {
   if (!axios.isAxiosError(err)) {
     return err instanceof Error ? err.message : String(err);
   }
+
+  const cfg = err.config;
+  const req = cfg ? `${cfg.method?.toUpperCase()} ${cfg.baseURL}${cfg.url}` : '?';
+
   if (err.response) {
     const data =
       typeof err.response.data === 'string'
         ? err.response.data.slice(0, 500)
         : JSON.stringify(err.response.data).slice(0, 500);
-    return `HTTP ${err.response.status}: ${data}`;
+    return [`HTTP ${err.response.status} | ${req}`, data, err.message ? `(${err.message})` : '']
+      .filter(Boolean)
+      .join('\n');
   }
+
   if (err.request) {
-    return `Network error: ${err.message}`;
+    return [`Network error | ${req}`, err.message].filter(Boolean).join('\n');
   }
-  return err.message;
+
+  return [`Error | ${req}`, err.message].filter(Boolean).join('\n');
 }
 
 export async function checkClanMembership(id: number, username: string | null): Promise<CheckUserResponse> {

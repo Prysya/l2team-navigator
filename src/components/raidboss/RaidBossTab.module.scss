@@ -89,23 +89,20 @@
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   margin-bottom: $spacing-2xl;
-
-  @include mobile {
-    overflow: hidden;
-  }
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
   font-size: $font-size-base;
-  table-layout: auto;
+  table-layout: fixed;
 
   th,
   td {
     padding: 8px 10px;
     border: 1px solid $color-border;
     text-align: left;
+    word-break: break-word;
   }
 
   th {

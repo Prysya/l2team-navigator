@@ -15,6 +15,7 @@ interface Props {
 export default function DebugModal({ onClose }: Props) {
   const store = useTelegramStore();
   const [toast, setToast] = useState('');
+  const [showInfo, setShowInfo] = useState(false);
 
   const error = store.sendBossError;
 
@@ -77,20 +78,30 @@ export default function DebugModal({ onClose }: Props) {
     <div className={styles.overlay} onClick={handleClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <div className={styles.header}>
-          <span className={styles.title}>🐛 Debug Info</span>
+          <span className={styles.title}>{error ? '⚠️ Ошибка' : '🐛 Debug Info'}</span>
           <button className={styles.closeBtn} onClick={handleClose}>
             ✕
           </button>
         </div>
+
         {error && (
           <div className={styles.errorBanner}>
-            <strong>⚠️ Ошибка отправки:</strong> {error}
+            <strong>Ошибка отправки боту:</strong>
+            <pre className={styles.errorPre}>{error}</pre>
           </div>
         )}
-        <pre className={styles.content}>{info}</pre>
-        <button className={styles.copyBtn} onClick={handleCopy}>
-          📋 Копировать
+
+        <button className={styles.toggleBtn} onClick={() => setShowInfo((v) => !v)}>
+          {showInfo ? '▲ Скрыть' : '▼ Показать'} полную информацию
         </button>
+
+        {showInfo && <pre className={styles.content}>{info}</pre>}
+
+        {showInfo && (
+          <button className={styles.copyBtn} onClick={handleCopy}>
+            📋 Копировать
+          </button>
+        )}
       </div>
       {toast && <Toast message={toast} onDone={() => setToast('')} />}
     </div>,
