@@ -67,48 +67,18 @@
   user-select: all;
 }
 
-.errorBanner {
-  margin: 0 $spacing-lg $spacing-lg;
-  padding: $spacing-md;
-  border: 1px solid #ff453a;
-  border-radius: $radius-lg;
-  background: rgba(255, 69, 58, 0.08);
-  color: #ff453a;
-  font-size: $font-size-base;
-  line-height: 1.5;
-
-  strong {
-    display: block;
-    color: #ff453a;
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
-}
-
-.errorPre {
+.errorContent {
+  flex: 1;
+  overflow: auto;
+  padding: $spacing-lg;
   margin: 0;
-  font-size: 13px;
-  line-height: 1.6;
+  font-size: 11px;
+  line-height: 1.5;
+  color: #ff6b6b;
   white-space: pre-wrap;
   word-break: break-all;
-  color: #ff6b6b;
-}
-
-.toggleBtn {
-  margin: 0 $spacing-lg $spacing-lg;
-  padding: 6px 12px;
-  border: 1px solid $color-border;
-  border-radius: $radius-md;
-  background: transparent;
-  color: $color-text-muted;
-  font-size: $font-size-sm;
-  cursor: pointer;
-  align-self: flex-start;
-
-  &:hover {
-    color: $color-primary;
-    border-color: $color-primary;
-  }
+  user-select: all;
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .copyBtn {

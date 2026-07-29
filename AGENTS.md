@@ -50,6 +50,35 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - ESLint + Prettier for code quality (configs: `.eslintrc.json`, `.prettierrc`)
 - Import aliases: `@/`, `@shared/`, `@components/`, `@utils/`, `@data/`, `@styles/`
 
+## Парсер скиллов (`scripts/fetch-mw2-skills.mjs`)
+
+Собирает обогащённые данные с mw2.wiki:
+
+1. Парсит страницу `/lu4/classes` — получает ID и slug всех классов
+2. Для каждого класса → `/lu4/class/{id}-{slug}/all` — парсит скиллы (accordion-секции с подкатегориями Physical/Buff/Debuff и т.д.)
+3. Уникальные скиллы → `/lu4/skill/{id}-{slug}/1` — парсит описание, MP, кулдаун, трейт, атрибут, все уровни
+4. Склеивает с существующим `SKILLS.json`: добавляет `description`, `mpConsume`, `reuseTime`, `castRange`, `trait`, `attribute`, `olympiadUsable`, `levels[].description`
+5. Результат сохраняется в `SKILLS_ENRICHED.json`, затем перезаписывает `SKILLS.json`
+
+**Запуск:** `node scripts/fetch-mw2-skills.mjs`
+**Зависимости:** Node.js 18+ (native fetch), без внешних пакетов
+**Лимиты:** asyncio.Semaphore(4), случайная задержка 1.5-3с (не реализовано — 1 запрос за раз)
+
+### Поля скилла после обогащения
+
+| Поле                   | Тип    | Источник                              |
+| ---------------------- | ------ | ------------------------------------- |
+| `description`          | string | mw2.wiki (полное описание навыка)     |
+| `mpConsume`            | string | mw2.wiki (MP cost)                    |
+| `reuseTime`            | string | mw2.wiki (перезарядка)                |
+| `castRange`            | string | mw2.wiki (дальность)                  |
+| `trait`                | string | mw2.wiki (Sword/Blunt/Dagger/Etc)     |
+| `attribute`            | string | mw2.wiki (Fire/Water/Wind/Earth/None) |
+| `olympiadUsable`       | string | mw2.wiki (Yes/No)                     |
+| `levels[].description` | string | mw2.wiki (описание каждого уровня)    |
+
+**Запуск:** `node scripts/fetch-mw2-skills.mjs`
+
 ## Code Quality
 
 ### ESLint

@@ -4,10 +4,18 @@
 
 ## [1.7.19] - 2026-07-29
 
+### Добавлено
+- `scripts/fetch-mw2-skills.mjs` — парсер скиллов с mw2.wiki (786 уникальных скиллов, 51 класс)
+- Обогащение `SKILLS.json` новыми полями: `description`, `mpConsume`, `reuseTime`, `castRange`, `trait`, `attribute`, `olympiadUsable`, `levels[].description`
+- Все 2145 скиллов теперь имеют иконку (с mw2.wiki)
+- `SkillsTab`: отображение новых полей (описание, трейт, атрибут, MP/КД/дальность из новых полей)
+
 ### Изменено
 - `telegramApi.ts`: `fmtAxiosError` теперь включает URL и метод запроса (`"HTTP {status} | POST /api/..."`)
 - `DebugModal.tsx`: при ошибке показывает только ошибку, полный JSON скрыт под toggle
 - `RaidBossTab`: таблица переведена на `table-layout: fixed` для корректной ширины на мобилках
+- `src/types/index.ts`: `ClassSkill` и `SkillLevel` расширены новыми полями
+- `ScriptsTab`: адаптирован под новые поля, определение источника иконки (mw2/lu4db)
 
 ### Исправлено
 - Таблица рейд-боссов не влезала по ширине на мобильных устройствах (не было горизонтального скролла)

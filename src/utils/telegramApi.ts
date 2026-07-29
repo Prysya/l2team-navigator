@@ -20,29 +20,43 @@ export interface SendBossResponse {
   error?: string;
 }
 
-function fmtAxiosError(err: unknown): string {
+function serialiseError(err: unknown): Record<string, unknown> {
   if (!axios.isAxiosError(err)) {
-    return err instanceof Error ? err.message : String(err);
+    return {
+      message: err instanceof Error ? err.message : String(err),
+      stack: err instanceof Error ? err.stack : undefined,
+    };
   }
 
-  const cfg = err.config;
-  const req = cfg ? `${cfg.method?.toUpperCase()} ${cfg.baseURL}${cfg.url}` : '?';
+  return {
+    name: err.name,
+    message: err.message,
+    code: err.code,
+    config: err.config
+      ? {
+          url: err.config.url,
+          baseURL: err.config.baseURL,
+          method: err.config.method,
+          timeout: err.config.timeout,
+          headers: err.config.headers,
+          data: err.config.data,
+        }
+      : null,
+    response: err.response
+      ? {
+          status: err.response.status,
+          statusText: err.response.statusText,
+          headers: err.response.headers,
+          data: err.response.data,
+        }
+      : null,
+    request: err.request ? '[object]' : null,
+    stack: err.stack,
+  };
+}
 
-  if (err.response) {
-    const data =
-      typeof err.response.data === 'string'
-        ? err.response.data.slice(0, 500)
-        : JSON.stringify(err.response.data).slice(0, 500);
-    return [`HTTP ${err.response.status} | ${req}`, data, err.message ? `(${err.message})` : '']
-      .filter(Boolean)
-      .join('\n');
-  }
-
-  if (err.request) {
-    return [`Network error | ${req}`, err.message].filter(Boolean).join('\n');
-  }
-
-  return [`Error | ${req}`, err.message].filter(Boolean).join('\n');
+function fmtAxiosError(err: unknown): string {
+  return JSON.stringify(serialiseError(err), null, 2);
 }
 
 export async function checkClanMembership(id: number, username: string | null): Promise<CheckUserResponse> {

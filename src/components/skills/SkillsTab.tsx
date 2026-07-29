@@ -167,18 +167,24 @@ export function cleanStatText(text: string): string {
   return text.replace(/\b0+(\d+)\b/g, '$1');
 }
 
-export function compressLevels(levels: ClassSkill['levels']): { levels: string; changes: string[]; rowspan: number }[] {
+export function compressLevels(
+  levels: ClassSkill['levels'],
+): { levels: string; changes: string[]; description?: string; rowspan: number }[] {
   if (!levels.length) return [];
-  const groups: { levels: string; changes: string[]; rowspan: number }[] = [];
+  const groups: { levels: string; changes: string[]; description?: string; rowspan: number }[] = [];
   let i = 0;
   while (i < levels.length) {
     const cur = levels[i];
-    const changeKey = JSON.stringify(cur.changes);
+    const descKey = cur.description ?? JSON.stringify(cur.changes);
     let j = i + 1;
-    while (j < levels.length && JSON.stringify(levels[j].changes) === changeKey) j++;
+    while (j < levels.length) {
+      const next = levels[j];
+      if ((next.description ?? JSON.stringify(next.changes)) !== descKey) break;
+      j++;
+    }
     const lvls = levels.slice(i, j);
     const lvlStr = lvls.map((l) => l.classLevel).join(', ');
-    groups.push({ levels: lvlStr, changes: cur.changes, rowspan: 1 });
+    groups.push({ levels: lvlStr, changes: cur.changes, description: cur.description, rowspan: 1 });
     i = j;
   }
   return groups;
@@ -186,9 +192,15 @@ export function compressLevels(levels: ClassSkill['levels']): { levels: string; 
 
 export function getStatIcon(label: string): string {
   if (label === 'MP') return '💧';
-  if (label === 'КД') return '⏱';
+  if (label === 'КД' || label === 'CD') return '⏱';
   if (label === 'Длит.') return '⏳';
   return '';
+}
+
+function skillImageUrl(url: string): string {
+  if (url.startsWith('/i64/')) return `https://mw2.wiki${url}`;
+  if (url.startsWith('/media/')) return `https://lu4db.ru${url}`;
+  return url;
 }
 
 interface SkillsTabProps {
@@ -314,7 +326,7 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
                 {skill.imageUrl && (
                   <img
                     className={styles.skillIcon}
-                    src={`https://lu4db.ru${skill.imageUrl}`}
+                    src={skillImageUrl(skill.imageUrl)}
                     alt={skill.name}
                     loading="lazy"
                   />
@@ -350,17 +362,38 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
                       <span className={styles.skillLvl}>С {skill.firstClassLevel} lvl</span>
                     )}
                   </div>
-                  {skill.stats.length > 0 && (
-                    <div className={styles.skillStats}>
-                      {skill.stats
-                        .filter((st) => st.label !== 'HP')
-                        .map((st, i) => (
-                          <span key={i} className={styles.skillStat}>
-                            {getStatIcon(st.label)} {st.label}: <b>{cleanStatText(st.text)}</b>
-                          </span>
-                        ))}
-                    </div>
-                  )}
+                  {skill.trait && <div className={styles.skillTrait}>Трейт: {skill.trait}</div>}
+                  {skill.attribute && <div className={styles.skillAttr}>Атрибут: {skill.attribute}</div>}
+                  {skill.description && <div className={styles.skillDesc}>{highlightNumbers(skill.description)}</div>}
+                  <div className={styles.skillStats}>
+                    {skill.mpConsume && (
+                      <span className={styles.skillStat}>
+                        💧 MP: <b>{skill.mpConsume}</b>
+                      </span>
+                    )}
+                    {skill.reuseTime && (
+                      <span className={styles.skillStat}>
+                        ⏱ КД: <b>{skill.reuseTime}</b>
+                      </span>
+                    )}
+                    {skill.castRange && (
+                      <span className={styles.skillStat}>
+                        🎯 Дальн.: <b>{skill.castRange}</b>
+                      </span>
+                    )}
+                    {skill.stats
+                      .filter((st) => !skill.mpConsume && st.label === 'MP')
+                      .concat(
+                        skill.stats.filter((st) => !skill.reuseTime && st.label === 'КД'),
+                        skill.stats.filter((st) => !skill.castRange && st.label === 'Дальн.'),
+                        skill.stats.filter((st) => !['MP', 'КД', 'Дальн.', 'HP'].includes(st.label)),
+                      )
+                      .map((st, i) => (
+                        <span key={i} className={styles.skillStat}>
+                          {getStatIcon(st.label)} {st.label}: <b>{cleanStatText(st.text)}</b>
+                        </span>
+                      ))}
+                  </div>
                   {spellbookByName.has(skill.name.toLowerCase()) && (
                     <button
                       className={styles.sbLink}
@@ -392,11 +425,15 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
                         <tr key={gi}>
                           <td className={styles.lvlClass}>{g.levels}</td>
                           <td className={styles.lvlDesc}>
-                            {g.changes.map((ch, ci) => (
-                              <div key={ci} className={styles.lvlChange}>
-                                {highlightNumbers(ch)}
-                              </div>
-                            ))}
+                            {g.description ? (
+                              <div className={styles.lvlChange}>{highlightNumbers(g.description)}</div>
+                            ) : (
+                              g.changes.map((ch, ci) => (
+                                <div key={ci} className={styles.lvlChange}>
+                                  {highlightNumbers(ch)}
+                                </div>
+                              ))
+                            )}
                           </td>
                         </tr>
                       ))}
