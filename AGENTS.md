@@ -323,11 +323,17 @@ Use conventional commits: `type: description` (lowercase, no caps).
 
 - Использует **axios instance** с `baseURL` из `VITE_TELEGRAM_API_URL`, `Authorization: Bearer` токеном и таймаутом 15s
 - Все ошибки форматируются через `fmtAxiosError()`:
-  - HTTP ошибки: `"HTTP {status}: {body}"`
-  - Сетевые ошибки: `"Network error: {message}"`
+  - HTTP ошибки: `"HTTP {status} | {METHOD} {url}\n{body}"`
+  - Сетевые ошибки: `"Network error | {METHOD} {url}\n{message}"`
   - Остальные: `err.message`
 - Две функции: `checkClanMembership(id, username)` и `sendBossText(text)`
 - `telegramStore.isAdmin` — вычисляется один раз при `initFromHash` по совпадению `user.id` с `VITE_ADMIN_ID`
+
+### DebugModal (`DebugModal.tsx`)
+
+- Открывается: по `iddqs` (только админ/DEV) или при `sendBossError` (только админ)
+- Если модалка открыта по ошибке — показывает **только ошибку**, полный JSON скрыт под toggle
+- Подписан на стор через `useTelegramStore()` (реактивно), а не `getState()` (снэпшот)
 
 ## Lazy Loading
 

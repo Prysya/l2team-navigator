@@ -78,8 +78,36 @@
   line-height: 1.5;
 
   strong {
+    display: block;
     color: #ff453a;
     font-weight: 700;
+    margin-bottom: 4px;
+  }
+}
+
+.errorPre {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-all;
+  color: #ff6b6b;
+}
+
+.toggleBtn {
+  margin: 0 $spacing-lg $spacing-lg;
+  padding: 6px 12px;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  background: transparent;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+  cursor: pointer;
+  align-self: flex-start;
+
+  &:hover {
+    color: $color-primary;
+    border-color: $color-primary;
   }
 }
 
