@@ -1,5 +1,13 @@
+import axios from 'axios';
+
 const API_URL = import.meta.env.VITE_TELEGRAM_API_URL;
 const API_TOKEN = import.meta.env.VITE_TELEGRAM_API_TOKEN;
+
+const api = axios.create({
+  baseURL: API_URL,
+  timeout: 15_000,
+  headers: API_TOKEN ? { Authorization: `Bearer ${API_TOKEN}` } : {},
+});
 
 export interface CheckUserResponse {
   isL2teamUser: boolean;
@@ -12,21 +20,34 @@ export interface SendBossResponse {
   error?: string;
 }
 
+function fmtAxiosError(err: unknown): string {
+  if (!axios.isAxiosError(err)) {
+    return err instanceof Error ? err.message : String(err);
+  }
+  if (err.response) {
+    const data =
+      typeof err.response.data === 'string'
+        ? err.response.data.slice(0, 500)
+        : JSON.stringify(err.response.data).slice(0, 500);
+    return `HTTP ${err.response.status}: ${data}`;
+  }
+  if (err.request) {
+    return `Network error: ${err.message}`;
+  }
+  return err.message;
+}
+
 export async function checkClanMembership(id: number, username: string | null): Promise<CheckUserResponse> {
   if (!API_URL || !API_TOKEN) {
     return { isL2teamUser: false, error: 'API not configured' };
   }
 
-  const res = await fetch(`${API_URL}/api/check-user`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${API_TOKEN}`,
-    },
-    body: JSON.stringify({ id, username }),
-  });
-
-  return res.json() as Promise<CheckUserResponse>;
+  try {
+    const { data } = await api.post<CheckUserResponse>('/api/check-user', { id, username });
+    return data;
+  } catch (err) {
+    return { isL2teamUser: false, error: fmtAxiosError(err) };
+  }
 }
 
 export async function sendBossText(text: string): Promise<SendBossResponse> {
@@ -34,14 +55,10 @@ export async function sendBossText(text: string): Promise<SendBossResponse> {
     return { ok: false, error: 'API not configured' };
   }
 
-  const res = await fetch(`${API_URL}/api/send-boss`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${API_TOKEN}`,
-    },
-    body: JSON.stringify({ text }),
-  });
-
-  return res.json() as Promise<SendBossResponse>;
+  try {
+    const { data } = await api.post<SendBossResponse>('/api/send-boss', { text });
+    return data;
+  } catch (err) {
+    return { ok: false, error: fmtAxiosError(err) };
+  }
 }

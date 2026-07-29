@@ -33,6 +33,7 @@ interface TelegramStore {
   platform: string | null;
   themeParams: Record<string, string> | null;
   user: TeleUser | null;
+  isAdmin: boolean;
   clanCheckResult: boolean | null;
   clanCheckLoading: boolean;
   clanCheckError: string | null;
@@ -55,6 +56,7 @@ export const useTelegramStore = create<TelegramStore>((set, get) => ({
   rawHash: '',
   rawStartParam: '',
   sendBossError: null,
+  isAdmin: false,
   initFromHash(hash: string) {
     const clean = hash.replace(/^[#?]/, '');
     const params = new URLSearchParams(clean);
@@ -82,8 +84,12 @@ export const useTelegramStore = create<TelegramStore>((set, get) => ({
         }
       }
 
+      const adminId = import.meta.env.VITE_ADMIN_ID;
+      const isAdmin = Boolean(adminId && String(user.id || 0) === adminId);
+
       set({
         isTelegram: true,
+        isAdmin,
         platform: params.get('tgWebAppPlatform') || null,
         themeParams,
         user: {

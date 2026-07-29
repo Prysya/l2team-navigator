@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import Toast from '@shared/Toast';
 
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function DebugModal({ onClose }: Props) {
-  const store = useTelegramStore.getState();
+  const store = useTelegramStore();
   const [toast, setToast] = useState('');
 
   const error = store.sendBossError;
@@ -23,42 +23,41 @@ export default function DebugModal({ onClose }: Props) {
     onClose();
   };
 
-  const info = useMemo(() => {
-    const hash = window.location.hash;
-    const cleanHash = hash.replace(/^[#?]/, '');
-    const hashParams = new URLSearchParams(cleanHash);
-    const searchParams = new URLSearchParams(window.location.search);
+  const hash = window.location.hash;
+  const cleanHash = hash.replace(/^[#?]/, '');
+  const hashParams = new URLSearchParams(cleanHash);
+  const searchParams = new URLSearchParams(window.location.search);
 
-    const data: Record<string, unknown> = {
-      version: pkg.version,
-      url: window.location.href,
-      hash,
-      search: window.location.search,
-      userAgent: navigator.userAgent,
-      searchParams: Object.fromEntries(searchParams.entries()),
-      hashParams: Object.fromEntries(hashParams.entries()),
-      telegramStore: {
-        isTelegram: store.isTelegram,
-        platform: store.platform,
-        user: store.user,
-        themeParams: store.themeParams,
-        clanCheckResult: store.clanCheckResult,
-        clanCheckLoading: store.clanCheckLoading,
-        clanCheckError: store.clanCheckError,
-        sendBossError: store.sendBossError,
-        rawHash: store.rawHash,
-        rawStartParam: store.rawStartParam,
-      },
-      env: {
-        BASE_URL: import.meta.env.BASE_URL,
-        VITE_TELEGRAM_API_URL: import.meta.env.VITE_TELEGRAM_API_URL,
-        VITE_ADMIN_ID: import.meta.env.VITE_ADMIN_ID,
-        VITE_TELEGRAM_API_TOKEN: import.meta.env.VITE_TELEGRAM_API_TOKEN ? '***' : undefined,
-      },
-    };
+  const data: Record<string, unknown> = {
+    version: pkg.version,
+    url: window.location.href,
+    hash,
+    search: window.location.search,
+    userAgent: navigator.userAgent,
+    searchParams: Object.fromEntries(searchParams.entries()),
+    hashParams: Object.fromEntries(hashParams.entries()),
+    telegramStore: {
+      isTelegram: store.isTelegram,
+      platform: store.platform,
+      user: store.user,
+      isAdmin: store.isAdmin,
+      themeParams: store.themeParams,
+      clanCheckResult: store.clanCheckResult,
+      clanCheckLoading: store.clanCheckLoading,
+      clanCheckError: store.clanCheckError,
+      sendBossError: store.sendBossError,
+      rawHash: store.rawHash,
+      rawStartParam: store.rawStartParam,
+    },
+    env: {
+      BASE_URL: import.meta.env.BASE_URL,
+      VITE_TELEGRAM_API_URL: import.meta.env.VITE_TELEGRAM_API_URL,
+      VITE_ADMIN_ID: import.meta.env.VITE_ADMIN_ID,
+      VITE_TELEGRAM_API_TOKEN: import.meta.env.VITE_TELEGRAM_API_TOKEN ? '***' : undefined,
+    },
+  };
 
-    return JSON.stringify(data, null, 2);
-  }, [store]);
+  const info = JSON.stringify(data, null, 2);
 
   const handleCopy = async () => {
     try {

@@ -77,9 +77,8 @@ function AppLayout() {
       if (iddqsRef.current.length > 5) iddqsRef.current = iddqsRef.current.slice(-5);
       if (iddqsRef.current === 'iddqs') {
         iddqsRef.current = '';
-        const adminId = import.meta.env.VITE_ADMIN_ID;
-        if (!adminId) return;
-        if (import.meta.env.DEV || (useTelegramStore.getState().user?.id && isActualTelegram())) {
+        const store = useTelegramStore.getState();
+        if (import.meta.env.DEV || (store.isAdmin && isActualTelegram())) {
           setDebugOpen(true);
         }
       }
@@ -93,11 +92,12 @@ function AppLayout() {
   }, [location]);
 
   const sendBossError = useTelegramStore((s) => s.sendBossError);
+  const isAdmin = useTelegramStore((s) => s.isAdmin);
   useEffect(() => {
-    if (sendBossError && (import.meta.env.DEV || isActualTelegram())) {
+    if (sendBossError && (import.meta.env.DEV || (isActualTelegram() && isAdmin))) {
       setDebugOpen(true);
     }
-  }, [sendBossError]);
+  }, [sendBossError, isAdmin]);
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -109,8 +109,7 @@ function AppLayout() {
     if (store.user) {
       setTelegramUser(store.user, store.platform || '');
       useTelegramStore.getState().checkClanMembership();
-      const adminId = import.meta.env.VITE_ADMIN_ID;
-      if (adminId && String(store.user.id) === adminId && isActualTelegram()) {
+      if (store.isAdmin && isActualTelegram()) {
         setDebugOpen(true);
       }
     }
