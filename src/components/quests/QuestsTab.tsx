@@ -30,8 +30,15 @@ type QuestDataEntry = {
   steps: string[];
 };
 
-function isPostQuest(name: string, id: number): boolean {
-  return name.startsWith('Path of ') || name.startsWith('3 in ') || (id >= 87 && id <= 95);
+function slug(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+function questUrl(name: string, id: number): string {
+  return `https://mw2.wiki/lu4/posts/post/${id}-${slug(name)}`;
 }
 
 export function detectRewardTag(reward: string): RewardTag {
@@ -351,7 +358,7 @@ export default function QuestsTab() {
                             <span className={styles.detailQuestName}>{eq.name}</span>
                             {eq.questId && eq.questId > 0 && (
                               <a
-                                href={`https://mw2.wiki/lu4/${isPostQuest(eq.name, eq.questId) ? 'posts/post' : 'quest'}/${eq.questId}`}
+                                href={questUrl(eq.name, eq.questId)}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className={styles.wikiLink}
@@ -429,7 +436,7 @@ export default function QuestsTab() {
                                 <div className={styles.stepItem}>
                                   Полное описание прохождения на{' '}
                                   <a
-                                    href={`https://mw2.wiki/lu4/${isPostQuest(eq.name, eq.questId) ? 'posts/post' : 'quest'}/${eq.questId}`}
+                                    href={questUrl(eq.name, eq.questId)}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className={styles.wikiLinkInline}

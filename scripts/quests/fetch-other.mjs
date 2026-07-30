@@ -6,11 +6,16 @@ const ids = loadQuestIds();
 const imgs = loadQuestImages();
 const dir = imgDir();
 
-// Trial of Geomancer — only non-path/3in1/kusto quest with images
-const others = Object.entries(ids).filter(([name]) => name === 'Trial of Geomancer');
+// Non-path/3in1/kusto quests that have images on mw2.wiki
+const others = Object.entries(ids).filter(
+  ([name]) =>
+    !name.startsWith('Path of ') &&
+    !name.startsWith('3 in ') &&
+    !(ids[name] >= 87 && ids[name] <= 95),
+);
 
 for (const [name, id] of others) {
-  const url = `https://mw2.wiki/lu4/quest/${id}`;
+  const url = `https://mw2.wiki/lu4/posts/post/${id}-${slug(name)}`;
   process.stdout.write(`Other: ${name}... `);
   const html = await tryFetch(url);
   if (!html) { console.log('no page'); continue; }
