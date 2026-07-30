@@ -198,6 +198,7 @@
 }
 
 .citySeparator {
+  cursor: pointer;
   td {
     background: $color-surface-hover;
     color: $color-primary;
@@ -411,5 +412,40 @@
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+.chevron {
+  display: inline-block;
+  width: 14px;
+  font-size: 11px;
+  color: $color-text-muted;
+  flex-shrink: 0;
+  margin-right: 6px;
+}
+
+.locHeader {
+  cursor: pointer;
+
+  td {
+    padding: 10px 14px;
+    background: $color-surface-alt;
+    border-top: none;
+  }
+
+  &:hover td {
+    background: $color-surface-hover;
+  }
+}
+
+.locHeaderInner {
+  display: flex;
+  align-items: flex-start;
+}
+
+.locItemsRow {
+  td {
+    padding: $spacing-md;
+    background: $color-surface;
   }
 }

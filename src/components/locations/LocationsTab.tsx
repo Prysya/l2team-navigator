@@ -221,77 +221,58 @@ function LocationItemRow({ item }: { item: LocationItem }) {
 }
 
 function LocationRow({
+  locKey,
   loc,
-  typeFilter,
-  selectedRace,
-  selectedClass,
+  expandedLocations,
+  toggleLocation,
 }: {
+  locKey: string;
   loc: LocationEntry;
-  typeFilter: TypeFilter;
-  selectedRace: string;
-  selectedClass: string;
+  expandedLocations: Set<string>;
+  toggleLocation: (key: string) => void;
 }) {
-  const recipeGrade = useLocationsStore((s) => s.recipeGrade);
   const partyInfo = getPartyText(loc.location_types, loc.has_boss);
-
-  let items = loc.items;
-  if (typeFilter !== 'all' && !RECIPE_SUBTABS.includes(typeFilter)) {
-    items = items.filter((i) => i.item_type === typeFilter);
-  }
-  if (RECIPE_SUBTABS.includes(typeFilter)) {
-    const targetType = RECIPE_TYPE_MAP[typeFilter];
-    items = items.filter((i) => {
-      const info = getItemTypeAndGrade(i);
-      return info && info.type === targetType;
-    });
-  }
-  if (recipeGrade && (typeFilter === 'piece' || RECIPE_SUBTABS.includes(typeFilter))) {
-    items = items.filter((i) => getItemTypeAndGrade(i)?.grade === recipeGrade);
-  }
-  if (
-    typeFilter !== 'recipe' &&
-    !RECIPE_SUBTABS.includes(typeFilter) &&
-    typeFilter !== 'piece' &&
-    typeFilter !== 'resource' &&
-    (selectedRace || selectedClass)
-  ) {
-    items = items.filter((i) => {
-      if (i.item_type === 'recipe' || i.item_type === 'piece' || i.item_type === 'resource') return true;
-      return i.classes.some(
-        (c) => (!selectedRace || c.race === selectedRace) && (!selectedClass || c.class_name === selectedClass),
-      );
-    });
-  }
-  if (items.length === 0) return null;
+  const isExpanded = expandedLocations.has(locKey);
 
   return (
-    <tr>
-      <td className={styles.locCell}>
-        <div className={styles.locName}>{loc.location_name}</div>
-        <div className={styles.locMeta}>
-          {loc.location_types.length > 0 && (
-            <div className={styles.locTypes}>
-              {loc.location_types.map((t, i) => (
-                <span key={i} className="type-badge" data-tooltip={TYPE_TOOLTIP[t] ?? t}>
-                  {t}
-                </span>
-              ))}
+    <>
+      <tr className={styles.locHeader} onClick={() => toggleLocation(locKey)}>
+        <td colSpan={2}>
+          <div className={styles.locHeaderInner}>
+            <span className={styles.chevron}>{isExpanded ? '▼' : '▶'}</span>
+            <div>
+              <div className={styles.locName}>{loc.location_name}</div>
+              <div className={styles.locMeta}>
+                {loc.location_types.length > 0 && (
+                  <div className={styles.locTypes}>
+                    {loc.location_types.map((t, i) => (
+                      <span key={i} className="type-badge" data-tooltip={TYPE_TOOLTIP[t] ?? t}>
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                <div className={`${styles.locParty} ${partyInfo.cls}`}>{partyInfo.text}</div>
+                <div className={styles.locMetaRow}>
+                  {loc.has_spoil && <span className="spoil-badge">✅ Есть спойл</span>}
+                  {loc.has_boss && <span className="boss-badge">⚠️ Босс</span>}
+                </div>
+                <div className={styles.locLevel}>Avg Lvl: {loc.avg_level}</div>
+              </div>
             </div>
-          )}
-          <div className={`${styles.locParty} ${partyInfo.cls}`}>{partyInfo.text}</div>
-          <div className={styles.locMetaRow}>
-            {loc.has_spoil && <span className="spoil-badge">✅ Есть спойл</span>}{' '}
-            {loc.has_boss && <span className="boss-badge">⚠️ Босс</span>}
           </div>
-          <div className={styles.locLevel}>Avg Lvl: {loc.avg_level}</div>
-        </div>
-      </td>
-      <td className={styles.itemsCell}>
-        {items.map((item, i) => (
-          <LocationItemRow key={i} item={item} />
-        ))}
-      </td>
-    </tr>
+        </td>
+      </tr>
+      {isExpanded && (
+        <tr className={styles.locItemsRow}>
+          <td colSpan={2}>
+            {loc.items.map((item, i) => (
+              <LocationItemRow key={i} item={item} />
+            ))}
+          </td>
+        </tr>
+      )}
+    </>
   );
 }
 
@@ -317,6 +298,8 @@ export default function LocationsTab() {
 
   const tableRef = useRef<HTMLDivElement>(null);
   const [tooltip, setTooltip] = useState<{ text: string; top: number; left: number } | null>(null);
+  const [expandedCities, setExpandedCities] = useState<Set<string>>(new Set());
+  const [expandedLocations, setExpandedLocations] = useState<Set<string>>(new Set());
 
   const [fullRecipesData, setFullRecipesData] = useState<LocationEntry[]>([]);
   const [fullRecipesLoaded, setFullRecipesLoaded] = useState(false);
@@ -376,6 +359,24 @@ export default function LocationsTab() {
   const handleMouseOut = useCallback((e: React.MouseEvent) => {
     const related = (e.relatedTarget as HTMLElement)?.closest('[data-tooltip]');
     if (!related) setTooltip(null);
+  }, []);
+
+  const toggleCity = useCallback((city: string) => {
+    setExpandedCities((prev) => {
+      const next = new Set(prev);
+      if (next.has(city)) next.delete(city);
+      else next.add(city);
+      return next;
+    });
+  }, []);
+
+  const toggleLocation = useCallback((key: string) => {
+    setExpandedLocations((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
   }, []);
 
   const activeLocations = useMemo(() => {
@@ -682,10 +683,12 @@ export default function LocationsTab() {
               {Object.entries(grouped).map(([city, locations]) => {
                 const locCount = locations.length;
                 const itemCount = locations.reduce((s, loc) => s + loc.items.length, 0);
+                const cityExpanded = expandedCities.has(city);
                 return (
                   <Fragment key={city}>
-                    <tr className={styles.citySeparator}>
+                    <tr className={styles.citySeparator} onClick={() => toggleCity(city)}>
                       <td colSpan={2}>
+                        <span className={styles.chevron}>{cityExpanded ? '▼' : '▶'}</span>
                         <span className={styles.cityIcon}>🏰</span>
                         {city}
                         <span className={styles.cityMeta}>
@@ -693,15 +696,16 @@ export default function LocationsTab() {
                         </span>
                       </td>
                     </tr>
-                    {locations.map((loc) => (
-                      <LocationRow
-                        key={loc.location_name}
-                        loc={loc}
-                        typeFilter={typeFilter}
-                        selectedRace={selectedRace}
-                        selectedClass={selectedClass}
-                      />
-                    ))}
+                    {cityExpanded &&
+                      locations.map((loc) => (
+                        <LocationRow
+                          key={loc.location_name}
+                          locKey={`${city}/${loc.location_name}`}
+                          loc={loc}
+                          expandedLocations={expandedLocations}
+                          toggleLocation={toggleLocation}
+                        />
+                      ))}
                   </Fragment>
                 );
               })}
