@@ -8,14 +8,14 @@ test.describe('Recipes Tab', () => {
   });
 
   test('loads and shows controls after data fetch', async ({ page }) => {
-    await page.goto('/l2team-navigator/recipes');
+    await page.goto('/recipes');
 
     await expect(page.getByText('Все типы')).toBeVisible({ timeout: 20000 });
     await expect(page.getByText('Все грейды', { exact: true })).toBeVisible();
   });
 
   test('grade selector is hidden when Material type is selected', async ({ page }) => {
-    await page.goto('/l2team-navigator/recipes');
+    await page.goto('/recipes');
     await expect(page.getByText('Все типы')).toBeVisible({ timeout: 20000 });
 
     await page.getByTestId('recipe-type-select').click();
@@ -25,7 +25,7 @@ test.describe('Recipes Tab', () => {
   });
 
   test('selecting a recipe shows card with tabs', async ({ page }) => {
-    await page.goto('/l2team-navigator/recipes');
+    await page.goto('/recipes');
     await expect(page.getByText('Все типы')).toBeVisible({ timeout: 20000 });
 
     await page.getByTestId('recipe-type-select').click();
@@ -41,7 +41,7 @@ test.describe('Recipes Tab', () => {
   });
 
   test('craft tab shows component tree', async ({ page }) => {
-    await page.goto('/l2team-navigator/recipes');
+    await page.goto('/recipes');
     await expect(page.getByText('Все типы')).toBeVisible({ timeout: 20000 });
 
     await page.getByTestId('recipe-type-select').click();
@@ -60,7 +60,7 @@ test.describe('Recipes Tab', () => {
   });
 
   test('info tab shows item details', async ({ page }) => {
-    await page.goto('/l2team-navigator/recipes');
+    await page.goto('/recipes');
     await expect(page.getByText('Все типы')).toBeVisible({ timeout: 20000 });
 
     await page.getByTestId('recipe-type-select').click();
@@ -80,7 +80,7 @@ test.describe('Recipes Tab', () => {
 
   test.describe('Search', () => {
     test('search shows dropdown with results when focused', async ({ page }) => {
-      await page.goto('/l2team-navigator/recipes');
+      await page.goto('/recipes');
       await expect(page.getByText('Все типы')).toBeVisible({ timeout: 20000 });
 
       const searchInput = page.locator('input[name="recipe-search"]');
@@ -93,7 +93,7 @@ test.describe('Recipes Tab', () => {
     });
 
     test('search dropdown closes on blur', async ({ page }) => {
-      await page.goto('/l2team-navigator/recipes');
+      await page.goto('/recipes');
       await expect(page.getByText('Все типы')).toBeVisible({ timeout: 20000 });
 
       const searchInput = page.locator('input[name="recipe-search"]');
@@ -107,7 +107,7 @@ test.describe('Recipes Tab', () => {
     });
 
     test('search results respect selected type filter', async ({ page }) => {
-      await page.goto('/l2team-navigator/recipes');
+      await page.goto('/recipes');
       await expect(page.getByText('Все типы')).toBeVisible({ timeout: 20000 });
 
       await page.getByTestId('recipe-type-select').click();
@@ -126,7 +126,7 @@ test.describe('Recipes Tab', () => {
     });
 
     test('clicking search result selects recipe and shows card', async ({ page }) => {
-      await page.goto('/l2team-navigator/recipes');
+      await page.goto('/recipes');
       await expect(page.getByText('Все типы')).toBeVisible({ timeout: 20000 });
 
       const searchInput = page.locator('input[name="recipe-search"]');
@@ -146,7 +146,7 @@ test.describe('Recipes Tab', () => {
     });
 
     test('search does not filter recipe selector options', async ({ page }) => {
-      await page.goto('/l2team-navigator/recipes');
+      await page.goto('/recipes');
       await expect(page.getByText('Все типы')).toBeVisible({ timeout: 20000 });
 
       await page.getByTestId('recipe-type-select').click();
@@ -163,7 +163,7 @@ test.describe('Recipes Tab', () => {
     });
 
     test('clear button empties search and hides dropdown', async ({ page }) => {
-      await page.goto('/l2team-navigator/recipes');
+      await page.goto('/recipes');
       await expect(page.getByText('Все типы')).toBeVisible({ timeout: 20000 });
 
       const searchInput = page.locator('input[name="recipe-search"]');
