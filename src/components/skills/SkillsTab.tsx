@@ -310,7 +310,7 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
       const q = searchQuery.toLowerCase().trim();
       list = list.filter((s) => s.name.toLowerCase().includes(q));
     }
-    return list;
+    return list.filter((s) => s.levels.some((l) => l.classLevel));
   }, [currentSkills, filterType, searchQuery]);
 
   useEffect(() => {
