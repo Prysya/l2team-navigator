@@ -373,7 +373,9 @@ function questUrl(name: string, id: number): string {
 
 ### Telegram API (`telegramApi.ts`)
 
-- Использует **axios instance** с `baseURL` из `VITE_TELEGRAM_API_URL`, `Authorization: Bearer` токеном и таймаутом 15s
+- Использует **axios instance** с `baseURL` из `VITE_TELEGRAM_API_URL` и таймаутом 15s
+- Авторизация: `initData` из `window.Telegram.WebApp.initData` передаётся в заголовке `X-Telegram-Init-Data`
+- Бэкенд верифицирует подпись через HMAC-SHA256 + `NAVIGATOR_BOT_TOKEN`
 - Все ошибки форматируются через `fmtAxiosError()`:
   - HTTP ошибки: `"HTTP {status} | {METHOD} {url}\n{body}"`
   - Сетевые ошибки: `"Network error | {METHOD} {url}\n{message}"`

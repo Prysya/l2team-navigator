@@ -57,17 +57,21 @@ function fmtAxiosError(err: unknown): string {
   return JSON.stringify(serialiseError(err), null, 2);
 }
 
+function getInitData(): string {
+  return window.Telegram?.WebApp.initData ?? '';
+}
+
 export async function checkClanMembership(id: number, username: string | null): Promise<CheckUserResponse> {
   if (!API_URL) {
     return { isL2teamUser: false, error: 'API not configured' };
   }
 
   try {
-    const { data } = await api.post<CheckUserResponse>('/api/check-user', {
-      init_data: window.Telegram?.WebApp.initData ?? '',
-      id,
-      username,
-    });
+    const { data } = await api.post<CheckUserResponse>(
+      '/api/check-user',
+      { id, username },
+      { headers: { 'X-Telegram-Init-Data': getInitData() } },
+    );
     return data;
   } catch (err) {
     return { isL2teamUser: false, error: fmtAxiosError(err) };
@@ -80,10 +84,11 @@ export async function sendBossText(text: string): Promise<SendBossResponse> {
   }
 
   try {
-    const { data } = await api.post<SendBossResponse>('/api/send-boss', {
-      init_data: window.Telegram?.WebApp.initData ?? '',
-      text,
-    });
+    const { data } = await api.post<SendBossResponse>(
+      '/api/send-boss',
+      { text },
+      { headers: { 'X-Telegram-Init-Data': getInitData() } },
+    );
     return data;
   } catch (err) {
     return { ok: false, error: fmtAxiosError(err) };
