@@ -217,6 +217,11 @@
   font-size: $font-size-base;
   color: $color-text;
   line-height: 1.5;
+  white-space: pre-line;
+}
+
+.rewardCell {
+  white-space: pre-line;
 }
 
 .detailLabel {

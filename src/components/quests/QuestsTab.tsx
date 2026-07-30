@@ -206,7 +206,7 @@ export default function QuestsTab() {
       columnHelper.accessor('reward', {
         header: 'Награда',
         enableSorting: false,
-        cell: ({ getValue }) => getValue() || '—',
+        cell: ({ getValue }) => <span className={styles.rewardCell}>{getValue() || '—'}</span>,
       }),
     ];
     if (noteColumn) cols.push(noteColumn);

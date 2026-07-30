@@ -302,6 +302,19 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - `id` 87–95 → `/lu4/posts/post/{id}` (Kusto)
 - всё остальное → `/lu4/quest/{id}`
 
+### Обновление наград расовых квестов (`scripts/fetch-quest-rewards.mjs`)
+
+Собирает актуальные награды расовых квестов с mw2.wiki:
+
+1. Fetches all 26 racial quests via `/lu4/quest/{id}` (follows redirect to post-format pages)
+2. Извлекает награды из таблицы (post-формат) или `#result-stats` (old-формат)
+3. Парсит количество (x N), названия предметов, секции (Воин/Маг)
+4. Выводит старую и новую награду для каждого квеста
+
+**Запуск:** `node scripts/fetch-quest-rewards.mjs`
+**Зависимости:** Node.js 18+ (native https, без внешних пакетов)
+**Лимиты:** 2 параллельных запроса, задержка 1-2с
+
 **Запуск:** `node scripts/parse-quests.mjs`
 
 ### Quest Images
@@ -430,6 +443,7 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - `fix-base-skills.mjs` — удаляет базовые скиллы, не принадлежащие классу профессии (проверка через classSkillMap)
 - `fix-overlap-levels.mjs` — удаляет пересекающиеся уровни между 1-й и 2-й профессиями
 - `fix-base-class-levels.mjs` — проставляет classLevel для базовых классов со страниц уровней (<20)
+- `fetch-quest-rewards.mjs` — собирает актуальные награды расовых квестов с mw2.wiki
 
 ## Build & Deploy
 
