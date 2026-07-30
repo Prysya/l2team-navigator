@@ -1,6 +1,12 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
+
+import { setupAuth } from './helpers';
 
 test.describe('Navigation', () => {
+  test.beforeEach(async ({ page }) => {
+    await setupAuth(page);
+  });
+
   test('recipes page loads correctly', async ({ page }) => {
     await page.goto('/l2team-navigator/recipes');
     await expect(page).toHaveURL(/\/recipes/);

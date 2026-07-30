@@ -1,6 +1,12 @@
 import { expect, test } from '@playwright/test';
 
+import { setupAuth } from './helpers';
+
 test.describe('Recipes Tab', () => {
+  test.beforeEach(async ({ page }) => {
+    await setupAuth(page);
+  });
+
   test('loads and shows controls after data fetch', async ({ page }) => {
     await page.goto('/l2team-navigator/recipes');
 

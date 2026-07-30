@@ -1,7 +1,10 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
+
+import { setupAuth } from './helpers';
 
 test.describe('Main Page', () => {
   test.beforeEach(async ({ page }) => {
+    await setupAuth(page);
     await page.goto('/l2team-navigator/');
     await page.locator('body').click();
   });
