@@ -28,6 +28,8 @@ export const QUEST_IDS: Record<string, number> = {
   'Millennium Love': 156,
   'Cure for Fever Disease': 151,
   'Dwarven Kinship': 167,
+  'Dangerous Seduction': 678,
+  'Acts of Evil': 699,
   'Totem of the Hestui': 276,
   'Dragon Fangs': 38,
   'Red-Eyed Invaders': 169,

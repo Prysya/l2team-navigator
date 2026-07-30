@@ -8,7 +8,7 @@ const imgs = loadQuestImages();
 const dir = imgDir();
 
 for (const [name, id] of pathQuests) {
-  const url = `https://mw2.wiki/lu4/posts/post/${id}`;
+  const url = `https://mw2.wiki/lu4/posts/post/${id}-${slug(name)}`;
   process.stdout.write(`Path: ${name} (${id})... `);
   const html = await tryFetch(url);
   if (!html) { console.log('no page'); continue; }

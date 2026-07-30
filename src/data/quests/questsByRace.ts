@@ -127,6 +127,14 @@ export const QUESTS_BY_RACE: Record<string, Quest[]> = {
     },
   ],
   'Dark Elf': [
+    {
+      lvl: 21,
+      name: 'Dangerous Seduction',
+      desc: 'Темная тема',
+      reward:
+        '100000 Exp, 10000 SP, Soulshot NG x1000, Spiritshot NG x350, Lesser Healing Potion x75, Haste Potion x5, Scroll of Escape x5, Scroll of Resurrection x5, Elixir of HP (D-Grade) x2, Elixir of MP (D-Grade) x2',
+      note: 'Только для Dark Elf',
+    },
     { lvl: 2, name: 'Letters of Love', desc: 'Быстрый стартовый опыт', reward: 'Adena x450' },
     { lvl: 2, name: 'Mass of Darkness', desc: 'Стартовый опыт', reward: 'Exp 500, SP 100, Adena 250' },
     { lvl: 3, name: 'Deliver Goods', desc: 'Легкий опыт', reward: 'Exp 2000, SP 200, Ring of Knowledge x2' },

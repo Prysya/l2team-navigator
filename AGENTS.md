@@ -276,7 +276,7 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - Цепочка палач храма: посты 54–62 (добавлены в `QUESTS.posts`)
 - Цепочка Кусто: посты 87–95, данные в `src/data/quests/kustoQuests.ts`
 - `enrichQuest()` проверяет: хардкод-мапы → поле квеста → `QUEST_DATA.json`
-- `isPostQuest(name, id)` — определяет формат URL: `/lu4/posts/post/` для Path of..., 3 in 1..., Kusto (87-95); `/lu4/quest/` для остальных
+- `isPostQuest(name, id)` — удалён. Все ссылки через `questUrl(name, id)` → `/lu4/posts/post/{id}-{slug(name)}`
 
 ### Quest Data Files (`src/data/quests/`)
 
@@ -295,12 +295,21 @@ Use conventional commits: `type: description` (lowercase, no caps).
 
 ### URL на mw2.wiki
 
-Логика `isPostQuest(name, id)`:
+Все квесты на mw2.wiki теперь доступны через `/lu4/posts/post/{id}-{slug}`.
+Генерация ссылки в `QuestsTab.tsx`:
 
-- `name.startsWith('Path of ')` → `/lu4/posts/post/{id}`
-- `name.startsWith('3 in ')` → `/lu4/posts/post/{id}`
-- `id` 87–95 → `/lu4/posts/post/{id}` (Kusto)
-- всё остальное → `/lu4/quest/{id}`
+```tsx
+function slug(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+function questUrl(name: string, id: number): string {
+  return `https://mw2.wiki/lu4/posts/post/${id}-${slug(name)}`;
+}
+```
 
 ### Обновление наград расовых квестов (`scripts/fetch-quest-rewards.mjs`)
 
@@ -321,15 +330,20 @@ Use conventional commits: `type: description` (lowercase, no caps).
 
 Изображения скачиваются отдельными скриптами по категориям (`scripts/quests/`):
 
-| Скрипт            | Категория                | Формат URL                       |
-| ----------------- | ------------------------ | -------------------------------- |
-| `fetch-kusto.mjs` | Цепочка Кусто (87-95)    | `/lu4/posts/post/`               |
-| `fetch-path.mjs`  | Path of... (1 профессия) | `/lu4/posts/post/`               |
-| `fetch-three.mjs` | 3 in 1 (2 профессия)     | только вывод ID, без изображений |
-| `fetch-other.mjs` | Остальные (Trial of...)  | `/lu4/quest/`                    |
+| Скрипт                   | Категория                | Формат URL                                                             |
+| ------------------------ | ------------------------ | ---------------------------------------------------------------------- |
+| `fetch-kusto.mjs`        | Цепочка Кусто (87-95)    | `/lu4/posts/post/{id}-{slug}`                                          |
+| `fetch-path.mjs`         | Path of... (1 профессия) | `/lu4/posts/post/{id}-{slug}`                                          |
+| `fetch-three.mjs`        | 3 in 1 (2 профессия)     | только вывод ID, без изображений                                       |
+| `fetch-other.mjs`        | Все остальные квесты     | `/lu4/posts/post/{id}-{slug}`                                          |
+| `dedup-quest-images.mjs` | Дедупликация по MD5      | сравнивает все изображения, удаляет дубликаты, подменяет ссылки в JSON |
 
 `extractImages(html)` — парсит только `#article-content` (шаги прохождения).  
 Результат сохраняется в `src/data/quests/QUEST_IMAGES.json`.
+
+**Дедупликация:** `node scripts/dedup-quest-images.mjs` — удаляет физически идентичные изображения (один и тот же NPC в разных квестах), подменяя имя файла в `QUEST_IMAGES.json` на тот, что остался. Оба квеста ссылаются на один файл.
+
+**Важно:** mw2.wiki теперь использует `/lu4/posts/post/{id}-{slug}` для всех страниц квестов. Генерация ссылок в `QuestsTab.tsx` использует `questUrl(name, id)` → `https://mw2.wiki/lu4/posts/post/{id}-{slug(name)}`. `isPostQuest` удалён.
 
 ## Scripts (`scripts/`)
 
@@ -444,6 +458,7 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - `fix-overlap-levels.mjs` — удаляет пересекающиеся уровни между 1-й и 2-й профессиями
 - `fix-base-class-levels.mjs` — проставляет classLevel для базовых классов со страниц уровней (<20)
 - `fetch-quest-rewards.mjs` — собирает актуальные награды расовых квестов с mw2.wiki
+- `dedup-quest-images.mjs` — дедупликация изображений квестов по MD5
 
 ## Build & Deploy
 

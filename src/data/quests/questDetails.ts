@@ -193,12 +193,26 @@ export const QUEST_DETAILS: Record<string, QuestDetail> = {
     startLvl: 15,
     endLvl: 21,
   },
+  'Acts of Evil': {
+    npc: 'Alvah Guard',
+    npcId: 30381,
+    location: 'Gludin, Северные ворота',
+    startLvl: 27,
+    endLvl: 32,
+  },
   'Dragon Fangs': {
     npc: 'Luis Guard',
     npcId: 30386,
     location: 'Gludin, Юго-восточные ворота',
     startLvl: 19,
     endLvl: 29,
+  },
+  'Dangerous Seduction': {
+    npc: 'Vellior Tetrarch',
+    npcId: 30305,
+    location: 'Dark Elven Village, Храм',
+    startLvl: 21,
+    endLvl: 26,
   },
   'Red-Eyed Invaders': {
     npc: 'Babenco Guard',
