@@ -1,279 +1,114 @@
 {
-  "Trial of Geomancer": [
-    "trial-of-geomancer-1.jpg",
-    "trial-of-geomancer-2.jpg",
-    "trial-of-geomancer-3.jpg",
-    "trial-of-geomancer-4.jpg",
-    "trial-of-geomancer-5.jpg",
-    "trial-of-geomancer-6.jpg",
-    "trial-of-geomancer-7.jpg",
-    "trial-of-geomancer-8.jpg",
-    "trial-of-geomancer-9.jpg",
-    "trial-of-geomancer-10.jpg"
-  ],
-  "Relic Exploration": ["relic-exploration-1.jpg", "relic-exploration-2.jpg", "relic-exploration-3.jpg"],
-  "Nikola's Cooperation": ["nikola-s-cooperation-3.jpg", "nikola-s-cooperation-4.jpg"],
-  "Art of Persuasion": [],
-  "Nikola's Heart": ["nikola-s-heart-3.jpg"],
-  "Seal Removal": ["seal-removal-3.jpg"],
-  "Contract Execution": [],
-  "Lost Dream": ["lost-dream-2.jpg"],
-  "Vain Conclusion": ["vain-conclusion-3.jpg", "vain-conclusion-4.jpg"],
-  "Contract Completion": [],
-  "Path of the Warrior": [
-    "path-of-the-warrior-1.jpg",
-    "path-of-the-warrior-2.jpg",
-    "path-of-the-warrior-3.jpg",
-    "path-of-the-warrior-4.jpg",
-    "path-of-the-warrior-5.jpg",
-    "path-of-the-warrior-6.jpg"
-  ],
-  "Path of the Human Knight": [
-    "path-of-the-human-knight-1.jpg",
-    "path-of-the-human-knight-2.jpg",
-    "path-of-the-human-knight-3.jpg",
-    "path-of-the-human-knight-4.jpg",
-    "path-of-the-human-knight-5.jpg",
-    "path-of-the-human-knight-7.jpg",
-    "path-of-the-human-knight-8.jpg"
-  ],
-  "Path of the Rogue": ["path-of-the-rogue-2.jpg", "path-of-the-rogue-4.jpg"],
-  "Path of the Human Wizard": [
-    "path-of-the-human-wizard-1.jpg",
-    "path-of-the-human-wizard-2.jpg",
-    "path-of-the-human-wizard-3.jpg",
-    "path-of-the-human-wizard-4.jpg",
-    "path-of-the-human-wizard-5.jpg",
-    "path-of-the-human-wizard-6.jpg",
-    "path-of-the-human-wizard-7.jpg",
-    "path-of-the-human-wizard-8.jpg",
-    "path-of-the-human-wizard-9.jpg"
-  ],
-  "Path of the Cleric": [
-    "path-of-the-cleric-1.jpg",
-    "path-of-the-cleric-3.jpg",
-    "path-of-the-cleric-4.jpg",
-    "path-of-the-cleric-5.jpg",
-    "path-of-the-cleric-6.jpg",
-    "path-of-the-cleric-7.jpg"
-  ],
-  "Path of the Elven Knight": [
-    "path-of-the-elven-knight-1.jpg",
-    "path-of-the-elven-knight-3.jpg",
-    "path-of-the-elven-knight-4.jpg",
-    "path-of-the-elven-knight-5.jpg"
-  ],
-  "Path of the Elven Scout": [
-    "path-of-the-elven-scout-1.jpg",
-    "path-of-the-elven-scout-2.jpg",
-    "path-of-the-elven-scout-3.jpg",
-    "path-of-the-elven-scout-4.jpg",
-    "path-of-the-elven-scout-5.jpg"
-  ],
-  "Path of the Elven Wizard": [
-    "path-of-the-elven-wizard-1.jpg",
-    "path-of-the-elven-wizard-2.jpg",
-    "path-of-the-elven-wizard-3.jpg",
-    "path-of-the-elven-wizard-4.jpg",
-    "path-of-the-elven-wizard-5.jpg",
-    "path-of-the-elven-wizard-6.jpg",
-    "path-of-the-elven-wizard-7.jpg",
-    "path-of-the-elven-wizard-8.jpg"
-  ],
-  "Path of the Elven Oracle": [
-    "path-of-the-elven-oracle-1.jpg",
-    "path-of-the-elven-oracle-2.jpg",
-    "path-of-the-elven-oracle-3.jpg",
-    "path-of-the-elven-oracle-4.jpg",
-    "path-of-the-elven-oracle-5.jpg"
-  ],
-  "Path of the Palus Knight": [
-    "path-of-the-palus-knight-1.jpg",
-    "path-of-the-palus-knight-2.jpg",
-    "path-of-the-palus-knight-3.jpg",
-    "path-of-the-palus-knight-6.jpg"
-  ],
-  "Path of the Assassin": [
-    "path-of-the-assassin-1.jpg",
-    "path-of-the-assassin-2.jpg",
-    "path-of-the-assassin-3.jpg",
-    "path-of-the-assassin-4.jpg",
-    "path-of-the-assassin-5.jpg"
-  ],
-  "Path of the Dark Wizard": [
-    "path-of-the-dark-wizard-1.jpg",
-    "path-of-the-dark-wizard-3.jpg",
-    "path-of-the-dark-wizard-4.jpg",
-    "path-of-the-dark-wizard-5.jpg",
-    "path-of-the-dark-wizard-6.jpg",
-    "path-of-the-dark-wizard-7.jpg"
-  ],
-  "Path of the Shillien Oracle": [
-    "path-of-the-shillien-oracle-1.jpg",
-    "path-of-the-shillien-oracle-2.jpg",
-    "path-of-the-shillien-oracle-3.jpg",
-    "path-of-the-shillien-oracle-4.jpg",
-    "path-of-the-shillien-oracle-5.jpg"
-  ],
-  "Path of the Orc Raider": [
-    "path-of-the-orc-raider-1.jpg",
-    "path-of-the-orc-raider-2.jpg",
-    "path-of-the-orc-raider-3.jpg",
-    "path-of-the-orc-raider-4.jpg",
-    "path-of-the-orc-raider-5.jpg",
-    "path-of-the-orc-raider-6.jpg"
-  ],
-  "Path of the Orc Monk": [
-    "path-of-the-orc-monk-1.jpg",
-    "path-of-the-orc-monk-2.jpg",
-    "path-of-the-orc-monk-3.jpg",
-    "path-of-the-orc-monk-4.jpg",
-    "path-of-the-orc-monk-5.jpg",
-    "path-of-the-orc-monk-7.jpg",
-    "path-of-the-orc-monk-8.jpg",
-    "path-of-the-orc-monk-9.jpg",
-    "path-of-the-orc-monk-10.jpg",
-    "path-of-the-orc-monk-11.jpg"
-  ],
-  "Path of the Orc Shaman": [
-    "path-of-the-orc-shaman-1.jpg",
-    "path-of-the-orc-shaman-5.jpg",
-    "path-of-the-orc-shaman-6.jpg",
-    "path-of-the-orc-shaman-7.jpg",
-    "path-of-the-orc-shaman-8.jpg",
-    "path-of-the-orc-shaman-10.jpg"
-  ],
-  "Path of the Scavenger": [
-    "path-of-the-scavenger-1.jpg",
-    "path-of-the-scavenger-2.jpg",
-    "path-of-the-scavenger-3.jpg",
-    "path-of-the-scavenger-4.jpg",
-    "path-of-the-scavenger-5.jpg",
-    "path-of-the-scavenger-6.jpg",
-    "path-of-the-scavenger-7.jpg",
-    "path-of-the-scavenger-8.jpg",
-    "path-of-the-scavenger-9.jpg",
-    "path-of-the-scavenger-10.jpg",
-    "path-of-the-scavenger-11.jpg",
-    "path-of-the-scavenger-12.jpg",
-    "path-of-the-scavenger-13.jpg",
-    "path-of-the-scavenger-14.jpg"
-  ],
-  "Path of the Artisan": [
-    "path-of-the-artisan-1.jpg",
-    "path-of-the-artisan-2.jpg",
-    "path-of-the-artisan-3.jpg",
-    "path-of-the-artisan-4.jpg",
-    "path-of-the-artisan-6.jpg"
+  "Letters of Love": ["letters-of-love-1.jpg", "letters-of-love-2.jpg", "letters-of-love-3.jpg"],
+  "What Women Want": [
+    "what-women-want-1.jpg",
+    "what-women-want-2.jpg",
+    "what-women-want-3.jpg",
+    "what-women-want-4.jpg"
   ],
   "Mass of Darkness": [
     "mass-of-darkness-1.jpg",
     "mass-of-darkness-2.jpg",
     "mass-of-darkness-3.jpg",
-    "mass-of-darkness-4.jpg",
-    "mass-of-darkness-5.jpg"
+    "mass-of-darkness-4.jpg"
   ],
-  "Deliver Goods": [
-    "trial-of-geomancer-1.jpg",
-    "trial-of-geomancer-2.jpg",
-    "trial-of-geomancer-3.jpg",
-    "trial-of-geomancer-4.jpg",
-    "trial-of-geomancer-5.jpg",
-    "trial-of-geomancer-6.jpg",
-    "trial-of-geomancer-7.jpg",
-    "trial-of-geomancer-8.jpg",
-    "trial-of-geomancer-9.jpg",
-    "trial-of-geomancer-10.jpg"
+  "Long Live the Pa'agrio Lord!": [
+    "long-live-the-pa-agrio-lord-1.jpg",
+    "long-live-the-pa-agrio-lord-2.jpg",
+    "long-live-the-pa-agrio-lord-3.jpg",
+    "long-live-the-pa-agrio-lord-4.jpg",
+    "long-live-the-pa-agrio-lord-5.jpg",
+    "long-live-the-pa-agrio-lord-6.jpg",
+    "long-live-the-pa-agrio-lord-7.jpg"
   ],
-  "Fruit of the Mother Tree": ["fruit-of-the-mother-tree-1.jpg"],
+  "Miner's Favor": [
+    "miner-s-favor-1.jpg",
+    "miner-s-favor-2.jpg",
+    "miner-s-favor-3.jpg",
+    "miner-s-favor-4.jpg",
+    "miner-s-favor-5.jpg"
+  ],
+  "Deliver Goods": ["deliver-goods-1.jpg", "deliver-goods-2.jpg", "deliver-goods-3.jpg", "deliver-goods-4.jpg"],
+  "Sacrifice to the Sea": [
+    "sacrifice-to-the-sea-1.jpg",
+    "sacrifice-to-the-sea-2.jpg",
+    "sacrifice-to-the-sea-3.jpg",
+    "sacrifice-to-the-sea-4.jpg"
+  ],
+  "Find Sir Windawood": ["find-sir-windawood-1.jpg", "find-sir-windawood-2.jpg"],
+  "Deliver Supplies": [
+    "deliver-supplies-1.jpg",
+    "deliver-supplies-2.jpg",
+    "deliver-supplies-3.jpg",
+    "deliver-supplies-4.jpg"
+  ],
+  "Fruit of the Mother Tree": ["fruit-of-the-mother-tree-1.jpg", "fruit-of-the-mother-tree-2.jpg"],
+  "Nerupa's Request": [
+    "nerupa-s-request-1.jpg",
+    "nerupa-s-request-2.jpg",
+    "nerupa-s-request-3.jpg",
+    "nerupa-s-request-4.jpg"
+  ],
   "The Guard is Busy": [
     "the-guard-is-busy-1.jpg",
     "the-guard-is-busy-2.jpg",
     "the-guard-is-busy-3.jpg",
-    "the-guard-is-busy-4.jpg",
-    "the-guard-is-busy-5.jpg",
-    "the-guard-is-busy-6.jpg",
-    "the-guard-is-busy-7.jpg",
-    "the-guard-is-busy-8.jpg",
-    "the-guard-is-busy-9.jpg",
-    "the-guard-is-busy-10.jpg",
-    "the-guard-is-busy-11.jpg",
-    "the-guard-is-busy-12.jpg",
-    "the-guard-is-busy-13.jpg",
-    "path-of-the-scavenger-12.jpg",
-    "the-guard-is-busy-15.jpg",
-    "the-guard-is-busy-16.jpg",
-    "the-guard-is-busy-17.jpg",
-    "the-guard-is-busy-18.jpg",
-    "the-guard-is-busy-19.jpg",
-    "the-guard-is-busy-20.jpg",
-    "the-guard-is-busy-21.jpg",
-    "the-guard-is-busy-22.jpg",
-    "the-guard-is-busy-23.jpg"
+    "the-guard-is-busy-4.jpg"
   ],
-  "Hunt the Orcs": [
-    "hunt-the-orcs-1.jpg",
-    "hunt-the-orcs-2.jpg",
-    "path-of-the-elven-wizard-5.jpg",
-    "hunt-the-orcs-4.jpg",
-    "hunt-the-orcs-5.jpg",
-    "hunt-the-orcs-6.jpg",
-    "hunt-the-orcs-7.jpg",
-    "hunt-the-orcs-8.jpg",
-    "hunt-the-orcs-9.jpg",
-    "hunt-the-orcs-10.jpg",
-    "hunt-the-orcs-11.jpg",
-    "hunt-the-orcs-12.jpg",
-    "hunt-the-orcs-13.jpg",
-    "hunt-the-orcs-14.jpg",
-    "hunt-the-orcs-15.jpg",
-    "hunt-the-orcs-16.jpg",
-    "hunt-the-orcs-17.jpg",
-    "hunt-the-orcs-18.jpg",
-    "hunt-the-orcs-19.jpg"
+  "Hunt the Orcs": ["hunt-the-orcs-1.jpg", "hunt-the-orcs-2.jpg", "hunt-the-orcs-3.jpg"],
+  "Invaders of the Holy Land": ["invaders-of-the-holy-land-1.jpg", "invaders-of-the-holy-land-2.jpg"],
+  "Bonds of Slavery": ["bonds-of-slavery-1.jpg", "bonds-of-slavery-2.jpg"],
+  "The Hidden Veins": [
+    "the-hidden-veins-1.jpg",
+    "the-hidden-veins-2.jpg",
+    "the-hidden-veins-3.jpg",
+    "the-hidden-veins-4.jpg"
   ],
-  "Invaders of the Holy Land": [
-    "invaders-of-the-holy-land-1.jpg",
-    "invaders-of-the-holy-land-2.jpg",
-    "invaders-of-the-holy-land-3.jpg",
-    "invaders-of-the-holy-land-4.jpg",
-    "invaders-of-the-holy-land-5.jpg",
-    "invaders-of-the-holy-land-6.jpg",
-    "invaders-of-the-holy-land-7.jpg",
-    "invaders-of-the-holy-land-8.jpg",
-    "invaders-of-the-holy-land-9.jpg",
-    "invaders-of-the-holy-land-10.jpg",
-    "invaders-of-the-holy-land-11.jpg",
-    "invaders-of-the-holy-land-12.jpg",
-    "invaders-of-the-holy-land-13.jpg",
-    "invaders-of-the-holy-land-14.jpg",
-    "invaders-of-the-holy-land-15.jpg",
-    "invaders-of-the-holy-land-16.jpg",
-    "invaders-of-the-holy-land-17.jpg",
-    "invaders-of-the-holy-land-18.jpg"
+  "Collect Spores": ["collect-spores-1.jpg", "collect-spores-2.jpg"],
+  "Sword of Solidarity": [
+    "sword-of-solidarity-1.jpg",
+    "sword-of-solidarity-2.jpg",
+    "sword-of-solidarity-3.jpg",
+    "sword-of-solidarity-4.jpg"
   ],
-  "Bonds of Slavery": [
-    "bonds-of-slavery-1.jpg",
-    "bonds-of-slavery-2.jpg",
-    "bonds-of-slavery-3.jpg",
-    "bonds-of-slavery-4.jpg",
-    "bonds-of-slavery-5.jpg",
-    "bonds-of-slavery-6.jpg",
-    "the-guard-is-busy-22.jpg",
-    "bonds-of-slavery-8.jpg",
-    "bonds-of-slavery-9.jpg",
-    "bonds-of-slavery-10.jpg",
-    "bonds-of-slavery-11.jpg",
-    "the-guard-is-busy-17.jpg",
-    "bonds-of-slavery-13.jpg",
-    "bonds-of-slavery-14.jpg",
-    "bonds-of-slavery-15.jpg",
-    "bonds-of-slavery-16.jpg"
+  "Spirit of Mirrors": [
+    "spirit-of-mirrors-1.jpg",
+    "spirit-of-mirrors-2.jpg",
+    "spirit-of-mirrors-3.jpg",
+    "spirit-of-mirrors-4.jpg"
   ],
-  "Sword of Solidarity": ["sword-of-solidarity-1.jpg"],
-  "Skirmish with the Orcs": ["skirmish-with-the-orcs-1.jpg"],
-  "Forgotten Truth": ["skirmish-with-the-orcs-1.jpg"],
-  "Merciless Punishment": ["merciless-punishment-1.jpg"],
+  "Skirmish with the Orcs": [
+    "skirmish-with-the-orcs-1.jpg",
+    "skirmish-with-the-orcs-2.jpg",
+    "skirmish-with-the-orcs-3.jpg",
+    "skirmish-with-the-orcs-4.jpg",
+    "skirmish-with-the-orcs-5.jpg",
+    "skirmish-with-the-orcs-6.jpg",
+    "skirmish-with-the-orcs-7.jpg",
+    "skirmish-with-the-orcs-8.jpg",
+    "skirmish-with-the-orcs-9.jpg"
+  ],
+  "Forgotten Truth": ["forgotten-truth-1.jpg", "forgotten-truth-2.jpg", "forgotten-truth-3.jpg"],
+  "Spirit of Craftsman": [
+    "spirit-of-craftsman-1.jpg",
+    "spirit-of-craftsman-2.jpg",
+    "spirit-of-craftsman-3.jpg",
+    "spirit-of-craftsman-4.jpg",
+    "spirit-of-craftsman-5.jpg",
+    "spirit-of-craftsman-6.jpg"
+  ],
+  "Merciless Punishment": ["merciless-punishment-1.jpg", "merciless-punishment-2.jpg", "merciless-punishment-3.jpg"],
+  "Jumble, Tumble, Diamond Fuss": [
+    "jumble-tumble-diamond-fuss-1.jpg",
+    "jumble-tumble-diamond-fuss-2.jpg",
+    "jumble-tumble-diamond-fuss-3.jpg",
+    "jumble-tumble-diamond-fuss-4.jpg",
+    "jumble-tumble-diamond-fuss-5.jpg",
+    "jumble-tumble-diamond-fuss-6.jpg",
+    "jumble-tumble-diamond-fuss-7.jpg",
+    "jumble-tumble-diamond-fuss-8.jpg",
+    "jumble-tumble-diamond-fuss-9.jpg"
+  ],
   "Sea of Spores Fever": [
     "sea-of-spores-fever-1.jpg",
     "sea-of-spores-fever-2.jpg",
@@ -281,23 +116,16 @@
     "sea-of-spores-fever-4.jpg",
     "sea-of-spores-fever-5.jpg",
     "sea-of-spores-fever-6.jpg",
-    "sea-of-spores-fever-7.jpg",
-    "sea-of-spores-fever-8.jpg",
-    "sea-of-spores-fever-9.jpg",
-    "sea-of-spores-fever-10.jpg"
+    "sea-of-spores-fever-7.jpg"
   ],
-  "Dwarven Kinship": [
-    "dwarven-kinship-1.jpg",
-    "dwarven-kinship-2.jpg",
-    "dwarven-kinship-3.jpg",
-    "dwarven-kinship-4.jpg",
-    "dwarven-kinship-5.jpg",
-    "dwarven-kinship-6.jpg",
-    "dwarven-kinship-7.jpg",
-    "dwarven-kinship-8.jpg",
-    "dwarven-kinship-9.jpg",
-    "dwarven-kinship-10.jpg"
+  "Offspring of Nightmares": ["offspring-of-nightmares-1.jpg", "offspring-of-nightmares-2.jpg"],
+  "Millennium Love": ["millennium-love-1.jpg", "millennium-love-2.jpg"],
+  "Cure for Fever Disease": [
+    "cure-for-fever-disease-1.jpg",
+    "cure-for-fever-disease-2.jpg",
+    "cure-for-fever-disease-3.jpg"
   ],
+  "Dwarven Kinship": ["dwarven-kinship-1.jpg", "dwarven-kinship-2.jpg", "dwarven-kinship-3.jpg"],
   "Dangerous Seduction": ["dangerous-seduction-1.jpg", "dangerous-seduction-2.jpg", "dangerous-seduction-3.jpg"],
   "Acts of Evil": [
     "acts-of-evil-1.jpg",
@@ -306,53 +134,20 @@
     "acts-of-evil-4.jpg",
     "acts-of-evil-5.jpg",
     "acts-of-evil-6.jpg",
-    "path-of-the-rogue-2.jpg",
+    "acts-of-evil-7.jpg",
     "acts-of-evil-8.jpg",
     "acts-of-evil-9.jpg",
     "acts-of-evil-10.jpg"
   ],
-  "Totem of the Hestui": [
-    "hunt-the-orcs-16.jpg",
-    "totem-of-the-hestui-2.jpg",
-    "totem-of-the-hestui-3.jpg",
-    "totem-of-the-hestui-4.jpg",
-    "totem-of-the-hestui-5.jpg",
-    "totem-of-the-hestui-6.jpg",
-    "totem-of-the-hestui-7.jpg",
-    "totem-of-the-hestui-8.jpg",
-    "totem-of-the-hestui-9.jpg",
-    "totem-of-the-hestui-10.jpg",
-    "totem-of-the-hestui-11.jpg",
-    "path-of-the-scavenger-6.jpg",
-    "path-of-the-scavenger-7.jpg",
-    "path-of-the-scavenger-8.jpg",
-    "totem-of-the-hestui-15.jpg"
+  "Totem of the Hestui": ["totem-of-the-hestui-1.jpg", "totem-of-the-hestui-2.jpg"],
+  "Dragon Fangs": [
+    "dragon-fangs-1.jpg",
+    "dragon-fangs-2.jpg",
+    "dragon-fangs-3.jpg",
+    "dragon-fangs-4.jpg",
+    "dragon-fangs-5.jpg"
   ],
-  "Blood Fiend": [
-    "blood-fiend-1.jpg",
-    "blood-fiend-2.jpg",
-    "blood-fiend-3.jpg",
-    "blood-fiend-4.jpg",
-    "blood-fiend-5.jpg",
-    "blood-fiend-6.jpg",
-    "blood-fiend-7.jpg",
-    "blood-fiend-8.jpg",
-    "blood-fiend-9.jpg",
-    "blood-fiend-10.jpg",
-    "blood-fiend-11.jpg",
-    "blood-fiend-12.jpg",
-    "blood-fiend-13.jpg",
-    "blood-fiend-14.jpg",
-    "blood-fiend-15.jpg",
-    "blood-fiend-16.jpg",
-    "blood-fiend-17.jpg",
-    "blood-fiend-18.jpg",
-    "blood-fiend-19.jpg",
-    "blood-fiend-20.jpg",
-    "blood-fiend-21.jpg",
-    "blood-fiend-22.jpg",
-    "blood-fiend-23.jpg",
-    "blood-fiend-24.jpg"
-  ],
+  "Red-Eyed Invaders": ["red-eyed-invaders-1.jpg", "red-eyed-invaders-2.jpg", "red-eyed-invaders-3.jpg"],
+  "Blood Fiend": ["blood-fiend-1.jpg", "blood-fiend-2.jpg", "blood-fiend-3.jpg"],
   "Seed of evil": ["seed-of-evil-1.jpg", "seed-of-evil-2.jpg", "seed-of-evil-3.jpg"]
 }

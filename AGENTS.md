@@ -280,22 +280,25 @@ Use conventional commits: `type: description` (lowercase, no caps).
 
 ### Quest Data Files (`src/data/quests/`)
 
-| Файл                      | Описание                                                  |
-| ------------------------- | --------------------------------------------------------- |
-| `questsByRace.ts`         | Расовые квесты по расам                                   |
-| `sharedQuests.ts`         | Общие квесты                                              |
-| `templeExecutorQuests.ts` | Цепочка палача храма (9 квестов)                          |
-| `kustoQuests.ts`          | Цепочка Кусто (9 квестов с шагами и изображениями)        |
-| `professionRaces.ts`      | Маппинг профессий к их квестам Path of... + 3 in 1...     |
-| `questDetails.ts`         | NPC, локации, уровни для квестов                          |
-| `questIds.ts`             | Маппинг имён квестов → ID на mw2.wiki                     |
-| `questSteps.ts`           | Текстовые шаги прохождения                                |
-| `npcCoords.ts`            | Координаты NPC на карте мира                              |
-| `QUEST_IMAGES.json`       | Маппинг квестов к изображениям (59 квестов, 621 скриншот) |
+| Файл                      | Описание                                                             |
+| ------------------------- | -------------------------------------------------------------------- |
+| `questsByRace.ts`         | Расовые квесты по расам                                              |
+| `sharedQuests.ts`         | Общие квесты                                                         |
+| `templeExecutorQuests.ts` | Цепочка палача храма (9 квестов)                                     |
+| `kustoQuests.ts`          | Цепочка Кусто (9 квестов с шагами и изображениями)                   |
+| `professionRaces.ts`      | Маппинг профессий к их квестам Path of... + 3 in 1...                |
+| `questDetails.ts`         | NPC, локации, уровни для квестов                                     |
+| `questIds.ts`             | Маппинг имён квестов → post ID на mw2.wiki (6xx для расовых)         |
+| `questSteps.ts`           | Текстовые шаги прохождения (36 расовых квестов, 188 шагов)           |
+| `npcCoords.ts`            | Координаты NPC на карте мира                                         |
+| `QUEST_IMAGES.json`       | Маппинг квестов к изображениям (36 расовых квестов, 144 изображения) |
 
 ### URL на mw2.wiki
 
 Все квесты на mw2.wiki теперь доступны через `/lu4/posts/post/{id}-{slug}`.
+В июле 2026 mw2.wiki мигрировал все расовые квесты со старых ID (1, 2, 101-108, 151-170, 257-276, 293, 313)
+на новые post ID (637-726). Старые ID теперь ведут на другие квесты — обновление `questIds.ts` обязательно.
+
 Генерация ссылки в `QuestsTab.tsx`:
 
 ```tsx
@@ -328,20 +331,13 @@ function questUrl(name: string, id: number): string {
 
 ### Quest Images
 
-Изображения скачиваются отдельными скриптами по категориям (`scripts/quests/`):
+Изображения скачиваются скриптом `scripts/fetch-quest-images.mjs`.
+Парсит актуальные изображения с mw2.wiki и обновляет `QUEST_IMAGES.json`.
 
-| Скрипт                   | Категория                | Формат URL                                                             |
-| ------------------------ | ------------------------ | ---------------------------------------------------------------------- |
-| `fetch-kusto.mjs`        | Цепочка Кусто (87-95)    | `/lu4/posts/post/{id}-{slug}`                                          |
-| `fetch-path.mjs`         | Path of... (1 профессия) | `/lu4/posts/post/{id}-{slug}`                                          |
-| `fetch-three.mjs`        | 3 in 1 (2 профессия)     | только вывод ID, без изображений                                       |
-| `fetch-other.mjs`        | Все остальные квесты     | `/lu4/posts/post/{id}-{slug}`                                          |
-| `dedup-quest-images.mjs` | Дедупликация по MD5      | сравнивает все изображения, удаляет дубликаты, подменяет ссылки в JSON |
+**Запуск:** `node scripts/fetch-quest-images.mjs`  
+**Зависимости:** Node.js 18+ (native fetch)
 
-`extractImages(html)` — парсит только `#article-content` (шаги прохождения).  
-Результат сохраняется в `src/data/quests/QUEST_IMAGES.json`.
-
-**Дедупликация:** `node scripts/dedup-quest-images.mjs` — удаляет физически идентичные изображения (один и тот же NPC в разных квестах), подменяя имя файла в `QUEST_IMAGES.json` на тот, что остался. Оба квеста ссылаются на один файл.
+Изображения хранятся в `public/images/quests/` и обновляются при изменении визуала квеста на mw2.wiki.
 
 **Важно:** mw2.wiki теперь использует `/lu4/posts/post/{id}-{slug}` для всех страниц квестов. Генерация ссылок в `QuestsTab.tsx` использует `questUrl(name, id)` → `https://mw2.wiki/lu4/posts/post/{id}-{slug(name)}`. `isPostQuest` удалён.
 
@@ -351,7 +347,6 @@ function questUrl(name: string, id: number): string {
 - Фильтрует S-grade и deprecated предметы, объединяет рецепты с NPC-дропом/спойлом
 - Распределяет Etc-рецепты по подтипам: Soulshot/Elixir/Material/Other
 - Определяет категорию для брони по `item_parameter` (Helmet/Gloves/Boots/Shield/HairAccessory)
-- `fetch-quest-images.mjs` — скачивает скриншоты прохождения квестов с mw2.wiki (59 квестов, 621 изображение)
 
 ## Analytics
 
@@ -458,6 +453,9 @@ function questUrl(name: string, id: number): string {
 - `fix-overlap-levels.mjs` — удаляет пересекающиеся уровни между 1-й и 2-й профессиями
 - `fix-base-class-levels.mjs` — проставляет classLevel для базовых классов со страниц уровней (<20)
 - `fetch-quest-rewards.mjs` — собирает актуальные награды расовых квестов с mw2.wiki
+- `fetch-quest-images.mjs` — скачивает актуальные изображения с mw2.wiki и обновляет `QUEST_IMAGES.json`
+- `apply-quest-steps.mjs` — парсит актуальные шаги прохождения с mw2.wiki (русский/английский), обновляет `questSteps.ts`
+- `extract-quest-steps.mjs` — однопоточная версия с извлечением шагов (упрощённая)
 - `dedup-quest-images.mjs` — дедупликация изображений квестов по MD5
 
 ## Build & Deploy
