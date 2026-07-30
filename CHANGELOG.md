@@ -2,6 +2,50 @@
 
 Все значимые изменения проекта фиксируются в этом файле.
 
+## [1.7.29] - 2026-07-30
+
+### Added
+- `wrangler.toml` для деплоя на Cloudflare Pages
+
+### Changed
+- Vite 5.4 → 8.2, `@vitejs/plugin-react` 4 → 6
+- Динамический base path через `VITE_BASE_PATH` (Cloudflare — `/`, GitHub Pages — `/l2team-navigator/`)
+- `__dirname` → `import.meta.dirname` в vite.config.ts
+- E2E тесты читают VITE_BASE_PATH из playwright.config.ts
+
+### Removed
+- Пакет `sass` (JS Dart Sass), оставлен только `sass-embedded`
+
+## [1.7.28] - 2026-07-30
+
+### Added
+- `AuthGate` — экран авторизации для браузерных пользователей (ввод токена от @l2team_butler_bot)
+- `e2e/auth.spec.ts` — тесты для гейта (виден, ошибка, успешный вход)
+- `e2e/helpers.ts` — `setupAuth()` для обхода гейта в E2E-тестах
+
+### Changed
+- App.tsx: добавлена проверка sessionStorage + POST /api/auth/validate
+- Отправка `X-Auth-Token` заголовка в браузере (вместо initData)
+- Playwright-тесты: `setupAuth()` в `beforeEach` для всех spec-файлов
+
+## [1.7.27] - 2026-07-30
+
+### Removed
+- `scripts/fetch-item-icons-by-id.mjs`, `scripts/fetch-item-icons.mjs`, `scripts/fetch-recipe-icons.mjs` — объединены в `build-item-icons.mjs`
+- `scripts/fetch-raidbosses.mjs`, `scripts/fetch-skills.mjs`, `scripts/parse-wiki-bosses.mjs` — удалены (устаревшие легаси-парсеры)
+
+### Added
+- `scripts/build-item-icons.mjs` — универсальный сборщик иконок (3 фазы: item-wiki, item-icons-by-id, recipe-icons)
+
+### Changed
+- README.md и AGENTS.md обновлены под новую структуру скриптов
+
+## [1.7.26] - 2026-07-30
+
+### Fixed
+- Авторизация: initData передаётся в заголовке `X-Telegram-Init-Data` вместо Bearer токена
+- `telegramApi.ts`: обновлён `getAuthHeaders()` для корректной отправки initData
+
 ## [1.7.24] - 2026-07-30
 
 ### Fixed
