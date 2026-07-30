@@ -18,6 +18,8 @@ const spellbookByName = new Map<string, Spellbook>();
 });
 
 const CLASS_RACE_MAP: Record<string, string> = {
+  Fighter: 'Human',
+  Mage: 'Human',
   Воитель: 'Human',
   Рыцарь: 'Human',
   Разбойник: 'Human',
@@ -34,6 +36,8 @@ const CLASS_RACE_MAP: Record<string, string> = {
   Колдун: 'Human',
   Епископ: 'Human',
   Проповедник: 'Human',
+  'Elven Fighter': 'Elf',
+  'Elven Mage': 'Elf',
   'Светлый Рыцарь': 'Elf',
   Разведчик: 'Elf',
   'Рыцарь Евы': 'Elf',
@@ -45,6 +49,8 @@ const CLASS_RACE_MAP: Record<string, string> = {
   'Певец Заклинаний': 'Elf',
   'Последователь Стихий': 'Elf',
   'Мудрец Евы': 'Elf',
+  'Dark Fighter': 'Dark Elf',
+  'Dark Mage': 'Dark Elf',
   'Тёмный Рыцарь': 'Dark Elf',
   Ассасин: 'Dark Elf',
   'Рыцарь Шилен': 'Dark Elf',
@@ -56,6 +62,8 @@ const CLASS_RACE_MAP: Record<string, string> = {
   'Заклинатель Ветра': 'Dark Elf',
   'Последователь Тьмы': 'Dark Elf',
   'Мудрец Шилен': 'Dark Elf',
+  'Orc Fighter': 'Orc',
+  'Orc Mage': 'Orc',
   Налётчик: 'Orc',
   Монах: 'Orc',
   Разрушитель: 'Orc',
@@ -63,6 +71,8 @@ const CLASS_RACE_MAP: Record<string, string> = {
   Шаман: 'Orc',
   'Верховный Шаман': 'Orc',
   'Вестник Войны': 'Orc',
+  'Dwarven Fighter': 'Dwarf',
+  'Dwarven Mystic': 'Dwarf',
   Собиратель: 'Dwarf',
   Ремесленник: 'Dwarf',
   'Охотник за Наградой': 'Dwarf',
@@ -72,6 +82,8 @@ const CLASS_RACE_MAP: Record<string, string> = {
 };
 
 const EN_CLASS_NAMES: Record<string, string> = {
+  Fighter: 'Fighter',
+  Mage: 'Mage',
   Воитель: 'Warrior',
   Рыцарь: 'Knight',
   Разбойник: 'Rogue',
@@ -88,6 +100,8 @@ const EN_CLASS_NAMES: Record<string, string> = {
   Колдун: 'Warlock',
   Епископ: 'Bishop',
   Проповедник: 'Prophet',
+  'Elven Fighter': 'Elven Fighter',
+  'Elven Mage': 'Elven Mage',
   'Светлый Рыцарь': 'Elven Knight',
   Разведчик: 'Elven Scout',
   'Рыцарь Евы': 'Temple Knight',
@@ -99,6 +113,8 @@ const EN_CLASS_NAMES: Record<string, string> = {
   'Певец Заклинаний': 'Spellsinger',
   'Последователь Стихий': 'Elemental Summoner',
   'Мудрец Евы': 'Elder',
+  'Dark Fighter': 'Dark Fighter',
+  'Dark Mage': 'Dark Mage',
   'Тёмный Рыцарь': 'Palus Knight',
   Ассасин: 'Assassin',
   'Рыцарь Шилен': 'Shillien Knight',
@@ -110,6 +126,8 @@ const EN_CLASS_NAMES: Record<string, string> = {
   'Заклинатель Ветра': 'Spellhowler',
   'Последователь Тьмы': 'Phantom Summoner',
   'Мудрец Шилен': 'Shillien Elder',
+  'Orc Fighter': 'Orc Fighter',
+  'Orc Mage': 'Orc Mage',
   Налётчик: 'Orc Raider',
   Монах: 'Orc Monk',
   Разрушитель: 'Destroyer',
@@ -117,6 +135,8 @@ const EN_CLASS_NAMES: Record<string, string> = {
   Шаман: 'Orc Shaman',
   'Верховный Шаман': 'Overlord',
   'Вестник Войны': 'Warcryer',
+  'Dwarven Fighter': 'Dwarven Fighter',
+  'Dwarven Mystic': 'Dwarven Mystic',
   Собиратель: 'Scavenger',
   Ремесленник: 'Artisan',
   'Охотник за Наградой': 'Bounty Hunter',
@@ -133,11 +153,59 @@ const RACE_LABELS: Record<string, string> = {
   Dwarf: 'Dwarf',
 };
 
-const skillsMap = skillsData as Record<string, { className: string; race: string; skills: ClassSkill[] }>;
-const ALL_CLASSES = Object.keys(skillsMap).sort();
+const PROFESSION_TIERS: Record<string, string> = {
+  Fighter: 'Без профессии',
+  Mage: 'Без профессии',
+  'Elven Fighter': 'Без профессии',
+  'Elven Mage': 'Без профессии',
+  'Dark Fighter': 'Без профессии',
+  'Dark Mage': 'Без профессии',
+  'Orc Fighter': 'Без профессии',
+  'Orc Mage': 'Без профессии',
+  'Dwarven Fighter': 'Без профессии',
+  'Dwarven Mystic': 'Без профессии',
+  Воитель: '1 профессия',
+  Рыцарь: '1 профессия',
+  Разбойник: '1 профессия',
+  Маг: '1 профессия',
+  Клерик: '1 профессия',
+  'Светлый Рыцарь': '1 профессия',
+  Разведчик: '1 профессия',
+  'Светлый Маг': '1 профессия',
+  'Оракул Евы': '1 профессия',
+  'Тёмный Рыцарь': '1 профессия',
+  Ассасин: '1 профессия',
+  'Тёмный Маг': '1 профессия',
+  'Оракул Шилен': '1 профессия',
+  Налётчик: '1 профессия',
+  Монах: '1 профессия',
+  Шаман: '1 профессия',
+  Собиратель: '1 профессия',
+  Ремесленник: '1 профессия',
+  Геомант: '1 профессия',
+};
 
-function getClassesByRace(race: string): string[] {
-  return ALL_CLASSES.filter((cls) => CLASS_RACE_MAP[cls] === race);
+const TIER_ORDER = ['Без профессии', '1 профессия', '2 профессия'];
+
+const skillsMap = skillsData as Record<string, { className: string; race: string; skills: ClassSkill[] }>;
+const ALL_CLASSES = Object.keys(skillsMap);
+
+function getClassesByRace(race: string): { label: string; options: { value: string; label: string }[] }[] {
+  const raceClasses = ALL_CLASSES.filter((cls) => CLASS_RACE_MAP[cls] === race);
+  const groups: Record<string, { value: string; label: string }[]> = {
+    'Без профессии': [],
+    '1 профессия': [],
+    '2 профессия': [],
+  };
+  for (const cls of raceClasses) {
+    const tier = PROFESSION_TIERS[cls] || '2 профессия';
+    if (!groups[tier]) groups[tier] = [];
+    groups[tier].push({ value: cls, label: getClassName(cls) });
+  }
+  return TIER_ORDER.filter((t) => groups[t]?.length).map((tier) => ({
+    label: tier,
+    options: groups[tier],
+  }));
 }
 
 function getClassName(cls: string): string {
@@ -223,7 +291,7 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
   const setSelectedRace = useSkillsStore((s) => s.setSelectedRace);
   const setSelectedClass = useSkillsStore((s) => s.setSelectedClass);
 
-  const availableClasses = useMemo(() => {
+  const classGroups = useMemo(() => {
     if (!selectedRace) return [];
     return getClassesByRace(selectedRace);
   }, [selectedRace]);
@@ -275,7 +343,7 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
             label="Класс"
             value={selectedClass}
             onChange={(v) => setSelectedClass(v)}
-            options={availableClasses.map((c) => ({ value: c, label: getClassName(c) }))}
+            groups={classGroups}
             disabled={!selectedRace}
           />
         </div>
