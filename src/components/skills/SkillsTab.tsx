@@ -487,7 +487,7 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
                   )}
                 </div>
               </div>
-              {skill.levels.length > 0 && (
+              {skill.levels.some((l) => l.classLevel) && (
                 <div className={styles.skillLevels}>
                   <table className={styles.levelTable}>
                     <thead>
@@ -498,7 +498,7 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
                       </tr>
                     </thead>
                     <tbody>
-                      {compressLevels(skill.levels).map((g, gi) => (
+                      {compressLevels(skill.levels.filter((l) => l.classLevel)).map((g, gi) => (
                         <tr key={gi}>
                           <td className={styles.lvlClass}>{g.levels}</td>
                           <td className={styles.lvlSkill}>{g.skillLevels}</td>
