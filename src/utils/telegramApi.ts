@@ -1,12 +1,10 @@
 import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_TELEGRAM_API_URL;
-const API_TOKEN = import.meta.env.VITE_TELEGRAM_API_TOKEN;
 
 const api = axios.create({
   baseURL: API_URL,
   timeout: 15_000,
-  headers: API_TOKEN ? { Authorization: `Bearer ${API_TOKEN}` } : {},
 });
 
 export interface CheckUserResponse {
@@ -60,12 +58,16 @@ function fmtAxiosError(err: unknown): string {
 }
 
 export async function checkClanMembership(id: number, username: string | null): Promise<CheckUserResponse> {
-  if (!API_URL || !API_TOKEN) {
+  if (!API_URL) {
     return { isL2teamUser: false, error: 'API not configured' };
   }
 
   try {
-    const { data } = await api.post<CheckUserResponse>('/api/check-user', { id, username });
+    const { data } = await api.post<CheckUserResponse>('/api/check-user', {
+      init_data: window.Telegram?.WebApp.initData ?? '',
+      id,
+      username,
+    });
     return data;
   } catch (err) {
     return { isL2teamUser: false, error: fmtAxiosError(err) };
@@ -73,12 +75,15 @@ export async function checkClanMembership(id: number, username: string | null): 
 }
 
 export async function sendBossText(text: string): Promise<SendBossResponse> {
-  if (!API_URL || !API_TOKEN) {
+  if (!API_URL) {
     return { ok: false, error: 'API not configured' };
   }
 
   try {
-    const { data } = await api.post<SendBossResponse>('/api/send-boss', { text });
+    const { data } = await api.post<SendBossResponse>('/api/send-boss', {
+      init_data: window.Telegram?.WebApp.initData ?? '',
+      text,
+    });
     return data;
   } catch (err) {
     return { ok: false, error: fmtAxiosError(err) };
