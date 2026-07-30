@@ -18,6 +18,11 @@ export interface SendBossResponse {
   error?: string;
 }
 
+export interface ValidateTokenResponse {
+  ok: boolean;
+  user_id?: number;
+}
+
 function serialiseError(err: unknown): Record<string, unknown> {
   if (!axios.isAxiosError(err)) {
     return {
@@ -57,8 +62,30 @@ function fmtAxiosError(err: unknown): string {
   return JSON.stringify(serialiseError(err), null, 2);
 }
 
-function getInitData(): string {
-  return window.Telegram?.WebApp.initData ?? '';
+export function getAuthHeaders(): Record<string, string> {
+  const initData = window.Telegram?.WebApp?.initData;
+  if (initData) {
+    return { 'X-Telegram-Init-Data': initData };
+  }
+  const token = sessionStorage.getItem('navigator_token');
+  if (token) {
+    return { 'X-Auth-Token': token };
+  }
+  return {};
+}
+
+export async function validateToken(token: string): Promise<ValidateTokenResponse> {
+  if (!API_URL) return { ok: false };
+
+  try {
+    const { data } = await api.post<ValidateTokenResponse>('/api/auth/validate', { token });
+    if (data.ok) {
+      sessionStorage.setItem('navigator_token', token);
+    }
+    return data;
+  } catch {
+    return { ok: false };
+  }
 }
 
 export async function checkClanMembership(id: number, username: string | null): Promise<CheckUserResponse> {
@@ -70,7 +97,9 @@ export async function checkClanMembership(id: number, username: string | null): 
     const { data } = await api.post<CheckUserResponse>(
       '/api/check-user',
       { id, username },
-      { headers: { 'X-Telegram-Init-Data': getInitData() } },
+      {
+        headers: getAuthHeaders(),
+      },
     );
     return data;
   } catch (err) {
@@ -87,7 +116,9 @@ export async function sendBossText(text: string): Promise<SendBossResponse> {
     const { data } = await api.post<SendBossResponse>(
       '/api/send-boss',
       { text },
-      { headers: { 'X-Telegram-Init-Data': getInitData() } },
+      {
+        headers: getAuthHeaders(),
+      },
     );
     return data;
   } catch (err) {

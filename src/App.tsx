@@ -1,9 +1,11 @@
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { BrowserRouter, Route, Routes, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import AuthGate from '@components/auth/AuthGate';
 import BOSS_ID_MAP from '@data/BOSS_ID_MAP.json';
 import DebugModal from '@shared/DebugModal';
 import { hit, setTelegramUser } from '@utils/metrics';
 import { isActualTelegram } from '@utils/telegram';
+import { validateToken } from '@utils/telegramApi';
 import cx from 'classnames';
 
 import { useTelegramStore } from '@/stores/telegramStore';
@@ -43,6 +45,30 @@ function AppLayout() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [debugOpen, setDebugOpen] = useState(false);
   const iddqsRef = useRef('');
+  const [authed, setAuthed] = useState<'loading' | 'gate' | 'ok'>(() => {
+    if (import.meta.env.DEV && import.meta.env.VITE_PLAYWRIGHT_TEST !== '1') return 'ok';
+    if (isActualTelegram()) return 'ok';
+    return sessionStorage.getItem('navigator_token') ? 'loading' : 'gate';
+  });
+
+  useEffect(() => {
+    if (authed !== 'loading') return;
+
+    const token = sessionStorage.getItem('navigator_token');
+    if (!token) {
+      setAuthed('gate');
+      return;
+    }
+
+    validateToken(token).then((res) => {
+      if (res.ok) {
+        setAuthed('ok');
+      } else {
+        sessionStorage.removeItem('navigator_token');
+        setAuthed('gate');
+      }
+    });
+  }, [authed]);
 
   const activeTab = useMemo(() => {
     const tab = location.pathname.split('/')[1] || '';
@@ -153,6 +179,38 @@ function AppLayout() {
     }
     setMenuOpen(false);
   };
+
+  if (authed === 'gate') {
+    return <AuthGate onAuth={() => setAuthed('ok')} />;
+  }
+
+  if (authed === 'loading') {
+    return (
+      <div
+        className="container"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: '100vh',
+          gap: '12px',
+          flexDirection: 'column',
+        }}
+      >
+        <div
+          style={{
+            width: 32,
+            height: 32,
+            border: '3px solid var(--color-border)',
+            borderTopColor: 'var(--color-primary)',
+            borderRadius: '50%',
+            animation: 'spin 0.8s linear infinite',
+          }}
+        />
+        <style>{`@keyframes spin { to { transform: rotate(360deg) } }`}</style>
+      </div>
+    );
+  }
 
   return (
     <div className="container">

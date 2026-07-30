@@ -11,5 +11,8 @@ export default defineConfig({
     port: 5173,
     reuseExistingServer: true,
     timeout: 30000,
+    env: {
+      VITE_PLAYWRIGHT_TEST: '1',
+    },
   },
 });

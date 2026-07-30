@@ -411,25 +411,39 @@ function questUrl(name: string, id: number): string {
 
 ### Environment Variables
 
-| Var                           | Назначение                                         |
-| ----------------------------- | -------------------------------------------------- |
-| `VITE_TELEGRAM_API_URL`       | URL бота для проверки членства в клане             |
-| ~~`VITE_TELEGRAM_API_TOKEN`~~ | _(удалён)_ — авторизация через init_data Telegram  |
-| `VITE_ADMIN_ID`               | Telegram ID администратора (открывает Debug Modal) |
+| Var                     | Назначение                                         |
+| ----------------------- | -------------------------------------------------- |
+| `VITE_TELEGRAM_API_URL` | URL бэкенда (Render)                               |
+| `VITE_ADMIN_ID`         | Telegram ID администратора (открывает Debug Modal) |
 
 - `setTelegramUser(user, platform)` — отправляет ID, платформу и премиум-статус в метрику
 
 ### Telegram API (`telegramApi.ts`)
 
 - Использует **axios instance** с `baseURL` из `VITE_TELEGRAM_API_URL` и таймаутом 15s
-- Авторизация: `initData` из `window.Telegram.WebApp.initData` передаётся в заголовке `X-Telegram-Init-Data`
-- Бэкенд верифицирует подпись через HMAC-SHA256 + `NAVIGATOR_BOT_TOKEN`
-- Все ошибки форматируются через `fmtAxiosError()`:
-  - HTTP ошибки: `"HTTP {status} | {METHOD} {url}\n{body}"`
-  - Сетевые ошибки: `"Network error | {METHOD} {url}\n{message}"`
-  - Остальные: `err.message`
-- Две функции: `checkClanMembership(id, username)` и `sendBossText(text)`
+- **Авторизация** через `getAuthHeaders()`:
+  - Telegram Mini App: заголовок `X-Telegram-Init-Data` (initData из Telegram SDK)
+  - Браузер: заголовок `X-Auth-Token` (токен из sessionStorage)
+- Три функции: `checkClanMembership(id, username)`, `sendBossText(text)`, `validateToken(token)`
+- Все ошибки форматируются через `fmtAxiosError()`
 - `telegramStore.isAdmin` — вычисляется один раз при `initFromHash` по совпадению `user.id` с `VITE_ADMIN_ID`
+
+### Auth Gate (`src/components/auth/AuthGate.tsx`)
+
+- Показывается **только** в обычном браузере (не Telegram Mini App) и только в production
+- **DEV режим** (`import.meta.env.DEV === true`): гейт всегда пропущен (кроме Playwright тестов — выставлен `VITE_PLAYWRIGHT_TEST=1`)
+- **Telegram Mini App**: гейт всегда пропущен (проверка `isActualTelegram()`)
+- **Браузер**: проверка sessionStorage → если есть `navigator_token` → `POST /api/auth/validate` → если ок, пускаем; если нет — показываем гейт
+- Токен получается через бота [@l2team_butler_bot](https://t.me/l2team_butler_bot)
+- Токен хранится в `sessionStorage` (живёт пока открыта вкладка)
+- При закрытии вкладки токен теряется → новый визит требует новый токен
+
+### Playwright тесты и Auth
+
+- `e2e/helpers.ts` — `setupAuth(page)`: устанавливает `sessionStorage` + мок `/api/auth/validate`
+- `e2e/auth.spec.ts` — 3 теста: гейт виден, ошибка при невалидном токене, вход с валидным
+- Для включения гейта в Playwright: `VITE_PLAYWRIGHT_TEST=1` в `webServer.env`
+- Остальные spec-файлы вызывают `setupAuth()` в `beforeEach` для обхода гейта
 
 ### DebugModal (`DebugModal.tsx`)
 
