@@ -165,13 +165,11 @@ function highlightNumbers(text: string): React.ReactNode {
 export function cleanStatText(text: string): string {
   return text.replace(/\b0+(\d+)\b/g, '$1');
 }
-
 export function compressLevels(
   levels: ClassSkill['levels'],
-): { levels: string; changes: string[]; description?: string; rowspan: number; showSkillLv: boolean }[] {
+): { levels: string; changes: string[]; description?: string; rowspan: number }[] {
   if (!levels.length) return [];
-  const groups: { levels: string; changes: string[]; description?: string; rowspan: number; showSkillLv: boolean }[] =
-    [];
+  const groups: { levels: string; changes: string[]; description?: string; rowspan: number }[] = [];
   let i = 0;
   while (i < levels.length) {
     const cur = levels[i];
@@ -183,9 +181,8 @@ export function compressLevels(
       j++;
     }
     const lvls = levels.slice(i, j);
-    const showSkillLv = lvls.some((l) => !l.classLevel);
-    const lvlStr = showSkillLv ? lvls.map((l) => l.skillLevel).join(', ') : lvls.map((l) => l.classLevel).join(', ');
-    groups.push({ levels: lvlStr, changes: cur.changes, description: cur.description, rowspan: 1, showSkillLv });
+    const lvlStr = lvls.map((l) => l.classLevel || l.skillLevel).join(', ');
+    groups.push({ levels: lvlStr, changes: cur.changes, description: cur.description, rowspan: 1 });
     i = j;
   }
   return groups;
@@ -418,7 +415,7 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
                   <table className={styles.levelTable}>
                     <thead>
                       <tr>
-                        <th>{skill.levels.some((l) => !l.classLevel) ? 'Ур. скилла' : 'Ур. персонажа'}</th>
+                        <th>Ур. персонажа</th>
                         <th>Описание</th>
                       </tr>
                     </thead>
