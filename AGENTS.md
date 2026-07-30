@@ -343,10 +343,58 @@ function questUrl(name: string, id: number): string {
 
 ## Scripts (`scripts/`)
 
-- `build-recipes.mjs` — собирает `src/data/RECIPES.json` из `tmp/recipe_json.json`, `tmp/items.json`, `tmp/npc_json_with_subtypes.json`
-- Фильтрует S-grade и deprecated предметы, объединяет рецепты с NPC-дропом/спойлом
-- Распределяет Etc-рецепты по подтипам: Soulshot/Elixir/Material/Other
-- Определяет категорию для брони по `item_parameter` (Helmet/Gloves/Boots/Shield/HairAccessory)
+### Skills pipeline
+
+| Скрипт                       | Назначение                                                                                                           | npm скрипт |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------------- | ---------- |
+| `fetch-mw2-skills.mjs`       | Основной парсер скиллов с mw2.wiki: описания, MP, кулдаун, трейт, атрибут, олимпиада, уровни → `SKILLS.json`         | —          |
+| `fetch-mw2-class-levels.mjs` | Собирает `classLevel` (уровень персонажа для каждого уровня скилла) со страниц прокачки классов (51 класс)           | —          |
+| `fetch-mw2-base-skills.mjs`  | Собирает скиллы базовых классов (Fighter, Mage и т.д.) и добавляет к классам-наследникам через дерево `BASE_LINEAGE` | —          |
+| `fetch-base-classes.mjs`     | Добавляет базовые классы (Без профессии) в `SKILLS.json`: парсит mw2.wiki, копирует скиллы всем наследникам          | —          |
+| `fix-base-skills.mjs`        | Удаляет базовые скиллы, не принадлежащие классу профессии (проверка через `classSkillMap` на mw2.wiki)               | —          |
+| `fix-overlap-levels.mjs`     | Удаляет пересекающиеся уровни между 1-й и 2-й профессиями                                                            | —          |
+| `fix-base-class-levels.mjs`  | Проставляет `classLevel` для базовых классов со страниц уровней (<20)                                                | —          |
+
+### Boss pipeline
+
+| Скрипт                   | Назначение                                                                                                                           | npm скрипт        |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
+| `fetch-mw2-bosses.mjs`   | Парсит статью рейд-боссов на mw2.wiki, качает изображения в `/public/images/bosses/`, добавляет `image`/`coords` в `RAIDBOSSES.json` | `update-mw2`      |
+| `enrich-boss-npcids.mjs` | Читает статью рейд-боссов (post #385), извлекает NPC ID + slug для каждого босса в `RAIDBOSSES.json`                                 | `update-boss-ids` |
+| `build-boss-id-map.mjs`  | Генерирует `BOSS_ID_MAP.json` для Telegram deep-linking (slug → id)                                                                  | —                 |
+
+### Recipe pipeline
+
+| Скрипт                             | Назначение                                                                                                                                      | npm скрипт |
+| ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| `build-recipes.mjs`                | Собирает `RECIPES.json` из `tmp/recipe_json.json`, `tmp/items.json`, `tmp/npc_json_with_subtypes.json`. Фильтрует S-grade, категоризирует броню | —          |
+| `build-locations-pieces.mjs`       | Собирает `LOCATIONS_PIECES.json` из RECIPES.json + LOCATIONS_ALL.json, группирует по локациям/монстрам                                          | —          |
+| `build-locations-recipes-full.mjs` | Собирает `LOCATIONS_RECIPES_FULL.json` — обогащённые рецептные локации с монстрами и avg_level                                                  | —          |
+| `build-locations-resources.mjs`    | Собирает `LOCATIONS_RESOURCES.json` из Material/Other рецептов + `tmp/locations.json`                                                           | —          |
+| `build-recipe-enrichment.mjs`      | Собирает `RECIPE_ENRICHMENT.json` — lookup-мапу `recipeName → {grade, type, resultName, resultUrl}` для таба Локаций                            | —          |
+| `print-nodrop-recipes.mjs`         | Диагностика: выводит список рецептов без данных дропа/спойла (read-only)                                                                        | —          |
+
+### Icons pipeline
+
+| Скрипт                 | Назначение                                                                                                                                                                                                    | npm скрипт                                                            |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `build-item-icons.mjs` | Универсальный сборщик иконок. 3 фазы: `item-wiki` (ITEM_WIKI.json из дропа боссов), `item-icons-by-id` (ITEM_ICONS_BY_ID.json из spellbook/locations), `recipe-icons` (RECIPE_ICONS.json из страниц рецептов) | `update-item-icons`, `update-item-icons-by-id`, `update-recipe-icons` |
+
+### Quest pipeline
+
+| Скрипт                    | Назначение                                                                                                        | npm скрипт |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------- | ---------- |
+| `parse-quests.mjs`        | Парсит квесты с mw2.wiki: полные шаги, NPC ID, имена, координаты → `QUEST_DATA.json`. Semaphore=4                 | —          |
+| `fetch-quest-rewards.mjs` | Собирает актуальные награды расовых квестов с mw2.wiki, сравнивает старые/новые, выводит TS-обновления            | —          |
+| `fetch-quest-images.mjs`  | Скачивает изображения квестов с mw2.wiki в `/public/images/quests/`, обновляет `QUEST_IMAGES.json`                | —          |
+| `dedup-quest-images.mjs`  | Дедуплицирует изображения по MD5, подменяет ссылки в `QUEST_IMAGES.json`                                          | —          |
+| `apply-quest-steps.mjs`   | Парсит шаги прохождения с mw2.wiki (русский/английский), обновляет `questSteps.ts` с сохранением profession-блока | —          |
+| `extract-quest-steps.mjs` | Упрощённая однопоточная версия `apply-quest-steps.mjs` (вывод в stdout)                                           | —          |
+| `quests/fetch-kusto.mjs`  | Скачивает изображения для цепочки Кусто (посты 87-95)                                                             | —          |
+| `quests/fetch-other.mjs`  | Скачивает изображения для остальных квестов (не Path of..., не Кусто)                                             | —          |
+| `quests/fetch-path.mjs`   | Скачивает изображения для Path of... квестов (1 профессия)                                                        | —          |
+| `quests/fetch-three.mjs`  | Вывод ID для 3 in 1 квестов (2 профессия) без изображений                                                         | —          |
+| `quests/shared.mjs`       | Утилиты для скриптов в `quests/`                                                                                  | —          |
 
 ## Analytics
 
@@ -441,25 +489,6 @@ function questUrl(name: string, id: number): string {
 - `random.uniform(1.5, 3.0)` — человеческая задержка
 - `httpx.AsyncClient(http2=True, follow_redirects=True, cookies={"language": "en"})` — HTTP/2 + английский язык
 
-## Scripts (`scripts/`)
-
-- `fetch-skills.mjs` — fetches skill data from lu4db API
-- `fetch-raidbosses.mjs` — intended for raid boss data (blocked: lu4db is SPA, requires JS rendering)
-- `parse-wiki-bosses.mjs` — parses mw2.wiki article + lu4db HTML to build RAIDBOSSES.json
-- `fetch-mw2-bosses.mjs` — parses mw2.wiki raid boss article, downloads boss images to `/public/images/bosses/`, fetches map coords from spawn page, adds `image`/`coords` fields to `RAIDBOSSES.json`
-- `fetch-mw2-skills.mjs` — main skills parser: собирает с mw2.wiki все скиллы (+ описания, MP, трейты, уровни), обогащает SKILLS.json
-- `fetch-mw2-class-levels.mjs` — собирает classLevel (уровень персонажа для каждого уровня скилла) со страниц прокачки классов
-- `fetch-mw2-base-skills.mjs` — собирает скиллы базовых классов (Fighter, Mage и т.д.) и добавляет к классам-наследникам
-- `fetch-base-classes.mjs` — добавляет базовые классы (Без профессии) в SKILLS.json
-- `fix-base-skills.mjs` — удаляет базовые скиллы, не принадлежащие классу профессии (проверка через classSkillMap)
-- `fix-overlap-levels.mjs` — удаляет пересекающиеся уровни между 1-й и 2-й профессиями
-- `fix-base-class-levels.mjs` — проставляет classLevel для базовых классов со страниц уровней (<20)
-- `fetch-quest-rewards.mjs` — собирает актуальные награды расовых квестов с mw2.wiki
-- `fetch-quest-images.mjs` — скачивает актуальные изображения с mw2.wiki и обновляет `QUEST_IMAGES.json`
-- `apply-quest-steps.mjs` — парсит актуальные шаги прохождения с mw2.wiki (русский/английский), обновляет `questSteps.ts`
-- `extract-quest-steps.mjs` — однопоточная версия с извлечением шагов (упрощённая)
-- `dedup-quest-images.mjs` — дедупликация изображений квестов по MD5
-
 ## Build & Deploy
 
 - `npm run dev` — Vite dev server
@@ -495,7 +524,7 @@ function questUrl(name: string, id: number): string {
 
 ## Known Constraints
 
-- fetch-raidbosses.mjs cannot extract from lu4db directly (SPA requires JS rendering)
+- lu4db.ru cannot be scraped programmatically (SPA, no API, no prerendered data)
 - Item thumbnails not available — no item ID in drop data
 - `RAIDBOSSES.json` is large (530KB) and git-ignored
 
