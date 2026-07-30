@@ -1,3 +1,13 @@
+declare global {
+  interface Window {
+    Telegram?: {
+      WebApp: {
+        initData: string;
+      };
+    };
+  }
+}
+
 export function isActualTelegram(): boolean {
   if (typeof window === 'undefined') return false;
   const w = window as unknown as Record<string, unknown>;

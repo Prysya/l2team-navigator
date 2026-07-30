@@ -368,11 +368,11 @@ function questUrl(name: string, id: number): string {
 
 ### Environment Variables
 
-| Var                       | Назначение                                         |
-| ------------------------- | -------------------------------------------------- |
-| `VITE_TELEGRAM_API_URL`   | URL бота для проверки членства в клане             |
-| `VITE_TELEGRAM_API_TOKEN` | Токен авторизации для API бота                     |
-| `VITE_ADMIN_ID`           | Telegram ID администратора (открывает Debug Modal) |
+| Var                           | Назначение                                         |
+| ----------------------------- | -------------------------------------------------- |
+| `VITE_TELEGRAM_API_URL`       | URL бота для проверки членства в клане             |
+| ~~`VITE_TELEGRAM_API_TOKEN`~~ | _(удалён)_ — авторизация через init_data Telegram  |
+| `VITE_ADMIN_ID`               | Telegram ID администратора (открывает Debug Modal) |
 
 - `setTelegramUser(user, platform)` — отправляет ID, платформу и премиум-статус в метрику
 
