@@ -167,9 +167,10 @@ export function cleanStatText(text: string): string {
 }
 export function compressLevels(
   levels: ClassSkill['levels'],
-): { levels: string; changes: string[]; description?: string; rowspan: number }[] {
+): { levels: string; skillLevels: string; changes: string[]; description?: string; rowspan: number }[] {
   if (!levels.length) return [];
-  const groups: { levels: string; changes: string[]; description?: string; rowspan: number }[] = [];
+  const groups: { levels: string; skillLevels: string; changes: string[]; description?: string; rowspan: number }[] =
+    [];
   let i = 0;
   while (i < levels.length) {
     const cur = levels[i];
@@ -182,7 +183,15 @@ export function compressLevels(
     }
     const lvls = levels.slice(i, j);
     const lvlStr = lvls.map((l) => l.classLevel || l.skillLevel).join(', ');
-    groups.push({ levels: lvlStr, changes: cur.changes, description: cur.description, rowspan: 1 });
+    const skillStr =
+      lvls.length === 1 ? `Lv. ${lvls[0].skillLevel}` : `Lv. ${lvls[0].skillLevel}-${lvls[lvls.length - 1].skillLevel}`;
+    groups.push({
+      levels: lvlStr,
+      skillLevels: skillStr,
+      changes: cur.changes,
+      description: cur.description,
+      rowspan: 1,
+    });
     i = j;
   }
   return groups;
@@ -416,6 +425,7 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
                     <thead>
                       <tr>
                         <th>Ур. персонажа</th>
+                        <th>Ур. скилла</th>
                         <th>Описание</th>
                       </tr>
                     </thead>
@@ -423,6 +433,7 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
                       {compressLevels(skill.levels).map((g, gi) => (
                         <tr key={gi}>
                           <td className={styles.lvlClass}>{g.levels}</td>
+                          <td className={styles.lvlSkill}>{g.skillLevels}</td>
                           <td className={styles.lvlDesc}>
                             {g.description ? (
                               <div className={styles.lvlChange}>{highlightNumbers(g.description)}</div>
