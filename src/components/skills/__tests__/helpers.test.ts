@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { cleanStatText, compressLevels, getStatIcon } from '../SkillsTab';
+import { cleanStatText, compressLevels } from '../SkillsTab';
 
 describe('cleanStatText', () => {
   it('strips leading zeros from numbers', () => {
@@ -17,24 +17,6 @@ describe('cleanStatText', () => {
 
   it('handles text without numbers', () => {
     expect(cleanStatText('Hello World')).toBe('Hello World');
-  });
-});
-
-describe('getStatIcon', () => {
-  it('returns water drop for MP', () => {
-    expect(getStatIcon('MP')).toBe('💧');
-  });
-
-  it('returns stopwatch for КД', () => {
-    expect(getStatIcon('КД')).toBe('⏱');
-  });
-
-  it('returns hourglass for Длит.', () => {
-    expect(getStatIcon('Длит.')).toBe('⏳');
-  });
-
-  it('returns empty for unknown', () => {
-    expect(getStatIcon('HP')).toBe('');
   });
 });
 

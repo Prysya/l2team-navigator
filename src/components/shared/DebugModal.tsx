@@ -15,7 +15,6 @@ interface Props {
 export default function DebugModal({ onClose }: Props) {
   const store = useTelegramStore();
   const [toast, setToast] = useState('');
-  const [showInfo, setShowInfo] = useState(false);
 
   const error = store.sendBossError;
 
@@ -84,23 +83,15 @@ export default function DebugModal({ onClose }: Props) {
           </button>
         </div>
 
-        {error && (
-          <div className={styles.errorBanner}>
-            <strong>Ошибка отправки боту:</strong>
-            <pre className={styles.errorPre}>{error}</pre>
-          </div>
-        )}
-
-        <button className={styles.toggleBtn} onClick={() => setShowInfo((v) => !v)}>
-          {showInfo ? '▲ Скрыть' : '▼ Показать'} полную информацию
-        </button>
-
-        {showInfo && <pre className={styles.content}>{info}</pre>}
-
-        {showInfo && (
-          <button className={styles.copyBtn} onClick={handleCopy}>
-            📋 Копировать
-          </button>
+        {error ? (
+          <pre className={styles.errorContent}>{error}</pre>
+        ) : (
+          <>
+            <pre className={styles.content}>{info}</pre>
+            <button className={styles.copyBtn} onClick={handleCopy}>
+              📋 Копировать
+            </button>
+          </>
         )}
       </div>
       {toast && <Toast message={toast} onDone={() => setToast('')} />}

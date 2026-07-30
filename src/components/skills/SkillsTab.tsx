@@ -2,7 +2,6 @@ import { useEffect, useMemo } from 'react';
 import { RACES } from '@data/races';
 import skillsData from '@data/SKILLS.json';
 import spellbooksData from '@data/SPELLBOOKS.json';
-import CopyLink from '@shared/CopyLink';
 import CustomSelect from '@shared/CustomSelect';
 import EmptyState from '@shared/EmptyState';
 import FloatingLabel from '@shared/FloatingLabel';
@@ -19,6 +18,8 @@ const spellbookByName = new Map<string, Spellbook>();
 });
 
 const CLASS_RACE_MAP: Record<string, string> = {
+  Fighter: 'Human',
+  Mage: 'Human',
   Воитель: 'Human',
   Рыцарь: 'Human',
   Разбойник: 'Human',
@@ -35,6 +36,8 @@ const CLASS_RACE_MAP: Record<string, string> = {
   Колдун: 'Human',
   Епископ: 'Human',
   Проповедник: 'Human',
+  'Elven Fighter': 'Elf',
+  'Elven Mage': 'Elf',
   'Светлый Рыцарь': 'Elf',
   Разведчик: 'Elf',
   'Рыцарь Евы': 'Elf',
@@ -46,6 +49,8 @@ const CLASS_RACE_MAP: Record<string, string> = {
   'Певец Заклинаний': 'Elf',
   'Последователь Стихий': 'Elf',
   'Мудрец Евы': 'Elf',
+  'Dark Fighter': 'Dark Elf',
+  'Dark Mage': 'Dark Elf',
   'Тёмный Рыцарь': 'Dark Elf',
   Ассасин: 'Dark Elf',
   'Рыцарь Шилен': 'Dark Elf',
@@ -57,6 +62,8 @@ const CLASS_RACE_MAP: Record<string, string> = {
   'Заклинатель Ветра': 'Dark Elf',
   'Последователь Тьмы': 'Dark Elf',
   'Мудрец Шилен': 'Dark Elf',
+  'Orc Fighter': 'Orc',
+  'Orc Mage': 'Orc',
   Налётчик: 'Orc',
   Монах: 'Orc',
   Разрушитель: 'Orc',
@@ -64,6 +71,8 @@ const CLASS_RACE_MAP: Record<string, string> = {
   Шаман: 'Orc',
   'Верховный Шаман': 'Orc',
   'Вестник Войны': 'Orc',
+  'Dwarven Fighter': 'Dwarf',
+  'Dwarven Mystic': 'Dwarf',
   Собиратель: 'Dwarf',
   Ремесленник: 'Dwarf',
   'Охотник за Наградой': 'Dwarf',
@@ -73,6 +82,8 @@ const CLASS_RACE_MAP: Record<string, string> = {
 };
 
 const EN_CLASS_NAMES: Record<string, string> = {
+  Fighter: 'Fighter',
+  Mage: 'Mage',
   Воитель: 'Warrior',
   Рыцарь: 'Knight',
   Разбойник: 'Rogue',
@@ -89,6 +100,8 @@ const EN_CLASS_NAMES: Record<string, string> = {
   Колдун: 'Warlock',
   Епископ: 'Bishop',
   Проповедник: 'Prophet',
+  'Elven Fighter': 'Elven Fighter',
+  'Elven Mage': 'Elven Mage',
   'Светлый Рыцарь': 'Elven Knight',
   Разведчик: 'Elven Scout',
   'Рыцарь Евы': 'Temple Knight',
@@ -100,6 +113,8 @@ const EN_CLASS_NAMES: Record<string, string> = {
   'Певец Заклинаний': 'Spellsinger',
   'Последователь Стихий': 'Elemental Summoner',
   'Мудрец Евы': 'Elder',
+  'Dark Fighter': 'Dark Fighter',
+  'Dark Mage': 'Dark Mage',
   'Тёмный Рыцарь': 'Palus Knight',
   Ассасин: 'Assassin',
   'Рыцарь Шилен': 'Shillien Knight',
@@ -111,6 +126,8 @@ const EN_CLASS_NAMES: Record<string, string> = {
   'Заклинатель Ветра': 'Spellhowler',
   'Последователь Тьмы': 'Phantom Summoner',
   'Мудрец Шилен': 'Shillien Elder',
+  'Orc Fighter': 'Orc Fighter',
+  'Orc Mage': 'Orc Mage',
   Налётчик: 'Orc Raider',
   Монах: 'Orc Monk',
   Разрушитель: 'Destroyer',
@@ -118,6 +135,8 @@ const EN_CLASS_NAMES: Record<string, string> = {
   Шаман: 'Orc Shaman',
   'Верховный Шаман': 'Overlord',
   'Вестник Войны': 'Warcryer',
+  'Dwarven Fighter': 'Dwarven Fighter',
+  'Dwarven Mystic': 'Dwarven Mystic',
   Собиратель: 'Scavenger',
   Ремесленник: 'Artisan',
   'Охотник за Наградой': 'Bounty Hunter',
@@ -134,11 +153,59 @@ const RACE_LABELS: Record<string, string> = {
   Dwarf: 'Dwarf',
 };
 
-const skillsMap = skillsData as Record<string, { className: string; race: string; skills: ClassSkill[] }>;
-const ALL_CLASSES = Object.keys(skillsMap).sort();
+const PROFESSION_TIERS: Record<string, string> = {
+  Fighter: 'Без профессии',
+  Mage: 'Без профессии',
+  'Elven Fighter': 'Без профессии',
+  'Elven Mage': 'Без профессии',
+  'Dark Fighter': 'Без профессии',
+  'Dark Mage': 'Без профессии',
+  'Orc Fighter': 'Без профессии',
+  'Orc Mage': 'Без профессии',
+  'Dwarven Fighter': 'Без профессии',
+  'Dwarven Mystic': 'Без профессии',
+  Воитель: '1 профессия',
+  Рыцарь: '1 профессия',
+  Разбойник: '1 профессия',
+  Маг: '1 профессия',
+  Клерик: '1 профессия',
+  'Светлый Рыцарь': '1 профессия',
+  Разведчик: '1 профессия',
+  'Светлый Маг': '1 профессия',
+  'Оракул Евы': '1 профессия',
+  'Тёмный Рыцарь': '1 профессия',
+  Ассасин: '1 профессия',
+  'Тёмный Маг': '1 профессия',
+  'Оракул Шилен': '1 профессия',
+  Налётчик: '1 профессия',
+  Монах: '1 профессия',
+  Шаман: '1 профессия',
+  Собиратель: '1 профессия',
+  Ремесленник: '1 профессия',
+  Геомант: '1 профессия',
+};
 
-function getClassesByRace(race: string): string[] {
-  return ALL_CLASSES.filter((cls) => CLASS_RACE_MAP[cls] === race);
+const TIER_ORDER = ['Без профессии', '1 профессия', '2 профессия'];
+
+const skillsMap = skillsData as Record<string, { className: string; race: string; skills: ClassSkill[] }>;
+const ALL_CLASSES = Object.keys(skillsMap);
+
+function getClassesByRace(race: string): { label: string; options: { value: string; label: string }[] }[] {
+  const raceClasses = ALL_CLASSES.filter((cls) => CLASS_RACE_MAP[cls] === race);
+  const groups: Record<string, { value: string; label: string }[]> = {
+    'Без профессии': [],
+    '1 профессия': [],
+    '2 профессия': [],
+  };
+  for (const cls of raceClasses) {
+    const tier = PROFESSION_TIERS[cls] || '2 профессия';
+    if (!groups[tier]) groups[tier] = [];
+    groups[tier].push({ value: cls, label: getClassName(cls) });
+  }
+  return TIER_ORDER.filter((t) => groups[t]?.length).map((tier) => ({
+    label: tier,
+    options: groups[tier],
+  }));
 }
 
 function getClassName(cls: string): string {
@@ -166,29 +233,48 @@ function highlightNumbers(text: string): React.ReactNode {
 export function cleanStatText(text: string): string {
   return text.replace(/\b0+(\d+)\b/g, '$1');
 }
-
-export function compressLevels(levels: ClassSkill['levels']): { levels: string; changes: string[]; rowspan: number }[] {
+export function compressLevels(
+  levels: ClassSkill['levels'],
+): { levels: string; skillLevels: string; changes: string[]; description?: string; rowspan: number }[] {
   if (!levels.length) return [];
-  const groups: { levels: string; changes: string[]; rowspan: number }[] = [];
+  const groups: { levels: string; skillLevels: string; changes: string[]; description?: string; rowspan: number }[] =
+    [];
   let i = 0;
   while (i < levels.length) {
     const cur = levels[i];
-    const changeKey = JSON.stringify(cur.changes);
+    const descKey = cur.description ?? JSON.stringify(cur.changes);
     let j = i + 1;
-    while (j < levels.length && JSON.stringify(levels[j].changes) === changeKey) j++;
+    while (j < levels.length) {
+      const next = levels[j];
+      if ((next.description ?? JSON.stringify(next.changes)) !== descKey) break;
+      j++;
+    }
     const lvls = levels.slice(i, j);
-    const lvlStr = lvls.map((l) => l.classLevel).join(', ');
-    groups.push({ levels: lvlStr, changes: cur.changes, rowspan: 1 });
+    const lvlStr = lvls.map((l) => l.classLevel || l.skillLevel).join(', ');
+    const skillStr =
+      lvls.length === 1 ? `Lv. ${lvls[0].skillLevel}` : `Lv. ${lvls[0].skillLevel}-${lvls[lvls.length - 1].skillLevel}`;
+    groups.push({
+      levels: lvlStr,
+      skillLevels: skillStr,
+      changes: cur.changes,
+      description: cur.description,
+      rowspan: 1,
+    });
     i = j;
   }
   return groups;
 }
 
-export function getStatIcon(label: string): string {
-  if (label === 'MP') return '💧';
-  if (label === 'КД') return '⏱';
-  if (label === 'Длит.') return '⏳';
-  return '';
+function parseRange(castRange: string): { range: string; maxRange?: string } {
+  const m = castRange.match(/^(\d+)\s*\((\d+)\)/);
+  if (m) return { range: m[1], maxRange: m[2] };
+  return { range: castRange.replace(/\s*\(.*/, '').trim() };
+}
+
+function skillImageUrl(url: string): string {
+  if (url.startsWith('/i64/')) return `https://mw2.wiki${url}`;
+  if (url.startsWith('/media/')) return `https://lu4db.ru${url}`;
+  return url;
 }
 
 interface SkillsTabProps {
@@ -205,7 +291,7 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
   const setSelectedRace = useSkillsStore((s) => s.setSelectedRace);
   const setSelectedClass = useSkillsStore((s) => s.setSelectedClass);
 
-  const availableClasses = useMemo(() => {
+  const classGroups = useMemo(() => {
     if (!selectedRace) return [];
     return getClassesByRace(selectedRace);
   }, [selectedRace]);
@@ -224,7 +310,7 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
       const q = searchQuery.toLowerCase().trim();
       list = list.filter((s) => s.name.toLowerCase().includes(q));
     }
-    return list;
+    return list.filter((s) => s.levels.some((l) => l.classLevel));
   }, [currentSkills, filterType, searchQuery]);
 
   useEffect(() => {
@@ -257,7 +343,7 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
             label="Класс"
             value={selectedClass}
             onChange={(v) => setSelectedClass(v)}
-            options={availableClasses.map((c) => ({ value: c, label: getClassName(c) }))}
+            groups={classGroups}
             disabled={!selectedRace}
           />
         </div>
@@ -314,27 +400,13 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
                 {skill.imageUrl && (
                   <img
                     className={styles.skillIcon}
-                    src={`https://lu4db.ru${skill.imageUrl}`}
+                    src={skillImageUrl(skill.imageUrl)}
                     alt={skill.name}
                     loading="lazy"
                   />
                 )}
                 <div className={styles.skillInfo}>
-                  <div className={styles.skillName}>
-                    {skill.name}
-                    <CopyLink
-                      getUrl={() =>
-                        window.location.origin +
-                        import.meta.env.BASE_URL +
-                        'skills?race=' +
-                        encodeURIComponent(selectedRace) +
-                        '&class=' +
-                        encodeURIComponent(selectedClass) +
-                        '&skill=' +
-                        encodeURIComponent(skill.name)
-                      }
-                    />
-                  </div>
+                  <div className={styles.skillName}>{skill.name}</div>
                   <div className={styles.skillMeta}>
                     <span
                       className={cx({
@@ -350,17 +422,54 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
                       <span className={styles.skillLvl}>С {skill.firstClassLevel} lvl</span>
                     )}
                   </div>
-                  {skill.stats.length > 0 && (
-                    <div className={styles.skillStats}>
-                      {skill.stats
-                        .filter((st) => st.label !== 'HP')
-                        .map((st, i) => (
-                          <span key={i} className={styles.skillStat}>
-                            {getStatIcon(st.label)} {st.label}: <b>{cleanStatText(st.text)}</b>
+                  <div className={styles.skillStats}>
+                    {skill.mpConsume && (
+                      <span className={styles.skillStat}>
+                        💧 MP: <b>{skill.mpConsume}</b>
+                      </span>
+                    )}
+                    {skill.reuseTime && (
+                      <span className={styles.skillStat}>
+                        🕐 КД: <b>{skill.reuseTime}</b>
+                      </span>
+                    )}
+                    {skill.castRange &&
+                      (() => {
+                        const { range, maxRange } = parseRange(skill.castRange);
+                        return (
+                          <span className={styles.skillStat}>
+                            🎯 Дальн.: <b>{range}</b>
+                            {maxRange && (
+                              <>
+                                {' '}
+                                (
+                                <b title="Максимальная дистанция. При превышении произношение будет отменено.">
+                                  {maxRange}
+                                </b>
+                                )
+                              </>
+                            )}
                           </span>
-                        ))}
-                    </div>
-                  )}
+                        );
+                      })()}
+                    {skill.trait && (
+                      <span className={styles.skillStat}>
+                        ⚔️ Trait: <b>{skill.trait}</b>
+                      </span>
+                    )}
+                    {skill.attribute && (
+                      <span className={styles.skillStat}>
+                        Attr: <b>{skill.attribute.replace(/\s+\d+.*/, '')}</b>
+                      </span>
+                    )}
+                    {skill.stats
+                      .filter((st) => !['MP', 'КД', 'Дальн.', 'HP'].includes(st.label))
+                      .map((st, i) => (
+                        <span key={i} className={styles.skillStat}>
+                          {st.label}: <b>{cleanStatText(st.text)}</b>
+                        </span>
+                      ))}
+                  </div>
                   {spellbookByName.has(skill.name.toLowerCase()) && (
                     <button
                       className={styles.sbLink}
@@ -378,25 +487,31 @@ export default function SkillsTab({ onNavigateToTab }: SkillsTabProps) {
                   )}
                 </div>
               </div>
-              {skill.levels.length > 0 && (
+              {skill.levels.some((l) => l.classLevel) && (
                 <div className={styles.skillLevels}>
                   <table className={styles.levelTable}>
                     <thead>
                       <tr>
                         <th>Ур. персонажа</th>
+                        <th>Ур. скилла</th>
                         <th>Описание</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {compressLevels(skill.levels).map((g, gi) => (
+                      {compressLevels(skill.levels.filter((l) => l.classLevel)).map((g, gi) => (
                         <tr key={gi}>
                           <td className={styles.lvlClass}>{g.levels}</td>
+                          <td className={styles.lvlSkill}>{g.skillLevels}</td>
                           <td className={styles.lvlDesc}>
-                            {g.changes.map((ch, ci) => (
-                              <div key={ci} className={styles.lvlChange}>
-                                {highlightNumbers(ch)}
-                              </div>
-                            ))}
+                            {g.description ? (
+                              <div className={styles.lvlChange}>{highlightNumbers(g.description)}</div>
+                            ) : (
+                              g.changes.map((ch, ci) => (
+                                <div key={ci} className={styles.lvlChange}>
+                                  {highlightNumbers(ch)}
+                                </div>
+                              ))
+                            )}
                           </td>
                         </tr>
                       ))}

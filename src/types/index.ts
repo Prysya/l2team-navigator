@@ -153,6 +153,7 @@ export interface SkillLevel {
   skillLevel: number;
   classLevel: number;
   changes: string[];
+  description?: string;
 }
 
 export interface ClassSkill {
@@ -166,6 +167,13 @@ export interface ClassSkill {
   stats: SkillStat[];
   levels: SkillLevel[];
   maxLevel: number;
+  description?: string;
+  mpConsume?: string;
+  reuseTime?: string;
+  castRange?: string;
+  trait?: string;
+  attribute?: string;
+  olympiadUsable?: string;
 }
 
 export interface ClassSkillsData {

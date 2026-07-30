@@ -283,6 +283,13 @@
   white-space: nowrap;
 }
 
+.lvlSkill {
+  font-size: $font-size-sm;
+  color: $color-primary;
+  white-space: nowrap;
+  text-align: center;
+}
+
 .lvlDesc {
   font-size: $font-size-sm;
   line-height: 1.4;

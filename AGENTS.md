@@ -50,6 +50,35 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - ESLint + Prettier for code quality (configs: `.eslintrc.json`, `.prettierrc`)
 - Import aliases: `@/`, `@shared/`, `@components/`, `@utils/`, `@data/`, `@styles/`
 
+## Парсер скиллов (`scripts/fetch-mw2-skills.mjs`)
+
+Собирает обогащённые данные с mw2.wiki:
+
+1. Парсит страницу `/lu4/classes` — получает ID и slug всех классов
+2. Для каждого класса → `/lu4/class/{id}-{slug}/all` — парсит скиллы (accordion-секции с подкатегориями Physical/Buff/Debuff и т.д.)
+3. Уникальные скиллы → `/lu4/skill/{id}-{slug}/1` — парсит описание, MP, кулдаун, трейт, атрибут, все уровни
+4. Склеивает с существующим `SKILLS.json`: добавляет `description`, `mpConsume`, `reuseTime`, `castRange`, `trait`, `attribute`, `olympiadUsable`, `levels[].description`
+5. Результат сохраняется в `SKILLS_ENRICHED.json`, затем перезаписывает `SKILLS.json`
+
+**Запуск:** `node scripts/fetch-mw2-skills.mjs`
+**Зависимости:** Node.js 18+ (native fetch), без внешних пакетов
+**Лимиты:** asyncio.Semaphore(4), случайная задержка 1.5-3с (не реализовано — 1 запрос за раз)
+
+### Поля скилла после обогащения
+
+| Поле                   | Тип    | Источник                              |
+| ---------------------- | ------ | ------------------------------------- |
+| `description`          | string | mw2.wiki (полное описание навыка)     |
+| `mpConsume`            | string | mw2.wiki (MP cost)                    |
+| `reuseTime`            | string | mw2.wiki (перезарядка)                |
+| `castRange`            | string | mw2.wiki (дальность)                  |
+| `trait`                | string | mw2.wiki (Sword/Blunt/Dagger/Etc)     |
+| `attribute`            | string | mw2.wiki (Fire/Water/Wind/Earth/None) |
+| `olympiadUsable`       | string | mw2.wiki (Yes/No)                     |
+| `levels[].description` | string | mw2.wiki (описание каждого уровня)    |
+
+**Запуск:** `node scripts/fetch-mw2-skills.mjs`
+
 ## Code Quality
 
 ### ESLint
@@ -155,17 +184,18 @@ Use conventional commits: `type: description` (lowercase, no caps).
 
 - EN/RU language toggle (radio buttons) at top of controls bar
 - Race + class `CustomSelect` dropdowns; labels localize based on language
-- EN_CLASS_NAMES map (51 classes), RU_CLASS_NAMES map (28 entries), CLASS_RACE_MAP
+- Class selector сгруппирован по профессиям: **Без профессии / 1 профессия / 2 профессия** (через `groups` prop CustomSelect)
+- EN_CLASS_NAMES map (61 класс: 51 profession + 10 base), CLASS_RACE_MAP
 - Skill search (`FloatingLabel`) and level filter
-- `compressLevels` — groups consecutive levels with identical description into comma-separated ranges
+- `compressLevels` — groups consecutive levels with identical description into comma-separated ranges; добавляет колонку "Ур. скилла"
 - `cleanStatText` — strips leading zeros, hides HP stats
-- Skill stats rendered as separate bordered pills
+- Skill stats rendered as separate bordered pills (MP, КД, Дальн. + макс. дальность с тултипом, Trait, Attr)
 - Numbers in skill descriptions highlighted with `$color-accent-orange`
 - "Где выбить книгу" button in skill cards — navigates to spellbooks tab with `?sbRace=&sbQ=` URL params
-- Imports data from `src/data/SKILLS.json` (2145 skills)
-- CopyLink per skill card: `#skills?race=&class=&skill=`
-- **Lazy-loaded** via `React.lazy(() => import(...))` — SKILLS.json (3.6 MB) не в основном бандле
-- CopyLink per skill card: `#skills?race=&class=&skill=`
+- Если у скилла нет classLevel ни на одном уровне — карточка скрывается (скилл не принадлежит классу)
+- Imports data from `src/data/SKILLS.json` (2671 skills)
+- Иконки загружаются с mw2.wiki (`/i64/...png`) или lu4db (`/media/...`)
+- **Lazy-loaded** via `React.lazy(() => import(...))` — SKILLS.json не в основном бандле
 
 ### SpellbookTab
 
@@ -393,6 +423,13 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - `fetch-raidbosses.mjs` — intended for raid boss data (blocked: lu4db is SPA, requires JS rendering)
 - `parse-wiki-bosses.mjs` — parses mw2.wiki article + lu4db HTML to build RAIDBOSSES.json
 - `fetch-mw2-bosses.mjs` — parses mw2.wiki raid boss article, downloads boss images to `/public/images/bosses/`, fetches map coords from spawn page, adds `image`/`coords` fields to `RAIDBOSSES.json`
+- `fetch-mw2-skills.mjs` — main skills parser: собирает с mw2.wiki все скиллы (+ описания, MP, трейты, уровни), обогащает SKILLS.json
+- `fetch-mw2-class-levels.mjs` — собирает classLevel (уровень персонажа для каждого уровня скилла) со страниц прокачки классов
+- `fetch-mw2-base-skills.mjs` — собирает скиллы базовых классов (Fighter, Mage и т.д.) и добавляет к классам-наследникам
+- `fetch-base-classes.mjs` — добавляет базовые классы (Без профессии) в SKILLS.json
+- `fix-base-skills.mjs` — удаляет базовые скиллы, не принадлежащие классу профессии (проверка через classSkillMap)
+- `fix-overlap-levels.mjs` — удаляет пересекающиеся уровни между 1-й и 2-й профессиями
+- `fix-base-class-levels.mjs` — проставляет classLevel для базовых классов со страниц уровней (<20)
 
 ## Build & Deploy
 
