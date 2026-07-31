@@ -280,18 +280,18 @@ Use conventional commits: `type: description` (lowercase, no caps).
 
 ### Quest Data Files (`src/data/quests/`)
 
-| Файл                      | Описание                                                             |
-| ------------------------- | -------------------------------------------------------------------- |
-| `questsByRace.ts`         | Расовые квесты по расам                                              |
-| `sharedQuests.ts`         | Общие квесты                                                         |
-| `templeExecutorQuests.ts` | Цепочка палача храма (9 квестов)                                     |
-| `kustoQuests.ts`          | Цепочка Кусто (9 квестов с шагами и изображениями)                   |
-| `professionRaces.ts`      | Маппинг профессий к их квестам Path of... + 3 in 1...                |
-| `questDetails.ts`         | NPC, локации, уровни для квестов                                     |
-| `questIds.ts`             | Маппинг имён квестов → post ID на mw2.wiki (6xx для расовых)         |
-| `questSteps.ts`           | Текстовые шаги прохождения (36 расовых квестов, 188 шагов)           |
-| `npcCoords.ts`            | Координаты NPC на карте мира                                         |
-| `QUEST_IMAGES.json`       | Маппинг квестов к изображениям (36 расовых квестов, 144 изображения) |
+| Файл                      | Описание                                                                           |
+| ------------------------- | ---------------------------------------------------------------------------------- |
+| `questsByRace.ts`         | Расовые квесты по расам                                                            |
+| `sharedQuests.ts`         | Общие квесты                                                                       |
+| `templeExecutorQuests.ts` | Цепочка палача храма (9 квестов)                                                   |
+| `kustoQuests.ts`          | Цепочка Кусто (9 квестов с шагами, изображения через QUEST_IMAGES.json)            |
+| `professionRaces.ts`      | Маппинг профессий к их квестам Path of... + 3 in 1...                              |
+| `questDetails.ts`         | NPC, локации, уровни для квестов                                                   |
+| `questIds.ts`             | Маппинг имён квестов → post ID на mw2.wiki (6xx для расовых)                       |
+| `questSteps.ts`           | Текстовые шаги прохождения (36 расовых квестов, 188 шагов)                         |
+| `npcCoords.ts`            | Координаты NPC на карте мира                                                       |
+| `QUEST_IMAGES.json`       | Маппинг квестов к изображениям (45 квестов: 36 расовых + 9 Кусто, 177 изображений) |
 
 ### URL на mw2.wiki
 
@@ -334,8 +334,18 @@ function questUrl(name: string, id: number): string {
 Изображения скачиваются скриптом `scripts/fetch-quest-images.mjs`.
 Парсит актуальные изображения с mw2.wiki и обновляет `QUEST_IMAGES.json`.
 
-**Запуск:** `node scripts/fetch-quest-images.mjs`  
+Изображения Kusto-квестов скачиваются скриптом `scripts/quests/fetch-kusto.mjs`
+(использует `shared.mjs` для утилит). Оба скрипта теперь обрабатывают HTTP 500
+(начиная с июля 2026 mw2.wiki возвращает 500, но с валидным контентом) —
+проверяют длину тела ответа вместо `resp.ok`.
+
+`fetch-quest-images.mjs` мёрджит данные с существующим `QUEST_IMAGES.json`
+вместо перезаписи — можно запускать для отдельных квестов без потери данных.
+
+**Запуск:** `node scripts/fetch-quest-images.mjs` — все расовые квесты  
+**Запуск:** `node scripts/quests/fetch-kusto.mjs` — цепочка Кусто (посты 87-95)  
 **Зависимости:** Node.js 18+ (native fetch)
+**Лимиты:** последовательная загрузка (1 запрос за раз), задержка 0.5-2с
 
 Изображения хранятся в `public/images/quests/` и обновляются при изменении визуала квеста на mw2.wiki.
 
@@ -394,7 +404,7 @@ function questUrl(name: string, id: number): string {
 | `quests/fetch-other.mjs`  | Скачивает изображения для остальных квестов (не Path of..., не Кусто)                                             | —          |
 | `quests/fetch-path.mjs`   | Скачивает изображения для Path of... квестов (1 профессия)                                                        | —          |
 | `quests/fetch-three.mjs`  | Вывод ID для 3 in 1 квестов (2 профессия) без изображений                                                         | —          |
-| `quests/shared.mjs`       | Утилиты для скриптов в `quests/`                                                                                  | —          |
+| `quests/shared.mjs`       | Утилиты для скриптов в `quests/` (обработка HTTP 500)                                                             | —          |
 
 ## Analytics
 

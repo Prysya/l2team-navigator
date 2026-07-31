@@ -149,5 +149,34 @@
   ],
   "Red-Eyed Invaders": ["red-eyed-invaders-1.jpg", "red-eyed-invaders-2.jpg", "red-eyed-invaders-3.jpg"],
   "Blood Fiend": ["blood-fiend-1.jpg", "blood-fiend-2.jpg", "blood-fiend-3.jpg"],
-  "Seed of evil": ["seed-of-evil-1.jpg", "seed-of-evil-2.jpg", "seed-of-evil-3.jpg"]
+  "Seed of evil": ["seed-of-evil-1.jpg", "seed-of-evil-2.jpg", "seed-of-evil-3.jpg"],
+  "Relic Exploration": ["relic-exploration-1.jpg", "relic-exploration-2.jpg", "relic-exploration-3.jpg"],
+  "Nikola's Cooperation": [
+    "nikola-s-cooperation-1.jpg",
+    "nikola-s-cooperation-2.jpg",
+    "nikola-s-cooperation-3.jpg",
+    "nikola-s-cooperation-4.jpg"
+  ],
+  "Art of Persuasion": [
+    "art-of-persuasion-1.jpg",
+    "art-of-persuasion-2.jpg",
+    "art-of-persuasion-3.jpg",
+    "art-of-persuasion-4.jpg"
+  ],
+  "Nikola's Heart": ["nikola-s-heart-1.jpg", "nikola-s-heart-2.jpg", "nikola-s-heart-3.jpg"],
+  "Seal Removal": ["seal-removal-1.jpg", "seal-removal-2.jpg", "seal-removal-3.jpg", "seal-removal-4.jpg"],
+  "Contract Execution": ["contract-execution-1.jpg", "contract-execution-2.jpg", "contract-execution-3.jpg"],
+  "Lost Dream": ["lost-dream-1.jpg", "lost-dream-2.jpg", "lost-dream-3.jpg", "lost-dream-4.jpg"],
+  "Vain Conclusion": [
+    "vain-conclusion-1.jpg",
+    "vain-conclusion-2.jpg",
+    "vain-conclusion-3.jpg",
+    "vain-conclusion-4.jpg"
+  ],
+  "Contract Completion": [
+    "contract-completion-1.jpg",
+    "contract-completion-2.jpg",
+    "contract-completion-3.jpg",
+    "contract-completion-4.jpg"
+  ]
 }

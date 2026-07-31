@@ -36,7 +36,9 @@ export function imgDir() {
 export async function tryFetch(url) {
   try {
     const res = await fetch(url, { signal: AbortSignal.timeout(10000) });
-    return res.ok ? res.text() : null;
+    const html = await res.text();
+    if (!html || html.length < 500) return null;
+    return html;
   } catch { return null; }
 }
 
@@ -54,7 +56,8 @@ export function extractImages(html) {
 
 export async function download(url, filePath) {
   const res = await fetch(`https://mw2.wiki${url}`, { signal: AbortSignal.timeout(10000) });
-  if (!res.ok) return false;
-  writeFileSync(filePath, Buffer.from(await res.arrayBuffer()));
+  const buf = Buffer.from(await res.arrayBuffer());
+  if (buf.length < 500) return false;
+  writeFileSync(filePath, buf);
   return true;
 }
