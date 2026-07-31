@@ -8,7 +8,7 @@ test.describe('Skills Tab', () => {
   });
 
   test('loads and shows page content', async ({ page }) => {
-    await page.goto('/l2team-navigator/skills');
+    await page.goto('/skills');
     await expect(page.locator('[data-tab="skills"]')).toBeVisible({ timeout: 20000 });
   });
 });

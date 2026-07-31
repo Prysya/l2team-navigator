@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Auth Gate', () => {
   test('shows auth gate on page load without token', async ({ page }) => {
-    await page.goto('/l2team-navigator/');
+    await page.goto('/');
 
     await expect(page.getByText('L2team Navigator')).toBeVisible();
     await expect(page.getByText('Доступ к сайту')).toBeVisible();
@@ -20,7 +20,7 @@ test.describe('Auth Gate', () => {
       });
     });
 
-    await page.goto('/l2team-navigator/');
+    await page.goto('/');
     await page.getByPlaceholder('Введите токен').fill('invalid-token');
     await page.getByRole('button', { name: /Войти/ }).click();
 
@@ -37,7 +37,7 @@ test.describe('Auth Gate', () => {
       });
     });
 
-    await page.goto('/l2team-navigator/');
+    await page.goto('/');
     await page.getByPlaceholder('Введите токен').fill('valid-token');
     await page.getByRole('button', { name: /Войти/ }).click();
 

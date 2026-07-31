@@ -2,6 +2,21 @@
 
 Все значимые изменения проекта фиксируются в этом файле.
 
+## [1.8.0] - 2026-07-31
+
+### Added
+- `wrangler.toml` для деплоя на Cloudflare Pages
+
+### Changed
+- Vite 5.4 → 8.2, `@vitejs/plugin-react` 4 → 6
+- Динамический base path через `VITE_BASE_PATH` (Cloudflare — `/`, GitHub Pages — `/l2team-navigator/`)
+- `__dirname` → `import.meta.dirname` в vite.config.ts
+- E2E тесты читают VITE_BASE_PATH из playwright.config.ts
+- `tag-on-merge.yml`: bump-коммит с `[skip ci]` — без лишнего деплоя Cloudflare
+
+### Removed
+- Пакет `sass` (JS Dart Sass), оставлен только `sass-embedded`
+
 ## [1.7.29] - 2026-07-31
 
 ### Fixed

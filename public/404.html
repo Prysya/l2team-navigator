@@ -5,7 +5,8 @@
   <title>L2team Navigator</title>
   <script>
     sessionStorage.redirect = location.pathname + location.search;
-    location.replace('/l2team-navigator/');
+    var base = location.pathname.split('/').slice(0, -1).join('/') || '/';
+    location.replace(base);
   </script>
 </head>
 <body></body>
