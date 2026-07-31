@@ -82,6 +82,9 @@ async function main() {
     try {
       const resp = await fetch(url, { headers: { 'Accept-Language': 'en' } });
       const html = await resp.text();
+      if (!html || html.length < 500) {
+        throw new Error(`Empty or too short response (${html.length} bytes)`);
+      }
       const imageUrls = extractImages(html);
       
       const questImages = [];
@@ -117,11 +120,14 @@ async function main() {
     await sleep(1000 + Math.random() * 1000);
   }
   
-  // Write QUEST_IMAGES.json
-  writeFileSync(
-    resolve(root, 'src/data/quests/QUEST_IMAGES.json'),
-    JSON.stringify(imageMap, null, 2)
-  );
+  // Write QUEST_IMAGES.json (merge with existing)
+  const existingPath = resolve(root, 'src/data/quests/QUEST_IMAGES.json');
+  let existing = {};
+  if (existsSync(existingPath)) {
+    existing = JSON.parse(readFileSync(existingPath, 'utf-8'));
+  }
+  const merged = { ...existing, ...imageMap };
+  writeFileSync(existingPath, JSON.stringify(merged, null, 2));
   
   console.log(`\nDone! Downloaded ${totalDownloaded} new images.`);
   console.log(`Total quests with images: ${Object.values(imageMap).filter(v => v.length > 0).length}`);
