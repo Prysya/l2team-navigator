@@ -2,7 +2,7 @@
 
 Все значимые изменения проекта фиксируются в этом файле.
 
-## [1.7.29] - 2026-07-30
+## [1.8.0] - 2026-07-31
 
 ### Added
 - `wrangler.toml` для деплоя на Cloudflare Pages
@@ -12,39 +12,23 @@
 - Динамический base path через `VITE_BASE_PATH` (Cloudflare — `/`, GitHub Pages — `/l2team-navigator/`)
 - `__dirname` → `import.meta.dirname` в vite.config.ts
 - E2E тесты читают VITE_BASE_PATH из playwright.config.ts
+- `tag-on-merge.yml`: bump-коммит с `[skip ci]` — без лишнего деплоя Cloudflare
 
 ### Removed
 - Пакет `sass` (JS Dart Sass), оставлен только `sass-embedded`
 
-## [1.7.28] - 2026-07-30
-
-### Added
-- `AuthGate` — экран авторизации для браузерных пользователей (ввод токена от @l2team_butler_bot)
-- `e2e/auth.spec.ts` — тесты для гейта (виден, ошибка, успешный вход)
-- `e2e/helpers.ts` — `setupAuth()` для обхода гейта в E2E-тестах
-
-### Changed
-- App.tsx: добавлена проверка sessionStorage + POST /api/auth/validate
-- Отправка `X-Auth-Token` заголовка в браузере (вместо initData)
-- Playwright-тесты: `setupAuth()` в `beforeEach` для всех spec-файлов
-
-## [1.7.27] - 2026-07-30
-
-### Removed
-- `scripts/fetch-item-icons-by-id.mjs`, `scripts/fetch-item-icons.mjs`, `scripts/fetch-recipe-icons.mjs` — объединены в `build-item-icons.mjs`
-- `scripts/fetch-raidbosses.mjs`, `scripts/fetch-skills.mjs`, `scripts/parse-wiki-bosses.mjs` — удалены (устаревшие легаси-парсеры)
-
-### Added
-- `scripts/build-item-icons.mjs` — универсальный сборщик иконок (3 фазы: item-wiki, item-icons-by-id, recipe-icons)
-
-### Changed
-- README.md и AGENTS.md обновлены под новую структуру скриптов
-
-## [1.7.26] - 2026-07-30
+## [1.7.29] - 2026-07-31
 
 ### Fixed
-- Авторизация: initData передаётся в заголовке `X-Telegram-Init-Data` вместо Bearer токена
-- `telegramApi.ts`: обновлён `getAuthHeaders()` для корректной отправки initData
+- Обновлены изображения расовых квестов с mw2.wiki (35 изображений заменено на актуальные)
+- Добавлены отсутствующие изображения для цепочки Кусто (33 изображения)
+- Исправлены image-ссылки в `kustoQuests.ts` — удалены битые хардкод-списки, теперь через `QUEST_IMAGES.json`
+
+### Changed
+- `fetch-quest-images.mjs` — убран `resp.ok`, используется проверка длины тела (mw2.wiki возвращает HTTP 500 с валидным контентом)
+- `fetch-quest-images.mjs` — мёрджит данные с существующим `QUEST_IMAGES.json` вместо перезаписи
+- `scripts/quests/shared.mjs` — `tryFetch` и `download` обрабатывают HTTP 500 аналогично
+- `QUEST_IMAGES.json` расширен с 36 до 45 квестов (добавлены 9 квестов Кусто), 177 изображений
 
 ## [1.7.24] - 2026-07-30
 
