@@ -461,6 +461,13 @@ function questUrl(name: string, id: number): string {
 - Если модалка открыта по ошибке — показывает **только ошибку**, полный JSON скрыт под toggle
 - Подписан на стор через `useTelegramStore()` (реактивно), а не `getState()` (снэпшот)
 
+### GateDebugModal (`GateDebugModal.tsx`)
+
+- Открывается: ввод `wbchai` на любой странице (без админ-чека)
+- Показывает обезличенную диагностику токен-гейта: `isActualTelegram`, наличие `window.Telegram`/`WebApp`, длину `initData`, наличие `tgWebAppData` в hash, `hasNavigatorToken`, userAgent, screenSize, language
+- **Без персональных данных**: нет user id/username, нет env-переменных, нет содержимого hash
+- Использует те же стили `DebugModal.module.scss`, кнопка «Копировать»
+
 ## Lazy Loading
 
 - SkillsTab — ленивый через `React.lazy(() => import(...))` (SKILLS.json 3.6 MB)
