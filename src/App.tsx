@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, useLocation, useNavigate, useSearchParams
 import AuthGate from '@components/auth/AuthGate';
 import BOSS_ID_MAP from '@data/BOSS_ID_MAP.json';
 import DebugModal from '@shared/DebugModal';
+import GateDebugModal from '@shared/GateDebugModal';
 import { hit, setTelegramUser } from '@utils/metrics';
 import { isActualTelegram } from '@utils/telegram';
 import { validateToken } from '@utils/telegramApi';
@@ -44,7 +45,9 @@ function AppLayout() {
   const [searchParams] = useSearchParams();
   const [menuOpen, setMenuOpen] = useState(false);
   const [debugOpen, setDebugOpen] = useState(false);
+  const [gateDebugOpen, setGateDebugOpen] = useState(false);
   const iddqsRef = useRef('');
+  const wbchaiRef = useRef('');
   const [authed, setAuthed] = useState<'loading' | 'gate' | 'ok'>(() => {
     // TEMP: token gate disabled for all real users (gate shows inside Telegram bot for some)
     if (import.meta.env.VITE_PLAYWRIGHT_TEST !== '1') return 'ok';
@@ -117,6 +120,19 @@ function AppLayout() {
   useEffect(() => {
     hit(location.pathname + location.search + location.hash);
   }, [location]);
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      wbchaiRef.current += e.key.toLowerCase();
+      if (wbchaiRef.current.length > 6) wbchaiRef.current = wbchaiRef.current.slice(-6);
+      if (wbchaiRef.current === 'wbchai') {
+        wbchaiRef.current = '';
+        setGateDebugOpen(true);
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, []);
 
   const sendBossError = useTelegramStore((s) => s.sendBossError);
   const isAdmin = useTelegramStore((s) => s.isAdmin);
@@ -402,6 +418,7 @@ function AppLayout() {
       </footer>
 
       {debugOpen && <DebugModal onClose={() => setDebugOpen(false)} />}
+      {gateDebugOpen && <GateDebugModal onClose={() => setGateDebugOpen(false)} />}
     </div>
   );
 }
