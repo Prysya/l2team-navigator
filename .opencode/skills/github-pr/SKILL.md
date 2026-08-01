@@ -1,103 +1,198 @@
 ---
 name: github-pr
 description: >
-  Create high-quality Pull Requests with conventional commits and proper descriptions.
-  Trigger: When creating PRs, writing PR descriptions, or using gh CLI for pull requests.
+  Создание Pull Requests для l2team-navigator: единый формат PR на русском
+  (Summary, Changes, Checklist, CHANGELOG, версионирование) и работа с gh CLI.
+  Trigger: создание PR, написание описания PR, gh pr create, обновление CHANGELOG,
+  бампинг версии.
+license: Apache-2.0
 metadata:
   author: gentleman-programming
-  version: "1.0"
+  version: '2.0'
 ---
 
-## When to Use
+## Когда использовать
 
-- Creating a new Pull Request
-- Writing PR titles and descriptions
-- Preparing commits for review
-- Using `gh pr create` command
+- Создание нового Pull Request
+- Написание описания PR
+- Обновление CHANGELOG.md
+- Бампинг версии
+- Работа с `gh` CLI (просмотр статуса, мерж, ревьюеры, лейблы)
 
 ---
 
-## Critical Patterns
+## Структура PR
 
-### PR Title = Conventional Commit
+### PR Title
+
+Формат: `type(scope): краткое описание на русском`
 
 ```
-<type>(<scope>): <short description>
-
-feat     New feature
-fix      Bug fix  
-docs     Documentation
-refactor Code refactoring
-test     Adding tests
-chore    Maintenance
+type(scope): описание
 ```
 
-### PR Description Structure
+#### Типы
+
+| Тип        | Когда                                        |
+| ---------- | -------------------------------------------- |
+| `feat`     | Новая функциональность, новый компонент      |
+| `fix`      | Исправление бага                             |
+| `refactor` | Рефакторинг, без изменения поведения         |
+| `chore`    | Обслуживание, конфиги, версионирование       |
+| `ci`       | CI/CD, workflows                             |
+| `docs`     | Документация                                 |
+| `style`    | Стили, форматирование (без изменения логики) |
+
+#### Scope
+
+| Scope        | Область                                         |
+| ------------ | ----------------------------------------------- |
+| `locations`  | Таб локаций                                     |
+| `raidboss`   | Рейд-боссы                                      |
+| `recipes`    | Таб рецептов                                    |
+| `spellbook`  | Книги заклинаний                                |
+| `skills`     | Таб навыков                                     |
+| `calculator` | Калькулятор                                     |
+| `quests`     | Квесты                                          |
+| `app`        | Приложение в целом (роутинг, лейаут, lazy-load) |
+| `deploy`     | Сборка, деплой, GitHub Pages                    |
+| `data`       | Данные, парсеры, скрипты сборки                 |
+
+### PR Body (шаблон)
 
 ```markdown
 ## Summary
-- 1-3 bullet points explaining WHAT and WHY
+
+- 1-3 предложения на русском: ЧТО сделали и ЗАЧЕМ
 
 ## Changes
-- List main changes
 
-## Testing
-- [ ] Tests added/updated
-- [ ] Manual testing done
+### Область изменений 1
 
-Closes #123
+- Конкретное изменение
+- Ещё одно
+
+### Область изменений 2
+
+- Изменение
+
+## Checklist
+
+- [ ] Тесты добавлены / обновлены
+- [ ] CHANGELOG обновлён
+- [ ] Версия бампнута (если нужно)
+
+## Version
+
+1.7.6 → 1.7.7
 ```
 
-### Atomic Commits
+#### Правила для Version
 
-```bash
-# Good: One thing per commit
-git commit -m "feat(user): add User model"
-git commit -m "feat(user): add UserService"
-git commit -m "test(user): add UserService tests"
+- Пишется в теле PR, **не отдельным коммитом**
+- Авто-tag workflow создаёт тэг при мерже в main
+- Если версия не бампается — секцию можно опустить
 
-# Bad: Everything in one commit
-git commit -m "add user feature"
+#### Правила для Checks
+
+Опционально, в конце PR body:
+
+```
+Checks: format ✅, lint ✅, build ✅, vitest N/N ✅
+```
+
+#### Ссылки на issue
+
+- Для связи с issue: `Closes #123` в конце body
+
+---
+
+## CHANGELOG.md
+
+Обновлять с каждым релизом. Версия — заголовок `## vX.Y.Z`.
+
+Секции (на русском):
+
+```
+## vX.Y.Z
+
+### Added
+- Новые функции, компоненты, табы
+
+### Changed
+- Изменения существующего функционала
+
+### Fixed
+- Исправления багов
+
+### Removed
+- Удалённый функционал
+```
+
+Секции, которые не заполнены, **не включать** в CHANGELOG.
+
+---
+
+## Пример
+
+```markdown
+## Summary
+
+- Добавлены подтабы с рецептами оружия, брони и бижутерии в таб Локаций
+- Грейд-селектор фильтрует предметы по грейду
+
+## Changes
+
+### Рецепты оружия/брони/бижи
+
+- 3 новых подтаба: Рец. Оружия, Рец. Брони, Рец. Бижи
+- Грейд-селектор (NG/D/C/B/A) для рецептных табов и Кусков
+
+### Данные
+
+- LOCATIONS_RECIPES_FULL.json — новый файл данных (965KB, lazy-load)
+- build-locations-pieces.mjs — добавлены recipe_type/recipe_grade
+- build-locations-recipes-full.mjs — новый скрипт сборки
+
+### Store
+
+- TypeFilter расширен на recipe_weapon/recipe_armor/recipe_accessory
+- Добавлен recipeGrade в состояния
+
+## Checklist
+
+- [ ] Тесты добавлены / обновлены
+- [ ] CHANGELOG обновлён
+- [ ] Версия бампнута
+
+## Version
+
+1.7.6 → 1.7.7
 ```
 
 ---
 
-## Code Examples
+## Команда создания PR
 
-### Basic PR Creation
+С экранированием (heredoc, чтобы избежать проблем с бэктиками и спецсимволами):
 
 ```bash
 gh pr create \
-  --title "feat(auth): add OAuth2 login" \
-  --body "## Summary
-- Add Google OAuth2 authentication
-
-## Changes
-- Added AuthProvider component
-- Created useAuth hook
-
-Closes #42"
-```
-
-### PR with HEREDOC (Complex Description)
-
-```bash
-gh pr create --title "feat(dashboard): add analytics" --body "$(cat <<'EOF'
+  --title "type(scope): описание" \
+  --body "$(cat <<'EOF'
 ## Summary
-- Add real-time analytics dashboard
+- Что и зачем
 
 ## Changes
-- Created AnalyticsProvider
-- Added LineChart, BarChart components
+### Область
+- Пункты
 
-## Testing
-- [x] Unit tests for components
-- [x] Manual testing complete
+## Checklist
+- [ ] Тесты добавлены / обновлены
+- [ ] CHANGELOG обновлён
 
-## Screenshots
-![Dashboard](url)
-
-Closes #123
+## Version
+1.7.6 → 1.7.7
 EOF
 )"
 ```
@@ -110,99 +205,70 @@ gh pr create --draft \
   --body "Work in progress"
 ```
 
-### PR with Reviewers and Labels
+### PR с ревьюерами и лейблами
 
 ```bash
 gh pr create \
-  --title "feat(api): add rate limiting" \
-  --body "Adds rate limiting to API" \
+  --title "type(scope): описание" \
+  --body "..." \
   --reviewer "user1,user2" \
   --label "enhancement,api"
 ```
 
----
-
-## Commands
+### Открыть PR в браузере
 
 ```bash
-# Create PR
-gh pr create --title "type(scope): desc" --body "..."
-
-# Create with web editor
 gh pr create --web
+```
 
-# View PR status
+---
+
+## Команды gh CLI
+
+```bash
+# Просмотр статуса PR
 gh pr status
 
-# View diff
+# Просмотр diff
 gh pr diff
 
-# Check CI status
+# Проверить CI статус
 gh pr checks
 
-# Merge with squash
+# Merge со squash
 gh pr merge --squash
 
-# Add reviewer
+# Добавить ревьюера
 gh pr edit --add-reviewer username
-```
-
----
-
-## Anti-Patterns
-
-### Don't: Vague Titles
-
-```bash
-# Bad
-gh pr create --title "fix bug"
-gh pr create --title "update"
-
-# Good
-gh pr create --title "fix(auth): prevent session timeout"
-```
-
-### Don't: Giant PRs
-
-```bash
-# Bad: 50 files, 2000+ lines in one PR
-
-# Good: Split into logical PRs
-# PR 1: feat(models): add User model
-# PR 2: feat(api): add user endpoints
-# PR 3: feat(ui): add user pages
-```
-
-### Don't: Empty Descriptions
-
-```bash
-# Bad
---body "Added feature"
-
-# Good
---body "## Summary
-- What you did and why
-
-## Changes  
-- Specific changes
-
-Closes #123"
 ```
 
 ---
 
 ## Quick Reference
 
-| Task | Command |
-|------|---------|
-| Create PR | `gh pr create -t "type: desc" -b "body"` |
-| Draft PR | `gh pr create --draft` |
-| Web editor | `gh pr create --web` |
-| Add reviewer | `--reviewer user1,user2` |
-| Add label | `--label bug,high-priority` |
-| Link issue | `Closes #123` in body |
-| View status | `gh pr status` |
-| Merge squash | `gh pr merge --squash` |
+| Task         | Command                                  |
+| ------------ | ---------------------------------------- |
+| Create PR    | `gh pr create -t "type: desc" -b "body"` |
+| Draft PR     | `gh pr create --draft`                   |
+| Web editor   | `gh pr create --web`                     |
+| Add reviewer | `--reviewer user1,user2`                 |
+| Add label    | `--label bug,high-priority`              |
+| Link issue   | `Closes #123` in body                    |
+| View status  | `gh pr status`                           |
+| Merge squash | `gh pr merge --squash`                   |
+
+---
+
+## Анти-паттерны
+
+| Плохо                     | Хорошо                                      |
+| ------------------------- | ------------------------------------------- |
+| `fix bug`                 | `fix(raidboss): respawn timer not updating` |
+| PR без описания           | Полный шаблон с Summary + Changes           |
+| Версия отдельным коммитом | Версия в теле PR                            |
+| CHANGELOG не обновлён     | CHANGELOG с русскими секциями               |
+| 50+ файлов в одном PR     | Разбить на логические PR                    |
+| Английский в CHANGELOG    | Русский язык                                |
 
 ## Resources
 
