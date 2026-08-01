@@ -46,7 +46,8 @@ function AppLayout() {
   const [debugOpen, setDebugOpen] = useState(false);
   const iddqsRef = useRef('');
   const [authed, setAuthed] = useState<'loading' | 'gate' | 'ok'>(() => {
-    if (import.meta.env.DEV && import.meta.env.VITE_PLAYWRIGHT_TEST !== '1') return 'ok';
+    // TEMP: token gate disabled for all real users (gate shows inside Telegram bot for some)
+    if (import.meta.env.VITE_PLAYWRIGHT_TEST !== '1') return 'ok';
     if (isActualTelegram()) return 'ok';
     return sessionStorage.getItem('navigator_token') ? 'loading' : 'gate';
   });
