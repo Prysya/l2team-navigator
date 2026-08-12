@@ -1,0 +1,390 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.header {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-xl;
+  padding: $spacing-2xl;
+  margin-bottom: $spacing-2xl;
+
+  @include mobile {
+    padding: $spacing-lg;
+  }
+}
+
+.title {
+  font-size: $font-size-lg;
+  font-weight: 700;
+  color: $color-primary;
+  margin: 0 0 $spacing-sm;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-lg;
+  margin-bottom: $spacing-md;
+  flex-wrap: wrap;
+}
+
+.author {
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+  font-weight: 600;
+}
+
+.sourceLink {
+  color: $color-link;
+  font-size: $font-size-sm;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.intro {
+  color: $color-text;
+  font-size: $font-size-base;
+  line-height: 1.6;
+
+  p {
+    margin: 0 0 $spacing-sm;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.tableWrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: $font-size-base;
+
+  th,
+  td {
+    padding: 8px 12px;
+    border: 1px solid $color-border;
+    text-align: left;
+  }
+
+  th {
+    background: $color-surface-hover;
+    color: $color-primary;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  td {
+    color: $color-text;
+    vertical-align: middle;
+  }
+
+  @include mobile {
+    th,
+    td {
+      padding: 6px 8px;
+      font-size: $font-size-sm;
+    }
+  }
+}
+
+.row {
+  cursor: pointer;
+
+  &:hover {
+    background: $color-surface-hover;
+  }
+}
+
+.colExpand {
+  width: 32px;
+}
+
+.colNum {
+  width: 40px;
+}
+
+.colLvl {
+  width: 56px;
+}
+
+.expandIcon {
+  user-select: none;
+  color: $color-text-muted;
+}
+
+.numBadge {
+  display: inline-block;
+  min-width: 22px;
+  padding: 2px 6px;
+  border-radius: $radius-lg;
+  background: #2b3a55;
+  color: #fff;
+  font-weight: 600;
+  font-size: $font-size-xs;
+  text-align: center;
+}
+
+.questName {
+  font-weight: 600;
+}
+
+.questNote {
+  font-size: $font-size-xs;
+  color: $color-accent-orange;
+  font-style: italic;
+  margin-top: 2px;
+}
+
+.lvlBadge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: $radius-lg;
+  background: #2b3a55;
+  color: #fff;
+  font-weight: 600;
+  font-size: $font-size-sm;
+  text-align: center;
+  min-width: 30px;
+}
+
+.rewardCell {
+  white-space: pre-line;
+}
+
+.detailRow td {
+  padding: 0 !important;
+  border-top: none;
+}
+
+.detailCell {
+  padding: 0 !important;
+}
+
+.detailCard {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+}
+
+.sectionTitle {
+  font-size: $font-size-base;
+  font-weight: 700;
+  color: $color-primary;
+  margin: $spacing-md 0;
+}
+
+.guideStep {
+  font-size: $font-size-sm;
+  color: $color-text;
+  line-height: 1.6;
+  padding: 6px 10px;
+  margin-bottom: 4px;
+  background: $color-surface-alt;
+  border-radius: $radius-md;
+  border-left: 3px solid $color-accent-orange;
+}
+
+.accordionBtn {
+  margin-top: $spacing-lg;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: 8px 12px;
+  background: transparent;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  color: $color-text;
+  cursor: pointer;
+  font-size: $font-size-base;
+  font-weight: 600;
+  transition: all 0.15s;
+
+  &:hover {
+    border-color: $color-primary;
+    color: $color-primary;
+  }
+}
+
+.accordionOpen {
+  border-color: $color-primary;
+  color: $color-primary;
+  background: rgba(56, 189, 248, 0.06);
+}
+
+.accordionIcon {
+  color: $color-primary;
+}
+
+.questInfo {
+  margin-top: $spacing-lg;
+  padding-top: $spacing-lg;
+  border-top: 1px solid $color-border;
+}
+
+.infoTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  margin-bottom: $spacing-sm;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-sm $spacing-xl;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.infoItem {
+  font-size: $font-size-base;
+  color: $color-text;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+.infoLabel {
+  color: $color-text-muted;
+  font-weight: 600;
+  margin-right: $spacing-xs;
+}
+
+.wikiLink {
+  flex-shrink: 0;
+  color: $color-link;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.mapBtn {
+  margin-top: $spacing-md;
+  padding: 6px 14px;
+  background: transparent;
+  border: 1px solid $color-primary;
+  border-radius: $radius-lg;
+  color: $color-primary;
+  cursor: pointer;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  transition: background 0.15s;
+
+  &:hover {
+    background: rgba(56, 189, 248, 0.1);
+  }
+}
+
+.imagesSection {
+  margin-top: $spacing-lg;
+}
+
+.images {
+  display: flex;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+}
+
+.imageLink {
+  display: block;
+  width: 200px;
+  flex-shrink: 0;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.15s;
+
+  &:hover {
+    border-color: $color-primary;
+  }
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.stepsSection {
+  margin-top: $spacing-lg;
+}
+
+.stepItem {
+  font-size: $font-size-sm;
+  color: $color-text;
+  line-height: 1.6;
+  padding: 6px 10px;
+  margin-bottom: 4px;
+  background: $color-surface-alt;
+  border-radius: $radius-md;
+  border-left: 3px solid $color-primary;
+}
+
+.previewOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.previewModal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.previewClose {
+  position: absolute;
+  top: -36px;
+  right: -36px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid $color-border;
+  background: #0b0f1a;
+  color: $color-text;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10001;
+
+  &:hover {
+    background: $color-surface-hover;
+    color: $color-primary;
+    border-color: $color-primary;
+  }
+}
+
+.previewImage {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: $radius-lg;
+  border: 2px solid $color-border;
+  object-fit: contain;
+}

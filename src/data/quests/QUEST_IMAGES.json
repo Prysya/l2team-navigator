@@ -178,5 +178,13 @@
     "contract-completion-2.jpg",
     "contract-completion-3.jpg",
     "contract-completion-4.jpg"
-  ]
+  ],
+  "Shards of Golem": ["shards-of-golem-1.jpg", "shards-of-golem-2.jpg", "shards-of-golem-3.jpg"],
+  "Covert Business": ["covert-business-1.jpg", "covert-business-2.jpg"],
+  "Dreaming of the Skies": ["dreaming-of-the-skies-1.jpg", "dreaming-of-the-skies-2.jpg"],
+  "Tarantula's Spider Silk": ["tarantula-s-spider-silk-1.jpg", "tarantula-s-spider-silk-2.jpg"],
+  "Traces of Evil": ["traces-of-evil-1.jpg", "traces-of-evil-2.jpg"],
+  "Collector's Dream": ["collector-s-dream-1.jpg", "collector-s-dream-2.jpg"],
+  "Rancher's Plea": ["rancher-s-plea-1.jpg", "rancher-s-plea-2.jpg", "rancher-s-plea-3.jpg"],
+  "Catch the Wind": ["catch-the-wind-1.jpg", "catch-the-wind-2.jpg"]
 }

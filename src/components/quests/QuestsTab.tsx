@@ -1,89 +1,20 @@
 import { Fragment, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
-import QUEST_DATA from '@data/QUEST_DATA.json';
 import { KUSTO_QUESTS } from '@data/quests/kustoQuests';
-import { NPC_COORDS } from '@data/quests/npcCoords';
 import { PROFESSION_RACES } from '@data/quests/professionRaces';
-import QUEST_IMAGES from '@data/quests/QUEST_IMAGES.json';
-import { QUEST_DETAILS } from '@data/quests/questDetails';
-import { QUEST_IDS } from '@data/quests/questIds';
 import { QUESTS_BY_RACE } from '@data/quests/questsByRace';
-import { QUEST_STEPS } from '@data/quests/questSteps';
 import { SHARED_QUESTS } from '@data/quests/sharedQuests';
 import { TEMPLE_EXECUTOR_QUESTS } from '@data/quests/templeExecutorQuests';
-import type { Quest, RewardTag } from '@data/quests/types';
+import type { Quest } from '@data/quests/types';
 import CustomSelect from '@shared/CustomSelect';
 import WorldMap from '@shared/WorldMap';
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import { enrichQuest, questUrl } from '@utils/quests';
 import cx from 'classnames';
 
 import { useQuestStore } from '@/stores/questStore';
 
 import styles from './QuestsTab.module.scss';
-
-type QuestDataEntry = {
-  id: number;
-  type: string;
-  npcId: number | null;
-  npcName: string;
-  coords: { x: number; y: number } | null;
-  steps: string[];
-};
-
-function slug(name: string): string {
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '');
-}
-
-function questUrl(name: string, id: number): string {
-  return `https://mw2.wiki/lu4/posts/post/${id}-${slug(name)}`;
-}
-
-export function detectRewardTag(reward: string): RewardTag {
-  const r = reward.toLowerCase();
-  const hasWeapon =
-    /sword|staff|wand|blade|saber|hammer|club|dagger|knife|shield|spellbook|weapon|меч|молот|булава|dagger/i.test(r);
-  const hasSoulshot = /soulshot|spiritshot|соск/i.test(r);
-  if (hasWeapon && hasSoulshot) return 'both';
-  if (hasWeapon) return 'weapon';
-  if (hasSoulshot) return 'soulshot';
-  if (/aden|a$/i.test(r) && !/exp/i.test(r)) return 'adena';
-  if (/exp|xp/i.test(r)) return 'exp';
-  return 'other';
-}
-
-export function enrichQuest(q: Quest): Quest & {
-  npc: string;
-  npcId: number;
-  location: string;
-  startLvl: number;
-  endLvl: number;
-  questId: number;
-  steps: string[];
-  coords: { x: number; y: number } | null;
-  rewardTag: RewardTag;
-  images: string[];
-} {
-  const details = QUEST_DETAILS[q.name];
-  const parsed = (QUEST_DATA as Record<string, QuestDataEntry>)[q.name];
-  const npcId = details?.npcId ?? q.npcId ?? parsed?.npcId ?? 0;
-  const parsedCoords = parsed?.coords ?? null;
-  return {
-    ...q,
-    npc: details?.npc ?? q.npc ?? parsed?.npcName ?? '',
-    location: details?.location ?? q.location ?? '',
-    npcId,
-    startLvl: details?.startLvl ?? q.lvl,
-    endLvl: details?.endLvl ?? q.lvl,
-    questId: QUEST_IDS[q.name] ?? q.questId ?? parsed?.id ?? 0,
-    steps: QUEST_STEPS[q.name] ?? parsed?.steps ?? q.steps ?? [],
-    coords: NPC_COORDS[npcId] ?? parsedCoords,
-    rewardTag: detectRewardTag(q.reward),
-    images: q.images ?? (QUEST_IMAGES as Record<string, string[]>)[q.name] ?? [],
-  };
-}
 
 const RACES = [
   'Human Mage',
@@ -392,12 +323,12 @@ export default function QuestsTab() {
                               </div>
                             )}
                           </div>
-                          {eq.coords && eq.npcId > 0 && NPC_COORDS[eq.npcId] && (
+                          {eq.coords && (
                             <button
                               className={styles.mapBtn}
                               onClick={() => {
-                                const c = NPC_COORDS[eq.npcId];
-                                setMapNpc({ name: eq.name, x: c.x, y: c.y });
+                                const c = eq.coords;
+                                if (c) setMapNpc({ name: eq.name, x: c.x, y: c.y });
                               }}
                             >
                               📍 Показать на карте

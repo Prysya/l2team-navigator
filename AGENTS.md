@@ -111,6 +111,7 @@ Use conventional commits: `type: description` (lowercase, no caps).
 | `useSpellbookStore` | `src/stores/spellbookStore.ts` |
 | `useRecipeStore`    | `src/stores/recipeStore.ts`    |
 | `useQuestStore`     | `src/stores/questStore.ts`     |
+| `useGuideStore`     | `src/stores/guideStore.ts`     | `expanded`, `infoOpen`                                                                                                       |
 | `useTelegramStore`  | `src/stores/telegramStore.ts`  |
 
 ## Theme
@@ -142,6 +143,7 @@ Use conventional commits: `type: description` (lowercase, no caps).
 | `/raidboss`   | RaidBossTab   | `src/components/raidboss/RaidBossTab.tsx`     |
 | `/calculator` | CalculatorTab | `src/components/calculator/CalculatorTab.tsx` |
 | `/quests`     | QuestsTab     | `src/components/quests/QuestsTab.tsx`         |
+| `/guide`      | GuideTab      | `src/components/guide/GuideTab.tsx`           |
 
 - Valid tabs constant in `src/utils/constants.ts` (`TAB_NAMES`, `VALID_TABS`)
 - TabBar component renders tab navigation; shown only when `activeTab` is set (hidden on `/`)
@@ -254,6 +256,18 @@ Use conventional commits: `type: description` (lowercase, no caps).
 - CopyLink per boss: `#raidboss?boss=`, opens boss expanded + search pre-filled
 - Map image: `/public/maps/world-map.jpg` (3004×3004)
 - Data source: `src/data/RAIDBOSSES.json` (530KB, untracked in git)
+
+### GuideTab
+
+- Таб «Гайд Бомжа» (`/guide`) — квесты из гайда «Гайд Бомжа 3. Lu4 Edition. Твинкогномы как драйвер экономики» (автор @iMessiah, форум L2E-Global)
+- Данные: `src/data/guide/bomzhGuide.ts` — интро + 19 квестов (рус. имя, `enName` для связи с нашими данными, lvl, шаги дословно, награда, note)
+- Таблица: № · Квест · Ур. · Награда (по гайду); раскрытие строки → шаги гайда + аккордион «Информация о квесте»
+- Аккордион тянет данные через `enrichQuest(enName)`: NPC, локация, уровни, награда, шаги mw2.wiki, картинки, кнопка карты, ссылка post-ID
+- Ссылки на квесты — новый формат `/lu4/posts/post/{id}-{slug}` через `questUrl`
+- Квесты гайда добавлены в расовые квесты **Dwarf / Dwarf Mage** (10 новых: Find Sir Windawood, The Guard is Busy, Shards of Golem, Covert Business, Dreaming of the Skies, Tarantula's Spider Silk, Traces of Evil, Collector's Dream, Rancher's Plea, Catch the Wind)
+- В данных добавлены 8 новых квестов: `questDetails.ts`, `questIds.ts`, `questSteps.ts`, `npcCoords.ts`, `QUEST_IMAGES.json` (картинки в `public/images/quests/`)
+- Хелперы `enrichQuest`/`questUrl`/`slug`/`detectRewardTag` вынесены в `src/utils/quests.ts` (общие для QuestsTab и GuideTab)
+- Таб ленивый: `React.lazy(() => import('./components/guide/GuideTab'))`, отдельный чанк ~16KB
 
 ## Data Files (all in `src/data/`)
 

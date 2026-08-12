@@ -1,6 +1,5 @@
+import { detectRewardTag } from '@utils/quests';
 import { describe, expect, it } from 'vitest';
-
-import { detectRewardTag } from '../QuestsTab';
 
 describe('detectRewardTag', () => {
   it('returns both for weapon and soulshot', () => {

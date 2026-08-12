@@ -246,6 +246,19 @@ export const QUESTS_BY_RACE: Record<string, Quest[]> = {
       reward: "Exp 2500, SP 250, Ring of Knowledge, Mystic's Earring",
     },
     {
+      lvl: 4,
+      name: 'Find Sir Windawood',
+      desc: 'Продолжение цепочки',
+      reward: 'Exp 1000, SP 100, Haste Potion, Alacrity Potion',
+    },
+    {
+      lvl: 6,
+      name: 'The Guard is Busy',
+      desc: 'Соски и расходники за первое прохождение',
+      reward:
+        'Adena x10 за 1 итем (Orc Amulet/Nickel/Werewolf Fang), макс. 10 итемов\n\nБонус первого прохождения: Soulshot NG x2000, Spiritshot NG x1000, Heal Pot x50',
+    },
+    {
       lvl: 6,
       name: 'The Hidden Veins',
       desc: 'Соски и расходники (набить 11 итемов)',
@@ -254,10 +267,48 @@ export const QUESTS_BY_RACE: Record<string, Quest[]> = {
     },
     {
       lvl: 10,
+      name: 'Covert Business',
+      desc: 'Повторяемый фарм адены (Bat Fang)',
+      reward: 'Adena 35/итем, 7500 Exp + Ring of Raccoon за 100 итемов',
+    },
+    {
+      lvl: 10,
       name: 'Jumble, Tumble, Diamond Fuss',
       desc: 'Адена и материалы',
       reward:
         'Воин: Soulshot NG x7000, Heal Pot x150, Silversmith Hammer\n\nМаг: Spiritshot NG x3500, Heal Pot x150, Wand of Adept',
+    },
+    {
+      lvl: 10,
+      name: 'Shards of Golem',
+      desc: 'Адена и опыт',
+      reward: 'Exp 10000, SP 1000, Adena 8000',
+    },
+    {
+      lvl: 11,
+      name: 'Dreaming of the Skies',
+      desc: 'Повторяемый фарм адены (Floating Stone)',
+      reward: 'Adena 35/итем, 7500 Exp + Ring of Firefly за 100 итемов',
+    },
+    { lvl: 15, name: "Collector's Dream", desc: 'Фарм на пауках в деревне эльфов', reward: 'Adena 40/итем' },
+    {
+      lvl: 15,
+      name: "Rancher's Plea",
+      desc: 'Фарм на пауках на Говорящем острове',
+      reward: 'Выбор: Adena 35 / Soulshot 8 / Spiritshot 4 / Wooden Arrow 30 / хилки / свитки',
+    },
+    {
+      lvl: 15,
+      name: "Tarantula's Spider Silk",
+      desc: 'Фарм на пауках (нужны Ring of Raccoon/Firefly)',
+      reward: 'Adena 30/шелк, 600/спиннерет',
+    },
+    { lvl: 15, name: 'Traces of Evil', desc: 'Фарм на пауках в деревне орков', reward: 'Adena 40/итем' },
+    {
+      lvl: 18,
+      name: 'Catch the Wind',
+      desc: 'Фарм на Lirein у Эльфийской крепости',
+      reward: 'Adena 40/итем + 8000 за 100 итемов',
     },
   ],
   'Dwarf Mage': [
@@ -271,6 +322,19 @@ export const QUESTS_BY_RACE: Record<string, Quest[]> = {
       reward: "Exp 2500, SP 250, Ring of Knowledge, Mystic's Earring",
     },
     {
+      lvl: 4,
+      name: 'Find Sir Windawood',
+      desc: 'Продолжение цепочки',
+      reward: 'Exp 1000, SP 100, Haste Potion, Alacrity Potion',
+    },
+    {
+      lvl: 6,
+      name: 'The Guard is Busy',
+      desc: 'Соски и расходники за первое прохождение',
+      reward:
+        'Adena x10 за 1 итем (Orc Amulet/Nickel/Werewolf Fang), макс. 10 итемов\n\nБонус первого прохождения: Soulshot NG x2000, Spiritshot NG x1000, Heal Pot x50',
+    },
+    {
       lvl: 6,
       name: 'The Hidden Veins',
       desc: 'Соски и расходники (набить 11 итемов)',
@@ -279,10 +343,48 @@ export const QUESTS_BY_RACE: Record<string, Quest[]> = {
     },
     {
       lvl: 10,
+      name: 'Covert Business',
+      desc: 'Повторяемый фарм адены (Bat Fang)',
+      reward: 'Adena 35/итем, 7500 Exp + Ring of Raccoon за 100 итемов',
+    },
+    {
+      lvl: 10,
       name: 'Jumble, Tumble, Diamond Fuss',
       desc: 'Адена и материалы',
       reward:
         'Воин: Soulshot NG x7000, Heal Pot x150, Silversmith Hammer\n\nМаг: Spiritshot NG x3500, Heal Pot x150, Wand of Adept',
+    },
+    {
+      lvl: 10,
+      name: 'Shards of Golem',
+      desc: 'Адена и опыт',
+      reward: 'Exp 10000, SP 1000, Adena 8000',
+    },
+    {
+      lvl: 11,
+      name: 'Dreaming of the Skies',
+      desc: 'Повторяемый фарм адены (Floating Stone)',
+      reward: 'Adena 35/итем, 7500 Exp + Ring of Firefly за 100 итемов',
+    },
+    { lvl: 15, name: "Collector's Dream", desc: 'Фарм на пауках в деревне эльфов', reward: 'Adena 40/итем' },
+    {
+      lvl: 15,
+      name: "Rancher's Plea",
+      desc: 'Фарм на пауках на Говорящем острове',
+      reward: 'Выбор: Adena 35 / Soulshot 8 / Spiritshot 4 / Wooden Arrow 30 / хилки / свитки',
+    },
+    {
+      lvl: 15,
+      name: "Tarantula's Spider Silk",
+      desc: 'Фарм на пауках (нужны Ring of Raccoon/Firefly)',
+      reward: 'Adena 30/шелк, 600/спиннерет',
+    },
+    { lvl: 15, name: 'Traces of Evil', desc: 'Фарм на пауках в деревне орков', reward: 'Adena 40/итем' },
+    {
+      lvl: 18,
+      name: 'Catch the Wind',
+      desc: 'Фарм на Lirein у Эльфийской крепости',
+      reward: 'Adena 40/итем + 8000 за 100 итемов',
     },
   ],
 };

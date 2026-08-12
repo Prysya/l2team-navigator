@@ -295,6 +295,56 @@ export const QUEST_STEPS: Record<string, string[]> = {
     '3. Вернитесь в Деревню Говорящего Острова (Talking Island Village) и поговорите с Biotin High Priest , чтобы получить награду: Гарантированно: Exp x 50 000 SP x 5000 Lesser Healing Potion x 50 Personal Blessed Scroll of Resurrection С шансом (1 предмет): Scroll: Enchant Armor (D-Grade) Scroll: Enchant Weapon (D-Grade)',
   ],
 
+  'Shards of Golem': [
+    "1. Стартовый NPC Harrys Magister находится в храме Деревни Говорящего Острова (Talking Island Village). Поговорите с Гаррисом для получения квеста, он даст вам Harrys's 1st Receipt.",
+    "2. На площади деревни найдите Altran Blacksmith и отдайте ему расписку. Он даст вам Harrys's 2nd Receipt.",
+    '3. Телепортируйтесь в Talking Island, North. Найдите и убейте монстров: Stone Golem Ур. 13, чтобы получить Golem Shard x 50.',
+    '4. Вернитесь в деревню и поговорите с Altran Blacksmith. В обмен на осколки он даст Tool Box.',
+    '5. Поднимитесь в храм и поговорите с Harrys Magister, чтобы получить награду: Exp x 10 000 SP x 1000 Adena x 8000',
+  ],
+
+  'Covert Business': [
+    "1. Стартовый NPC Keef Bronze Key's находится в Доме Старейшин Деревни Гномов (Dwarven Village). Поговорите с Кифом для получения квеста.",
+    '2. Отправляйтесь в северную часть Западных Рудников (Western Mining Zone). Найдите и убейте монстров: Blade Bat Ур. 10 Barbed Bat Ур. 12, чтобы получить Bat Fang.',
+    "3. Вернитесь к Keef Bronze Key's и поговорите с ним, чтобы получить награду: Adena x 35 за каждый Bat Fang. Одноразовая награда за сдачу 100 предметов: Exp x 7500 SP x 750 Ring of Raccoon",
+  ],
+
+  'Dreaming of the Skies': [
+    "1. Стартовый NPC Arin Black Anvil's находится в Доме Старейшин Деревни Гномов (Dwarven Village). Поговорите с Арином для получения квеста.",
+    '2. Отправляйтесь в северную часть Западных Рудников (Western Mining Zone). Найдите и убейте монстров: Magical Weaver Ур. 11, чтобы получить Floating Stone.',
+    "3. Вернитесь к Arin Black Anvil's, чтобы получить награду: Adena x 35 за каждый Floating Stone. Одноразовая награда за сдачу 100 предметов: Exp x 7500 SP x 750 Ring of Firefly",
+  ],
+
+  "Tarantula's Spider Silk": [
+    '1. Стартовый NPC Mion Grocer находится в бакалейной лавке Деревни Гномов (Dwarven Village). Поговорите с Мионом для получения квеста.',
+    '2. Отправляйтесь в восточную часть Западных Рудников (Western Mining Zone). Найдите и убейте монстров: Crimson Tarantula Ур. 15 Hunter Tarantula Ур. 16 Plunder Tarantula Ур. 17, чтобы получить Tarantula Spider Silk и Tarantula Spinnerette.',
+    '3. Вернитесь к Mion Grocer, чтобы получить награду: Adena x 30 за каждый Tarantula Spider Silk, Adena x 600 за каждый Tarantula Spinnerette',
+  ],
+
+  'Traces of Evil': [
+    '1. Стартовый NPC Kunai Armor Merchant находится в оружейной лавке Деревни Орков (Orc Village). Поговорите с Кунаем для получения квеста.',
+    '2. Отправляйтесь к Замерзшим Водопадам (Frozen Waterfalls) или в северо-восточную часть Плато Бессмертия (Immortal Plateau). Найдите и убейте монстров: Kasha Spider Ур. 15 Kasha Fang Spider Ур. 16 Kasha Blade Spider Ур. 17, чтобы получить Contaminated Kasha Spider Venom.',
+    '3. Вернитесь к Kunai Armor Merchant, чтобы получить награду: Adena x 40 за каждый Contaminated Kasha Spider Venom',
+  ],
+
+  "Collector's Dream": [
+    '1. Стартовый NPC Alshupes находится на площади Деревни Эльфов (Elven Village), рядом с храмом. Поговорите с Алшупесом для получения квеста.',
+    "2. Отправляйтесь в западную часть Эльфийского Леса (Elven Forest). Найдите и убейте монстров: Crimson Spider Ур. 15 Hook Spider Ур. 16 Pincer Spider Ур. 17, чтобы получить Giant Spider's Leg.",
+    "3. Вернитесь к Alshupes, чтобы получить награду: Adena x 40 за каждый Giant Spider's Leg",
+  ],
+
+  "Rancher's Plea": [
+    '1. Стартовый NPC Edmond находится возле хижины на севере Говорящего Острова (Talking Island, North). Поговорите с Эдмондом для получения квеста.',
+    "2. Отправляйтесь на западное побережье. Найдите и убейте монстров: Giant Spider Ур. 15 Talon Spider Ур. 16 Blade Spider Ур. 17, чтобы получить Giant Spider's Skin.",
+    "3. Вернитесь к Edmond или его другу Marius и выберите награду: Adena x 35 / Soulshot x 8 / Spiritshot x 4 / Wooden Arrow x 30 / Lesser Healing Potion / Scroll of Escape / Beast Soulshot x 2 / Beast Spiritshot за каждый Giant Spider's Skin",
+  ],
+
+  'Catch the Wind': [
+    '1. Стартовый NPC Rizraell находится в центре площади Деревни Эльфов (Elven Village). Поговорите с Ризраэль для получения квеста.',
+    '2. Телепортируйтесь в Нейтральную Зону (Neutral Zone) и направляйтесь к Эльфийской Крепости (Elven Fortress). Перейдите мост и убейте монстров: Lirein Ур. 18 Lirein Elder Ур. 19, чтобы получить Wind Shard.',
+    '3. Вернитесь к Rizraell, чтобы получить награду: Adena x 40 за каждый Wind Shard. Если соберете 100 и более предметов, дополнительно получите: Adena x 8000',
+  ],
+
   // 1st profession quests - basic structure (see mw2.wiki for full details)
   'Path of the Warrior': [
     '1. NPC: Auron (Gludin Warriors Guild).',

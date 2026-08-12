@@ -12,6 +12,7 @@ export const TAB_NAMES = [
   { key: 'raidboss', label: 'Рейд-боссы' },
   { key: 'calculator', label: 'Прокачка' },
   { key: 'quests', label: 'Квесты' },
+  { key: 'guide', label: 'Гайд Бомжа' },
 ] as const;
 
 export const TAB_ACCENT: Record<string, string> = {
@@ -22,4 +23,5 @@ export const TAB_ACCENT: Record<string, string> = {
   raidboss: 'var(--color-danger)',
   calculator: 'var(--color-accent-cyan)',
   quests: 'var(--color-accent-orange)',
+  guide: 'var(--color-accent-green)',
 };

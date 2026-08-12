@@ -18,6 +18,7 @@ import SectionIcon from './components/shared/SectionIcon';
 
 const LazySkillsTab = lazy(() => import('./components/skills/SkillsTab'));
 const LazyRecipeTab = lazy(() => import('./components/recipes/RecipeTab'));
+const LazyGuideTab = lazy(() => import('./components/guide/GuideTab'));
 // Lazy so the shared item-wiki data (~111KB) they pull in via ItemIcon stays
 // out of the initial bundle and only loads when one of these tabs is opened.
 const LazyRaidBossTab = lazy(() => import('./components/raidboss/RaidBossTab'));
@@ -37,6 +38,7 @@ const VALID_TABS: ReadonlySet<string> = new Set([
   'raidboss',
   'calculator',
   'quests',
+  'guide',
 ]);
 
 function AppLayout() {
@@ -393,6 +395,14 @@ function AppLayout() {
           />
           <Route path="/calculator" element={<CalculatorTab />} />
           <Route path="/quests" element={<QuestsTab />} />
+          <Route
+            path="/guide"
+            element={
+              <Suspense fallback={<div className="tab-page" />}>
+                <LazyGuideTab />
+              </Suspense>
+            }
+          />
           <Route path="*" element={<MainPage />} />
         </Routes>
       </div>
