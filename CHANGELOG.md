@@ -2,6 +2,18 @@
 
 Все значимые изменения проекта фиксируются в этом файле.
 
+## [1.7.31] - 2026-08-12
+
+### Added
+- Новый таб «Гайд Бомжа» (`/guide`) — 19 квестов из гайда «Гайд Бомжа 3. Lu4 Edition. Твинкогномы как драйвер экономики» (автор @iMessiah) с шагами дословно и аккордеоном «Информация о квесте»
+- 8 новых квестов в данных: Shards of Golem, Covert Business, Dreaming of the Skies, Tarantula's Spider Silk, Traces of Evil, Collector's Dream, Rancher's Plea, Catch the Wind (questDetails, questIds, questSteps, npcCoords, QUEST_IMAGES)
+- 10 квестов гайда добавлены в расовые квесты Dwarf / Dwarf Mage
+- 18 изображений квестов и координаты NPC на карте для новых квестов
+
+### Changed
+- Хелперы квестов `enrichQuest` / `questUrl` / `slug` / `detectRewardTag` вынесены в `src/utils/quests.ts` (общие для QuestsTab и GuideTab)
+- `fetch-quest-images.mjs` — добавлены 8 новых квестов в массив обработки
+
 ## [1.7.29] - 2026-07-31
 
 ### Fixed

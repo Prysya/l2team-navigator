@@ -41,6 +41,9 @@ const quests = [
   'Dwarven Kinship', 'Dangerous Seduction', 'Acts of Evil',
   'Totem of the Hestui', 'Dragon Fangs', 'Red-Eyed Invaders',
   'Blood Fiend', 'Seed of evil',
+  'Shards of Golem', 'Covert Business', 'Dreaming of the Skies',
+  "Tarantula's Spider Silk", 'Traces of Evil', "Collector's Dream",
+  "Rancher's Plea", 'Catch the Wind',
 ];
 
 function extractImages(html) {
