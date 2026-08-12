@@ -251,6 +251,33 @@ export const BOMZH_GUIDE: BomzhGuideData = {
     },
     {
       id: 18,
+      name: 'Тысячелетняя любовь',
+      enName: 'Millennium Love',
+      lvl: 15,
+      reward: '10000 опыта, 1000 SP, Soulshot NG x1500, Spiritshot NG x750, Haste Potion',
+      note: 'по желанию, для опыта',
+      steps: [
+        'Говорящий остров, вход в храм /target Lilith — берем квест.',
+        'Телепортируемся в Глудин, в гильдии воинов /target Baenedes.',
+        'Возвращаемся к Lilith — получаем 10000 опыта, 1000 SP, соски NG, Haste Potion.',
+      ],
+    },
+    {
+      id: 19,
+      name: 'Лечение лихорадки',
+      enName: 'Cure for Fever Disease',
+      lvl: 15,
+      reward: '20000 опыта, 2000 SP, Bone Shield (продаем в магаз)',
+      note: 'по желанию, для опыта',
+      steps: [
+        'Говорящий остров, центральная площадь /target Elias — берем квест.',
+        'Телепортируемся к Поющему Водопаду, убиваем пауков (Talon Spider, Blade Spider, Giant Spider) — собираем Giant Spider\u2019s Poison Sac.',
+        'В храме /target Yohanes — обмениваем железу на Fever Medicine.',
+        'Возвращаемся к Elias — получаем 20000 опыта, 2000 SP, Bone Shield (продаем в магаз).',
+      ],
+    },
+    {
+      id: 20,
       name: 'Поймайте ветер',
       enName: 'Catch the Wind',
       lvl: 18,
@@ -261,7 +288,7 @@ export const BOMZH_GUIDE: BomzhGuideData = {
       ],
     },
     {
-      id: 19,
+      id: 21,
       name: 'Кровный враг',
       enName: 'Blood Fiend',
       lvl: 21,
