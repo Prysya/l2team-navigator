@@ -3,6 +3,11 @@ declare global {
     Telegram?: {
       WebApp: {
         initData: string;
+        ready: () => void;
+        expand: () => void;
+        disableVerticalSwipes: () => void;
+        requestFullscreen: () => void;
+        isFullscreen: boolean;
       };
     };
   }

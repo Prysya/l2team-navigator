@@ -5,7 +5,7 @@ import BOSS_ID_MAP from '@data/BOSS_ID_MAP.json';
 import DebugModal from '@shared/DebugModal';
 import GateDebugModal from '@shared/GateDebugModal';
 import { hit, setTelegramUser } from '@utils/metrics';
-import { isActualTelegram } from '@utils/telegram';
+import { isActualTelegram, setupTelegramViewport } from '@utils/telegram';
 import { validateToken } from '@utils/telegramApi';
 import cx from 'classnames';
 
@@ -122,6 +122,10 @@ function AppLayout() {
   useEffect(() => {
     hit(location.pathname + location.search + location.hash);
   }, [location]);
+
+  useEffect(() => {
+    return setupTelegramViewport();
+  }, []);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
