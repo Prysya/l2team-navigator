@@ -19,6 +19,7 @@
 - PR target: `main`
 - Version bumps go in the PR body, not as separate commits (auto-tag workflow handles tagging on merge)
 - **Update CHANGELOG.md** with each version — describe changes in Russian under Added/Changed/Fixed/Removed
+- **Update AGENTS.md after any PR** — если PR меняет поведение, фичи, скрипты, конфиги или стек, обнови соответствующие секции AGENTS.md (Features by Tab, Data Notes, Scripts, Key Design Decisions и т.д.), чтобы агент всегда имел актуальный контекст
 - **All new features must be covered by tests** — unit (Vitest) for pure functions and stores, component tests for UI, E2E (Playwright) for critical user flows
 
 ### Commit Messages
@@ -432,6 +433,16 @@ function questUrl(name: string, id: number): string {
 - Safe ID босса: `name.toLowerCase().replace(/[^a-z0-9]+/g, '-')` — маппинг в `src/data/BOSS_ID_MAP.json`
 - Проверка членства в клане: POST `/api/check-user` с id + username при старте Mini App
 - CopyLink не показывается пользователям Telegram
+
+### Viewport: fullscreen при запуске (`src/utils/telegram.ts`)
+
+- `setupTelegramViewport()` вызывается в `useEffect` на mount в `AppLayout()` (после первого рендера) — возвращает cleanup
+- Порядок: `expand` → `disableVerticalSwipes` → `ready` → `requestFullscreen`
+- `ready()` вызывается после раскрытия, чтобы лоадер Telegram скрывался уже на полном экране
+- `requestFullscreen()` повторяется одноразово при первом тапе (`pointerdown`/`touchstart`), если `webApp.isFullscreen !== true` (страховка от `fullscreenFailed`)
+- Каждый вызов в try/catch — на клиентах без поддержки метода пропускается, в обычном браузере no-op
+- Физит баг: свайп вверх внутри таблиц сворачивал приложение (BottomSheet перехватывал жест)
+- Тип `window.Telegram.WebApp` (включая `initData`) описан в `src/types/telegram.d.ts` (только используемые поля)
 
 ### Environment Variables
 
