@@ -2,6 +2,18 @@
 
 Все значимые изменения проекта фиксируются в этом файле.
 
+## [1.8.0] - 2026-08-18
+
+### Added
+- PWA: сайт теперь устанавливается как приложение (manifest, иконки 192/512/maskable, apple-touch-icon)
+- Service Worker (Workbox): прекэш оболочки и лёгких чанков, рантайм-кэш тяжёлых данных (Skills/Recipes), картинок боссов/квестов, карт и внешних иконок mw2.wiki/lu4db — сайт работает оффлайн после первого визита
+- Скрипт `scripts/fetch-telegram-script.mjs` — обновление локальной копии Telegram WebApp SDK
+
+### Changed
+- Миграция на Vite 8 и `@vitejs/plugin-react` 6; убран пакет `sass` (оставлен только `sass-embedded`, modern-compiler — дефолт)
+- `vite.config.ts`: `__dirname` → `import.meta.dirname`
+- Telegram WebApp SDK скачивается и хранится локально (`public/telegram-web-app.js`) вместо загрузки с CDN telegram.org — нет зависимости от внешнего скрипта при старте
+
 ## [1.7.33] - 2026-08-17
 
 ### Fixed
