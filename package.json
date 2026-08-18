@@ -24,6 +24,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
+    "test:e2e:pwa": "playwright test --config playwright.pwa.config.ts",
     "test:e2e:ui": "playwright test --ui",
     "prepush": "npm run lint && npm run format:check && npm test && npm run build",
     "prepare": "husky"

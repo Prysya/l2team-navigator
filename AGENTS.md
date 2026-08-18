@@ -439,6 +439,13 @@ function questUrl(name: string, id: number): string {
 - В dev SW отключён (дефолт `vite-plugin-pwa`) — не влияет на e2e
 - При изменении PWA-конфига проверить: `npm run build` → `dist/sw.js` + `dist/manifest.webmanifest`, ручная проверка в DevTools (Application → Service Workers / Manifest / Cache Storage)
 
+### Тесты PWA
+
+- Конфиг вынесен в `src/pwa/config.ts` (`pwaConfig`) — покрыт unit-тестами в `src/pwa/__tests__/config.test.ts` (manifest, лимит прекэша, runtime-паттерны)
+- Playwright-тесты в `e2e/pwa/pwa.spec.ts` (отдельный конфиг `playwright.pwa.config.ts`): SW регистрируется, прекэш создан, manifest/иконки отдаются, оффлайн-перезагрузка из кэша
+- PWA-тесты требуют prod-сборки (`vite preview`), поэтому запускаются отдельно: `npm run test:e2e:pwa`
+- Основной `test:e2e` — только app-тесты (dev-сервер, SW отключён, `testIgnore: 'pwa/**'`)
+
 ## Analytics
 
 - Яндекс.Метрика (ID: 110798252) добавлена в `index.html`

@@ -8,11 +8,13 @@
 - PWA: сайт теперь устанавливается как приложение (manifest, иконки 192/512/maskable, apple-touch-icon)
 - Service Worker (Workbox): прекэш оболочки и лёгких чанков, рантайм-кэш тяжёлых данных (Skills/Recipes), картинок боссов/квестов, карт и внешних иконок mw2.wiki/lu4db — сайт работает оффлайн после первого визита
 - Скрипт `scripts/fetch-telegram-script.mjs` — обновление локальной копии Telegram WebApp SDK
+- Тесты PWA: unit-тесты конфига (`src/pwa/__tests__/config.test.ts`) и Playwright-смоук в prod-сборке (`e2e/pwa/pwa.spec.ts`, `npm run test:e2e:pwa`) — SW, прекэш, manifest, оффлайн-перезагрузка
 
 ### Changed
 - Миграция на Vite 8 и `@vitejs/plugin-react` 6; убран пакет `sass` (оставлен только `sass-embedded`, modern-compiler — дефолт)
-- `vite.config.ts`: `__dirname` → `import.meta.dirname`
+- `vite.config.ts`: `__dirname` → `import.meta.dirname`; PWA-конфиг вынесен в `src/pwa/config.ts` (покрыт unit-тестами)
 - Telegram WebApp SDK скачивается и хранится локально (`public/telegram-web-app.js`) вместо загрузки с CDN telegram.org — нет зависимости от внешнего скрипта при старте
+- Playwright: PWA-тесты вынесены в отдельный конфиг `playwright.pwa.config.ts` и команду `test:e2e:pwa` — основной `test:e2e` не требует prod-сборки
 
 ## [1.7.33] - 2026-08-17
 
