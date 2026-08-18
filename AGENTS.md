@@ -42,11 +42,12 @@ Use conventional commits: `type: description` (lowercase, no caps).
 
 ## Stack
 
-- Vite 5 + React 18 + TypeScript (strict, no `any`) + SCSS Modules + normalize.css
+- Vite 8 + React 18 + TypeScript (strict, no `any`) + SCSS Modules + normalize.css
 - No CRA, no external UI library
 - Static data in `src/data/*.json` (no runtime API calls)
 - Deployed to GitHub Pages at `/l2team-navigator/`
-- Sass: `sass-embedded` with `api: 'modern-compiler'` in vite.config.ts
+- Sass: `sass-embedded` (modern-compiler — дефолт, явный `api` конфиг убран)
+- PWA: `vite-plugin-pwa` (Workbox) — service worker + manifest, прекэш оболочки и рантайм-кэш (см. секцию PWA)
 - `classnames` for conditional className composition
 - ESLint + Prettier for code quality (configs: `.eslintrc.json`, `.prettierrc`)
 - Import aliases: `@/`, `@shared/`, `@components/`, `@utils/`, `@data/`, `@styles/`
@@ -407,19 +408,43 @@ function questUrl(name: string, id: number): string {
 
 ### Quest pipeline
 
-| Скрипт                    | Назначение                                                                                                        | npm скрипт |
-| ------------------------- | ----------------------------------------------------------------------------------------------------------------- | ---------- |
-| `parse-quests.mjs`        | Парсит квесты с mw2.wiki: полные шаги, NPC ID, имена, координаты → `QUEST_DATA.json`. Semaphore=4                 | —          |
-| `fetch-quest-rewards.mjs` | Собирает актуальные награды расовых квестов с mw2.wiki, сравнивает старые/новые, выводит TS-обновления            | —          |
-| `fetch-quest-images.mjs`  | Скачивает изображения квестов с mw2.wiki в `/public/images/quests/`, обновляет `QUEST_IMAGES.json`                | —          |
-| `dedup-quest-images.mjs`  | Дедуплицирует изображения по MD5, подменяет ссылки в `QUEST_IMAGES.json`                                          | —          |
-| `apply-quest-steps.mjs`   | Парсит шаги прохождения с mw2.wiki (русский/английский), обновляет `questSteps.ts` с сохранением profession-блока | —          |
-| `extract-quest-steps.mjs` | Упрощённая однопоточная версия `apply-quest-steps.mjs` (вывод в stdout)                                           | —          |
-| `quests/fetch-kusto.mjs`  | Скачивает изображения для цепочки Кусто (посты 87-95)                                                             | —          |
-| `quests/fetch-other.mjs`  | Скачивает изображения для остальных квестов (не Path of..., не Кусто)                                             | —          |
-| `quests/fetch-path.mjs`   | Скачивает изображения для Path of... квестов (1 профессия)                                                        | —          |
-| `quests/fetch-three.mjs`  | Вывод ID для 3 in 1 квестов (2 профессия) без изображений                                                         | —          |
-| `quests/shared.mjs`       | Утилиты для скриптов в `quests/` (обработка HTTP 500)                                                             | —          |
+| Скрипт                      | Назначение                                                                                                        | npm скрипт |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------- | ---------- |
+| `parse-quests.mjs`          | Парсит квесты с mw2.wiki: полные шаги, NPC ID, имена, координаты → `QUEST_DATA.json`. Semaphore=4                 | —          |
+| `fetch-quest-rewards.mjs`   | Собирает актуальные награды расовых квестов с mw2.wiki, сравнивает старые/новые, выводит TS-обновления            | —          |
+| `fetch-quest-images.mjs`    | Скачивает изображения квестов с mw2.wiki в `/public/images/quests/`, обновляет `QUEST_IMAGES.json`                | —          |
+| `dedup-quest-images.mjs`    | Дедуплицирует изображения по MD5, подменяет ссылки в `QUEST_IMAGES.json`                                          | —          |
+| `apply-quest-steps.mjs`     | Парсит шаги прохождения с mw2.wiki (русский/английский), обновляет `questSteps.ts` с сохранением profession-блока | —          |
+| `extract-quest-steps.mjs`   | Упрощённая однопоточная версия `apply-quest-steps.mjs` (вывод в stdout)                                           | —          |
+| `quests/fetch-kusto.mjs`    | Скачивает изображения для цепочки Кусто (посты 87-95)                                                             | —          |
+| `quests/fetch-other.mjs`    | Скачивает изображения для остальных квестов (не Path of..., не Кусто)                                             | —          |
+| `quests/fetch-path.mjs`     | Скачивает изображения для Path of... квестов (1 профессия)                                                        | —          |
+| `quests/fetch-three.mjs`    | Вывод ID для 3 in 1 квестов (2 профессия) без изображений                                                         | —          |
+| `quests/shared.mjs`         | Утилиты для скриптов в `quests/` (обработка HTTP 500)                                                             | —          |
+| `fetch-telegram-script.mjs` | Скачивает Telegram WebApp SDK (`telegram-web-app.js`) с telegram.org в `public/`                                  | —          |
+
+## PWA
+
+- `vite-plugin-pwa` (Workbox, `generateSW`) — service worker + manifest, подключён в `vite.config.ts`
+- `registerType: 'autoUpdate'` — при новом деплое SW обновляется и применяется сразу
+- Manifest: `start_url`/`scope` = `/l2team-navigator/`, `display: standalone`, `theme_color`/`background_color` = `#05070d`
+- Иконки: `public/images/pwa-192x192.png`, `pwa-512x512.png`, `maskable-icon-512x512.png`, `apple-touch-icon-180x180.png` — генерируются из `public/images/logo-l2team.png` через `npx pwa-assets-generator public/images/logo-l2team.png --preset minimal-2023`
+- Прекэш (до 2 МБ на файл): HTML, JS/CSS-чанки, шрифты, логотип, иконки, `telegram-web-app.js` (~7 МБ суммарно) — сайт работает оффлайн после установки SW; тяжёлые данные (SkillsTab ~5 МБ, RECIPES ~4.3 МБ) в прекэш не попадают и кэшируются рантаймом при первом заходе
+- Рантайм-кэш:
+  - Ленивые чанки `/assets/*.js|json` → `NetworkFirst` (timeout 10с, 30 дней)
+  - Локальные картинки боссов/квестов `/images/(bosses|quests)/` → `CacheFirst` (60 дней)
+  - Карты `/maps/` → `CacheFirst` (60 дней)
+  - Внешние иконки mw2.wiki/lu4db → `StaleWhileRevalidate`
+- **НЕ кэшируются**: Яндекс.Метрика (`mc.yandex.ru`), Telegram API backend (Render), POST-запросы
+- В dev SW отключён (дефолт `vite-plugin-pwa`) — не влияет на e2e
+- При изменении PWA-конфига проверить: `npm run build` → `dist/sw.js` + `dist/manifest.webmanifest`, ручная проверка в DevTools (Application → Service Workers / Manifest / Cache Storage)
+
+### Тесты PWA
+
+- Конфиг вынесен в `src/pwa/config.ts` (`pwaConfig`) — покрыт unit-тестами в `src/pwa/__tests__/config.test.ts` (manifest, лимит прекэша, runtime-паттерны)
+- Playwright-тесты в `e2e/pwa/pwa.spec.ts` (отдельный конфиг `playwright.pwa.config.ts`): SW регистрируется, прекэш создан, manifest/иконки отдаются, оффлайн-перезагрузка из кэша
+- PWA-тесты требуют prod-сборки (`vite preview`), поэтому запускаются отдельно: `npm run test:e2e:pwa`
+- Основной `test:e2e` — только app-тесты (dev-сервер, SW отключён, `testIgnore: 'pwa/**'`)
 
 ## Analytics
 
@@ -455,6 +480,7 @@ function questUrl(name: string, id: number): string {
 
 ### Telegram API (`telegramApi.ts`)
 
+- Telegram WebApp SDK (`telegram-web-app.js`) хранится локально в `public/` и подключается из `index.html` через `%BASE_URL%` (не грузится с CDN telegram.org)
 - Использует **axios instance** с `baseURL` из `VITE_TELEGRAM_API_URL` и таймаутом 15s
 - **Авторизация** через `getAuthHeaders()`:
   - Telegram Mini App: заголовок `X-Telegram-Init-Data` (initData из Telegram SDK)
@@ -495,7 +521,7 @@ function questUrl(name: string, id: number): string {
 
 ## Lazy Loading
 
-- SkillsTab — ленивый через `React.lazy(() => import(...))` (SKILLS.json 3.6 MB)
+- SkillsTab — ленивый через `React.lazy(() => import(...))` (SKILLS.json 7.7 MB)
 - RecipeTab — ленивый через `React.lazy()`, данные RECIPES.json загружаются динамическим `import()` внутри компонента (отдельные чанки)
 - При использовании динамического import данных — обязателен loading state через `dataLoaded`
 
@@ -556,6 +582,9 @@ function questUrl(name: string, id: number): string {
 
 ## Data Notes
 
+- Суммарный объём статических данных `src/data/*.json` ~19 МБ (SKILLS.json 7.7 МБ, RECIPES.json 7.0 МБ, локации ~4.4 МБ, RAIDBOSSES.json 0.53 МБ, SPELLBOOKS.json 0.17 МБ)
+- Распарсенные данные занимают в RAM ~1.2× от размера JSON (~23 МБ для всех сразу; ~8 МБ на один тяжёлый таб) — V8 интернирует повторяющиеся строки-ключи, раздутия нет
+- **IndexedDB не используется** (рассмотрено и отклонено): данные статичны и компактны в RAM, оффлайн уже закрыт Service Worker'ом, а перенос в IDB потребовал бы переписывания синхронного чтения/фильтрации на асинхронное с ручной версионизацией
 - `RAIDBOSSES.json` now has `image` and `coords` fields (added by `fetch-mw2-bosses.mjs`)
 - Boss images are in `/public/images/bosses/` — accessible at `/l2team-navigator/images/bosses/` after deploy
 - `coords` are pixel positions on the 3004×3004 world map (`x` = left, `y` = top)
